@@ -35,7 +35,7 @@
 
 	<packaging>pom</packaging>
 
-	<name>Policy - GUI</name>
+	<name>policy-gui</name>
 	<description>Code that all the Policy GUI's.</description>
 
 	<properties>
