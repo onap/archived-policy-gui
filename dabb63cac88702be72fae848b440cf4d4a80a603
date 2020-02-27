@@ -282,6 +282,24 @@
     },
     {
       "key": {
+        "uuid": "32e56350_48b0ffcf",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "Will have to defer to Pam for this",
+      "parentUuid": "6e896c83_2e9002c8",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a832ccf1_8a6d5b1c",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
         "patchSetId": 1
@@ -492,6 +510,24 @@
     },
     {
       "key": {
+        "uuid": "f6ed439c_52ce724f",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "then the fields in the POJO can just be String (or Object, if String is not sufficient)",
+      "parentUuid": "67109085_1c63ad03",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f255ca2_4c4d4b4b",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 1
@@ -521,6 +557,24 @@
       "side": 1,
       "message": "Agree, considerring a new POJO would require to refactor code in pap, policy-models and apex as well, I suggest creating a backlog for it.",
       "parentUuid": "5f255ca2_4c4d4b4b",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d89c8a1_f94d4830",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "would prefer to use a StandardCoder here, if possible.  Or maybe just readEntity(ArrayList.class) straight into a List instead of a string, avoiding the need to decode it further",
+      "parentUuid": "432a3088_d4faa2ec",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -591,6 +645,24 @@
       "side": 1,
       "message": "Okay, I can record it as a backlog.",
       "parentUuid": "f67bccfd_e9c39f44",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84f2f0ae_2882a63b",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "that works",
+      "parentUuid": "b99ee7b2_b230ab18",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
