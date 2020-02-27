@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "61fa2099_e44badac",
+        "filename": "gui-pdp-monitoring/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "46e4cee9_f840eb81",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe046234_c737184e",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "logger calls will automatically invoke toString(), if logging is actually enabled, thus it is unnecessary to invoke toString(), plus it wastes extra CPU when logging happens to be disabled\n\nsame comment elsewhere",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f107a08_9e9d37b1",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe046234_c737184e",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "db4aed56_95bb9199",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c4867523_37b2a9b8",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "949f4cdc_e473a259",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "put this straight into the warn() call and use \"{}\" place-holders instead of string concatenation.  No need to include e.getMessage()",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "910a8792_c80f33d9",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "949f4cdc_e473a259",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "c81ef7ac_3fa46764",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90823ef8_98157ef7",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aaa3e14_2fe4fcaa",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "replace these lines with:\n\n  shutdown()",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "434c973e_cd64ef74",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9aaa3e14_2fe4fcaa",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "53efd26e_028ed47e",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameterParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e6e667c1_5bf398e8",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ec1ef6a_1cc3a2e1",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "should this be https by default?",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e896c83_2e9002c8",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "if so, https://localhost:port requires to configure browers, and ways of configuration of different browers are different. \nSo https is not that convenient.",
+      "parentUuid": "5ec1ef6a_1cc3a2e1",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "18cd3447_46843cbc",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a832ccf1_8a6d5b1c",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee056749_ce96c3a9",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "use @Min and @Max annotations and then BeanValidator can be used, replacing most of these validate methods",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36a5a0af_4948989e",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ee056749_ce96c3a9",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "b42e1f5d_e9a21df0",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "22c70978_21887434",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "023c58fe_7565a571",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 1
@@ -200,6 +398,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "maybe do an error check to ensure \"id\" has three components?",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d482927_6c1bbf1c",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "023c58fe_7565a571",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "feb48d8b_8416001a",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e9512fb7_bd8ed556",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0a65cee_614e9e37",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 1
@@ -234,6 +468,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "let\u0027s define a POJO instead of using JsonObject.  Beyond the obvious benefit in clarity and type checking, it will allow us to get away from gson",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67109085_1c63ad03",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Through JsonObject, we can fill different types of data into the same key, to adapt different results displayed on the html. It is useful for some execptional cases.",
+      "parentUuid": "e0a65cee_614e9e37",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "432a3088_d4faa2ec",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Agree, considerring a new POJO would require to refactor code in pap, policy-models and apex as well, I suggest creating a backlog for it.",
+      "parentUuid": "5f255ca2_4c4d4b4b",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "304fc0b1_4324707a",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 1
@@ -268,6 +538,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "instead of invoking get(uri), just store the result from line 235 in a variable.  In addition, the rest of this \"if\" block can be replaced with another computeIfAbsent(), which will also eliminate the need for 244",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6a8fff7_3a78ba78",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "looks neater， thanks. :)",
+      "parentUuid": "304fc0b1_4324707a",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -291,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "b99ee7b2_b230ab18",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Okay, I can record it as a backlog.",
+      "parentUuid": "f67bccfd_e9c39f44",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c38c6a1_cbd80235",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 1
@@ -302,6 +608,24 @@
       "writtenOn": "2020-02-25T14:57:05Z",
       "side": 1,
       "message": "could move @Getter to class level",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1c67b1b_28adec19",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7c38c6a1_cbd80235",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -325,6 +649,24 @@
     },
     {
       "key": {
+        "uuid": "446af10d_2046642d",
+        "filename": "gui-pdp-monitoring/src/main/resources/webapp/css/interfaceAssets.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 1741,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "17cd4602_e05ba494",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f1f2382_dcddd86d",
         "filename": "gui-pdp-monitoring/src/main/resources/webapp/index.html",
         "patchSetId": 1
@@ -342,6 +684,24 @@
     },
     {
       "key": {
+        "uuid": "457a7031_8833ae34",
+        "filename": "gui-pdp-monitoring/src/main/resources/webapp/index.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7f1f2382_dcddd86d",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cfa432c_6d5d9f40",
         "filename": "gui-pdp-monitoring/src/main/resources/webapp/js/MonitoringUtils.js",
         "patchSetId": 1
@@ -356,6 +716,24 @@
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81a7a70b_22f202c7",
+        "filename": "gui-pdp-monitoring/src/main/resources/webapp/js/MonitoringUtils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-27T12:32:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0cfa432c_6d5d9f40",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
