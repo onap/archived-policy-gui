@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e117f95e_34e2dbc0",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "the \"shutdown()\" method should decrement this latch",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28e391e7_a5af18a0",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestMain.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "leave out the trailing \": {}\".  Otherwise, it will include \"e\" in the message and will NOT print a stack trace",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4497e455_69dffd80",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestParameterParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "leave off trailing \" : \"\n\nsame comment below",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6cde0e3_803271eb",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "maybe use \"id\" instead of \"idArray\"",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ce7f307_bb8338ce",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "may want to use findFirst()",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b94ac09_370cc0f5",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "just use \"new HashMap\u003c\u003e()\", assuming it compiles (this is a sonar issue)",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2be6403d_2d7acc2d",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "delete this line - the list is already in the map",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7acb0319_3c9c0a27",
+        "filename": "gui-pdp-monitoring/src/main/resources/webapp/js/PdpStatisticsSummary.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-27T13:21:51Z",
+      "side": 1,
+      "message": "trailing space",
+      "revId": "3433cca8354beb8c95adaf769cb7af448d355718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
