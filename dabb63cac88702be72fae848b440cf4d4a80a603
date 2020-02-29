@@ -528,6 +528,24 @@
     },
     {
       "key": {
+        "uuid": "73232b97_e792ff8d",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-29T14:10:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6ed439c_52ce724f",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f255ca2_4c4d4b4b",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 1
@@ -575,6 +593,24 @@
       "side": 1,
       "message": "would prefer to use a StandardCoder here, if possible.  Or maybe just readEntity(ArrayList.class) straight into a List instead of a string, avoiding the need to decode it further",
       "parentUuid": "432a3088_d4faa2ec",
+      "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e4a462e_18422333",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-02-29T14:10:45Z",
+      "side": 1,
+      "message": "Try both, not really work. Prefer creating a POJO first.",
+      "parentUuid": "7d89c8a1_f94d4830",
       "revId": "dabb63cac88702be72fae848b440cf4d4a80a603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
