@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e059714_d13af210",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringMain.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "\"getBaseUri\" \u003d\u003e \"getTimeToLive\"",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ffdf45e_610307da",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringMain.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "combine this with line 58 - it needs to happen before the REST server is started",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a6a2b82_09c6f328",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringServer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "FYI: If this was a RestServer instead of an HttpServletServer, then it would not be necessary to call encode() in the rest service class.  In addition, it would automatically support both JSON and YAML",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93b5dc8f_8f396111",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringServer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "are we sure we\u0027ll never have any other servers running?  Maybe it would be better to leave these servers unmanaged and then just shut them down individually here.\n\nOr maybe a better alternative would be to leave them managed, but move this \"destroy()\" call to Main.",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65db25b9_81372c13",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringServerParameters.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "perhaps these ports should be in the 69xx range, to match the other policy ports",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f89c637_c131718f",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "could this be \"Integer\" (or \"Long\") instead?",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10d676c6_2708192d",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "could this be \"Integer\" (or \"Long\") instead?",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01827f15_bacbd239",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "if there are no matches, then get() will throw an NPE",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "805a5fc2_07ad6b40",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "encode() would not be needed if this were started via RestServer",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b3e4743_917e5643",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/StatisticsResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "could these be \"Integer\" (or \"Long\"), instead?",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d97c6679_2a15ce83",
+        "filename": "gui-pdp-monitoring/src/main/resources/webapp/js/MonitoringMain.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-02-29T16:05:01Z",
+      "side": 1,
+      "message": "69xx?",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
