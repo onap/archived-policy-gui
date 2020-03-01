@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7df17c38_36317567",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringMain.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-01T14:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5ffdf45e_610307da",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a6a2b82_09c6f328",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringServer.java",
         "patchSetId": 3
@@ -64,6 +82,24 @@
       "writtenOn": "2020-02-29T16:05:01Z",
       "side": 1,
       "message": "are we sure we\u0027ll never have any other servers running?  Maybe it would be better to leave these servers unmanaged and then just shut them down individually here.\n\nOr maybe a better alternative would be to leave them managed, but move this \"destroy()\" call to Main.",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df7e48f4_f2305217",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringServer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-01T14:41:10Z",
+      "side": 1,
+      "message": "I was considerring that Pdp monitoring would be always running as a standalone gui application by jar. So there is no other servers regisitered at this managed list. \n\nBut it has two risks:\n1. if this gui was integrated with other web applications in the future.\n2. if it was running together with other policy components at development phase, server factory is shared among components.\n\nSo I will destory ports explicitly.",
+      "parentUuid": "93b5dc8f_8f396111",
       "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -104,6 +140,24 @@
     },
     {
       "key": {
+        "uuid": "62853d12_16926706",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-01T14:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f89c637_c131718f",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10d676c6_2708192d",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatus.java",
         "patchSetId": 3
@@ -121,6 +175,24 @@
     },
     {
       "key": {
+        "uuid": "19ca4ca5_70d08379",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-01T14:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "10d676c6_2708192d",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01827f15_bacbd239",
         "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
         "patchSetId": 3
@@ -132,6 +204,24 @@
       "writtenOn": "2020-02-29T16:05:01Z",
       "side": 1,
       "message": "if there are no matches, then get() will throw an NPE",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e81f7a23_987c4206",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-01T14:41:10Z",
+      "side": 1,
+      "message": "I will add a handling to prevent findFirst() from NPE. \nif NoSuchElementException happened, js would handle and indicate it in the way of toolTip.",
+      "parentUuid": "01827f15_bacbd239",
       "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -166,6 +256,24 @@
       "writtenOn": "2020-02-29T16:05:01Z",
       "side": 1,
       "message": "could these be \"Integer\" (or \"Long\"), instead?",
+      "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2236c9e_ac0417c7",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/StatisticsResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-01T14:41:10Z",
+      "side": 1,
+      "message": "prefer Object. \"N/A\" and 0 mean different things.",
+      "parentUuid": "1b3e4743_917e5643",
       "revId": "bda74d2faf49cd1b03412787145f1702b404c250",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
