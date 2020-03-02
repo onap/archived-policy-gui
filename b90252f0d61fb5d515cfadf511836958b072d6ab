@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d5ccff4_beaf7b55",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringMain.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-03-02T14:17:56Z",
+      "side": 1,
+      "message": "\"getBaseUri\" \u003d\u003e \"getTimeToLive\"",
+      "revId": "b90252f0d61fb5d515cfadf511836958b072d6ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
