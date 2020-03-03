@@ -16,6 +16,24 @@
       "revId": "b90252f0d61fb5d515cfadf511836958b072d6ab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2945bf52_26b2b34c",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringMain.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 5240
+      },
+      "writtenOn": "2020-03-03T01:31:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d5ccff4_beaf7b55",
+      "revId": "b90252f0d61fb5d515cfadf511836958b072d6ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
