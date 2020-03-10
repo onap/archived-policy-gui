@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19fc468c_6f0d2b8f",
+        "filename": "gui-pdp-monitoring/src/test/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatusTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2020-03-10T18:28:33Z",
+      "side": 1,
+      "message": "EngineStatus\nAlso, in the filter below.\n\nChange the classes to public.",
+      "range": {
+        "startLine": 36,
+        "startChar": 35,
+        "endLine": 36,
+        "endChar": 53
+      },
+      "revId": "8eec90baca496efbdb021cbf182ec239366b9cb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
