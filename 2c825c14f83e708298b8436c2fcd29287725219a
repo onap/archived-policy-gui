@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d62a5630_7d50b972",
+        "filename": "gui-pdp-monitoring/src/test/java/org/onap/policy/gui/pdp/monitoring/rest/EngineStatusTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2020-03-10T20:42:42Z",
+      "side": 1,
+      "message": "With this it will not test the EngineStatus class.",
+      "range": {
+        "startLine": 37,
+        "startChar": 36,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "2c825c14f83e708298b8436c2fcd29287725219a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
