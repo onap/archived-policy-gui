@@ -71,3 +71,5 @@ function highlightSelected (id){
     });
     document.querySelector(`.pdps__link[href*="${id}"]`).classList.add('pdps__link--active');
 };
+
+export { RenderPdpList, highlightSelected, };

@@ -18,6 +18,8 @@
  * ============LICENSE_END=========================================================
  */
 
+import * as d3 from "d3";
+
 /*
  * Create a chart and append it to a container
  */
@@ -254,3 +256,5 @@ function initTooltip() {
 function formatDate(date) {
     return date.toLocaleString().replace(',', '');
 }
+
+export { initTooltip, createChart, updateChart };
