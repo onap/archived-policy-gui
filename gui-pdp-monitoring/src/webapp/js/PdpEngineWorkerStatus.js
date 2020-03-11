@@ -18,6 +18,10 @@
  * ============LICENSE_END=========================================================
  */
 
+import $ from "jquery";
+import { createEngineTable } from "./MonitoringTable";
+import { config } from "./MonitoringConfig";
+import { createChart, updateChart } from "./MonitoringChart";
 /*
  * Create an Engine Status Table and its charts
  */
@@ -57,7 +61,7 @@ function createEngineStatusTable(id, startStopStatus) {
             expand.setAttribute("class", "ebIcon ebIcon_rowExpanded ebIcon_large ebIcon_interactive expandIcon");
         }
         $(chartWrapper).slideToggle();
-    }.bind(this));
+    }.bind(window));
     $(wrapper).append(expand);
     $(wrapper).append(chartWrapper);
     return table;
@@ -75,9 +79,9 @@ function setEngineStatusData(engineStatusData, changed) {
     for ( var esd in engineStatusData) {
         var id = tableId + "_" + engineStatusData[esd].id;
         var existingTable = undefined;
-        for ( var est in this.engineStatusTables) {
-            if (id === this.engineStatusTables[est].getAttribute("id")) {
-                existingTable = this.engineStatusTables[est];
+        for ( var est in window.engineStatusTables) {
+            if (id === window.engineStatusTables[est].getAttribute("id")) {
+                existingTable = window.engineStatusTables[est];
             }
         }
 
@@ -92,7 +96,7 @@ function setEngineStatusData(engineStatusData, changed) {
             table.setAttribute("id", id);
             table.style["margin-bottom"] = "10px";
             table.style.display = "inline-block";
-            this.engineStatusTables.push(table);
+            window.engineStatusTables.push(table);
         }
 
         // Update data in table
@@ -107,13 +111,13 @@ function setEngineStatusData(engineStatusData, changed) {
         var wrapper = $(table).parent();
         var chartWrapper = $(wrapper).find("#chartWrapper")
 
-        var chartConfig = this.config.engineChart.lastPolicyDurationChart;
+        var chartConfig = config.engineChart.lastPolicyDurationChart;
         var lastPolicyDurationChart = wrapper.find("#" + chartConfig.parent)[0];
         if (lastPolicyDurationChart) {
             updateChart(lastPolicyDurationChart, JSON.parse(engineStatusData[esd].lastPolicyDuration),
                     chartConfig.nodeColour);
         } else {
-            chartConfig = this.config.engineChart.lastPolicyDurationChart;
+            chartConfig = config.engineChart.lastPolicyDurationChart;
             var lastPolicyDurationDiv = document.createElement("div");
             lastPolicyDurationDiv.setAttribute("id", chartConfig.parent);
             lastPolicyDurationDiv.setAttribute("class", "papChart");
@@ -122,13 +126,13 @@ function setEngineStatusData(engineStatusData, changed) {
             $(chartWrapper).append(lastPolicyDurationDiv);
         }
 
-        chartConfig = this.config.engineChart.averagePolicyDurationChart;
+        chartConfig = config.engineChart.averagePolicyDurationChart;
         var averagePolicyDurationChart = wrapper.find("#" + chartConfig.parent)[0];
         if (averagePolicyDurationChart) {
             updateChart(averagePolicyDurationChart, JSON.parse(engineStatusData[esd].averagePolicyDuration),
                     chartConfig.nodeColour);
         } else {
-            chartConfig = this.config.engineChart.averagePolicyDurationChart;
+            chartConfig = config.engineChart.averagePolicyDurationChart;
             var averagePolicyDurationDiv = document.createElement("div");
             averagePolicyDurationDiv.setAttribute("id", chartConfig.parent);
             averagePolicyDurationDiv.setAttribute("class", "papChart");
@@ -139,3 +143,5 @@ function setEngineStatusData(engineStatusData, changed) {
 
     }
 }
+
+export { setEngineStatusData, };

@@ -18,6 +18,10 @@
  * ============LICENSE_END=========================================================
  */
 
+import $ from "jquery";
+import { config } from "./MonitoringConfig";
+import { createEngineTable } from "./MonitoringTable";
+
 /*
  * Create the Engine Service Table
  */
@@ -41,7 +45,7 @@ function createEngineServiceTable() {
  * necessary
  */
 function setEngineServiceData(engineId, groupName, subGroupName, healthStatus, pdpState, server, port) {
-    this.engineId = engineId;
+    window.engineId = engineId;
     var tableId = config.engineService.tableId;
     var headers = config.engineService.headers.map(function(a) {
         return a.id;
@@ -56,4 +60,6 @@ function setEngineServiceData(engineId, groupName, subGroupName, healthStatus, p
             engineServiceTable.find("#" + tableId + "_" + headers[h]).html(data[h]);
         }
     }
-}
+};
+
+export { createEngineServiceTable, setEngineServiceData };

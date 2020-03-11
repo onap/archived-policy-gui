@@ -8,4 +8,6 @@
 target
 .metadata/
 /bin/
-.idea
+# IntelliJ files
+.idea/
+**/*.iml
