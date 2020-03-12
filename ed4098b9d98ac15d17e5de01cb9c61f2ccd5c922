@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d31e2412_42543f7c",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2020-03-12T17:30:00Z",
+      "side": 1,
+      "message": "I think the info file has not been verified for a while and global-jjb does not accept several name and links listed \n\n10:28:41 INFO.yaml\n10:28:41   72:11     error    duplication of key \"name\" in mapping  (key-duplicates)\n10:28:41   74:11     error    duplication of key \"link\" in mapping  (key-duplicates)\n\n\nI can correct it for you",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 62
+      },
+      "revId": "ed4098b9d98ac15d17e5de01cb9c61f2ccd5c922",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
