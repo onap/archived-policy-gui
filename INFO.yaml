@@ -24,7 +24,7 @@ meetings:
       server: 'n/a'
       channel: 'n/a'
       repeats: 'weekly'
-      time: '13:00 UTC'
+      time: '09:00 EST'
 repositories:
     - 'policy-apex-pdp'
     - 'policy-api'
@@ -69,6 +69,7 @@ tsc:
     changes:
         - type: 'Addition'
           name: 'Jim Hahn'
-          name: 'Ram Krishna Verma'
           link: https://lists.onap.org/g/onap-tsc/message/4977
+        - type: 'Addition'
+          name: 'Ram Krishna Verma'
           link: https://lists.onap.org/g/onap-tsc/message/4976
