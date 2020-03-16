@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "a58ffd69_c2dc57e0",
+        "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringMain.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-03-16T13:24:39Z",
+      "side": 1,
+      "message": "trailing spaces\n\nsame comment below",
+      "revId": "cebdea99d74578a9360ea285ca7d09e0809f137a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "015185f5_32dc3ddf",
         "filename": "gui-pdp-monitoring/src/webapp/package-lock.json",
         "patchSetId": 1
