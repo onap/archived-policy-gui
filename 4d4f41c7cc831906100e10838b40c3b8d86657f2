@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcf52b34_4931ffab",
+        "filename": "gui-pdp-monitoring/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2020-03-17T12:32:29Z",
+      "side": 1,
+      "message": "Shouldn\u0027t need to define this as its already defined in oparent - or is that giving you difficulty and it must be defined here? Again, if oparent upgrades then we are yet again overwriting.",
+      "range": {
+        "startLine": 150,
+        "startChar": 16,
+        "endLine": 150,
+        "endChar": 40
+      },
+      "revId": "4d4f41c7cc831906100e10838b40c3b8d86657f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
