@@ -18,6 +18,11 @@
  * ============LICENSE_END=========================================================
  */
 
+import $ from "jquery";
+import { createEngineServiceTable } from "./PdpInformation";
+import { createEngineSummaryTable } from "./PdpStatisticsSummary";
+import { RenderPdpList } from "./PdpListView";
+
 /*
  * Crate a dialog with input, attach it to a given parent and show an optional message
  */
@@ -231,3 +236,181 @@ function removeChildrenElementsByClass(className){
     var elements = document.getElementsByClassName(className);
     elements[0].innerHTML = '';
 }
+
+/*
+ * Clears and resets all content on the page
+ */
+function setUpPage(clearPdps) {
+    // Hide all content
+    $('#content').hide();
+
+    // Clear each div
+    $('#content > div').each(function () {
+        $(this).empty();
+    });
+
+    // clear hashchange
+    history.replaceState(null, null, ' ');
+
+    //remove last search result of pdps.
+    if (clearPdps) {
+        removeChildrenElementsByClass('pdps__list');
+    } else {
+        localStorage.setItem("pap-monitor-services", localStorage.getItem("pap-monitor-services_old"));
+    }
+
+    // Reset trackers for tables
+    window.engineStatusTables = [];
+
+    // Set up content div's
+    createEngineServiceTable();
+    createEngineSummaryTable();
+}
+
+/*
+ * Retrieves the engine URL from the cookie. If it has not been set yet, then a
+ * dialog is shown asking for it
+ */
+function getEngineURL(message) {
+    // The engine URL is stored in a cookie using the key
+    // "pap-monitor-services"
+    var services = localStorage.getItem("pap-monitor-services");
+
+    // If an engine URL is stored in the cookie
+    if (services) {
+        // Parse the engine URL
+        window.services = JSON.parse(services);
+
+        // Send a request with that engine URL
+        ajax_get(window.restRootURL, getPdpList,
+            window.services.useHttps, window.services.hostname, window.services.port,
+            window.services.username, window.services.password);
+    } else {
+        // Prompt for engine URL
+        papDialogFormActivate(document.body, message);
+    }
+}
+
+/*
+ * Clears the cookie and reset the page
+ */
+function clearEngineURL(clearPdps) {
+
+    if (typeof window.servicesCall !== "undefined") {
+        window.servicesCall.abort();
+    }
+
+    // Remove engine URL from cookie
+    localStorage.removeItem("pap-monitor-services");
+
+    // Reset the page
+    setUpPage(clearPdps);
+}
+
+function getPdpList(data) {
+    const pdpArray = [];
+    for (let i = 0; i < data.groups.length; i++) {
+        var map = {};
+        map.title = data.groups[i].name;
+        map.children = [];
+        (data.groups[i].pdpSubgroups).forEach((pdpSubgroup, index) => {
+            map.children[index] = {};
+            map.children[index].title = pdpSubgroup.pdpType;
+            const instanceId = [];
+            pdpSubgroup.pdpInstances.forEach(pdpInstance => {
+                var instanceIdMap = {};
+                instanceIdMap.title = pdpInstance.instanceId;
+                instanceId.push(instanceIdMap)
+            });
+            map.children[index].children = instanceId;
+        });
+        pdpArray.push(map);
+    }
+    RenderPdpList(pdpArray, 'pdps__list');
+}
+
+/*
+ * Send a GET request
+ */
+function ajax_get(requestURL, callback, useHttps, hostname, port, username, password, params, errorCallback) {
+    var data = {
+        useHttps: useHttps,
+        hostname: hostname,
+        port: port,
+        username: username,
+        password: password
+    };
+    for (var p in params) {
+        data[p] = params[p];
+    }
+    return $.ajax({
+        type: 'GET',
+        url: requestURL,
+        dataType: "json",
+        data: data,
+        success: function (data, textStatus, jqXHR) {
+            if (callback) {
+                callback(data);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status == 500 || jqXHR.status == 404) {
+                if (jqXHR.status == 404 || jqXHR.responseText.indexOf("Request failed.") !== -1) {
+                    clearEngineURL(true);
+                    getEngineURL("Cannot connect to PAP");
+                } else {
+                    papErrorDialogActivate(document.body, jqXHR.responseText);
+                }
+            }
+            if (errorCallback) {
+                errorCallback(jqXHR, textStatus, errorThrown);
+            }
+        }
+    });
+}
+
+function ajax_get_statistics(requestURL, callback, useHttps, hostname, port, username, password, id, params, errorCallback) {
+    var data = {
+        useHttps: useHttps,
+        hostname: hostname,
+        port: port,
+        username: username,
+        password: password,
+        id: id
+    };
+    for (var p in params) {
+        data[p] = params[p];
+    }
+    return $.ajax({
+        type: 'GET',
+        url: requestURL,
+        dataType: "json",
+        data: data,
+        success: function (data, textStatus, jqXHR) {
+            if (callback) {
+                callback(data);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status == 500 || jqXHR.status == 404) {
+                clearEngineURL(false);
+                papErrorDialogActivate(document.body, "Failed to get Statistics in DB.");
+            }
+            if (errorCallback) {
+                errorCallback(jqXHR, textStatus, errorThrown);
+            }
+        }
+    });
+}
+
+export {
+    removeChildrenElementsByClass,
+    papDialogFormActivate,
+    papErrorDialogActivate,
+    clearEngineURL,
+    getEngineURL,
+    setUpPage,
+    ajax_get,
+    ajax_get_statistics,
+    papUtilsRemoveElement,
+};

@@ -18,6 +18,12 @@
  * ============LICENSE_END=========================================================
  */
 
+import $ from "jquery";
+import { config } from "./MonitoringConfig";
+import { createEngineTable } from "./MonitoringTable";
+import { createChart, updateChart } from "./MonitoringChart";
+import { papUtilsRemoveElement } from "./MonitoringUtils";
+
 /*
  * Create the Engine Service Table
  */
@@ -46,7 +52,7 @@ function createEngineSummaryTable() {
 }
 
 function setEngineSummaryData(data, timeStamp, policyDeployCount, policyDeploySuccessCount, policyDeployFailCount, policyExecutedCount, policyExecutedSuccessCount, policyExecutedFailCount) {
-    this._setEngineSummaryData(timeStamp, getAvgPolicyDuration(data), policyDeployCount, policyDeploySuccessCount, policyDeployFailCount, policyExecutedCount, policyExecutedSuccessCount, policyExecutedFailCount, getUptimeOfOldestEngine(data));
+    _setEngineSummaryData(timeStamp, getAvgPolicyDuration(data), policyDeployCount, policyDeploySuccessCount, policyDeployFailCount, policyExecutedCount, policyExecutedSuccessCount, policyExecutedFailCount, getUptimeOfOldestEngine(data));
 }
 
 /*
@@ -72,7 +78,7 @@ function _setEngineSummaryData(timestamp, avgPolicyDuration, policyDeployCount, 
 
     // Update charts
     var wrapper = engineSummaryTable.parent();
-    var chartConfig = this.config.engineSummary.chart.avgPolicyDurationChart;
+    var chartConfig = config.engineSummary.chart.avgPolicyDurationChart;
     var avgPolicyDurationChart = wrapper.find("#" + chartConfig.parent)[0];
     if (avgPolicyDuration.length) {
         if (avgPolicyDurationChart) {
@@ -132,3 +138,5 @@ function getAvgPolicyDuration(data) {
 
     return chartData;
 }
+
+export { createEngineSummaryTable, setEngineSummaryData, };

@@ -57,3 +57,5 @@ function createTable(id) {
     table.setAttribute("class", "papTable ebTable elTablelib-Table-table ebTable_striped");
     return table;
 }
+
+export { createEngineTable };
