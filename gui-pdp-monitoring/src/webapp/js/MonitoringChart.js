@@ -257,4 +257,4 @@ function formatDate(date) {
     return date.toLocaleString().replace(',', '');
 }
 
-export { initTooltip, createChart, updateChart };
+export { initTooltip, createChart, updateChart, generateRandomData };
