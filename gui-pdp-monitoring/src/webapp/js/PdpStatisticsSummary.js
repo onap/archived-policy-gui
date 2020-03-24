@@ -118,7 +118,7 @@ function getAvgPolicyDuration(data) {
     var chartData = [];
     var avgPolicyDurations = [];
     for ( var d in data) {
-        var avgPolicyDuration = JSON.parse(data[d].averagePolicyDuration);
+        var avgPolicyDuration = (data[d].averagePolicyDuration);
         avgPolicyDurations.push(avgPolicyDuration);
     }
 

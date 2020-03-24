@@ -64,46 +64,48 @@ function servicesCallback(data){
 /*
  * Called after the DOM is ready
  */
-$(document).ready(
-    function() {
-        window.restRootURL = location.protocol
+function readyCallback() {
+    window.restRootURL = location.protocol
         + "//"
         + window.location.hostname
         + ':' + config.restPort
         + (location.pathname.endsWith("/monitoring/") ? location.pathname.substring(0, location.pathname.indexOf("monitoring/")) : location.pathname)
         + "papservices/monitoring/";
-        // Initialize tooltip for the charts
-        initTooltip();
+    // Initialize tooltip for the charts
+    initTooltip();
 
-        // Set up the structure of the page
-        setUpPage(true);
+    // Set up the structure of the page
+    setUpPage(true);
 
-        // Check cookies for engine URL
-        getEngineURL();
+    // Check cookies for engine URL
+    getEngineURL();
 
-        // Add click event to config icon for clearing engine URL
-        $(".ebSystemBar-config").click(
-            function() {
+    // Add click event to config icon for clearing engine URL
+    $(".ebSystemBar-config").click(
+        function () {
             // Clear the engine URL
             clearEngineURL(true);
 
             // Request the engine URL
             getEngineURL();
-            }
-        );
+        }
+    );
 
-        ['hashchange', 'load'].forEach(event => window.addEventListener(event, function() {
-            // Get ID from url
-            window.id = window.location.hash.replace('#', '');
-            if (window.id !== ''){
-                var arr = window.id.split("/");
-                window.groupName = arr[0];
-                window.subGroupName = arr[1];
-                highlightSelected(window.id);
-                ajax_get_statistics(restRootURL + "statistics/", servicesCallback,
-                    window.services.useHttps, window.services.hostname, window.services.port,
-                    window.services.username, window.services.password, window.id);
-            }
-        }));
-    }
-);
+    ['hashchange', 'load'].forEach(event => window.addEventListener(event, function () {
+        // Get ID from url
+        window.id = window.location.hash.replace('#', '');
+        if (window.id !== '') {
+            var arr = window.id.split("/");
+            window.groupName = arr[0];
+            window.subGroupName = arr[1];
+            highlightSelected(window.id);
+            ajax_get_statistics(restRootURL + "statistics/", servicesCallback,
+                window.services.useHttps, window.services.hostname, window.services.port,
+                window.services.username, window.services.password, window.id);
+        }
+    }));
+}
+
+$(document).ready(readyCallback);
+
+export { readyCallback, servicesCallback };
