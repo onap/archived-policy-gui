@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "e0998dbc_44d00bdb",
+        "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringMain.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-03-24T13:37:30Z",
+      "side": 1,
+      "message": "need this AND export of readyCallback on line 111?",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e008cd56_33528c44",
+        "filename": "gui-pdp-monitoring/src/webapp/js/PdpStatisticsSummary.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-03-24T13:37:30Z",
+      "side": 1,
+      "message": "can remove the extra \"()\"",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4624d626_1c09df8e",
         "filename": "gui-pdp-monitoring/src/webapp/js/__test__/MonitoringUtils.test.js",
         "patchSetId": 1
