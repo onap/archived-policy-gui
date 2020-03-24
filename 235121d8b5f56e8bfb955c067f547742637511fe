@@ -102,6 +102,29 @@
       "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebd8720c_f3cb0da4",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpStatisticsSummary.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6458
+      },
+      "writtenOn": "2020-03-24T11:13:05Z",
+      "side": 1,
+      "message": "Is this intentionally placed to test some scenario or the next set is missed ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 43,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
