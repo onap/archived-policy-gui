@@ -42,6 +42,23 @@
     },
     {
       "key": {
+        "uuid": "fa9cc92f_62b3b07f",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpInformation.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6351
+      },
+      "writtenOn": "2020-03-24T09:46:47Z",
+      "side": 1,
+      "message": "We should check the created DOM, the same to line 30.",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a80398bc_ccf77dbd",
         "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpListView.test.js",
         "patchSetId": 1
