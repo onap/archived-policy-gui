@@ -80,8 +80,10 @@ function setEngineStatusData(engineStatusData, changed) {
         var id = tableId + "_" + engineStatusData[esd].id;
         var existingTable = undefined;
         for ( var est in window.engineStatusTables) {
-            if (id === window.engineStatusTables[est].getAttribute("id")) {
-                existingTable = window.engineStatusTables[est];
+            if ( typeof(window.engineStatusTables[est] == "object")){
+                if (id === window.engineStatusTables[est].getAttribute("id")) {
+                    existingTable = window.engineStatusTables[est];
+                }
             }
         }
 
@@ -121,7 +123,8 @@ function setEngineStatusData(engineStatusData, changed) {
             var lastPolicyDurationDiv = document.createElement("div");
             lastPolicyDurationDiv.setAttribute("id", chartConfig.parent);
             lastPolicyDurationDiv.setAttribute("class", "papChart");
-            createChart(JSON.parse(engineStatusData[esd].lastPolicyDuration), lastPolicyDurationDiv,
+
+            createChart(engineStatusData[esd].lastPolicyDuration, lastPolicyDurationDiv,
                     chartConfig.title, chartConfig.unit, chartConfig.lineStroke, chartConfig.nodeColour);
             $(chartWrapper).append(lastPolicyDurationDiv);
         }
@@ -136,7 +139,7 @@ function setEngineStatusData(engineStatusData, changed) {
             var averagePolicyDurationDiv = document.createElement("div");
             averagePolicyDurationDiv.setAttribute("id", chartConfig.parent);
             averagePolicyDurationDiv.setAttribute("class", "papChart");
-            createChart(JSON.parse(engineStatusData[esd].averagePolicyDuration), averagePolicyDurationDiv,
+            createChart(engineStatusData[esd].averagePolicyDuration, averagePolicyDurationDiv,
                     chartConfig.title, chartConfig.unit, chartConfig.lineStroke, chartConfig.nodeColour);
             $(chartWrapper).append(averagePolicyDurationDiv);
         }
