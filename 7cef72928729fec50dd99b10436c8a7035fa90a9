@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e80fea6d_f6573266",
+        "filename": "gui-pdp-monitoring/src/webapp/js/PdpEngineWorkerStatus.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-03-25T04:07:30Z",
+      "side": 1,
+      "message": "still has trailing spaces",
+      "revId": "7cef72928729fec50dd99b10436c8a7035fa90a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
