@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "30f02b8d_d1766d0e",
+        "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringMain.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "09f82395_f41f59a7",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e008cd56_33528c44",
         "filename": "gui-pdp-monitoring/src/webapp/js/PdpStatisticsSummary.js",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2020-03-24T13:37:30Z",
       "side": 1,
       "message": "can remove the extra \"()\"",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4cf942bb_d8e5b6f1",
+        "filename": "gui-pdp-monitoring/src/webapp/js/PdpStatisticsSummary.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e008cd56_33528c44",
       "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "0a5334aa_c2333968",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/MonitoringUtils.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5665d99a_40f82d84",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c1671a0_970f53e1",
         "filename": "gui-pdp-monitoring/src/webapp/js/__test__/MonitoringUtils.test.js",
         "patchSetId": 1
@@ -112,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "4e6e16e9_70e0eb0c",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/MonitoringUtils.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5c1671a0_970f53e1",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 4
+      },
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa9cc92f_62b3b07f",
         "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpInformation.test.js",
         "patchSetId": 1
@@ -126,6 +204,24 @@
       "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4637d1c_e91b33bd",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpInformation.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa9cc92f_62b3b07f",
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -149,6 +245,30 @@
       "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fe0b186_a9fab6ce",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpListView.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a80398bc_ccf77dbd",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 8
+      },
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +306,30 @@
       "writtenOn": "2020-03-24T11:13:05Z",
       "side": 1,
       "message": "Is this intentionally placed to test some scenario or the next set is missed ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 43,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "235121d8b5f56e8bfb955c067f547742637511fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05bc7169_82225980",
+        "filename": "gui-pdp-monitoring/src/webapp/js/__test__/PdpStatisticsSummary.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5307
+      },
+      "writtenOn": "2020-03-25T02:51:45Z",
+      "side": 1,
+      "message": "just a scenario, the next set is not necessary for using in taest.",
+      "parentUuid": "ebd8720c_f3cb0da4",
       "range": {
         "startLine": 28,
         "startChar": 43,
