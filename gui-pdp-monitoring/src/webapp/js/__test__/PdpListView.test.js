@@ -59,6 +59,5 @@ test("render pdp list", () => {
 
 test("high light selected", () => {
     PdpListView.highlightSelected(1);
-    console.log(document.querySelector(`.pdps__link[href*="${1}"]`));
     expect(document.querySelector(`.pdps__link[href*="${1}"]`)).toBeDefined();
 })
