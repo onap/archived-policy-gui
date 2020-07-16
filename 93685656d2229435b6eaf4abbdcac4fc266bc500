@@ -16,6 +16,24 @@
       "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e496990d_ef09a51b",
+        "filename": "gui-common/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-07-16T15:16:46Z",
+      "side": 1,
+      "message": "I set all the snapshot revisions for all the modules in the repo to 2.1.0-SNAPSHOT. We had a discussion about it at the scrum and its continuing on rocket chat.",
+      "parentUuid": "63578c53_22af40b3",
+      "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
