@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63578c53_22af40b3",
+        "filename": "gui-common/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2020-07-16T13:54:14Z",
+      "side": 1,
+      "message": "not sure this is needed - now this sub-module diverges from the repo as a whole and the rest of the submodules",
+      "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
