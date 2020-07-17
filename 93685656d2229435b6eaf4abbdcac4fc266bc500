@@ -70,6 +70,24 @@
       "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54aeb982_2b272a5b",
+        "filename": "gui-common/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-07-17T08:27:43Z",
+      "side": 1,
+      "message": "Done, I have raised a version bumping review separately, when that\u0027s merged, I\u0027ll rebase this one.",
+      "parentUuid": "0eb26427_b53d5c3b",
+      "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
