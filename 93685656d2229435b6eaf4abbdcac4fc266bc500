@@ -88,6 +88,24 @@
       "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7869a6d_125be5f6",
+        "filename": "gui-common/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-07-17T13:54:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54aeb982_2b272a5b",
+      "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
