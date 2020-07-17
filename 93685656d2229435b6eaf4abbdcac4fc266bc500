@@ -106,6 +106,24 @@
       "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d45c7251_91b403d5",
+        "filename": "gui-common/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-07-17T14:42:08Z",
+      "side": 1,
+      "message": "Thanks, Liam!",
+      "parentUuid": "e7869a6d_125be5f6",
+      "revId": "93685656d2229435b6eaf4abbdcac4fc266bc500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
