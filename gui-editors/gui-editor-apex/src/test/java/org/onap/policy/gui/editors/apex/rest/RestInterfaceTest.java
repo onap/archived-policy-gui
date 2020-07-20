@@ -46,6 +46,7 @@ import org.onap.policy.apex.model.basicmodel.handling.ApexModelStringWriter;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.policymodel.concepts.AxPolicy;
 import org.onap.policy.apex.model.policymodel.concepts.AxPolicyModel;
+import org.onap.policy.common.parameters.ParameterService;
 import org.onap.policy.common.utils.resources.ResourceUtils;
 import org.onap.policy.gui.editors.apex.rest.ApexEditorMain.EditorState;
 
@@ -74,6 +75,7 @@ public class RestInterfaceTest {
      */
     @BeforeClass
     public static void setUp() throws Exception {
+        ParameterService.clear();
         // Start the editor
         editorMain = new ApexEditorMain(EDITOR_MAIN_ARGS, System.out);
         // prevent a stray stdin value from killing the editor

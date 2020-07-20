@@ -22,6 +22,7 @@
 package org.onap.policy.gui.editors.apex.rest;
 
 import java.io.PrintStream;
+import org.onap.policy.common.parameters.ParameterService;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -85,7 +86,6 @@ public class ApexEditorMain {
             throw new ApexEditorParameterException(REST_ENDPOINT_PREFIX + this.toString() + ") parameter error, "
                 + e.getMessage() + '\n' + parser.getHelp(ApexEditorMain.class.getName()), e);
         }
-
         if (parameters.isHelpSet()) {
             throw new ApexEditorParameterException(parser.getHelp(ApexEditorMain.class.getName()));
         }
@@ -96,6 +96,8 @@ public class ApexEditorMain {
             throw new ApexEditorParameterException(REST_ENDPOINT_PREFIX + this.toString() + ") parameters invalid, "
                 + validationMessage + '\n' + parser.getHelp(ApexEditorMain.class.getName()));
         }
+
+        ParameterService.register(new UploadPluginConfigParameters());
 
         state = EditorState.READY;
     }
@@ -210,3 +212,4 @@ public class ApexEditorMain {
         }
     }
 }
+
