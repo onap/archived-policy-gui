@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
+import org.onap.policy.common.parameters.ParameterService;
 import org.onap.policy.gui.editors.apex.rest.ApexEditorMain.EditorState;
 
 /**
@@ -385,6 +386,7 @@ public class ApexEditorStartupTest {
      * @throws InterruptedException if the test is interrupted
      */
     private String runEditor(final String[] args) throws InterruptedException {
+        ParameterService.clear();
         final ByteArrayOutputStream outBaStream = new ByteArrayOutputStream();
         final PrintStream outStream = new PrintStream(outBaStream);
 

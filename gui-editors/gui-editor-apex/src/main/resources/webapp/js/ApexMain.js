@@ -40,9 +40,11 @@ $("#menu li").not(".emptyMessage").click(function() {
     case "menuFileOpen":
         files_fileOpen();
         break;
-
     case "menuFileDownload":
         files_fileDownload();
+        break;
+    case "menuFileUpload":
+        uploadPlugin.openDialog();
         break;
 
     case "menuFileClear":

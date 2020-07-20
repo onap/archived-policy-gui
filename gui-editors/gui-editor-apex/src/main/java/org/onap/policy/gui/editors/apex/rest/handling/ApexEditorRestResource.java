@@ -22,6 +22,7 @@
 package org.onap.policy.gui.editors.apex.rest.handling;
 
 import java.io.IOException;
+import java.io.InputStream;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,9 +33,18 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
+import org.onap.policy.common.parameters.ParameterService;
+import org.onap.policy.common.utils.coder.StandardCoder;
+import org.onap.policy.common.utils.coder.YamlJsonTranslator;
 import org.onap.policy.common.utils.resources.TextFileUtils;
+import org.onap.policy.gui.editors.apex.rest.UploadPluginConfigParameters;
+import org.onap.policy.gui.editors.apex.rest.handling.converter.tosca.ApexConfigProcessor;
+import org.onap.policy.gui.editors.apex.rest.handling.converter.tosca.PolicyToscaConverter;
+import org.onap.policy.gui.editors.apex.rest.handling.converter.tosca.ToscaTemplateProcessor;
+import org.onap.policy.gui.editors.apex.rest.handling.plugin.upload.UploadPluginClient;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -61,15 +71,16 @@ import org.slf4j.ext.XLoggerFactory;
 @Path("editor/{session}")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-
 public class ApexEditorRestResource implements RestCommandHandler {
+
     // Get a reference to the logger
+
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEditorRestResource.class);
-
     // Location of the periodi event template
-    private static final String PERIODIC_EVENT_TEMPLATE = "src/main/resources/templates/PeriodicEventTemplate.json";
 
+    private static final String PERIODIC_EVENT_TEMPLATE = "src/main/resources/templates/PeriodicEventTemplate.json";
     // Recurring string constants
+
     private static final String NAME = "name";
     private static final String VERSION = "version";
     private static final String REST_COMMAND_NOT_RECOGNISED = "REST command not recognised";
@@ -77,12 +88,12 @@ public class ApexEditorRestResource implements RestCommandHandler {
     private static final String NOT_OK = ": Not OK";
     private static final String SESSION_CREATE = "Session/Create";
     private static final String SESSION_CREATE_NOT_OK = "Session/Create: Not OK";
-
     // The session handler for sessions on the Apex editor
-    private static final RestSessionHandler SESSION_HANDLER = new RestSessionHandler();
 
+    private static final RestSessionHandler SESSION_HANDLER = new RestSessionHandler();
     // Handlers for the various parts of an Apex model
     //@formatter:off
+
     private static final ModelHandler         MODEL_HANDLER          = new ModelHandler();
     private static final KeyInfoHandler       KEY_INFO_HANDLER       = new KeyInfoHandler();
     private static final ContextSchemaHandler CONTEXT_SCHEMA_HANDLER = new ContextSchemaHandler();
@@ -90,11 +101,25 @@ public class ApexEditorRestResource implements RestCommandHandler {
     private static final EventHandler         EVENT_HANDLER          = new EventHandler();
     private static final TaskHandler          TASK_HANDLER           = new TaskHandler();
     private static final PolicyHandler        POLICY_HANDLER         = new PolicyHandler();
-    //@formatter:on
 
+    private final PolicyUploadHandler policyUploadHandler;
+    //@formatter:on
     // The ID of this session. This gets injected from the URL.
+
     @PathParam("session")
     private int sessionId = -1;
+
+    /**
+     * Creates the ApexEditorRestResource instance.
+     */
+    public ApexEditorRestResource() {
+        final StandardCoder standardCoder = new StandardCoder();
+        policyUploadHandler = new PolicyUploadHandler(
+            new UploadPluginClient(), new PolicyToscaConverter(standardCoder, new YamlJsonTranslator()),
+            new ToscaTemplateProcessor(standardCoder), new ApexConfigProcessor(standardCoder),
+            ParameterService.get(UploadPluginConfigParameters.GROUP_NAME)
+        );
+    }
 
     /**
      * Creates a new session. Always call this method with sessionID -1, whereby a new sessionID will be allocated. If
@@ -223,6 +248,27 @@ public class ApexEditorRestResource implements RestCommandHandler {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Uploads a Policy Model to a configured endpoint converting it to tosca based on the given apex config and tosca
+     * templates.
+     *
+     * @param toscaTemplateFileStream the tosca template file input stream
+     * @param apexConfigFileStream the apex config file input stream
+     * @return an ApexAPIResult that contains the operation status and success/error messages
+     */
+    @POST
+    @Path("Model/Upload")
+    @Consumes({MediaType.MULTIPART_FORM_DATA})
+    public ApexApiResult uploadModel(@FormDataParam("tosca-template-file") InputStream toscaTemplateFileStream,
+                                     @FormDataParam("apex-config-file") InputStream apexConfigFileStream) {
+        final ApexApiResult result = new ApexApiResult();
+        final RestSession session = SESSION_HANDLER.getSession(sessionId, result);
+        if (session == null) {
+            return result;
+        }
+        return policyUploadHandler.doUpload(session.getApexModel(), toscaTemplateFileStream, apexConfigFileStream);
     }
 
     /**
