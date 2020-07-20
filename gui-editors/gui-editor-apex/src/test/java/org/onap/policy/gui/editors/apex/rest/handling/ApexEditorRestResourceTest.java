@@ -28,6 +28,7 @@ import java.io.IOException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
@@ -43,7 +44,7 @@ import org.onap.policy.common.utils.resources.TextFileUtils;
 public class ApexEditorRestResourceTest extends JerseyTest {
     @Override
     protected Application configure() {
-        return new ResourceConfig(ApexEditorRestResource.class);
+        return new ResourceConfig(ApexEditorRestResource.class).register(MultiPartFeature.class);
     }
 
     @Test

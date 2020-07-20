@@ -27,6 +27,7 @@ function pageControl_modelMode(name, version, fileName) {
     $("#menuFileNew").addClass("disabled");
     $("#menuFileOpen").addClass("disabled");
     $("#menuFileDownload").removeClass("disabled");
+    $("#menuFileUpload").removeClass("disabled");
     $("#menuFileClear").removeClass("disabled");
     $("#menuModelAnalyse").removeClass("disabled");
     $("#menuModelValidate").removeClass("disabled");
@@ -77,6 +78,7 @@ function pageControl_noModelMode() {
     $("#menuFileNew").removeClass("disabled");
     $("#menuFileOpen").removeClass("disabled");
     $("#menuFileDownload").addClass("disabled");
+    $("#menuFileUpload").addClass("disabled");
     $("#menuFileClear").addClass("disabled");
     $("#menuModelAnalyse").addClass("disabled");
     $("#menuModelValidate").addClass("disabled");

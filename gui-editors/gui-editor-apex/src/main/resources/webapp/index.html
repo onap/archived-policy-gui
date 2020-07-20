@@ -43,6 +43,8 @@
 <!-- interface style -->
 <link rel="stylesheet" type="text/css" href="css/interfaceAssets.css">
 
+<link rel="stylesheet" type="text/css" href="css/upload/dialog.css" />
+
 <!-- JQuery style -->
 <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css">
 
@@ -82,6 +84,7 @@
                                 <li id="menuFileNew">New <kbd>Ctrl+N</kbd></li>
                                 <li id="menuFileOpen">Open... <kbd>Ctrl+O</kbd></li>
                                 <li id="menuFileDownload">Download <kbd>Ctrl+S</kbd></li>
+                                <li id="menuFileUpload">Upload <kbd>Ctrl+U</kbd></li>
                                 <li id="menuFileClear">Clear<kbd>Ctrl+D</kbd></li>
                                 <li class="divider"></li>
                                 <li id="menuFileNewSession">New Session<kbd>Ctrl+R</kbd></li>
@@ -172,6 +175,7 @@
                         <!--  Dynamically created form goes here-->
                     </div>
                 </div>
+                <div id="main-dialog"></div>
             </div>
 
             <div class="placeholder">
@@ -212,7 +216,8 @@
     <!--  edit area JS file -->
     <script language="javascript" type="text/javascript"
         src="js/edit_area/edit_area_full.js"></script>
-
+    <!-- simple jquery pub/sub library -->
+    <script type="text/javascript" src="js/lib/pubsub/ba-tiny-pubsub.min.js"></script>
     <!-- Apex JS files -->
     <script type="text/javascript" src="js/ApexTable.js"></script>
     <script type="text/javascript" src="js/ApexContextSchemaTab.js"></script>
@@ -234,6 +239,8 @@
     <script type="text/javascript" src="js/ApexNewModelForm.js"></script>
     <script type="text/javascript" src="js/ApexResultForm.js"></script>
     <script type="text/javascript" src="js/ApexModelHandling.js"></script>
+    <script type="text/javascript" src="js/ApexConfig.js"></script>
+    <script type="text/javascript" src="js/ApexUpload.js"></script>
     <script type="text/javascript" src="js/ApexMain.js"></script>
 
 </body>
