@@ -70,6 +70,29 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbbb71e0_3bd84e9e",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2020-08-04T18:47:56Z",
+      "side": 1,
+      "message": "Is will be great to create the file in UI instead of creating the file and then uploading it. Something like creating tabs in the UI for Model, Configuration \u0026 Tosca.\nAny plans for that?",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
