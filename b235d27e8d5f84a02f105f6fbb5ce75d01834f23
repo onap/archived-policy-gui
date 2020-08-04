@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a0fbdb4_2ed47ced",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2020-08-04T12:49:53Z",
+      "side": 1,
+      "message": "Is this an override of what\u0027s declared in policy/parent? If so, then add a comment why this version is necessary vs what is declared in in parent.",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
