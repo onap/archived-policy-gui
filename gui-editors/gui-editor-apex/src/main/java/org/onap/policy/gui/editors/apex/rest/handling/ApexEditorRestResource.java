@@ -48,23 +48,23 @@ import org.slf4j.ext.XLoggerFactory;
 
 /**
  * The class represents the root resource exposed at the base URL<br> The url to access this resource would be in the
- * form {@code <baseURL>/rest/<session>/....} <br> For example: a PUT request to the following URL
- * {@code http://localhost:8080/apex/rest/109/ContextSchema/Update}, with a JSON string payload containing the new
- * {@code Schema} in the body, can be explained as: <ul> <li>The server or servlet is running at the base URL
- * {@code http://localhost:8080/apex} <li>This resource {@code ApexRestEditorResource} is used because the path
- * {@code rest/109} matches the {@code Path} filter specification for this Resource ({@code @Path("rest/{session}")}),
- * where the {@code int} path parameter {@code session} is assigned the {@code int} value {@code 109} <li>The path
- * {@code ContextSchema/Update} redirects this call to the method {@link #updateContextSchema(String)}, which should be
- * a {@link javax.ws.rs.PUT}, with a single String in the body/payload which gets mapped to the single String parameter
+ * form {@code <baseURL>/rest/<session>/....} <br> For example: a PUT request to the following URL {@code
+ * http://localhost:8080/apex/rest/109/ContextSchema/Update}, with a JSON string payload containing the new {@code
+ * Schema} in the body, can be explained as: <ul> <li>The server or servlet is running at the base URL {@code
+ * http://localhost:8080/apex} <li>This resource {@code ApexRestEditorResource} is used because the path {@code
+ * rest/109} matches the {@code Path} filter specification for this Resource ({@code @Path("rest/{session}")}), where
+ * the {@code int} path parameter {@code session} is assigned the {@code int} value {@code 109} <li>The path {@code
+ * ContextSchema/Update} redirects this call to the method {@link #updateContextSchema(String)}, which should be a
+ * {@link javax.ws.rs.PUT}, with a single String in the body/payload which gets mapped to the single String parameter
  * for the method. <li>So, in summary, the REST request updates a {@code ContextSchema} as specified in the payload for
  * {@code session} number {@code 109} </ul>
  *
  * <b>Note:</b> An allocated {@code Session} identifier must be included in (almost) all requests. Models for different
  * {@code Session} identifiers are completely isolated from one another.
  *
- * <b>Note:</b> To create a new {@code Session}, and have a new session ID allocated use {@link javax.ws.rs.GET} request
- * to {@code <baseURL>/rest/-1/Session/Create} (for example: {@code http://localhost:8080/apex/rest/-1/Session/Create} )
- *
+ * <b>Note:</b> To create a new {@code Session}, and have a new session ID allocated use {@link javax.ws.rs.GET}
+ * request to {@code <baseURL>/rest/-1/Session/Create} (for example: {@code http://localhost:8080/apex/rest/-1/Session/Create}
+ * )
  */
 @Path("editor/{session}")
 @Produces({MediaType.APPLICATION_JSON})
@@ -72,7 +72,6 @@ import org.slf4j.ext.XLoggerFactory;
 public class ApexEditorRestResource implements RestCommandHandler {
 
     // Get a reference to the logger
-
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEditorRestResource.class);
     // Location of the periodi event template
 
@@ -92,13 +91,13 @@ public class ApexEditorRestResource implements RestCommandHandler {
     // Handlers for the various parts of an Apex model
     //@formatter:off
 
-    private static final ModelHandler         MODEL_HANDLER          = new ModelHandler();
-    private static final KeyInfoHandler       KEY_INFO_HANDLER       = new KeyInfoHandler();
+    private static final ModelHandler MODEL_HANDLER = new ModelHandler();
+    private static final KeyInfoHandler KEY_INFO_HANDLER = new KeyInfoHandler();
     private static final ContextSchemaHandler CONTEXT_SCHEMA_HANDLER = new ContextSchemaHandler();
-    private static final ContextAlbumHandler  CONTEXT_ALBUM_HANDLER  = new ContextAlbumHandler();
-    private static final EventHandler         EVENT_HANDLER          = new EventHandler();
-    private static final TaskHandler          TASK_HANDLER           = new TaskHandler();
-    private static final PolicyHandler        POLICY_HANDLER         = new PolicyHandler();
+    private static final ContextAlbumHandler CONTEXT_ALBUM_HANDLER = new ContextAlbumHandler();
+    private static final EventHandler EVENT_HANDLER = new EventHandler();
+    private static final TaskHandler TASK_HANDLER = new TaskHandler();
+    private static final PolicyHandler POLICY_HANDLER = new PolicyHandler();
 
     private final PolicyUploadHandler policyUploadHandler;
     //@formatter:on
@@ -122,8 +121,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      * successful the new sessionID will be available in the first message in the result.
      *
      * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
-     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}. This includes the session id
-     *         for this session.
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}.
+     *         This includes the session id for this session.
      */
     @GET
     @Path("Session/Create")
@@ -258,13 +257,15 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @Path("Model/Upload")
     @Consumes({MediaType.MULTIPART_FORM_DATA})
     public ApexApiResult uploadModel(@FormDataParam("tosca-template-file") InputStream toscaTemplateFileStream,
-                                     @FormDataParam("apex-config-file") InputStream apexConfigFileStream) {
+                                     @FormDataParam("apex-config-file") InputStream apexConfigFileStream,
+                                     @FormDataParam("userId") String userId) {
         final ApexApiResult result = new ApexApiResult();
         final RestSession session = SESSION_HANDLER.getSession(sessionId, result);
         if (session == null) {
             return result;
         }
-        return policyUploadHandler.doUpload(session.getApexModel(), toscaTemplateFileStream, apexConfigFileStream);
+        return policyUploadHandler
+            .doUpload(session.getApexModel(), toscaTemplateFileStream, apexConfigFileStream, userId);
     }
 
     /**
@@ -291,7 +292,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @GET
     @Path("KeyInformation/Get")
     public ApexApiResult listKeyInformation(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                            @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.KEY_INFO, RestCommand.LIST, name, version);
     }
 
@@ -334,7 +335,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @GET
     @Path("ContextSchema/Get")
     public ApexApiResult listContextSchemas(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                            @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.CONTEXT_SCHEMA, RestCommand.LIST, name, version);
     }
 
@@ -349,7 +350,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @DELETE
     @Path("ContextSchema/Delete")
     public ApexApiResult deleteContextSchema(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                             @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.CONTEXT_SCHEMA, RestCommand.DELETE, name, version);
     }
 
@@ -365,7 +366,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @GET
     @Path("Validate/ContextSchema")
     public ApexApiResult validateContextSchemas(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                                @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.CONTEXT_SCHEMA, RestCommand.VALIDATE, name, version);
     }
 
@@ -408,7 +409,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @GET
     @Path("ContextAlbum/Get")
     public ApexApiResult listContextAlbums(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                           @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.CONTEXT_ALBUM, RestCommand.LIST, name, version);
     }
 
@@ -423,7 +424,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @DELETE
     @Path("ContextAlbum/Delete")
     public ApexApiResult deleteContextAlbum(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                            @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.CONTEXT_ALBUM, RestCommand.DELETE, name, version);
     }
 
@@ -439,7 +440,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @GET
     @Path("Validate/ContextAlbum")
     public ApexApiResult validateContextAlbums(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+                                               @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.CONTEXT_ALBUM, RestCommand.VALIDATE, name, version);
     }
 
@@ -583,7 +584,6 @@ public class ApexEditorRestResource implements RestCommandHandler {
         return processRestCommand(RestCommandType.TASK, RestCommand.VALIDATE, name, version);
     }
 
-    // CHECKSTYLE:OFF: MethodLength
     /**
      * Creates a policy with the information in the JSON string passed.
      *
@@ -608,7 +608,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @PUT
     @Path("Policy/Update")
     public ApexApiResult updatePolicy(@QueryParam("firstStatePeriodic") final boolean firstStatePeriodic,
-            final String jsonString) {
+                                      final String jsonString) {
 
         ApexApiResult result = processRestCommand(RestCommandType.POLICY, RestCommand.UPDATE, jsonString);
         if (result != null && result.isOk() && firstStatePeriodic) {
@@ -681,7 +681,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      * @return the result of the REST command
      */
     private ApexApiResult processRestCommand(final RestCommandType commandType, final RestCommand command,
-            final String jsonString) {
+                                             final String jsonString) {
         LOGGER.entry(commandType, jsonString);
         try {
             ApexApiResult result = new ApexApiResult();
@@ -709,7 +709,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      * @return the result of the REST command
      */
     private ApexApiResult processRestCommand(final RestCommandType commandType, final RestCommand command,
-            final String name, final String version) {
+                                             final String name, final String version) {
         LOGGER.entry(commandType, name, version);
         try {
             ApexApiResult result = new ApexApiResult();
@@ -737,7 +737,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      */
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
-            final RestCommand command) {
+                                            final RestCommand command) {
         switch (commandType) {
             case MODEL:
                 return MODEL_HANDLER.executeRestCommand(session, commandType, command);
@@ -769,7 +769,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      */
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
-            final RestCommand command, final String jsonString) {
+                                            final RestCommand command, final String jsonString) {
         switch (commandType) {
             case MODEL:
                 return MODEL_HANDLER.executeRestCommand(session, commandType, command, jsonString);
@@ -802,7 +802,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      */
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
-            final RestCommand command, final String name, final String version) {
+                                            final RestCommand command, final String name, final String version) {
         switch (commandType) {
             case MODEL:
                 return MODEL_HANDLER.executeRestCommand(session, commandType, command, name, version);
@@ -832,7 +832,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
             periodicEventJsonString = TextFileUtils.getTextFileAsString(PERIODIC_EVENT_TEMPLATE);
         } catch (IOException ioException) {
             String message = "read of periodic event tempalte from " + PERIODIC_EVENT_TEMPLATE + "failed: "
-                    + ioException.getMessage();
+                + ioException.getMessage();
             LOGGER.debug(message, ioException);
             return new ApexApiResult(Result.FAILED, message);
         }
