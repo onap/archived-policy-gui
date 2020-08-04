@@ -22,6 +22,30 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e33da8b_df7b5842",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-04T13:32:50Z",
+      "side": 1,
+      "message": "I\u0027m using a mockito as an extension to JUnit 5, mockito-junit-jupiter, which is not available in the parent pom. I believe I could use without this extension if desired.",
+      "parentUuid": "2a0fbdb4_2ed47ced",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
