@@ -73,6 +73,307 @@
     },
     {
       "key": {
+        "uuid": "5fcbc790_8cae4acc",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "question: are all of these thread-safe?  or does it matter?",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a7bb4d_26a32d27",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "are we sure that neither the key nor value will contain quotes or other special characters?  Another way to do this would be to copy the relevant key/value pairs into a new Map and then use a (static) StandardCoder to encode the Map into a string - that should work even with special characters",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd03ddc5_9f64d51a",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "\"value\" \u003d\u003e \"default value\"",
+      "range": {
+        "startLine": 392,
+        "startChar": 24,
+        "endLine": 392,
+        "endChar": 30
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ea5484_f3c3a145",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/PolicyUploadHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "LOGGER.exit",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c42d122_56e208a4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "better to use a ValidationResult instead of a Set",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2934a25d_6e50d4bd",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "use apache IOUtils.toString() instead",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d52a8bf1_39c85898",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "we spent a lot of effort eliminating jackson, would prefer not to reintroduce it",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "583c4021_4f59d729",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "can any of the methods in these lines throw an exception if the field is missing or of the wrong type, size, etc.?\n\nsimilar question in the other files that use JsonObject",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3be0c49_af0d563c",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "should be able to replace these two lines with a call to YamlJsonTranslator::toYaml, eliminating the need for the two methods",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2c5b124_b1f441b4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ProcessedTemplate.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "use ValidationResult instead",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "946e40e6_3d9f5ed1",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "same comment - use apache IOUtils",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2718c6d3_e17ce66c",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "if the string were decoded into defined data structures, then most of the validation could be done via annotations and then enum class could be eliminated.  It might take more lines, but would probably be clearer and less error prone.\n\nsimilar comment for the other XxxProcessor classes",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e98f020_735d3134",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPluginClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "maybe use:\n\n  this(xxx, yyy)\n\nthat way the junit test for the second constructor will at least verify most of what the no-arg constructor does, too.",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 25
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de95eba5_cbf7a0ad",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPolicyRequestDto.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "if \"id\" is required, maybe change \"Long\" to \"long\"?",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e8b0376_4b282832",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "trailing spaces",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f636513b_97fe43b0",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "trailing spaces",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a773474_4bfbcf37",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "does the server code verify that this parameters are actually provided?",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bbbb71e0_3bd84e9e",
         "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
         "patchSetId": 1
@@ -90,6 +391,176 @@
         "endLine": 61,
         "endChar": 8
       },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c54c9143_a5b96f5f",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResourceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "prefer to use assertThat(xxx).contains(yyy)",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3441208f_34ee2327",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "maybe use try-with-resources to ensure input streams are closed\n\nsame comment with the other input streams in this and other Test files",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20be4262_457128ae",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "why bother catching the exception instead of just allowing it to propagate up?",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef76bedb_c0c025a2",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "same question",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "633523a8_7d99039c",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "same comment - avoid jackson",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19856719_114e17dc",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "I think the convention is that all test methods should begin with \"test\".  (Might be a sonar issue, not sure.)",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3839e4b_5b9f8ad9",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "can use StandardYamlCoder instead",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37a7c6de_280da917",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "use assertThat(xxx).containsKey(yyy)\n\nsame comment below",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9f14394_756e46f8",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "sonar: remove println",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10e5a8bd_a53cb26f",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-04T19:30:38Z",
+      "side": 1,
+      "message": "same comment as before - why bother catching the exception?",
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
