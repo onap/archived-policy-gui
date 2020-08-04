@@ -181,6 +181,24 @@
     },
     {
       "key": {
+        "uuid": "834b235b_b18bac51",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 477
+      },
+      "writtenOn": "2020-08-04T20:33:22Z",
+      "side": 1,
+      "message": "or the JDK\u0027s Files.readString() for files (as the argument in line 58 indicates).",
+      "parentUuid": "2934a25d_6e50d4bd",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d52a8bf1_39c85898",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 1
@@ -561,6 +579,23 @@
       "writtenOn": "2020-08-04T19:30:38Z",
       "side": 1,
       "message": "same comment as before - why bother catching the exception?",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771eee1d_667f01e4",
+        "filename": "gui-editors/gui-editor-apex/src/test/resources/converter/ToscaTemplate.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 477
+      },
+      "writtenOn": "2020-08-04T20:33:22Z",
+      "side": 1,
+      "message": "I thought metadata section that includes the \"policy-id\" was mandatory .., not sure if it applies in the context of how this file is used, but wanted to bring it up to your attention",
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
