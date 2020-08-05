@@ -199,6 +199,29 @@
     },
     {
       "key": {
+        "uuid": "8485432d_9f36c83d",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2020-08-05T09:59:28Z",
+      "side": 1,
+      "message": "Already there is code in APEX to read the configuration file from a file path, parse and validate it etc. We could reuse those (maybe some modifications might be needed). I think this UI part could be more simpler reusing more of what is already there.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 58
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d52a8bf1_39c85898",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 1
