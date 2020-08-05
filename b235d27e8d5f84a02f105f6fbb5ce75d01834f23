@@ -415,6 +415,30 @@
     },
     {
       "key": {
+        "uuid": "7855d58e_980d71eb",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2020-08-05T09:46:55Z",
+      "side": 1,
+      "message": "I also think this would be even better. To the existing UI, adding 2 more tabs, one for config and other for tosca_template. Then the submission will result in using the APexCliToscaEditor to create a ToscaPolicy. Uploading them separately instead seems to be more tedious requiring more validations.",
+      "parentUuid": "bbbb71e0_3bd84e9e",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c54c9143_a5b96f5f",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResourceTest.java",
         "patchSetId": 1
@@ -562,6 +586,29 @@
       "writtenOn": "2020-08-04T19:30:38Z",
       "side": 1,
       "message": "sonar: remove println",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72a18191_5052ea80",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2020-08-05T09:46:55Z",
+      "side": 1,
+      "message": "Use assertThatThrownBy..isInstanceOf..hasMessage..\nSame comment below.",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 100
+      },
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
