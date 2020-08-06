@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d670b0a_56694f30",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "FYI: it\u0027s OK to make this static; it\u0027s thread safe",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a257de06_212bebee",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "might be able to just encode(uploadConfigParam), then could eliminate the need for the getValue() method in UploadPluginConfigParameters",
+      "range": {
+        "startLine": 73,
+        "startChar": 55,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fb8bb7e_77d9e037",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "could combine these two lines using entry set iterator instead of getting key and then value.  Or if order doesn\u0027t matter, then could just use a values iterator.",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39736dce_43404d96",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "seem to be repeating this kind of code.  wonder if there\u0027s a way to avoid that using functional programming?  though it might not be much shorter, so maybe not worth it",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

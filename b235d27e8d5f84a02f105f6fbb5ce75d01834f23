@@ -284,6 +284,24 @@
     },
     {
       "key": {
+        "uuid": "c16f1c6d_3f3f725e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "it has various sub classes that may or may not be relevant.  Point is, there is already a class for capturing one or more error messages from validation methods",
+      "parentUuid": "bd9f2c41_b6032536",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2934a25d_6e50d4bd",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
         "patchSetId": 1
@@ -331,6 +349,24 @@
       "side": 1,
       "message": "I\u0027ve used IOUtils.toString() as Files.readString() requires a Path. Am I missing something?",
       "parentUuid": "834b235b_b18bac51",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "800c53a9_d2e1f241",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "no, you\u0027re correct - Files.readString() won\u0027t work with an InputStream",
+      "parentUuid": "a85c1df7_741f84d3",
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -601,6 +637,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8e721bd_f6e293c6",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPolicyRequestDto.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T16:53:54Z",
+      "side": 1,
+      "message": "thx for explaining",
+      "parentUuid": "1ceb9df9_481ecdf9",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
