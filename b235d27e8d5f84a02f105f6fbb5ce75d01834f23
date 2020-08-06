@@ -1173,6 +1173,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a485fe7_4988614a",
+        "filename": "gui-editors/gui-editor-apex/src/test/resources/converter/ToscaTemplate.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:40:21Z",
+      "side": 1,
+      "message": "I\u0027ve based the APEX policy TOSCA conversion code based on the apex-pdp/auth/cli-editor conversion code, and there this is not being considered. The ones I\u0027m validating are: tosca_definitions_version, topology_template, topology_template-\u003epolicies, topology_template-\u003epolicies[0][\"anyPolicyName\"]-\u003eproperties",
+      "parentUuid": "771eee1d_667f01e4",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
