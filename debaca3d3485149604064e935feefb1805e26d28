@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "af400a9e_0257927e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-06T18:54:09Z",
+      "side": 1,
+      "message": "perhaps something should be moved to policy-common and shared?",
+      "parentUuid": "64107186_d978b8c1",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 35
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fb8bb7e_77d9e037",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 2
