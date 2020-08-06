@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "4a2cbb12_f872a785",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b21f5521_37401060",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fcbc790_8cae4acc",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
         "patchSetId": 1
@@ -90,6 +114,24 @@
     },
     {
       "key": {
+        "uuid": "12f674f4_fa83df2e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Yes, they are",
+      "parentUuid": "5fcbc790_8cae4acc",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7a7bb4d_26a32d27",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
         "patchSetId": 1
@@ -104,6 +146,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a231769_dfc30b7e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a7bb4d_26a32d27",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -130,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "ce267837_6225f1bd",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd03ddc5_9f64d51a",
+      "range": {
+        "startLine": 392,
+        "startChar": 24,
+        "endLine": 392,
+        "endChar": 30
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94ea5484_f3c3a145",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/PolicyUploadHandler.java",
         "patchSetId": 1
@@ -147,6 +231,24 @@
     },
     {
       "key": {
+        "uuid": "fe186740_c7e626d4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/PolicyUploadHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94ea5484_f3c3a145",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c42d122_56e208a4",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
         "patchSetId": 1
@@ -158,6 +260,24 @@
       "writtenOn": "2020-08-04T19:30:38Z",
       "side": 1,
       "message": "better to use a ValidationResult instead of a Set",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd9f2c41_b6032536",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Do you mean implement org.onap.policy.common.parameters.ValidationResult?\nOr is there any implementation of it that I could use in this case?",
+      "parentUuid": "7c42d122_56e208a4",
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -199,6 +319,24 @@
     },
     {
       "key": {
+        "uuid": "a85c1df7_741f84d3",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "I\u0027ve used IOUtils.toString() as Files.readString() requires a Path. Am I missing something?",
+      "parentUuid": "834b235b_b18bac51",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8485432d_9f36c83d",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
         "patchSetId": 1
@@ -210,6 +348,30 @@
       "writtenOn": "2020-08-05T09:59:28Z",
       "side": 1,
       "message": "Already there is code in APEX to read the configuration file from a file path, parse and validate it etc. We could reuse those (maybe some modifications might be needed). I think this UI part could be more simpler reusing more of what is already there.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 58
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9689c307_e8a1d190",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "I completely agree. Could you please point me out where I can find this code?",
+      "parentUuid": "8485432d_9f36c83d",
       "range": {
         "startLine": 64,
         "startChar": 0,
@@ -236,6 +398,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b6e67d1_d673d1ba",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d52a8bf1_39c85898",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -270,6 +450,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6756b120_4ec17ffc",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3be0c49_af0d563c",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +545,30 @@
     },
     {
       "key": {
+        "uuid": "bbcb2011_f6bcb2cb",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPluginClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e98f020_735d3134",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 25
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de95eba5_cbf7a0ad",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPolicyRequestDto.java",
         "patchSetId": 1
@@ -358,6 +580,24 @@
       "writtenOn": "2020-08-04T19:30:38Z",
       "side": 1,
       "message": "if \"id\" is required, maybe change \"Long\" to \"long\"?",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ceb9df9_481ecdf9",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPolicyRequestDto.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "to avoid having an undesirable initial value. I prefer to have the null if nothing is set. The endpoint that receives this information should validate it.",
+      "parentUuid": "de95eba5_cbf7a0ad",
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -381,6 +621,24 @@
     },
     {
       "key": {
+        "uuid": "e28cdbd0_07df01e8",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e8b0376_4b282832",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f636513b_97fe43b0",
         "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
         "patchSetId": 1
@@ -398,6 +656,24 @@
     },
     {
       "key": {
+        "uuid": "e75f4a7d_f36dbc59",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f636513b_97fe43b0",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a773474_4bfbcf37",
         "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
         "patchSetId": 1
@@ -412,6 +688,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9622ae1d_66439fcc",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "yes, there is a validation process for that",
+      "parentUuid": "0a773474_4bfbcf37",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -462,6 +756,30 @@
     },
     {
       "key": {
+        "uuid": "9fb04c46_e35bea49",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/upload/dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Yes, in the future we are planing to have some interface to handle those files, probably for the next release.",
+      "parentUuid": "7855d58e_980d71eb",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c54c9143_a5b96f5f",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResourceTest.java",
         "patchSetId": 1
@@ -496,6 +814,24 @@
     },
     {
       "key": {
+        "uuid": "3cad0322_3c22fdb7",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3441208f_34ee2327",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20be4262_457128ae",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
         "patchSetId": 1
@@ -510,6 +846,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8acd80ce_31359c8e",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20be4262_457128ae",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -530,6 +884,24 @@
     },
     {
       "key": {
+        "uuid": "08764108_7b513765",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef76bedb_c0c025a2",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "633523a8_7d99039c",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
         "patchSetId": 1
@@ -544,6 +916,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd9144c_060f0b66",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "633523a8_7d99039c",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -564,6 +954,24 @@
     },
     {
       "key": {
+        "uuid": "2dbc51e8_d039dceb",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done, usually I put in the end, but for me does not matter.",
+      "parentUuid": "19856719_114e17dc",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3839e4b_5b9f8ad9",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
         "patchSetId": 1
@@ -578,6 +986,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66756891_67a753c9",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3839e4b_5b9f8ad9",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -598,6 +1024,24 @@
     },
     {
       "key": {
+        "uuid": "6546483c_94e87888",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37a7c6de_280da917",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9f14394_756e46f8",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
         "patchSetId": 1
@@ -612,6 +1056,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2ea79a_5c4a7129",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9f14394_756e46f8",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -638,6 +1100,30 @@
     },
     {
       "key": {
+        "uuid": "bbbb5109_42bd95e6",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72a18191_5052ea80",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 100
+      },
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10e5a8bd_a53cb26f",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessorTest.java",
         "patchSetId": 1
@@ -652,6 +1138,24 @@
       "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad70f366_f9fe0961",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-06T14:32:22Z",
+      "side": 1,
+      "message": "just to fail the test with a user friendly message, but checking now, the default exception message is already enough.",
+      "parentUuid": "10e5a8bd_a53cb26f",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
