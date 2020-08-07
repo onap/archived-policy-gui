@@ -113,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "23002fa1_167fd7b2",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-07T14:03:03Z",
+      "side": 1,
+      "message": "@Ajith, you mean this class org.onap.policy.apex.auth.clieditor.tosca.ApexCliToscaEditorMain, from apex-pdp/auth/cli-editor module?\nI can try to reuse it and also update the code to do include this extra validations I\u0027m doing. Is that the idea?",
+      "parentUuid": "9aa6bf0a_fbdb2e11",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 35
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fb8bb7e_77d9e037",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 2
