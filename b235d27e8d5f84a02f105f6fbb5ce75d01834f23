@@ -302,6 +302,24 @@
     },
     {
       "key": {
+        "uuid": "490259a3_dfcde723",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-07T17:54:25Z",
+      "side": 1,
+      "message": "Ok, I will need to move those validation/processing methods to the ApexEditorCli code and there I will implement using the ValidationResult.",
+      "parentUuid": "c16f1c6d_3f3f725e",
+      "revId": "b235d27e8d5f84a02f105f6fbb5ce75d01834f23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2934a25d_6e50d4bd",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
         "patchSetId": 1

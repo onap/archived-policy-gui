@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "835b42f0_ba86d027",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-07T17:54:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d670b0a_56694f30",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a257de06_212bebee",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2020-08-06T16:53:54Z",
       "side": 1,
       "message": "might be able to just encode(uploadConfigParam), then could eliminate the need for the getValue() method in UploadPluginConfigParameters",
+      "range": {
+        "startLine": 73,
+        "startChar": 55,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e5da3ea_6c5d44f3",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-07T17:54:25Z",
+      "side": 1,
+      "message": "I believe that the encode will bring me more information then the one I need (the name attribute for instance) and will not parse the uploadConfigParam attribute to a PolicyUploadPluginConfigKey::getKey.\nIf the encode cannot reproduce this, I prefer to leave this way.",
+      "parentUuid": "a257de06_212bebee",
       "range": {
         "startLine": 73,
         "startChar": 55,
@@ -154,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "5ce04aba_1b7cacd4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-07T17:54:25Z",
+      "side": 1,
+      "message": "Could not find a values iterator, so I\u0027m using the entrySet.",
+      "parentUuid": "9fb8bb7e_77d9e037",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39736dce_43404d96",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessor.java",
         "patchSetId": 2
@@ -165,6 +225,24 @@
       "writtenOn": "2020-08-06T16:53:54Z",
       "side": 1,
       "message": "seem to be repeating this kind of code.  wonder if there\u0027s a way to avoid that using functional programming?  though it might not be much shorter, so maybe not worth it",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760f7cb5_a58daafb",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-08-07T17:54:25Z",
+      "side": 1,
+      "message": "Did in a more functional way but had to generalize some error messages. This logic will be moved to the ApexEditorCli, so there I can think in a better way to improve the messages.",
+      "parentUuid": "39736dce_43404d96",
       "revId": "debaca3d3485149604064e935feefb1805e26d28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
