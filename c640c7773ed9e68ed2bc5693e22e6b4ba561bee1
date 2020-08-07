@@ -22,6 +22,30 @@
       "revId": "c640c7773ed9e68ed2bc5693e22e6b4ba561bee1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd95fd20_086d5cd2",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-07T20:43:14Z",
+      "side": 1,
+      "message": "might need a space between \"//\" and \"@\"\n\nsame comment below",
+      "parentUuid": "7107ef7c_251d15f0",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 20
+      },
+      "revId": "c640c7773ed9e68ed2bc5693e22e6b4ba561bee1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
