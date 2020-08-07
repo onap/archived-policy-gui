@@ -89,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "9aa6bf0a_fbdb2e11",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 477
+      },
+      "writtenOn": "2020-08-07T13:13:28Z",
+      "side": 1,
+      "message": "I think that\u0027s a good idea, this class may be of benefit for other functionality.",
+      "parentUuid": "af400a9e_0257927e",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 35
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fb8bb7e_77d9e037",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 2
