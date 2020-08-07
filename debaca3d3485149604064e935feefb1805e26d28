@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "709f9dcd_8b47c7ca",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-07T19:19:34Z",
+      "side": 1,
+      "message": "how about:\n  1) use standardCoder.convert() to convert it to a map\n  2) remove the \"name\" field\n  3) use standardCoder.encode() to encode the map into a string\n\nCan use the SerializedName annotation in the Params class to specify field renaming.\n\nI think that would simplify this method, eliminate the need for the \"type\" field in the enum, and also eliminate the need for the getValue method in the Params class.",
+      "parentUuid": "4e5da3ea_6c5d44f3",
+      "range": {
+        "startLine": 73,
+        "startChar": 55,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "64107186_d978b8c1",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 2
@@ -179,6 +203,30 @@
     },
     {
       "key": {
+        "uuid": "3e38217d_40f87e93",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-07T19:19:34Z",
+      "side": 1,
+      "message": "yeah, it\u0027s fine to add the shared class in a later review",
+      "parentUuid": "23002fa1_167fd7b2",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 35
+      },
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fb8bb7e_77d9e037",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
         "patchSetId": 2
@@ -211,6 +259,24 @@
       "revId": "debaca3d3485149604064e935feefb1805e26d28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdcc7fa2_9d42ac61",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-08-07T19:19:34Z",
+      "side": 1,
+      "message": "oh, right, this is a JsonObject, not a map.  Yeah, entrySet sounds good",
+      "parentUuid": "5ce04aba_1b7cacd4",
+      "revId": "debaca3d3485149604064e935feefb1805e26d28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
