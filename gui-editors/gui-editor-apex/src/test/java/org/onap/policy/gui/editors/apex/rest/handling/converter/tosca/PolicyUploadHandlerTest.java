@@ -52,6 +52,7 @@ import org.onap.policy.gui.editors.apex.rest.handling.plugin.upload.UploadPolicy
 
 public class PolicyUploadHandlerTest {
 
+    private static final String USER_ID = "cs0008";
     @Mock
     private PolicyToscaConverter policyToscaConverter;
     @Mock
@@ -87,7 +88,7 @@ public class PolicyUploadHandlerTest {
             .thenReturn(Response.ok().status(201).build());
 
         ApexApiResult apexApiResult = policyUploadHandler
-            .doUpload(apexModel, mock(InputStream.class), mock(InputStream.class));
+            .doUpload(apexModel, mock(InputStream.class), mock(InputStream.class), USER_ID);
 
         assertThat("Response should be ok", apexApiResult.isOk(), is(true));
         String expectedSuccessMsg =
@@ -99,7 +100,7 @@ public class PolicyUploadHandlerTest {
             .thenReturn(Response.serverError().build());
 
         apexApiResult = policyUploadHandler
-            .doUpload(apexModel, mock(InputStream.class), mock(InputStream.class));
+            .doUpload(apexModel, mock(InputStream.class), mock(InputStream.class), USER_ID);
 
         assertThat("Response should not be ok", apexApiResult.isNok(), is(true));
         expectedSuccessMsg =
@@ -118,7 +119,7 @@ public class PolicyUploadHandlerTest {
         when(toscaTemplateProcessor.process(any(InputStream.class))).thenReturn(processedToscaTemplate);
         when(apexConfigProcessor.process(any(InputStream.class))).thenReturn(processedApexConfig);
         final ApexApiResult apexApiResult = policyUploadHandler
-            .doUpload(mock(ApexModel.class), mock(InputStream.class), mock(InputStream.class));
+            .doUpload(mock(ApexModel.class), mock(InputStream.class), mock(InputStream.class), USER_ID);
 
         assertThat("Response should not be ok", apexApiResult.isNok(), is(true));
         assertThat("Response message should be as expected",
@@ -134,7 +135,7 @@ public class PolicyUploadHandlerTest {
         processedToscaTemplate.addToErrors(Collections.singleton(errorMsg));
         when(toscaTemplateProcessor.process(any(InputStream.class))).thenReturn(processedToscaTemplate);
         final ApexApiResult apexApiResult = policyUploadHandler
-            .doUpload(mock(ApexModel.class), mock(InputStream.class), mock(InputStream.class));
+            .doUpload(mock(ApexModel.class), mock(InputStream.class), mock(InputStream.class), USER_ID);
 
         assertThat("Response should not be ok", apexApiResult.isNok(), is(true));
         assertThat("Response message should be as expected",
@@ -151,7 +152,7 @@ public class PolicyUploadHandlerTest {
         processedApexConfig.addToErrors(Collections.singleton(errorMsg));
         when(apexConfigProcessor.process(any(InputStream.class))).thenReturn(processedApexConfig);
         final ApexApiResult apexApiResult = policyUploadHandler
-            .doUpload(mock(ApexModel.class), mock(InputStream.class), mock(InputStream.class));
+            .doUpload(mock(ApexModel.class), mock(InputStream.class), mock(InputStream.class), USER_ID);
 
         assertThat("Response should not be ok", apexApiResult.isNok(), is(true));
         assertThat("Response message should be as expected",
@@ -173,7 +174,7 @@ public class PolicyUploadHandlerTest {
             .thenReturn(Response.ok().status(201).build());
 
         final ApexApiResult apexApiResult = policyUploadHandler
-            .doUpload(apexModel, mock(InputStream.class), mock(InputStream.class));
+            .doUpload(apexModel, mock(InputStream.class), mock(InputStream.class), USER_ID);
 
         assertThat("Response should not be ok", apexApiResult.isNok(), is(true));
         final String expectedErrorMsg = String
