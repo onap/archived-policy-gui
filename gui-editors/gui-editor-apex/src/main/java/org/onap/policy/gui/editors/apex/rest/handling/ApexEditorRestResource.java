@@ -74,7 +74,6 @@ import org.slf4j.ext.XLoggerFactory;
 public class ApexEditorRestResource implements RestCommandHandler {
 
     // Get a reference to the logger
-
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEditorRestResource.class);
     // Location of the periodi event template
 
@@ -262,13 +261,15 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @Path("Model/Upload")
     @Consumes({MediaType.MULTIPART_FORM_DATA})
     public ApexApiResult uploadModel(@FormDataParam("tosca-template-file") InputStream toscaTemplateFileStream,
-                                     @FormDataParam("apex-config-file") InputStream apexConfigFileStream) {
+           @FormDataParam("apex-config-file") InputStream apexConfigFileStream, 
+           @FormDataParam("userId") String userId) {
         final ApexApiResult result = new ApexApiResult();
         final RestSession session = SESSION_HANDLER.getSession(sessionId, result);
         if (session == null) {
             return result;
         }
-        return policyUploadHandler.doUpload(session.getApexModel(), toscaTemplateFileStream, apexConfigFileStream);
+        return policyUploadHandler.doUpload(session.getApexModel(), toscaTemplateFileStream, 
+                                            apexConfigFileStream, userId);
     }
 
     /**
@@ -295,7 +296,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @GET
     @Path("KeyInformation/Get")
     public ApexApiResult listKeyInformation(@QueryParam(NAME) final String name,
-            @QueryParam(VERSION) final String version) {
+           @QueryParam(VERSION) final String version) {
         return processRestCommand(RestCommandType.KEY_INFO, RestCommand.LIST, name, version);
     }
 
@@ -587,7 +588,6 @@ public class ApexEditorRestResource implements RestCommandHandler {
         return processRestCommand(RestCommandType.TASK, RestCommand.VALIDATE, name, version);
     }
 
-    // CHECKSTYLE:OFF: MethodLength
     /**
      * Creates a policy with the information in the JSON string passed.
      *
@@ -741,7 +741,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      */
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
-            final RestCommand command) {
+           final RestCommand command) {
         switch (commandType) {
             case MODEL:
                 return MODEL_HANDLER.executeRestCommand(session, commandType, command);
@@ -773,7 +773,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      */
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
-            final RestCommand command, final String jsonString) {
+           final RestCommand command, final String jsonString) {
         switch (commandType) {
             case MODEL:
                 return MODEL_HANDLER.executeRestCommand(session, commandType, command, jsonString);
@@ -806,7 +806,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      */
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
-            final RestCommand command, final String name, final String version) {
+           final RestCommand command, final String name, final String version) {
         switch (commandType) {
             case MODEL:
                 return MODEL_HANDLER.executeRestCommand(session, commandType, command, name, version);

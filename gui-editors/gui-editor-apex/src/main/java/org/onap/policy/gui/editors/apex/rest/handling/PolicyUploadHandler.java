@@ -83,7 +83,7 @@ public class PolicyUploadHandler {
      * @return the result of the upload process
      */
     public ApexApiResult doUpload(final ApexModel apexModel, final InputStream toscaTemplateInputStream,
-                                  final InputStream apexConfigInputStream) {
+                                  final InputStream apexConfigInputStream, final String userId) {
         final ProcessedTemplate processedToscaTemplate;
         try {
             processedToscaTemplate = toscaTemplateProcessor.process(toscaTemplateInputStream);
@@ -113,10 +113,11 @@ public class PolicyUploadHandler {
         if (!processedApexConfig.isValid()) {
             return buildResponse(processedApexConfig);
         }
-        return doUpload(apexModel, processedToscaTemplate.getContent(), processedApexConfig.getContent());
+        return doUpload(apexModel, processedToscaTemplate.getContent(), processedApexConfig.getContent(), userId);
     }
 
-    private ApexApiResult doUpload(final ApexModel apexModel, final String toscaTemplate, final String apexConfig) {
+    private ApexApiResult doUpload(final ApexModel apexModel, final String toscaTemplate, final String apexConfig,
+                                   final String userId) {
         LOGGER.entry();
         if (!isUploadPluginEnabled()) {
             final ApexApiResult apexApiResult = new ApexApiResult(Result.FAILED);
@@ -128,6 +129,7 @@ public class PolicyUploadHandler {
         final UploadPolicyRequestDto uploadPolicyRequestDto = new UploadPolicyRequestDto();
         final AxArtifactKey policyKey = policyModel.getKeyInformation().getKey();
         final java.util.UUID uuid = policyModel.getKeyInformation().get(policyKey).getUuid();
+        uploadPolicyRequestDto.setUserId(userId);
         uploadPolicyRequestDto
             .setFilename(String.format("%s.%s.%s", uuid, policyKey.getName(), policyKey.getVersion()));
         final String apexPolicy = convert(result.getMessage(), toscaTemplate, apexConfig).orElse(null);
