@@ -389,7 +389,7 @@ public class ModelHandler implements RestCommandHandler {
      *
      * @param jsonObject the object to query
      * @param fieldTag   the tag of the field to condition
-     * @param fieldValue the value of the field to condition
+     * @param value the default value of the field to condition
      * @return field read from the json
      */
     private String readFieldFromJsonObject(final JsonObject jsonObject, final String fieldTag, final String value) {

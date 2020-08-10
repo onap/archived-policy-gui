@@ -1,0 +1,64 @@
+<!--
+  ~ ============LICENSE_START=======================================================
+  ~  Copyright (C) 2020 Nordix Foundation
+  ~  ================================================================================
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~  SPDX-License-Identifier: Apache-2.0
+  ~  ============LICENSE_END=========================================================
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Policy</title>
+  <script>
+    $(document).ready(function () {
+      function upload() {
+        const data = new FormData();
+        const apexConfigFile = $('#apex-config-file')[0].files[0];
+        const toscaTemplateFile = $('#tosca-template-file')[0].files[0];
+        data.append('apex-config-file', apexConfigFile);
+        data.append('tosca-template-file', toscaTemplateFile);
+        uploadPlugin.upload(data, function () {
+          dialog.dialog("close");
+        });
+      }
+
+      const dialog = $('#inner-dialog').dialog({
+        height: 300,
+        width: 435,
+        modal: true,
+        dialogClass: 'upload-dialog',
+        buttons: {
+          "Upload": upload,
+          Cancel: function() {
+            dialog.dialog("close");
+          }
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<div id="inner-dialog" title="Upload Policy" class="upload-dialog">
+  <p>Provide the following files to compose the policy TOSCA</p>
+  <div id="upload-form">
+    <label for="apex-config-file">Apex Config</label> <br/>
+    <input id="apex-config-file" type="file" required="required" accept="application/json" class="ui-widget-content ui-corner-all"/> <br/>
+    <label for="tosca-template-file">Tosca Template</label> <br/>
+    <input id="tosca-template-file" type="file" required="required" accept="application/json" class="ui-widget-content ui-corner-all"/>
+  </div>
+</div>
+</body>
+</html>
