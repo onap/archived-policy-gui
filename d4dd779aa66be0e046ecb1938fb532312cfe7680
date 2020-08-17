@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9ceab3c_82ad98b3",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/ApexEditor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "This component should be converted to use policy endpoints from policy-common",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8776c78d_834edae9",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "We should just work with the full TOSCA file from now on, the old APEX JSON file should be subsumed into the overall model and should vanish.\n\nSo rather than uploading a template and a config file, there should be a single file.",
+      "range": {
+        "startLine": 254,
+        "startChar": 1,
+        "endLine": 274,
+        "endChar": 7
+      },
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "403f44e3_ff45275e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ConfigurationRestResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "Please explain the need for this endpoint",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 2
+      },
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "692b1510_442be845",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/config/PolicyUploadPluginConfigKey.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "Not sure what this is.",
+      "range": {
+        "startLine": 24,
+        "startChar": 1,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3df3c7c5_49d57fdf",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ApexConfigProcessor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "We seem to have parallel processing for the config here. I\u0027m not sure if we need this, we may be able to reuse existing stuff in the Policy Framework for this.\n\nWe already have a lot of support for TOSCA handling in policy-models",
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e6b44df_8c5572db",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/PolicyToscaConverter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "Same comment.",
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63ad7288_4219efa3",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/converter/tosca/ToscaTemplateProcessor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-08-17T10:08:40Z",
+      "side": 1,
+      "message": "A lot of overlap with the policy models TOSCA handling.",
+      "revId": "d4dd779aa66be0e046ecb1938fb532312cfe7680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
