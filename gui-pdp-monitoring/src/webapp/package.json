@@ -26,13 +26,14 @@
     },
     "jest": {
         "collectCoverage": true,
+        "coverageDirectory": "../../../target/code-coverage",
         "transform": {
             "^.+\\.[t|j]sx?$": "babel-jest"
         },
         "testResultsProcessor": "jest-sonar-reporter"
     },
     "jestSonar": {
-        "reportPath": "reports",
+        "reportPath": "../../../target/reports",
         "reportFile": "test-reporter.xml",
         "indent": 4,
         "sonar56x": true
