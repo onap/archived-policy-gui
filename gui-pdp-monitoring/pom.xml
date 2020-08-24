@@ -32,7 +32,6 @@
 
     <properties>
         <webapp.dir>src/webapp</webapp.dir>
-        <sonar.javascript.lcov.reportPaths>src/webapp/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
     </properties>
 
     <dependencies>
@@ -104,12 +103,16 @@
                         <goals>
                             <goal>npm</goal>
                         </goals>
+                        <configuration>
+                        	<arguments>install</arguments>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>npm test</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
+                        <phase>test</phase>
                         <configuration>
                             <arguments>test</arguments>
                         </configuration>
