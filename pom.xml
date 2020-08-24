@@ -42,7 +42,9 @@
     <properties>
         <policy.common.version>1.7.1-SNAPSHOT</policy.common.version>
         <policy.models.version>2.3.1-SNAPSHOT</policy.models.version>
-        <sonar.javascript.lcov.reportPaths>target/code-coverage/lcov.info</sonar.javascript.lcov.reportPaths>
+        <sonar.javascript.lcov.reportPaths>${project.basedir}/target/code-coverage/lcov.info</sonar.javascript.lcov.reportPaths>
+        <sonar.nodejs.executable>${project.basedir}/gui-pdp-monitoring/src/webapp/node/node</sonar.nodejs.executable>
+        <sonar.sources>${project.basedir}/editors/gui-editor-apex/src/main,${project.basedir}/gui-pdp-monitoring/src/main,${project.basedir}/gui-pdp-monitoring/src/webapp/js</sonar.sources>
     </properties>
 
     <modules>
