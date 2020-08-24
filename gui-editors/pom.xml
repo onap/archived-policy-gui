@@ -32,6 +32,11 @@
     <name>${project.artifactId}</name>
     <description>Web Client editors for PDP policies</description>
 
+    <properties>
+        <sonar.sources>${project.basedir}/src/main</sonar.sources>
+        <sonar.exclusions>src/main/resources/webapp/js/edit_area/**/*,src/main/resources/webapp/js/jquery/**/*,src/main/resources/webapp/js/jquery-ui-1.12.1/**/*,src/main/resources/webapp/js/lib/**/*</sonar.exclusions>
+    </properties>
+
     <modules>
         <module>gui-editor-apex</module>
     </modules>
