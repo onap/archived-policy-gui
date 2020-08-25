@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c60d1c1_4bcde1dd",
+        "filename": "gui-pdp-monitoring/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2020-08-25T13:25:31Z",
+      "side": 1,
+      "message": "Oops - these should have been removed. Gimmee a second.",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 128
+      },
+      "revId": "c2f7f9e050ec4b74438aa3566fba81381cd4aa51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
