@@ -16,6 +16,24 @@
       "revId": "6626ad97d40504239dcd588f2bc1a077d3979fe2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a591b1de_56469539",
+        "filename": "gui-pdp-monitoring/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2020-08-25T10:39:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90574aaf_34e3d649",
+      "revId": "6626ad97d40504239dcd588f2bc1a077d3979fe2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
