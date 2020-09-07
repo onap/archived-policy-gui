@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "068bb9e6_9a75dd46",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/__test__/ApexPageControl.test.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-09-07T13:02:08Z",
+      "side": 1,
+      "message": "white space",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 2
+      },
+      "revId": "d77948b823009db2a70635068b8481abacf530c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
