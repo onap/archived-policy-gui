@@ -19,10 +19,13 @@
  * ============LICENSE_END=========================================================
  */
 
+const {ajax_get} = require("../../../../../target/classes/webapp/js/ApexAjax");
+const {ajax_put} = require("../../../../../target/classes/webapp/js/ApexAjax");
+
 function files_fileOpen() {
     $('<input type="file">').on('change', function() {
         var reader = new FileReader();
-        modelFileName = this.files[0].name;
+        var modelFileName = this.files[0].name;
         reader.readAsText(this.files[0]);
 
         reader.onload = function(event) {
@@ -49,3 +52,5 @@ function files_fileDownload() {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
+
+module.exports = {files_fileDownload, files_fileOpen};

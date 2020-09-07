@@ -19,6 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
+const {ajax_put} = require("../../../../../target/classes/webapp/js/ApexAjax");
+const {ajax_post} = require("../../../../../target/classes/webapp/js/ApexAjax");
+const {ajax_delete} = require("../../../../../target/classes/webapp/js/ApexAjax");
+const {ajax_getWithKeyInfo} = require("../../../../../target/classes/webapp/js/ApexAjax");
+
 function editContextSchemaForm_createContextSchema(formParent) {
     return editContextSchemaForm_activate(formParent, "CREATE", null);
 }
@@ -367,3 +372,7 @@ function editContextSchemaForm_submitPressed() {
     }
 
 }
+
+module.exports = {editContextSchemaForm_activate, editContextSchemaForm_cancelPressed, editContextSchemaForm_createContextSchema,
+                editContextSchemaForm_deleteContextSchema, editContextSchemaForm_editContextSchema, editContextSchemaForm_generateDescriptionPressed,
+                editContextSchemaForm_generateUUIDPressed, editContextSchemaForm_submitPressed, editContextSchemaForm_viewContextSchema};
