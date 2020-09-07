@@ -31,6 +31,10 @@ const configObj = {
 }
 
 $(document).ready(function () {
+  load();
+});
+
+const load = function(){
   $("#menuFileUpload").hide();
 
   const rootUrl = location.protocol
@@ -51,8 +55,8 @@ $(document).ready(function () {
       configObj.readySignal();
     });
   }
-
   loadConfiguration();
-});
+}
 
-
+module.exports = { configObj, load };
+module.exports.rootUrl = load.rootUrl;

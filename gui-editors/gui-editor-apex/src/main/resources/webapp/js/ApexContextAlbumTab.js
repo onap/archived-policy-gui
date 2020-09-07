@@ -114,3 +114,5 @@ function contextAlbumTab_create() {
     contextAlbumTable.appendChild(contextAlbumTableBody);
     contextAlbumTable.setAttribute("id", "contextAlbumTableBody");
 }
+
+module.exports = {contextAlbumTab_reset, contextAlbumTab_create, contextAlbumTab_activate, contextAlbumTab_deactivate};

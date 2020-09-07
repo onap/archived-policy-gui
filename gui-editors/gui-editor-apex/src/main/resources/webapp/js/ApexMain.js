@@ -169,3 +169,5 @@ $(".ebInlineMessage").mouseleave(function(e) {
 $(document).ready(function() {
     $(".content").fadeIn();
 });
+
+exports.restRootURL = { restRootURL };

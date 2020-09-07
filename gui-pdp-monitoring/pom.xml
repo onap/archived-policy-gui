@@ -33,7 +33,7 @@
     <properties>
         <webapp.dir>src/webapp</webapp.dir>
         <sonar.nodejs.executable>${project.basedir}/src/webapp/node/node</sonar.nodejs.executable>
-        <sonar.sources>${project.basedir}/src/main,${project.basedir}/src/webapp/js</sonar.sources>
+        <sonar.sources>${project.basedir}/src/main/java,${project.basedir}/src/webapp/js</sonar.sources>
         <sonar.exclusions>src/webapp/js/__test__/**</sonar.exclusions>
     </properties>
 

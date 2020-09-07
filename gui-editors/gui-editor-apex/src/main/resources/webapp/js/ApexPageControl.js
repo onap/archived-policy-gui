@@ -253,3 +253,5 @@ function showPlaceholder(show) {
         $(".placeholder").hide();
     }
 }
+
+module.exports = {showPlaceholder, pageControl_busyMode, pageControl_modelMode, pageControl_noModelMode, pageControl_readyMode, pageControl_recursiveDisable, pageControl_restError, pageControl_status, pageControl_successStatus}
