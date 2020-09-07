@@ -35,3 +35,5 @@ function setRowHover(rowElement) {
         this.className = "ebTableRow";
     };
 }
+
+module.exports = {createTable, setRowHover};
