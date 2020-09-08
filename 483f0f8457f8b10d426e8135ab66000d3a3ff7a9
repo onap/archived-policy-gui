@@ -52,6 +52,40 @@
       "revId": "483f0f8457f8b10d426e8135ab66000d3a3ff7a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0827b1b5_7a9e24cc",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/__test__/ApexAjax.test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-09-08T13:52:36Z",
+      "side": 1,
+      "message": "is there anything else that can be tested here?  It looks like line 36 is invoking \"mockGet\" and then lines 37-38 are verifying that is was invoked.  Any way to verify that the invoked code actually did what it was supposed to do?\n\nsame question for all of this.  This can maybe be addressed in later review(s) - would like to get this in just to bring up the test coverage numbers.",
+      "revId": "483f0f8457f8b10d426e8135ab66000d3a3ff7a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88bc925c_bca76476",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/__test__/ApexPageControl.test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-09-08T13:52:36Z",
+      "side": 1,
+      "message": "need something here?",
+      "revId": "483f0f8457f8b10d426e8135ab66000d3a3ff7a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
