@@ -34,9 +34,9 @@ function ajax_get(requestURL, callback) {
     });
 }
 
-function ajax_getWithKeyInfo(requestURL, objectType, callback, keyName) {
-    var keyName = keyName || "key";
-    var keyInfoURL = restRootURL + "/KeyInformation/Get?name=&version=";
+function ajax_getWithKeyInfo(requestURL, objectType, callback, keyNam) {
+    let keyName = keyNam || "key";
+    let keyInfoURL = restRootURL + "/KeyInformation/Get?name=&version=";
     ajax_get(keyInfoURL, function(dataKeyInfos) {
         ajax_get(requestURL, function(data) {
             var keyInfos = [];
@@ -121,3 +121,5 @@ function ajax_delete(requestURL, callback) {
         }
     });
 }
+
+module.exports = {ajax_get, ajax_delete, ajax_post, ajax_put, ajax_getOKOrFail, ajax_getWithKeyInfo};

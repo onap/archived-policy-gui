@@ -137,3 +137,5 @@ function eventTab_create() {
     eventTable.appendChild(eventTableBody);
     eventTable.setAttribute("id", "eventTableBody");
 }
+
+exports = {eventTab_reset, eventTab_activate, eventTab_deactivate, eventTab_create}

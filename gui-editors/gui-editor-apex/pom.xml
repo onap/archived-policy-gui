@@ -34,6 +34,10 @@
 
     <properties>
         <policy.apex-pdp.version>2.4.0</policy.apex-pdp.version>
+        <webapp.dir>src/main/resources/webapp</webapp.dir>
+        <sonar.nodejs.executable>${project.basedir}/src/main/resources/webapp/node/node</sonar.nodejs.executable>
+        <sonar.sources>${project.basedir}/src/main/java,${project.basedir}/src/main/resources/webapp/js</sonar.sources>
+        <sonar.exclusions>src/main/resources/webapp/js/__test__/**,src/main/resources/webapp/js/jquery/**,src/main/resources/webapp/js/edit_area/**,src/main/resources/webapp/js/jquery-ui-1.12.1/**,src/main/resources/webapp/js/lib/**</sonar.exclusions>
     </properties>
 
     <dependencies>
@@ -122,7 +126,94 @@
         <defaultGoal>install</defaultGoal>
         <outputDirectory>${project.build.directory}/classes</outputDirectory>
         <plugins>
-
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <configuration>
+                    <nodeVersion>v9.9.0</nodeVersion>
+                    <installDirectory>${webapp.dir}</installDirectory>
+                    <workingDirectory>${webapp.dir}</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v10.16.0</nodeVersion>
+                            <npmVersion>6.9.0</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm test</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>test</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>webpack build</id>
+                        <goals>
+                            <goal>webpack</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>Copy frontend build to target</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/classes/webapp</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${webapp.dir}/dist</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${webapp.dir}/node</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${webapp.dir}/node_modules</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${webapp.dir}/dist/</directory>
+                            <includes>bundle.js</includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
 <!-- https://blog.sonatype.com/2008/04/how-to-share-resources-across-projects-in-maven/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

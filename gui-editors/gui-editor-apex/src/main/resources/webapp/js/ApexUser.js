@@ -28,3 +28,5 @@ const userManager = {
   const urlParams = new URLSearchParams(window.location.search);
   userManager.userId = urlParams.get('userId');
 })();
+
+exports = {userManager};
