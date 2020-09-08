@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6aa09db_2d258d76",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/dist/bundle.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2020-09-08T11:05:32Z",
+      "side": 1,
+      "message": "Do we need to add a licence for this?",
+      "revId": "483f0f8457f8b10d426e8135ab66000d3a3ff7a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
