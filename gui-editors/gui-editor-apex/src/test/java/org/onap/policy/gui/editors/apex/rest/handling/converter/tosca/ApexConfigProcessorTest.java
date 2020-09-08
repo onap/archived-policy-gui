@@ -57,8 +57,8 @@ public class ApexConfigProcessorTest {
     @Test
     public void testProcessMissingPoliciesEntry() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ApexConfig-missing-engineServiceParameters.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream(
+            "ApexConfig-missing-engineServiceParameters.json")) {
             processedTemplate = apexConfigProcessor.process(fileInputStream);
         }
         assertProcessedTemplate(processedTemplate, false,
@@ -68,18 +68,17 @@ public class ApexConfigProcessorTest {
     @Test
     public void testProcessInvalidToscaTemplate() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream = readFileAsStream("ApexConfig-invalid.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream("ApexConfig-invalid.jsonbad")) {
             processedTemplate = apexConfigProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(INVALID_APEX_CONFIG.getMessage()));
+        assertProcessedTemplate(processedTemplate, false, List.of(INVALID_APEX_CONFIG.getMessage()));
     }
 
     @Test
     public void testProcessInvalidEngineServiceParameters() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ApexConfig-invalid-engineServiceParameters.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream(
+            "ApexConfig-invalid-engineServiceParameters.json")) {
             processedTemplate = apexConfigProcessor.process(fileInputStream);
         }
         assertProcessedTemplate(processedTemplate, false,
@@ -87,17 +86,16 @@ public class ApexConfigProcessorTest {
     }
 
     private void assertProcessedTemplate(final ProcessedTemplate process, boolean isValid,
-                                         final List<String> expectedErrorList) {
+        final List<String> expectedErrorList) {
 
         assertThat("Template should be valid", process.isValid(), is(isValid));
         if (isValid || expectedErrorList == null) {
             return;
         }
-        assertThat("Should contains the expected quantity of errors",
-            process.getErrorSet().size(), is(expectedErrorList.size()));
-        expectedErrorList
-            .forEach(errorMsg -> assertThat("Should contains a specific error message", process.getErrorSet(),
-                contains(errorMsg)));
+        assertThat("Should contains the expected quantity of errors", process.getErrorSet().size(),
+            is(expectedErrorList.size()));
+        expectedErrorList.forEach(errorMsg -> assertThat("Should contains a specific error message",
+            process.getErrorSet(), contains(errorMsg)));
     }
 
     private FileInputStream readFileAsStream(final String fileName) throws FileNotFoundException {

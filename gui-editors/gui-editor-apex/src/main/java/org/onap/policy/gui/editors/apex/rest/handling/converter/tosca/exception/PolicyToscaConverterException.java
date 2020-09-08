@@ -20,6 +20,7 @@
 package org.onap.policy.gui.editors.apex.rest.handling.converter.tosca.exception;
 
 public class PolicyToscaConverterException extends Exception {
+    private static final long serialVersionUID = -7263407816909492236L;
 
     public PolicyToscaConverterException(final String message, final Throwable cause) {
         super(message, cause);
