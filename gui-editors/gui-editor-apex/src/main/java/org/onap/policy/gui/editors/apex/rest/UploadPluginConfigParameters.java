@@ -32,6 +32,7 @@ import org.onap.policy.gui.editors.apex.rest.handling.config.PolicyUploadPluginC
 public class UploadPluginConfigParameters implements ParameterGroup {
 
     public static final String GROUP_NAME = "UploadParameters";
+
     @Setter
     private String name;
     private boolean isEnabled;

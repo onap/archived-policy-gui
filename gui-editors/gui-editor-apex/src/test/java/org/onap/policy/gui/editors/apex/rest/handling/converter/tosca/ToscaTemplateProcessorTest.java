@@ -91,8 +91,8 @@ public class ToscaTemplateProcessorTest {
     @Test
     public void testProcessMissingToscaDefinitionsVersion() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ToscaTemplate-missing-tosca-definitions-version.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream(
+            "ToscaTemplate-missing-tosca-definitions-version.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
         assertProcessedTemplate(processedTemplate, false,
@@ -105,8 +105,7 @@ public class ToscaTemplateProcessorTest {
         try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-missing-properties.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(MISSING_ENTRY.getMessage(PROPERTIES.getKey())));
+        assertProcessedTemplate(processedTemplate, false, List.of(MISSING_ENTRY.getMessage(PROPERTIES.getKey())));
     }
 
     @Test
@@ -115,25 +114,22 @@ public class ToscaTemplateProcessorTest {
         try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-more-than-one-policy.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(ONLY_ONE_POLICY_ALLOWED.getMessage()));
+        assertProcessedTemplate(processedTemplate, false, List.of(ONLY_ONE_POLICY_ALLOWED.getMessage()));
     }
 
     @Test
     public void testProcessInvalidToscaTemplate() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalid.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalid.jsonbad")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(INVALID_TOSCA_TEMPLATE.getMessage()));
+        assertProcessedTemplate(processedTemplate, false, List.of(INVALID_TOSCA_TEMPLATE.getMessage()));
     }
 
     @Test
     public void testProcessInvalidEntryToscaDefinitionsVersion() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ToscaTemplate-invalid-toscaDefinitions.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalid-toscaDefinitions.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
         assertProcessedTemplate(processedTemplate, false,
@@ -143,8 +139,8 @@ public class ToscaTemplateProcessorTest {
     @Test
     public void testProcessInvalidEntryTopologyTemplate() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ToscaTemplate-invalidEntry-topologyTemplate.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream(
+            "ToscaTemplate-invalidEntry-topologyTemplate.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
         assertProcessedTemplate(processedTemplate, false,
@@ -154,12 +150,10 @@ public class ToscaTemplateProcessorTest {
     @Test
     public void testProcessInvalidEntryPolicies() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ToscaTemplate-invalidEntry-policies.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalidEntry-policies.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(INVALID_ENTRY.getMessage(POLICIES.getKey())));
+        assertProcessedTemplate(processedTemplate, false, List.of(INVALID_ENTRY.getMessage(POLICIES.getKey())));
     }
 
     @Test
@@ -168,39 +162,33 @@ public class ToscaTemplateProcessorTest {
         try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalidPolicy1.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(INVALID_POLICY.getMessage()));
+        assertProcessedTemplate(processedTemplate, false, List.of(INVALID_POLICY.getMessage()));
 
         try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalidPolicy2.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(INVALID_POLICY.getMessage()));
+        assertProcessedTemplate(processedTemplate, false, List.of(INVALID_POLICY.getMessage()));
     }
 
     @Test
     public void testProcessInvalidEntryProperties() throws IOException {
         final ProcessedTemplate processedTemplate;
-        try (final FileInputStream fileInputStream =
-            readFileAsStream("ToscaTemplate-invalidEntry-properties.json")) {
+        try (final FileInputStream fileInputStream = readFileAsStream("ToscaTemplate-invalidEntry-properties.json")) {
             processedTemplate = toscaTemplateProcessor.process(fileInputStream);
         }
-        assertProcessedTemplate(processedTemplate, false,
-            List.of(INVALID_ENTRY.getMessage(PROPERTIES.getKey())));
+        assertProcessedTemplate(processedTemplate, false, List.of(INVALID_ENTRY.getMessage(PROPERTIES.getKey())));
     }
 
-
     private void assertProcessedTemplate(final ProcessedTemplate process, boolean isValid,
-                                         final List<String> expectedErrorList) {
+        final List<String> expectedErrorList) {
         assertThat("Template should be valid", process.isValid(), is(isValid));
         if (isValid || expectedErrorList == null) {
             return;
         }
-        assertThat("Should contains the expected quantity of errors",
-            process.getErrorSet().size(), is(expectedErrorList.size()));
-        expectedErrorList
-            .forEach(errorMsg -> assertThat("Should contains a specific error message", process.getErrorSet(),
-                contains(errorMsg)));
+        assertThat("Should contains the expected quantity of errors", process.getErrorSet().size(),
+            is(expectedErrorList.size()));
+        expectedErrorList.forEach(errorMsg -> assertThat("Should contains a specific error message",
+            process.getErrorSet(), contains(errorMsg)));
     }
 
     private FileInputStream readFileAsStream(final String fileName) throws FileNotFoundException {
