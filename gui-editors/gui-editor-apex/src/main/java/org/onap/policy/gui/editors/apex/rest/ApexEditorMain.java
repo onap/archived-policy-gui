@@ -22,13 +22,11 @@
 package org.onap.policy.gui.editors.apex.rest;
 
 import java.io.PrintStream;
-import org.onap.policy.common.parameters.ParameterService;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
 /**
- * This class is the main class that is used to launch the Apex editor from the
- * command line.
+ * This class is the main class that is used to launch the Apex editor from the command line.
  *
  */
 public class ApexEditorMain {
@@ -61,7 +59,7 @@ public class ApexEditorMain {
     private ApexEditor apexEditor = null;
 
     // The parameters for the editor
-    private ApexEditorParameters parameters = null;
+    private static ApexEditorParameters parameters = null;
 
     // Output and error streams for messages
     private final PrintStream outStream;
@@ -86,7 +84,7 @@ public class ApexEditorMain {
             throw new ApexEditorParameterException(REST_ENDPOINT_PREFIX + this.toString() + ") parameter error, "
                 + e.getMessage() + '\n' + parser.getHelp(ApexEditorMain.class.getName()), e);
         }
-        if (parameters.isHelpSet()) {
+        if (parameters.isHelp()) {
             throw new ApexEditorParameterException(parser.getHelp(ApexEditorMain.class.getName()));
         }
 
@@ -96,8 +94,6 @@ public class ApexEditorMain {
             throw new ApexEditorParameterException(REST_ENDPOINT_PREFIX + this.toString() + ") parameters invalid, "
                 + validationMessage + '\n' + parser.getHelp(ApexEditorMain.class.getName()));
         }
-
-        ParameterService.register(new UploadPluginConfigParameters());
 
         state = EditorState.READY;
     }
@@ -184,6 +180,15 @@ public class ApexEditorMain {
     }
 
     /**
+     * Get the editor parameters.
+     *
+     * @return the parameters
+     */
+    public static ApexEditorParameters getParameters() {
+        return parameters;
+    }
+
+    /**
      * This class is a shutdown hook for the Apex editor command.
      */
     private class ApexEditorShutdownHook implements Runnable {
@@ -212,4 +217,3 @@ public class ApexEditorMain {
         }
     }
 }
-

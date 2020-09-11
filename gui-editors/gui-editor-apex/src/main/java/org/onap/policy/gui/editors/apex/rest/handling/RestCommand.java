@@ -61,5 +61,9 @@ public enum RestCommand {
     /**
      * Download the currently loaded apex model.
      */
-    DOWNLOAD
+    DOWNLOAD,
+    /**
+     * Upload the currently loaded apex model.
+     */
+    UPLOAD
 }

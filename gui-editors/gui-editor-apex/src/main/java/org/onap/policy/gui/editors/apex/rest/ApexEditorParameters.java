@@ -21,8 +21,12 @@
 
 package org.onap.policy.gui.editors.apex.rest;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -31,6 +35,7 @@ import org.slf4j.ext.XLoggerFactory;
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
+@Data
 public class ApexEditorParameters {
     // Logger for this class
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEditorParameters.class);
@@ -56,10 +61,12 @@ public class ApexEditorParameters {
     private static final String[] DEFAULT_PACKAGES = new String[] { "org.onap.policy.gui.editors.apex.rest" };
 
     // The editor parameters
-    private boolean helpSet = false;
+    private boolean help = false;
     private int restPort = DEFAULT_REST_PORT;
     private long timeToLive = INFINITY_TIME_TO_LIVE;
     private String listenAddress = DEFAULT_SERVER_URI_ROOT;
+    private String uploadUrl = null;
+    private String uploadUserid = null;
 
     /**
      * Validate.
@@ -71,6 +78,8 @@ public class ApexEditorParameters {
         validationMessage += validatePort();
         validationMessage += validateTimeToLive();
         validationMessage += validateUrl();
+        validationMessage += validateUploadUrl();
+        validationMessage += validateUploadUserid();
 
         return validationMessage;
     }
@@ -144,86 +153,22 @@ public class ApexEditorParameters {
         }
     }
 
-    /**
-     * Checks if is help set.
-     *
-     * @return true, if checks if is help set
-     */
-    public boolean isHelpSet() {
-        return helpSet;
+    private String validateUploadUrl() {
+        if (!StringUtils.isBlank(uploadUrl)) {
+            try {
+                new URL(uploadUrl);
+            } catch (MalformedURLException murle) {
+                return "Specified upload-url parameter is an invalid URL" + murle.getMessage() + "\n";
+            }
+        }
+        return "";
     }
 
-    /**
-     * Sets the help.
-     *
-     * @param help the help
-     */
-    public void setHelp(final boolean help) {
-        this.helpSet = help;
-    }
-
-    /**
-     * Gets the REST port.
-     *
-     * @return the REST port
-     */
-    public int getRestPort() {
-        return restPort;
-    }
-
-    /**
-     * Sets the REST port.
-     *
-     * @param incomingRestPort the REST port
-     */
-    public void setRestPort(final int incomingRestPort) {
-        this.restPort = incomingRestPort;
-    }
-
-    /**
-     * Gets the time to live.
-     *
-     * @return the time to live
-     */
-    public long getTimeToLive() {
-        return timeToLive;
-    }
-
-    /**
-     * Sets the time to live.
-     *
-     * @param timeToLive the time to live
-     */
-    public void setTimeToLive(final long timeToLive) {
-        this.timeToLive = timeToLive;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        final StringBuilder ret = new StringBuilder();
-        ret.append(this.getClass().getSimpleName()).append(": URI=").append(this.getBaseUri()).append(", TTL=")
-            .append(this.getTimeToLive()).append("sec");
-        return ret.toString();
-    }
-
-    /**
-     * Gets the base address to listen on.
-     *
-     * @return the listenAddress
-     */
-    public String getListenAddress() {
-        return listenAddress;
-    }
-
-    /**
-     * Sets the base address to listen on.
-     *
-     * @param listenAddress the new listenAddress
-     */
-    public void setListenAddress(final String listenAddress) {
-        this.listenAddress = listenAddress;
+    private String validateUploadUserid() {
+        if (!StringUtils.isEmpty(uploadUrl) && StringUtils.isEmpty(uploadUserid)) {
+            return "upload-userid parameter must be specified if the upload-url parameter is specified\n";
+        } else {
+            return "";
+        }
     }
 }

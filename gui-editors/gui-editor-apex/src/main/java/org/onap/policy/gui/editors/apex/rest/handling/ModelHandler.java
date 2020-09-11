@@ -75,6 +75,8 @@ public class ModelHandler implements RestCommandHandler {
                 return listModel(session);
             case DOWNLOAD:
                 return downloadModel(session);
+            case UPLOAD:
+                return uploadModel(session);
             case DELETE:
                 return deleteModel(session);
             default:
@@ -117,34 +119,31 @@ public class ModelHandler implements RestCommandHandler {
      * Load the model from a JSON string for this session.
      *
      * @param session    the Apex model editing session
-     * @param jsonString the JSON string to be parsed. The returned value(s) will be
-     *                   similar to {@link AxPolicyModel}, with merged
-     *                   {@linkplain AxKeyInfo} for the root object.
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @param jsonString the JSON string to be parsed. The returned value(s) will be similar to {@link AxPolicyModel},
+     *                   with merged {@linkplain AxKeyInfo} for the root object.
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult loadFromString(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
         session.editModel();
 
-        ApexApiResult result = session.getApexModelEdited().loadFromString(jsonString);
+        ApexApiResult result = session.loadFromString(jsonString);
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("Model/Load" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/Load" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
     /**
-     * Analyse the model and return analysis results. If successful the analysis
-     * results will be available in the messages in the result.
+     * Analyse the model and return analysis results. If successful the analysis results will be available in the
+     * messages in the result.
      *
      * @param session the Apex model editing session
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult analyse(final RestSession session) {
         LOGGER.entry();
@@ -156,13 +155,12 @@ public class ModelHandler implements RestCommandHandler {
     }
 
     /**
-     * Validate the model and return validation results. If successful the
-     * validation results will be available in the messages in the result.
+     * Validate the model and return validation results. If successful the validation results will be available in the
+     * messages in the result.
      *
      * @param session the Apex model editing session
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult validate(final RestSession session) {
         LOGGER.entry();
@@ -177,11 +175,9 @@ public class ModelHandler implements RestCommandHandler {
      * Creates the new model model for this session.
      *
      * @param session    the Apex model editing session
-     * @param jsonString the JSON string to be parsed containing the new model. See
-     *                   {@linkplain BeanModel}
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @param jsonString the JSON string to be parsed containing the new model. See {@linkplain BeanModel}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult createModel(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
@@ -195,7 +191,7 @@ public class ModelHandler implements RestCommandHandler {
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("Model/Create" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/Create" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
@@ -203,11 +199,9 @@ public class ModelHandler implements RestCommandHandler {
      * Update the model for this session.
      *
      * @param session    the Apex model editing session
-     * @param jsonString the JSON string to be parsed containing the updated model.
-     *                   See {@linkplain BeanModel}
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @param jsonString the JSON string to be parsed containing the updated model. See {@linkplain BeanModel}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult updateModel(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
@@ -221,18 +215,17 @@ public class ModelHandler implements RestCommandHandler {
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("Model/Update" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/Update" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
     /**
-     * Gets the key for the model for this session. If successful the model key will
-     * be available in the first message in the result. See {@linkplain AxKey}
+     * Gets the key for the model for this session. If successful the model key will be available in the first message
+     * in the result. See {@linkplain AxKey}
      *
      * @param session the Apex model editing session
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult getModelKey(final RestSession session) {
         LOGGER.entry();
@@ -244,15 +237,13 @@ public class ModelHandler implements RestCommandHandler {
     }
 
     /**
-     * Retrieve the model for this session. If successful the model will be
-     * available in the first message in the result. The returned value will be
-     * similar to a {@link AxPolicyModel}, with merged {@linkplain AxKeyInfo} for
-     * the root object.
+     * Retrieve the model for this session. If successful the model will be available in the first message in the
+     * result. The returned value will be similar to a {@link AxPolicyModel}, with merged {@linkplain AxKeyInfo} for the
+     * root object.
      *
      * @param session the Apex model editing session
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult listModel(final RestSession session) {
         LOGGER.entry();
@@ -261,7 +252,7 @@ public class ModelHandler implements RestCommandHandler {
 
         result = addKeyInfo2Messages(session, result);
 
-        LOGGER.exit("Model/Get" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/Get" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
@@ -269,13 +260,27 @@ public class ModelHandler implements RestCommandHandler {
      * Download the model for this session as a String.
      *
      * @param session the Apex model editing session
-     * @return the model represented as a JSON string. See
-     *         {@linkplain AxPolicyModel}
+     * @return the model represented as a JSON string. See {@linkplain AxPolicyModel}
      */
     private ApexApiResult downloadModel(final RestSession session) {
         LOGGER.entry();
 
-        ApexApiResult result = session.getApexModel().listModel();
+        ApexApiResult result = session.downloadModel();
+
+        LOGGER.exit("Model/Download" + (result != null && result.isOk() ? OK : NOT_OK));
+        return result;
+    }
+
+    /**
+     * Upload the model for this session to the configured URL.
+     *
+     * @param session the Apex model editing session
+     * @return a result indicating if the upload was successful or not
+     */
+    private ApexApiResult uploadModel(final RestSession session) {
+        LOGGER.entry();
+
+        ApexApiResult result = session.uploadModel();
 
         LOGGER.exit("Model/Download" + (result != null && result.isOk() ? OK : NOT_OK));
         return result;
@@ -285,9 +290,8 @@ public class ModelHandler implements RestCommandHandler {
      * Delete the model for this session.
      *
      * @param session the Apex model editing session
-     * @return an ApexAPIResult object. If successful then
-     *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
-     *         can be retrieved using {@link ApexApiResult#getMessages()}
+     * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
+     *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult deleteModel(final RestSession session) {
         LOGGER.entry();
@@ -298,21 +302,18 @@ public class ModelHandler implements RestCommandHandler {
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("Model/Delete" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/Delete" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
     /**
-     * The json strings representing the objects listed, stored in
-     * result.messages[], does not contain the AxKeyInformation for that object.
-     * This utility method retrieves the AxKeyInfo for each object and adds it to
-     * the json for the object.
+     * The json strings representing the objects listed, stored in result.messages[], does not contain the
+     * AxKeyInformation for that object. This utility method retrieves the AxKeyInfo for each object and adds it to the
+     * json for the object.
      *
      * @param session        the Apex model editing session
-     * @param incomingResult The list result, containing JSON representations of
-     *                       objects stored in its "messages" array
-     * @return The list result, containing JSON augmented representations of objects
-     *         stored in its "messages" array
+     * @param incomingResult The list result, containing JSON representations of objects stored in its "messages" array
+     * @return The list result, containing JSON augmented representations of objects stored in its "messages" array
      */
     private ApexApiResult addKeyInfo2Messages(final RestSession session, final ApexApiResult incomingResult) {
         final ApexApiResult result = new ApexApiResult(incomingResult.getResult());
@@ -389,7 +390,7 @@ public class ModelHandler implements RestCommandHandler {
      *
      * @param jsonObject the object to query
      * @param fieldTag   the tag of the field to condition
-     * @param value the default value of the field to condition
+     * @param value      the default value of the field to condition
      * @return field read from the json
      */
     private String readFieldFromJsonObject(final JsonObject jsonObject, final String fieldTag, final String value) {

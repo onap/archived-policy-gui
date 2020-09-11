@@ -50,16 +50,16 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] {};
 
         final String outString = runEditor(args);
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=-1sec], "
-            + "State=READY) starting at http://localhost:18989/apexservices/"));
-        assertTrue(outString.contains("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=-1sec], "
-            + "State=RUNNING) started at http://localhost:18989/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=-1sec],"
-                + " State=STOPPED) shut down "));
+
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("help=false"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("restPort=18989"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("timeToLive=-1"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("listenAddress=localhost"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("uploadUrl=null"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("uploadUserid=null"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**
@@ -73,8 +73,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "12321" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: Config=[null], State=STOPPED)"
-                + " parameter error, too many command line arguments specified : [12321]");
+            .hasMessageContaining("parameter error, too many command line arguments specified : [12321]");
     }
 
     /**
@@ -88,8 +87,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "12321 12322 12323" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: Config=[null], State=STOPPED)"
-                + " parameter error, too many command line arguments specified : [12321 12322 12323]");
+            .hasMessageContaining("parameter error, too many command line arguments specified : [12321 12322 12323]");
     }
 
     /**
@@ -102,9 +100,8 @@ public class ApexEditorStartupTest {
     public void testBadArg2() throws IOException, InterruptedException {
         final String[] args = new String[] { "-z" };
 
-        assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: Config=[null], State=STOPPED)"
-                + " parameter error, invalid command line arguments specified : Unrecognized option: -z");
+        assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class).hasMessageContaining(
+            "parameter error, invalid command line arguments specified : Unrecognized option: -z");
     }
 
     /**
@@ -117,9 +114,8 @@ public class ApexEditorStartupTest {
     public void testBadArg3() throws IOException, InterruptedException {
         final String[] args = new String[] { "--hello" };
 
-        assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: Config=[null], State=STOPPED)"
-                + " parameter error, invalid command line arguments specified : Unrecognized option: --hello");
+        assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class).hasMessageContaining(
+            "parameter error, invalid command line arguments specified : Unrecognized option: --hello");
     }
 
     /**
@@ -133,9 +129,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "-l", "+++++" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://+++++:18989/apexservices/, TTL=-1sec], "
-                + "State=STOPPED) parameters invalid, listen address is not valid. "
+            .hasMessageContaining("parameters invalid, listen address is not valid. "
                 + "Illegal character in hostname at index 7: http://+++++:18989/apexservices/");
     }
 
@@ -179,16 +173,10 @@ public class ApexEditorStartupTest {
 
         final String outString = runEditor(args);
 
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=-1sec], "
-            + "State=READY) starting at http://localhost:12321/apexservices/"));
-        assertTrue(outString.contains("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=-1sec], "
-            + "State=RUNNING) started at http://localhost:12321/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=-1sec],"
-                + " State=STOPPED) shut down "));
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("localhost:12321"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**
@@ -203,16 +191,10 @@ public class ApexEditorStartupTest {
 
         final String outString = runEditor(args);
 
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=-1sec], "
-            + "State=READY) starting at http://localhost:12321/apexservices/"));
-        assertTrue(outString.contains("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=-1sec], "
-            + "State=RUNNING) started at http://localhost:12321/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("(ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=-1sec],"
-                + " State=STOPPED) shut down "));
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("localhost:12321"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**
@@ -226,8 +208,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "-p 12321" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: Config=[null], State=STOPPED)"
-                + " parameter error, error parsing argument \"port\" :For input string: \" 12321\"");
+            .hasMessageContaining("parameter error, error parsing argument \"port\" :For input string: \" 12321\"");
     }
 
     /**
@@ -241,9 +222,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "-p0" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:0/apexservices/, TTL=-1sec], "
-                + "State=STOPPED) parameters invalid, port must be between 1024 and 65535");
+            .hasMessageContaining("parameters invalid, port must be between 1024 and 65535");
     }
 
     /**
@@ -257,9 +236,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "-p1023" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:1023/apexservices/, TTL=-1sec], "
-                + "State=STOPPED) parameters invalid, port must be between 1024 and 65535");
+            .hasMessageContaining("parameters invalid, port must be between 1024 and 65535");
     }
 
     /**
@@ -273,9 +250,7 @@ public class ApexEditorStartupTest {
         final String[] args = new String[] { "-p65536" };
 
         assertThatThrownBy(() -> runEditor(args)).isInstanceOf(ApexEditorParameterException.class)
-            .hasMessageContaining("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:65536/apexservices/, TTL=-1sec], "
-                + "State=STOPPED) parameters invalid, port must be between 1024 and 65535");
+            .hasMessageContaining("parameters invalid, port must be between 1024 and 65535");
     }
 
     /**
@@ -290,17 +265,10 @@ public class ApexEditorStartupTest {
 
         final String outString = runEditor(args);
 
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=10sec], "
-            + "State=READY) starting at http://localhost:18989/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .contains("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=10sec], State=RUNNING)"
-                + " started"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=10sec], State=STOPPED)"
-                + " shut down "));
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("timeToLive=10"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**
@@ -315,17 +283,10 @@ public class ApexEditorStartupTest {
 
         final String outString = runEditor(args);
 
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=10sec], "
-            + "State=READY) starting at http://localhost:18989/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .contains("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=10sec], State=RUNNING)"
-                + " started"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:18989/apexservices/, TTL=10sec], State=STOPPED)"
-                + " shut down "));
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("timeToLive=10"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**
@@ -340,17 +301,10 @@ public class ApexEditorStartupTest {
 
         final String outString = runEditor(args);
 
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=10sec], "
-            + "State=READY) starting at http://localhost:12321/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .contains("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=10sec], State=RUNNING)"
-                + " started"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://localhost:12321/apexservices/, TTL=10sec], State=STOPPED)"
-                + " shut down "));
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("timeToLive=10"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**
@@ -365,17 +319,10 @@ public class ApexEditorStartupTest {
 
         final String outString = runEditor(args);
 
-        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain: "
-            + "Config=[ApexEditorParameters: URI=http://127.0.0.1:12321/apexservices/, TTL=10sec], "
-            + "State=READY) starting at http://127.0.0.1:12321/apexservices/"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .contains("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://127.0.0.1:12321/apexservices/, TTL=10sec], State=RUNNING)"
-                + " started"));
-        assertTrue(outString.replaceAll("[\\r?\\n]+", " ")
-            .endsWith("Apex Editor REST endpoint (ApexEditorMain: "
-                + "Config=[ApexEditorParameters: URI=http://127.0.0.1:12321/apexservices/, TTL=10sec], State=STOPPED)"
-                + " shut down "));
+        assertTrue(outString.startsWith("Apex Editor REST endpoint (ApexEditorMain:"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("State=RUNNING) started"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").contains("timeToLive=10"));
+        assertTrue(outString.replaceAll("[\\r?\\n]+", " ").endsWith(" State=STOPPED) shut down "));
     }
 
     /**

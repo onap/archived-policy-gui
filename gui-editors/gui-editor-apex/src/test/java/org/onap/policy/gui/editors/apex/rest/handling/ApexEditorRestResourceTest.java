@@ -398,7 +398,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             .queryParam("version", (String) null).request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.yaml");
 
         Entity<String> modelEntity = Entity.entity("Somewhere over the rainbow", MediaType.APPLICATION_JSON);
         result = target("editor/" + -12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
