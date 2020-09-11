@@ -46,19 +46,67 @@ public class ApexEditorParameterParser {
      * Construct the options for the CLI editor.
      */
     public ApexEditorParameterParser() {
+        // @formatter:off
         options = new Options();
         options.addOption("h", "help", false, "outputs the usage of this command");
-        options
-            .addOption(Option.builder("p").longOpt("port").desc("port to use for the Apex RESTful editor REST calls.")
-                .hasArg().argName("PORT").required(false).type(Number.class).build());
-        options.addOption(Option.builder("t").longOpt("time-to-live")
-            .desc("the amount of time in seconds that the server will run for before terminating. "
-                + "Default value is " + ApexEditorParameters.INFINITY_TIME_TO_LIVE + " to run indefinitely.")
-            .hasArg().argName("TIME_TO_LIVE").required(false).type(Number.class).build());
-        options.addOption(Option.builder("l").longOpt("listen")
-            .desc("the IP address to listen on.  Default value is " + ApexEditorParameters.DEFAULT_SERVER_URI_ROOT
-                + " to restrict access to the local machine only.")
-            .hasArg().argName("ADDRESS").required(false).type(String.class).build());
+        options.addOption(
+            Option
+                .builder("p")
+                .longOpt("port")
+                .desc("port to use for the Apex RESTful editor REST calls.")
+                .hasArg()
+                .argName("PORT")
+                .required(false)
+                .type(Number.class)
+                .build()
+        );
+        options.addOption(
+            Option
+                .builder("t")
+                .longOpt("time-to-live")
+                .desc("the amount of time in seconds that the server will run for before terminating. "
+                    + "Default value is " + ApexEditorParameters.INFINITY_TIME_TO_LIVE + " to run indefinitely.")
+                .hasArg()
+                .argName("TIME_TO_LIVE")
+                .required(false)
+                .type(Number.class)
+                .build()
+        );
+        options.addOption(
+            Option
+                .builder("l")
+                .longOpt("listen")
+                .desc("the IP address to listen on.  Default value is " + ApexEditorParameters.DEFAULT_SERVER_URI_ROOT
+                    + " to restrict access to the local machine only.")
+                .hasArg()
+                .argName("ADDRESS")
+                .required(false)
+                .type(String.class)
+                .build()
+        );
+        options.addOption(
+            Option
+                .builder("uuid")
+                .longOpt("upload-userid")
+                .desc("the userid to use for uploads. Default value is null. Must be specified if the upload-url "
+                    + "parameter is specified")
+                .hasArg().argName("USERID")
+                .required(false)
+                .type(String.class)
+                .build()
+        );
+        options.addOption(
+            Option
+                .builder("uurl")
+                .longOpt("upload-url")
+                .desc("the URL to use for uploads. Default value is null")
+                .hasArg()
+                .argName("USERID")
+                .required(false)
+                .type(String.class)
+                .build()
+        );
+        // @formatter:on
     }
 
     /**
@@ -106,6 +154,20 @@ public class ApexEditorParameterParser {
             }
         } catch (final ParseException e) {
             throw new ApexEditorParameterException("error parsing argument \"listen-address\" :" + e.getMessage(), e);
+        }
+        try {
+            if (commandLine.hasOption("uuid")) {
+                parameters.setUploadUserid(commandLine.getParsedOptionValue("uuid").toString());
+            }
+        } catch (final ParseException e) {
+            throw new ApexEditorParameterException("error parsing argument \"upload-uuid\" :" + e.getMessage(), e);
+        }
+        try {
+            if (commandLine.hasOption("uurl")) {
+                parameters.setUploadUrl(commandLine.getParsedOptionValue("uurl").toString());
+            }
+        } catch (final ParseException e) {
+            throw new ApexEditorParameterException("error parsing argument \"upload-url\" :" + e.getMessage(), e);
         }
 
         return parameters;

@@ -44,7 +44,7 @@ $("#menu li").not(".emptyMessage").click(function() {
         files_fileDownload();
         break;
     case "menuFileUpload":
-        uploadPlugin.openDialog();
+        files_fileUpload();
         break;
 
     case "menuFileClear":

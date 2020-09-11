@@ -70,6 +70,11 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.onap.policy.models</groupId>
+            <artifactId>policy-models-tosca</artifactId>
+            <version>${policy.models.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.onap.policy.apex-pdp.model</groupId>
             <artifactId>model-api</artifactId>
             <version>${policy.apex-pdp.version}</version>
@@ -98,6 +103,11 @@
             <artifactId>commons-cli</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
             <groupId>org.onap.policy.apex-pdp.client</groupId>
             <artifactId>apex-client-common</artifactId>
             <version>${policy.apex-pdp.version}</version>
@@ -108,7 +118,6 @@
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
-            <version>${version.jersey}</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -296,9 +305,10 @@
                         </filter>
                     </filters>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                         <transformer
-                          implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                        <transformer
+                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>org.onap.policy.gui.editors.apex.rest.ApexEditorMain</mainClass>
                         </transformer>
                     </transformers>

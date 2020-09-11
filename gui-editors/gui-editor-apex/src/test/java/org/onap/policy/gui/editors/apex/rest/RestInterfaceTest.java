@@ -42,10 +42,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.onap.policy.apex.model.basicmodel.concepts.ApexException;
 import org.onap.policy.apex.model.basicmodel.handling.ApexModelReader;
-import org.onap.policy.apex.model.basicmodel.handling.ApexModelStringWriter;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.policymodel.concepts.AxPolicy;
-import org.onap.policy.apex.model.policymodel.concepts.AxPolicyModel;
 import org.onap.policy.common.parameters.ParameterService;
 import org.onap.policy.common.utils.resources.ResourceUtils;
 import org.onap.policy.gui.editors.apex.rest.ApexEditorMain.EditorState;
@@ -56,7 +54,7 @@ import org.onap.policy.gui.editors.apex.rest.ApexEditorMain.EditorState;
 public class RestInterfaceTest {
     // CHECKSTYLE:OFF: MagicNumber
 
-    private static final String TESTMODELFILE = "models/PolicyModel.json";
+    private static final String TESTMODELFILE = "models/PolicyModel.yaml";
     private static final String TESTPORTNUM = "18989";
     private static final long MAX_WAIT = 15000; // 15 sec
     private static final InputStream SYSIN = System.in;
@@ -65,8 +63,7 @@ public class RestInterfaceTest {
     private static ApexEditorMain editorMain;
     private static WebTarget target;
 
-    private static AxPolicyModel localmodel = null;
-    private static String localmodelString = null;
+    private static String localModelString = null;
 
     /**
      * Sets up the tests.
@@ -103,10 +100,7 @@ public class RestInterfaceTest {
         target = c.target(new ApexEditorParameters().getBaseUri());
 
         // load a test model locally
-        localmodel = new ApexModelReader<>(AxPolicyModel.class, false)
-            .read(ResourceUtils.getResourceAsStream(TESTMODELFILE));
-        localmodelString = new ApexModelStringWriter<AxPolicyModel>(false).writeJsonString(localmodel,
-            AxPolicyModel.class);
+        localModelString = ResourceUtils.getResourceAsString(TESTMODELFILE);
 
         // initialize a session ID
         createNewSession();
@@ -159,8 +153,8 @@ public class RestInterfaceTest {
     }
 
     /**
-     * Create a new session, Upload a test policy model, then get a policy, parse
-     * it, and compare it to the same policy in the original model.
+     * Create a new session, Upload a test policy model, then get a policy, parse it, and compare it to the same policy
+     * in the original model.
      *
      * @throws ApexException if there is an Apex Error
      * @throws JAXBException if there is a JaxB Error
@@ -170,7 +164,7 @@ public class RestInterfaceTest {
 
         final int sessionId = createNewSession();
 
-        uploadPolicy(sessionId, localmodelString);
+        uploadPolicy(sessionId, localModelString);
 
         final ApexApiResult responseMsg = target.path("editor/" + sessionId + "/Policy/Get")
             .queryParam("name", "policy").queryParam("version", "0.0.1").request().get(ApexApiResult.class);
@@ -180,29 +174,10 @@ public class RestInterfaceTest {
         // object. Lets parse it
         final String returnedPolicyAsString = responseMsg.getMessages().get(0);
         ApexModelReader<AxPolicy> apexPolicyReader = new ApexModelReader<>(AxPolicy.class, false);
-        final AxPolicy returnedpolicy = apexPolicyReader.read(returnedPolicyAsString);
-        // AxPolicy returnedpolicy =
-        // RestUtils.getConceptFromJSON(returnedPolicyAsString, AxPolicy.class);
+        final AxPolicy returnedPolicy = apexPolicyReader.read(returnedPolicyAsString);
 
-        // Extract the local copy of that policy from the local Apex Policy Model
-        final AxPolicy localpolicy = localmodel.getPolicies().get("policy", "0.0.1");
-
-        // Write that local copy of the AxPolicy object to a Json String, ten parse it
-        // again
-        final ApexModelStringWriter<AxPolicy> apexModelWriter = new ApexModelStringWriter<>(false);
-        final String localPolicyString = apexModelWriter.writeJsonString(localpolicy, AxPolicy.class);
-        apexPolicyReader = new ApexModelReader<>(AxPolicy.class, false);
-        final AxPolicy localpolicyReparsed = apexPolicyReader.read(localPolicyString);
-        // AxPolicy localpolicy_reparsed =
-        // RestUtils.getConceptFromJSON(returnedPolicyAsString, AxPolicy.class);
-
-        assertNotNull(returnedpolicy);
-        assertNotNull(localpolicy);
-        assertNotNull(localpolicyReparsed);
-        assertEquals(localpolicy, localpolicyReparsed);
-        assertEquals(localpolicy, returnedpolicy);
+        assertNotNull(returnedPolicy);
+        assertEquals("state", returnedPolicy.getFirstState());
+        assertEquals(1, returnedPolicy.getStateMap().size());
     }
-
-    // TODO Full unit testing of REST interface
-
 }

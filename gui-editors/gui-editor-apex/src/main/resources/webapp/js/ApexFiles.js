@@ -19,9 +19,6 @@
  * ============LICENSE_END=========================================================
  */
 
-const {ajax_get} = require("../../../../../target/classes/webapp/js/ApexAjax");
-const {ajax_put} = require("../../../../../target/classes/webapp/js/ApexAjax");
-
 function files_fileOpen() {
     $('<input type="file">').on('change', function() {
         var reader = new FileReader();
@@ -53,4 +50,16 @@ function files_fileDownload() {
     document.body.removeChild(downloadLink);
 }
 
-module.exports = {files_fileDownload, files_fileOpen};
+function files_fileUpload() {
+    var requestURL = restRootURL + "/Model/Upload";
+
+    ajax_getOKOrFail(requestURL, function(data) {
+        var uploadResultString = "";
+        for (var i = 0; i < data.messages.message.length; i++) {
+            uploadResultString += (data.messages.message[i] + "\n");
+        }
+        resultForm_activate(document.getElementById("mainArea"), "Model Upload Result", uploadResultString);
+    });
+}
+
+module.exports = {files_fileUpload, files_fileDownload, files_fileOpen};
