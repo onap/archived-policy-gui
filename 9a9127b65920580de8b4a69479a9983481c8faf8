@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "167952c6_b6444bdb",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-09-11T20:46:47Z",
+      "side": 1,
+      "message": "does XLogger support place-holders?",
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77537005_416d73b4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-09-11T20:46:47Z",
+      "side": 1,
+      "message": "wondering why the normal parameter validator isn\u0027t being used?",
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fd918a3_57cd2205",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/ApexEditorStartupTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2020-09-11T20:46:47Z",
+      "side": 1,
+      "message": "sonar may prefer assertThat(...).contains().contains()...endsWith()\n\nsame comment below",
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
