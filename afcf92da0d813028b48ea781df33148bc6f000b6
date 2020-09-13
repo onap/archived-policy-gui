@@ -16,6 +16,24 @@
       "revId": "afcf92da0d813028b48ea781df33148bc6f000b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88778145_7cfb5392",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexContextSchemaEditForm.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-09-13T20:18:25Z",
+      "side": 0,
+      "message": "It is needed by the test code but when it\u0027s in, it actually breaks the GUI. I was chatting to Wayne on Friday, we will have to work out some other way of doing this for the testing.\n\nIn unit test, we are using node.js that has this \"require() function. However, when the Javascript is running in the browser, the require() function does not exist and the Javascript stops running. I\u0027ll update on this in scrum tomorrow.",
+      "parentUuid": "8d91a9e9_741d125e",
+      "revId": "afcf92da0d813028b48ea781df33148bc6f000b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

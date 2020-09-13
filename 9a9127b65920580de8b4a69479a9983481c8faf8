@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "f6d2e925_549ebfaf",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-09-13T20:18:25Z",
+      "side": 1,
+      "message": "The parameter handling for the editor was written before we did the parameter handling and rather than put in something different for these two extra parameters, I just added them to the existing handling. We should go back and refactor the editor to use the PF parameter handling for all its parameters but I don\u0027t have time to do it at the moment. Maybe we should open a JIRA for that.",
+      "parentUuid": "77537005_416d73b4",
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fd918a3_57cd2205",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/ApexEditorStartupTest.java",
         "patchSetId": 2
