@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ae397744_6804af39",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/ApexEditorParameterParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-09-14T13:18:01Z",
+      "side": 1,
+      "message": "arg name is the same as upload-userid. Shouldn\u0027t it be different?",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 34
+      },
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "167952c6_b6444bdb",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
         "patchSetId": 2
