@@ -223,7 +223,6 @@
                     </filesets>
                 </configuration>
             </plugin>
-<!-- https://blog.sonatype.com/2008/04/how-to-share-resources-across-projects-in-maven/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -247,12 +246,24 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Editor's css overrides common css -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/node/**</exclude>
+                        <exclude>**/node_modules/**</exclude>
+                        <exclude>webapp/webpack.config.js</exclude>
+                        <exclude>webapp/package.json</exclude>
+                        <exclude>webapp/package-lock.json</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>

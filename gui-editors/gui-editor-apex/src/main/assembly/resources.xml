@@ -28,6 +28,13 @@
         <fileSet>
             <directory>target/classes/webapp</directory>
             <outputDirectory>editor</outputDirectory>
+            <excludes>
+                <exclude>**/node/**</exclude>
+                <exclude>**/node_modules/**</exclude>
+                <exclude>webpack.config.js</exclude>
+                <exclude>package.json</exclude>
+                <exclude>package-lock.json</exclude>
+            </excludes>
         </fileSet>
     </fileSets>
 </assembly>
