@@ -10,4 +10,8 @@ target
 /bin/
 # IntelliJ files
 .idea/
+dist
+node
+node_modules
+package-lock.json
 **/*.iml
