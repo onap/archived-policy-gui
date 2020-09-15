@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "25b0514b_44266ead",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-09-15T07:44:12Z",
+      "side": 1,
+      "message": "It doesn\u0027t support placeholders on logger.exit().",
+      "parentUuid": "167952c6_b6444bdb",
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77537005_416d73b4",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
         "patchSetId": 2
@@ -100,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "94d12d78_6a42253a",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/templates/ApexToscaPolicyTemplate.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-09-15T07:44:12Z",
+      "side": 1,
+      "message": "I have to raise another review on the Javascript, if it\u0027s OK I\u0027ll fix this in that review.",
+      "parentUuid": "ea6e4e5c_ca26646d",
+      "range": {
+        "startLine": 1,
+        "startChar": 47,
+        "endLine": 1,
+        "endChar": 48
+      },
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fd918a3_57cd2205",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/ApexEditorStartupTest.java",
         "patchSetId": 2
@@ -111,6 +153,24 @@
       "writtenOn": "2020-09-11T20:46:47Z",
       "side": 1,
       "message": "sonar may prefer assertThat(...).contains().contains()...endsWith()\n\nsame comment below",
+      "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9035cc33_cdd8d2a4",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/ApexEditorStartupTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2020-09-15T07:44:12Z",
+      "side": 1,
+      "message": "SONAR doesn\u0027t seem to be complaining about the original code that was using assertTrue. I\u0027ll keep an eye on it.",
+      "parentUuid": "5fd918a3_57cd2205",
       "revId": "9a9127b65920580de8b4a69479a9983481c8faf8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
