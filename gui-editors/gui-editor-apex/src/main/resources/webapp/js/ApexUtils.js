@@ -125,3 +125,13 @@ function getHomepageURL() {
                     .indexOf("editor/")) : location.pathname);
     location.href = homepageURL;
 }
+
+export {
+    apexUtils_removeElement,
+    apexUtils_emptyElement,
+    scrollToTop,
+    apexUtils_areYouSure,
+    createAddFormButton,
+    apexUtils_escapeHtml,
+    apexUtils_deleteTableRow
+}

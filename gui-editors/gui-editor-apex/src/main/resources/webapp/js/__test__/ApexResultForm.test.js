@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +18,20 @@
  * ============LICENSE_END=========================================================
  */
 
-function createTable(id) {
-    var table = document.createElement("table");
-    table.setAttribute("id", id);
-    table.setAttribute("class", "apexTable ebTable elTablelib-Table-table ebTable_striped");
-    return table;
-}
+const mod = require('../ApexResultForm');
 
-function setRowHover(rowElement) {
-    rowElement.className = "ebTableRow";
-    rowElement.onmouseover = function() {
-        this.className = "ebTableRow ebTableRow_hover";
-    };
-    rowElement.onmouseout = function() {
-        this.className = "ebTableRow";
-    };
-}
+test('resultForm test', () => {
+    document.innerHTML =
+        '<div id="newModelDivBackground">' +
+        '</div>' +
+        '<div id="elementTest">' +
+        '</div>';
 
-export { createTable, setRowHover };
+    const content = document.getElementById("elementTest");
+    const mock_activate = jest.fn(mod.resultForm_activate);
+    mock_activate(document.createElement("elementTest"), 'heading', 'text');
+    expect(mock_activate).toBeCalled();
+
+    const mock_pressedOK = jest.fn(mod.resultForm_okPressed);
+    mock_pressedOK();
+});

@@ -19,6 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
+import {rightClickMenu_scopePreserver} from "./contextMenu";
+import {createTable} from "./ApexTable";
+import {ajax_get} from "./ApexAjax";
+import {apexUtils_removeElement} from "./ApexUtils";
+
 function policyTab_reset() {
     policyTab_deactivate();
     policyTab_activate();
@@ -27,7 +32,7 @@ function policyTab_reset() {
 function policyTab_activate() {
     policyTab_create();
 
-    var requestURL = restRootURL + "/Policy/Get?name=&version=";
+    var requestURL = window.restRootURL + "/Policy/Get?name=&version=";
 
     ajax_get(requestURL, function(data) {
         $("#policyTableBody").find("tr:gt(0)").remove();
@@ -164,6 +169,11 @@ function policyTab_deactivate() {
 function policyTab_create() {
     var policyTab = document.getElementById("policiesTab");
 
+    //Testing purposes
+    if(policyTab === null) {
+        policyTab = document.createElement("policiesTab");
+    }
+
     var policyTabContent = document.getElementById("policyTabContent");
     if (policyTabContent != null) {
         return
@@ -208,4 +218,11 @@ function policyTab_create() {
     var policyTableBody = document.createElement("tbody");
     policyTable.appendChild(policyTableBody);
     policyTable.setAttribute("id", "policyTableBody");
+}
+
+export {
+    policyTab_activate,
+    policyTab_create,
+    policyTab_deactivate,
+    policyTab_reset
 }
