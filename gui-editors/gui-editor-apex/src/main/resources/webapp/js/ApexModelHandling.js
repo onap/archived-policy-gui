@@ -19,8 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
+import {ajax_getOKOrFail, ajax_get} from "./ApexAjax";
+import {resultForm_activate} from "./ApexResultForm";
+
 function modelHandling_analyse() {
-    var requestURL = restRootURL + "/Model/Analyse";
+    var requestURL = window.restRootURL + "/Model/Analyse";
 
     ajax_get(requestURL, function(data) {
         resultForm_activate(document.getElementById("mainArea"), "Model Analysis Result", data.messages.message[0]);
@@ -28,7 +31,7 @@ function modelHandling_analyse() {
 }
 
 function modelHandling_validate() {
-    var requestURL = restRootURL + "/Model/Validate";
+    var requestURL = window.restRootURL + "/Model/Validate";
 
     ajax_getOKOrFail(requestURL, function(data) {
         var validationResultString = "";
@@ -37,4 +40,9 @@ function modelHandling_validate() {
         }
         resultForm_activate(document.getElementById("mainArea"), "Model Validation Result", validationResultString);
     });
+}
+
+export {
+    modelHandling_analyse,
+    modelHandling_validate
 }

@@ -225,29 +225,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>unpack-shared-resources</id>
-                        <goals>
-                            <goal>unpack-dependencies</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/classes/webapp</outputDirectory>
-                            <!--use as much as needed to be specific...also scope,type,classifier etc-->
-                            <includeArtifacIds>apex-client-common</includeArtifacIds>
-                            <includeGroupIds>org.onap.policy.apex-pdp.client</includeGroupIds>
-                            <excludeTransitive>true</excludeTransitive>
-                            <excludeTransitive>true</excludeTransitive>
-                            <excludeTypes>jar</excludeTypes>
-                            <includeTypes>zip</includeTypes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <overwrite>true</overwrite>

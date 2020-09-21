@@ -19,6 +19,12 @@
  * ============LICENSE_END=========================================================
  */
 
+import { dropdownList } from "./dropdownList";
+import { createAddFormButton } from "./ApexUtils";
+import { showHideTextarea } from "./showhideTextarea";
+import { formUtils_generateUUID } from "./ApexFormUtils";
+import {editPolicyForm_getNextStateOptions, editPolicyForm_updateTriggerEventOptions} from "./ApexPolicyEditForm";
+
 function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statename, state, tasks, events,
         contextAlbums, contextItemSchemas) {
     var retDiv = document.createElement("div");
@@ -799,6 +805,7 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
 function editPolicyForm_State_getLogicOutputMappingOptions(statename) {
     var outputoptions = new Array();
     var finalizerstablerows = document.getElementById("editPolicyFormLogicOutputsTable_" + statename).rows;
+
     if (finalizerstablerows && finalizerstablerows.length > 2) { // has head
                                                                     // so just
                                                                     // ignore
@@ -856,6 +863,7 @@ function editPolicyForm_State_getStateBean(statename) {
         return null;
     }
     var div = document.getElementById("editPolicyFormStateDiv_" + statename);
+
     if (div == null) {
         console.error("State information requested for state " + statename + ", but that state does not exist!")
         alert("State information requested for state " + statename + ", but that state does not exist!");
@@ -1126,4 +1134,15 @@ function editPolicyForm_State_getStateBean(statename) {
 
     return ret;
 
+}
+
+export {
+    editPolicyForm_State_generateStateDiv,
+    editPolicyForm_State_addPolicyContext,
+    editPolicyForm_State_addPolicyTask,
+    editPolicyForm_State_addStateDirectOutput,
+    editPolicyForm_State_addStateLogicOutput,
+    editPolicyForm_State_getDirectOutputMappingOptions,
+    editPolicyForm_State_getStateBean,
+    editPolicyForm_State_getLogicOutputMappingOptions
 }

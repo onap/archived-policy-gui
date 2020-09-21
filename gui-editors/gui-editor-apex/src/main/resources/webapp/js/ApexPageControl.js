@@ -19,6 +19,23 @@
  * ============LICENSE_END=========================================================
  */
 
+import {
+    contextSchemaTab_activate,
+    contextSchemaTab_deactivate
+} from "./ApexContextSchemaTab";
+import {eventTab_activate, eventTab_deactivate} from "./ApexEventTab";
+import {
+    contextAlbumTab_activate,
+    contextAlbumTab_deactivate
+} from "./ApexContextAlbumTab";
+import {taskTab_activate, taskTab_deactivate} from "./ApexTaskTab";
+import {policyTab_activate, policyTab_deactivate} from "./ApexPolicyTab";
+import {
+    keyInformationTab_activate,
+    keyInformationTab_deactivate
+} from "./ApexKeyInformationTab";
+import {clearLocalStorage} from "./ApexMain";
+
 function pageControl_modelMode(name, version, fileName) {
     $('#modelName').html(name);
     $('#modelVersion').html(version);
@@ -254,4 +271,14 @@ function showPlaceholder(show) {
     }
 }
 
-module.exports = {showPlaceholder, pageControl_busyMode, pageControl_modelMode, pageControl_noModelMode, pageControl_readyMode, pageControl_recursiveDisable, pageControl_restError, pageControl_status, pageControl_successStatus}
+export {
+    showPlaceholder,
+    pageControl_busyMode,
+    pageControl_modelMode,
+    pageControl_noModelMode,
+    pageControl_readyMode,
+    pageControl_recursiveDisable,
+    pageControl_restError,
+    pageControl_status,
+    pageControl_successStatus
+}

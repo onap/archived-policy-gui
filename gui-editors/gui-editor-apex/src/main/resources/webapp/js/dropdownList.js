@@ -199,3 +199,14 @@ function dropdownList_ChangeOptions(dropdownListDIV, options, selected, disabled
     }
     return retdiv;
 }
+
+export {
+    dropdownList,
+    dropdownList_ChangeOptions,
+    dropdownList_display_click,
+    dropdownList_display_hide,
+    dropdownList_filter,
+    dropdownList_filter_scopePreserver,
+    dropdownList_option_select,
+    dropdownList_option_select_scopePreserver
+}

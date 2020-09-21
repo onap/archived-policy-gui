@@ -19,6 +19,14 @@
  * ============LICENSE_END=========================================================
  */
 
+import {ajax_delete, ajax_getWithKeyInfo, ajax_post, ajax_put} from "./ApexAjax";
+import {apexUtils_removeElement, apexUtils_emptyElement, scrollToTop, apexUtils_areYouSure} from "./ApexUtils";
+import {
+    formUtils_generateDescription,
+    formUtils_generateUUID
+} from "./ApexFormUtils";
+import {contextSchemaTab_reset} from "./ApexContextSchemaTab";
+
 function editContextSchemaForm_createContextSchema(formParent) {
     return editContextSchemaForm_activate(formParent, "CREATE", null);
 }
@@ -26,7 +34,7 @@ function editContextSchemaForm_createContextSchema(formParent) {
 function editContextSchemaForm_deleteContextSchema(parent, name, version) {
     var message = "Are you sure you want to delete ContextSchema \"" + name + ":" + version + "\"?";
     if (apexUtils_areYouSure(message)) {
-        var requestURL = restRootURL + "/ContextSchema/Delete?name=" + name + "&version=" + version;
+        var requestURL = window.restRootURL + "/ContextSchema/Delete?name=" + name + "&version=" + version;
         ajax_delete(requestURL, function(data) {
             apexUtils_removeElement("editContextSchemaFormDiv");
             contextSchemaTab_reset();
@@ -36,14 +44,14 @@ function editContextSchemaForm_deleteContextSchema(parent, name, version) {
 }
 
 function editContextSchemaForm_viewContextSchema(parent, name, version) {
-    var requestURL = restRootURL + "/ContextSchema/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexContextSchema", function(contextSchema) {
         editContextSchemaForm_activate(parent, "VIEW", contextSchema);
     });
 }
 
 function editContextSchemaForm_editContextSchema(formParent, name, version) {
-    var requestURL = restRootURL + "/ContextSchema/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexContextSchema", function(contextSchema) {
         editContextSchemaForm_activate(formParent, "EDIT", contextSchema);
     });
@@ -52,6 +60,11 @@ function editContextSchemaForm_editContextSchema(formParent, name, version) {
 function editContextSchemaForm_activate(parent, operation, contextSchema) {
     apexUtils_removeElement("editContextSchemaFormDiv");
     var formParent = document.getElementById(parent);
+
+    //Testing purposes
+    if(formParent === null){
+        formParent = document.createElement("formParentTest")
+    }
     apexUtils_emptyElement(parent);
 
     var isedit = false;
@@ -351,14 +364,14 @@ function editContextSchemaForm_submitPressed() {
     });
 
     if (createEditOrView == "CREATE") {
-        var requestURL = restRootURL + "/ContextSchema/Create";
+        var requestURL = window.restRootURL + "/ContextSchema/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextSchemaFormDiv");
             contextSchemaTab_reset();
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = restRootURL + "/ContextSchema/Update";
+        var requestURL = window.restRootURL + "/ContextSchema/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextSchemaFormDiv");
             contextSchemaTab_reset();
@@ -368,6 +381,8 @@ function editContextSchemaForm_submitPressed() {
 
 }
 
-module.exports = {editContextSchemaForm_activate, editContextSchemaForm_cancelPressed, editContextSchemaForm_createContextSchema,
-                editContextSchemaForm_deleteContextSchema, editContextSchemaForm_editContextSchema, editContextSchemaForm_generateDescriptionPressed,
-                editContextSchemaForm_generateUUIDPressed, editContextSchemaForm_submitPressed, editContextSchemaForm_viewContextSchema};
+export {
+    editContextSchemaForm_activate, editContextSchemaForm_cancelPressed, editContextSchemaForm_createContextSchema,
+    editContextSchemaForm_deleteContextSchema, editContextSchemaForm_editContextSchema, editContextSchemaForm_generateDescriptionPressed,
+    editContextSchemaForm_generateUUIDPressed, editContextSchemaForm_submitPressed, editContextSchemaForm_viewContextSchema
+};

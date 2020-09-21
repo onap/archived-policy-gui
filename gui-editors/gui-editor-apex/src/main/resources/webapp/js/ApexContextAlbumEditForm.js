@@ -19,9 +19,15 @@
  * ============LICENSE_END=========================================================
  */
 
+const {ajax_delete, ajax_getWithKeyInfo, ajax_get} = require("./ApexAjax");
+const {contextAlbumTab_reset} = require("./ApexContextAlbumTab");
+const {apexUtils_removeElement, apexUtils_emptyElement, scrollToTop, apexUtils_areYouSure} = require("./ApexUtils");
+const {dropdownList} = require("./dropdownList");
+const { formUtils_generateDescription, formUtils_generateUUID } = require("./ApexFormUtils");
+
 function editContextAlbumForm_createContextAlbum(formParent) {
     // Get all contextSchemas too for album item schema
-    var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (var i = 0; i < data2.messages.message.length; i++) {
@@ -40,7 +46,7 @@ function editContextAlbumForm_createContextAlbum(formParent) {
 function editContextAlbumForm_deleteContextAlbum(parent, name, version) {
     var message = "Are you sure you want to delete ContextAlbum \"" + name + ":" + version + "\"?";
     if (apexUtils_areYouSure(message)) {
-        var requestURL = restRootURL + "/ContextAlbum/Delete?name=" + name + "&version=" + version;
+        var requestURL = window.restRootURL + "/ContextAlbum/Delete?name=" + name + "&version=" + version;
         ajax_delete(requestURL, function(data) {
             apexUtils_removeElement("editContextAlbumFormDiv");
             contextAlbumTab_reset();
@@ -50,10 +56,10 @@ function editContextAlbumForm_deleteContextAlbum(parent, name, version) {
 }
 
 function editContextAlbumForm_viewContextAlbum(parent, name, version) {
-    var requestURL = restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexContextAlbum", function(contextAlbum) {
         // Get all contextSchemas too for album item schema
-        var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -71,10 +77,10 @@ function editContextAlbumForm_viewContextAlbum(parent, name, version) {
 }
 
 function editContextAlbumForm_editContextAlbum(formParent, name, version) {
-    var requestURL = restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexContextAlbum", function(contextAlbum) {
         // Get all contextSchemas too for album item schema
-        var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -94,6 +100,11 @@ function editContextAlbumForm_editContextAlbum(formParent, name, version) {
 function editContextAlbumForm_activate(parent, operation, contextAlbum, contextSchemas) {
     apexUtils_removeElement("editContextAlbumFormDiv");
     var formParent = document.getElementById(parent);
+
+    //Test Purposes
+    if(formParent === null){
+        formParent = document.createElement(parent);
+    }
     apexUtils_emptyElement(parent);
 
     var isedit = false;
@@ -457,14 +468,14 @@ function editContextAlbumForm_submitPressed() {
     });
 
     if (createEditOrView == "CREATE") {
-        var requestURL = restRootURL + "/ContextAlbum/Create";
+        var requestURL = window.restRootURL + "/ContextAlbum/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextAlbumFormDiv");
             contextAlbumTab_reset();
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = restRootURL + "/ContextAlbum/Update";
+        var requestURL = window.restRootURL + "/ContextAlbum/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextAlbumFormDiv");
             contextAlbumTab_reset();
@@ -472,4 +483,16 @@ function editContextAlbumForm_submitPressed() {
         });
     }
 
+}
+
+export {
+    editContextAlbumForm_viewContextAlbum,
+    editContextAlbumForm_generateUUIDPressed,
+    editContextAlbumForm_generateDescriptionPressed,
+    editContextAlbumForm_editContextAlbum,
+    editContextAlbumForm_deleteContextAlbum,
+    editContextAlbumForm_createContextAlbum,
+    editContextAlbumForm_cancelPressed,
+    editContextAlbumForm_activate,
+    editContextAlbumForm_submitPressed
 }
