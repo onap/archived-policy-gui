@@ -19,6 +19,12 @@
  * ============LICENSE_END=========================================================
  */
 
+import { formUtils_generateDescription, formUtils_generateUUID } from "./ApexFormUtils";
+import {apexUtils_removeElement} from "./ApexUtils";
+import {pageControl_modelMode} from "./ApexPageControl";
+import {ajax_post, ajax_get} from "./ApexAjax";
+import {keyInformationTab_reset} from "./ApexKeyInformationTab";
+
 function newModelForm_activate(formParent) {
     apexUtils_removeElement("newModelFormDiv");
 
@@ -203,25 +209,33 @@ function newModelForm_cancelPressed() {
 }
 
 function newModelForm_submitPressed() {
-    jsonString = JSON.stringify({
+    var jsonString = JSON.stringify({
         "name" : $('#newModelFormNameInput').val(),
         "version" : $('#newModelFormVersionInput').val(),
         "uuid" : $('#newModelFormUuidInput').val(),
         "description" : $('#newModelFormDescriptionTextArea').val()
     });
 
-    var requestURL = restRootURL + "/Model/Create";
+    var requestURL = window.restRootURL + "/Model/Create";
 
     ajax_post(requestURL, jsonString, function(resultData) {
         apexUtils_removeElement("newModelDivBackground");
 
-        var requestURL = restRootURL + "/Model/GetKey";
+        var requestURL = window.restRootURL + "/Model/GetKey";
 
         ajax_get(requestURL, function(data) {
             var modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
-            modelFileName = modelKey.name + ".json";
+            var modelFileName = modelKey.name + ".json";
             pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
         });
         keyInformationTab_reset()
     });
+}
+
+export {
+    newModelForm_activate,
+    newModelForm_cancelPressed,
+    newModelForm_generateDescriptionPressed,
+    newModelForm_generateUUIDPressed,
+    newModelForm_submitPressed
 }

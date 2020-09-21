@@ -19,9 +19,16 @@
  * ============LICENSE_END=========================================================
  */
 
+import {taskTab_reset} from "./ApexTaskTab";
+import {dropdownList} from "./dropdownList";
+import { ajax_delete, ajax_getWithKeyInfo, ajax_post, ajax_put, ajax_get } from "./ApexAjax";
+import { formUtils_generateDescription, formUtils_generateUUID } from "./ApexFormUtils";
+import { apexUtils_removeElement, apexUtils_emptyElement, apexUtils_areYouSure, createAddFormButton, scrollToTop } from "./ApexUtils";
+import { showHideTextarea } from "./showhideTextarea";
+
 function editTaskForm_createTask(formParent) {
     // Get all contextSchemas too for task input/outputfields
-    var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (var i = 0; i < data2.messages.message.length; i++) {
@@ -35,7 +42,7 @@ function editTaskForm_createTask(formParent) {
             contextSchemas.push(dt);
         }
         // Get all contextAlbums too for task context album references
-        var requestURL = restRootURL + "/ContextAlbum/Get?name=&version=";
+        var requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
         var contextAlbums = new Array();
         ajax_get(requestURL, function(data3) {
             for (var i = 0; i < data3.messages.message.length; i++) {
@@ -56,7 +63,7 @@ function editTaskForm_createTask(formParent) {
 function editTaskForm_deleteTask(parent, name, version) {
     var message = "Are you sure you want to delete Task \"" + name + ":" + version + "\"?";
     if (apexUtils_areYouSure(message)) {
-        var requestURL = restRootURL + "/Task/Delete?name=" + name + "&version=" + version;
+        var requestURL = window.restRootURL + "/Task/Delete?name=" + name + "&version=" + version;
         ajax_delete(requestURL, function(data) {
             apexUtils_removeElement("editTaskFormDiv");
             taskTab_reset();
@@ -74,10 +81,10 @@ function editTaskForm_editTask(formParent, name, version) {
 }
 
 function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
-    var requestURL = restRootURL + "/Task/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/Task/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexTask", function(task) {
         // Get all contextSchemas too for task inputfields
-        var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -90,7 +97,7 @@ function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
                 });
             }
             // Get all contextAlbums too for task context album references
-            var requestURL = restRootURL + "/ContextAlbum/Get?name=&version=";
+            var requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var contextAlbums = new Array();
             ajax_get(requestURL, function(data3) {
                 for (var i = 0; i < data3.messages.message.length; i++) {
@@ -112,6 +119,11 @@ function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
 function editTaskForm_activate(parent, operation, task, contextSchemas, contextAlbums) {
     apexUtils_removeElement("editTaskFormDiv");
     var formParent = document.getElementById(parent);
+
+    //Testing purposes
+    if(formParent === null) {
+        formParent = document.createElement('testFormParent');
+    }
     apexUtils_emptyElement(parent);
 
     var isedit = false;
@@ -985,14 +997,14 @@ function editTaskForm_submitPressed() {
     var jsonString = JSON.stringify(taskbean);
 
     if (createEditOrView == "CREATE") {
-        var requestURL = restRootURL + "/Task/Create";
+        var requestURL = window.restRootURL + "/Task/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editTaskFormDiv");
             taskTab_reset();
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = restRootURL + "/Task/Update";
+        var requestURL = window.restRootURL + "/Task/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editTaskFormDiv");
             taskTab_reset();
@@ -1000,4 +1012,21 @@ function editTaskForm_submitPressed() {
         });
     }
 
+}
+
+export {
+    editTaskForm_activate,
+    editTaskForm_addTaskContext,
+    editTaskForm_addTaskInputField,
+    editTaskForm_addTaskOutputField,
+    editTaskForm_addTaskParameter,
+    editTaskForm_cancelPressed,
+    editTaskForm_createTask,
+    editTaskForm_deleteTask,
+    editTaskForm_editTask,
+    editTaskForm_editTask_inner,
+    editTaskForm_generateDescriptionPressed,
+    editTaskForm_generateUUIDPressed,
+    editTaskForm_submitPressed,
+    editTaskForm_viewTask
 }

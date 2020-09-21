@@ -185,6 +185,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <overwrite>true</overwrite>
+                </configuration>
                 <executions>
                     <execution>
                         <id>Copy frontend build to target</id>
@@ -221,36 +224,6 @@
                             <includes>bundle.js</includes>
                         </fileset>
                     </filesets>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>unpack-shared-resources</id>
-                        <goals>
-                            <goal>unpack-dependencies</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/classes/webapp</outputDirectory>
-                            <!--use as much as needed to be specific...also scope,type,classifier etc-->
-                            <includeArtifacIds>apex-client-common</includeArtifacIds>
-                            <includeGroupIds>org.onap.policy.apex-pdp.client</includeGroupIds>
-                            <excludeTransitive>true</excludeTransitive>
-                            <excludeTransitive>true</excludeTransitive>
-                            <excludeTypes>jar</excludeTypes>
-                            <includeTypes>zip</includeTypes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <overwrite>true</overwrite>
                 </configuration>
             </plugin>
             <plugin>
@@ -312,6 +285,14 @@
                                 <exclude>META-INF/*.SF</exclude>
                                 <exclude>META-INF/*.DSA</exclude>
                                 <exclude>META-INF/*.RSA</exclude>
+                                <exclude>webapp/package-lock.json</exclude>
+                                <exclude>webapp/package.json</exclude>
+                                <exclude>webapp/.babelrc</exclude>
+                                <exclude>webapp/.gitignore</exclude>
+                                <exclude>webapp/webpack.config.js</exclude>
+                                <exclude>webapp/dist/</exclude>
+                                <exclude>webapp/js/Apex*.js</exclude>
+                                <exclude>webapp/js/__test__/</exclude>
                             </excludes>
                         </filter>
                     </filters>

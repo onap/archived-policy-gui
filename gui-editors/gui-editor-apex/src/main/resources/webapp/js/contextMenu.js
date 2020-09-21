@@ -20,6 +20,38 @@
  */
 
 //hide the context menu, if it's shown, anytime the user clicks anywhere.
+import {apexUtils_emptyElement} from "./ApexUtils";
+import {
+    editContextSchemaForm_createContextSchema,
+    editContextSchemaForm_deleteContextSchema,
+    editContextSchemaForm_editContextSchema,
+    editContextSchemaForm_viewContextSchema
+} from "./ApexContextSchemaEditForm";
+import {
+    editEventForm_createEvent,
+    editEventForm_deleteEvent,
+    editEventForm_editEvent,
+    editEventForm_viewEvent
+} from "./ApexEventEditForm";
+import {
+    editTaskForm_createTask,
+    editTaskForm_deleteTask,
+    editTaskForm_editTask,
+    editTaskForm_viewTask
+} from "./ApexTaskEditForm";
+import {
+    editPolicyForm_createPolicy,
+    editPolicyForm_deletePolicy,
+    editPolicyForm_editPolicy,
+    editPolicyForm_viewPolicy
+} from "./ApexPolicyEditForm";
+import {
+    editContextAlbumForm_createContextAlbum,
+    editContextAlbumForm_deleteContextAlbum,
+    editContextAlbumForm_editContextAlbum,
+    editContextAlbumForm_viewContextAlbum
+} from "./ApexContextAlbumEditForm";
+
 $(document).on("click", function(event) {
     if (document.getElementById("rightClickMenu"))
         document.getElementById("rightClickMenu").className = "ebContextMenu-body_visible_false";
@@ -196,4 +228,8 @@ function mouseY(evt) {
     } else {
         return null;
     }
+}
+
+export {
+    rightClickMenu_scopePreserver
 }

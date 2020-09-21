@@ -19,6 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
+import {rightClickMenu_scopePreserver} from './contextMenu';
+import {createTable} from './ApexTable';
+import {ajax_get} from './ApexAjax';
+import {apexUtils_removeElement} from "./ApexUtils";
+
 function contextAlbumTab_reset() {
     contextAlbumTab_deactivate();
     contextAlbumTab_activate();
@@ -27,7 +32,7 @@ function contextAlbumTab_reset() {
 function contextAlbumTab_activate() {
     contextAlbumTab_create();
 
-    var requestURL = restRootURL + "/ContextAlbum/Get?name=&version=";
+    var requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
 
     ajax_get(requestURL, function(data) {
         $("#contextAlbumTableBody").find("tr:gt(0)").remove();
@@ -68,6 +73,11 @@ function contextAlbumTab_deactivate() {
 
 function contextAlbumTab_create() {
     var contextAlbumTab = document.getElementById("contextAlbumsTab");
+
+    //Testing purposes
+    if(contextAlbumTab === null){
+        contextAlbumTab = document.createElement('contextAlbumsTab');
+    }
 
     var contextAlbumTabContent = document.getElementById("contextAlbumTabContent");
     if (contextAlbumTabContent != null) {
@@ -115,4 +125,5 @@ function contextAlbumTab_create() {
     contextAlbumTable.setAttribute("id", "contextAlbumTableBody");
 }
 
-module.exports = {contextAlbumTab_reset, contextAlbumTab_create, contextAlbumTab_activate, contextAlbumTab_deactivate};
+//Testing purposes
+export { contextAlbumTab_reset, contextAlbumTab_create, contextAlbumTab_activate, contextAlbumTab_deactivate };

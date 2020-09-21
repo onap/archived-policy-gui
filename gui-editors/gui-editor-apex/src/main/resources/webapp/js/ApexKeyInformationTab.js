@@ -19,6 +19,10 @@
  * ============LICENSE_END=========================================================
  */
 
+import {ajax_get} from "./ApexAjax";
+import {apexUtils_escapeHtml, apexUtils_removeElement} from "./ApexUtils";
+import {createTable} from "./ApexTable";
+
 function keyInformationTab_reset() {
     keyInformationTab_deactivate();
     keyInformationTab_activate();
@@ -27,7 +31,7 @@ function keyInformationTab_reset() {
 function keyInformationTab_activate() {
     keyInformationTab_create();
 
-    var requestURL = restRootURL + "/KeyInformation/Get?name=&version=";
+    var requestURL = window.restRootURL + "/KeyInformation/Get?name=&version=";
 
     ajax_get(requestURL, function(data) {
         $("#keyInformationTableBody").find("tr:gt(0)").remove();
@@ -102,4 +106,11 @@ function keyInformationTab_create() {
     var keyInformationTableBody = document.createElement("tbody");
     keyInformationTable.appendChild(keyInformationTableBody);
     keyInformationTable.setAttribute("id", "keyInformationTableBody");
+}
+
+export {
+    keyInformationTab_activate,
+    keyInformationTab_create,
+    keyInformationTab_deactivate,
+    keyInformationTab_reset
 }

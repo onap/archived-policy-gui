@@ -19,6 +19,12 @@
  * ============LICENSE_END=========================================================
  */
 
+
+import {ajax_get} from "./ApexAjax";
+import {rightClickMenu_scopePreserver} from "./contextMenu";
+import {createTable} from "./ApexTable";
+import {apexUtils_removeElement} from "./ApexUtils";
+
 function eventTab_reset() {
     eventTab_deactivate();
     eventTab_activate();
@@ -27,7 +33,7 @@ function eventTab_reset() {
 function eventTab_activate() {
     eventTab_create();
 
-    var requestURL = restRootURL + "/Event/Get?name=&version=";
+    var requestURL = window.restRootURL + "/Event/Get?name=&version=";
 
     ajax_get(requestURL, function(data) {
         $("#eventTableBody").find("tr:gt(0)").remove();
@@ -87,6 +93,11 @@ function eventTab_deactivate() {
 function eventTab_create() {
     var eventTab = document.getElementById("eventsTab");
 
+    //Testing purposes
+    if(eventTab === null){
+        eventTab = document.createElement('eventsTab');
+    }
+
     var eventTabContent = document.getElementById("eventTabContent");
     if (eventTabContent != null) {
         return
@@ -138,4 +149,9 @@ function eventTab_create() {
     eventTable.setAttribute("id", "eventTableBody");
 }
 
-exports = {eventTab_reset, eventTab_activate, eventTab_deactivate, eventTab_create}
+export {
+    eventTab_reset,
+    eventTab_activate,
+    eventTab_deactivate,
+    eventTab_create
+}

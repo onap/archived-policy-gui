@@ -124,3 +124,10 @@ function showHideTextarea(id_prefix, content, _initialshow, _editable, _disabled
     return retdiv;
 };
 
+export {
+    showHideTextarea,
+    showHideTextarea_display_hide,
+    showHideTextarea_display_show,
+    _showHideTextarea_display_hide,
+    _showHideTextarea_display_show
+}
