@@ -19,6 +19,12 @@
  * ============LICENSE_END=========================================================
  */
 
+import {resultForm_activate} from "./ApexResultForm";
+
+const {ajax_put, ajax_get, ajax_getOKOrFail} = require("./ApexAjax");
+const {pageControl_modelMode} = require("./ApexPageControl");
+const {modelFileName} = require("./ApexNewModelForm");
+
 function files_fileOpen() {
     $('<input type="file">').on('change', function() {
         var reader = new FileReader();
@@ -26,10 +32,10 @@ function files_fileOpen() {
         reader.readAsText(this.files[0]);
 
         reader.onload = function(event) {
-            var requestURL = restRootURL + "/Model/Load";
+            var requestURL = window.restRootURL + "/Model/Load";
             ajax_put(requestURL, event.target.result, function(resultData) {
                 localStorage.setItem("apex_model_loaded", true);
-                var requestURL = restRootURL + "/Model/GetKey";
+                var requestURL = window.restRootURL + "/Model/GetKey";
                 ajax_get(requestURL, function(data) {
                     var modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
                     pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
@@ -40,7 +46,7 @@ function files_fileOpen() {
 }
 
 function files_fileDownload() {
-    var requestURL = restRootURL + "/Model/Download";
+    var requestURL = window.restRootURL + "/Model/Download";
 
     var downloadLink = document.createElement("a");
     document.body.appendChild(downloadLink);
@@ -51,7 +57,7 @@ function files_fileDownload() {
 }
 
 function files_fileUpload() {
-    var requestURL = restRootURL + "/Model/Upload";
+    var requestURL = window.restRootURL + "/Model/Upload";
 
     ajax_getOKOrFail(requestURL, function(data) {
         var uploadResultString = "";
@@ -62,4 +68,4 @@ function files_fileUpload() {
     });
 }
 
-module.exports = {files_fileUpload, files_fileDownload, files_fileOpen};
+export {files_fileUpload, files_fileDownload, files_fileOpen};

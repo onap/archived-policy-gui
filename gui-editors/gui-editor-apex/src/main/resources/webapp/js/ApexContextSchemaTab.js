@@ -19,6 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
+const {ajax_get} = require("./ApexAjax");
+const {createTable} = require('./ApexTable');
+const {rightClickMenu_scopePreserver} = require('./contextMenu');
+const {apexUtils_removeElement} = require('./ApexUtils');
+
 function contextSchemaTab_reset() {
     contextSchemaTab_deactivate();
     contextSchemaTab_activate();
@@ -26,7 +31,7 @@ function contextSchemaTab_reset() {
 function contextSchemaTab_activate() {
     contextSchemaTab_create();
 
-    var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
 
     ajax_get(requestURL, function(data) {
         $("#contextSchemaTableBody").find("tr:gt(0)").remove();
@@ -62,6 +67,11 @@ function contextSchemaTab_deactivate() {
 
 function contextSchemaTab_create() {
     var contextSchemaTab = document.getElementById("contextSchemasTab");
+
+    //Testing purposes
+    if(contextSchemaTab === null){
+        contextSchemaTab = document.createElement('contextSchemasTab');
+    }
 
     var contextSchemaTabContent = document.getElementById("contextSchemaTabContent");
     if (contextSchemaTabContent != null) {
@@ -102,4 +112,12 @@ function contextSchemaTab_create() {
     var contextSchemaTableBody = document.createElement("tbody");
     contextSchemaTable.appendChild(contextSchemaTableBody);
     contextSchemaTable.setAttribute("id", "contextSchemaTableBody");
+}
+
+//Testing purposes
+export {
+    contextSchemaTab_activate,
+    contextSchemaTab_deactivate,
+    contextSchemaTab_reset,
+    contextSchemaTab_create
 }

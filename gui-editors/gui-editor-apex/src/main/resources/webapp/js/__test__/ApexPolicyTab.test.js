@@ -17,14 +17,10 @@
  *  ============LICENSE_END=========================================================
  */
 
-const mod = require('../ApexPageControl');
+const mod = require('../ApexPolicyTab');
 
-test('test show placeholder', () => {
-    const mock = jest.fn(mod.showPlaceholder);
-    mock();
-    expect(mock).toBeCalledTimes(1);
-})
-
-test('test busyMode', () => {
-
-})
+test('Test policyTab_activate', () => {
+    const mock_activate = jest.fn(mod.policyTab_activate);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});

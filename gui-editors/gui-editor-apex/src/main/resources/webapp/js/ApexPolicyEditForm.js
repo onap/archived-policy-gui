@@ -19,6 +19,14 @@
  * ============LICENSE_END=========================================================
  */
 
+import {apexUtils_removeElement, apexUtils_emptyElement, apexUtils_areYouSure, scrollToTop} from "./ApexUtils";
+import {dropdownList, dropdownList_ChangeOptions} from "./dropdownList";
+import {ajax_get, ajax_delete, ajax_getWithKeyInfo, ajax_post, ajax_put} from "./ApexAjax";
+import {policyTab_reset} from "./ApexPolicyTab";
+import { editPolicyForm_State_generateStateDiv, editPolicyForm_State_getStateBean } from "./ApexPolicyEditForm_State";
+import { formUtils_generateDescription, formUtils_generateUUID } from "./ApexFormUtils";
+import {keyInformationTab_reset} from "./ApexKeyInformationTab";
+
 function editPolicyForm_createPolicy(formParent) {
     editPolicyForm_editPolicy_inner(formParent, null, "CREATE");
 }
@@ -37,7 +45,7 @@ function editPolicyForm_deletePolicy(parent, name, version) {
 
 function editPolicyForm_viewPolicy(formParent, name, version) {
     // get the policy
-    var requestURL = restRootURL + "/Policy/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/Policy/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexPolicy", function(policy) {
         editPolicyForm_editPolicy_inner(formParent, policy, "VIEW");
     }, "policyKey");
@@ -45,7 +53,7 @@ function editPolicyForm_viewPolicy(formParent, name, version) {
 
 function editPolicyForm_editPolicy(formParent, name, version) {
     // get the policy
-    var requestURL = restRootURL + "/Policy/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/Policy/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexPolicy", function(policy) {
         editPolicyForm_editPolicy_inner(formParent, policy, "EDIT");
     }, "policyKey");
@@ -53,7 +61,7 @@ function editPolicyForm_editPolicy(formParent, name, version) {
 
 function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
     // Get all contextSchemas too
-    requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (var i = 0; i < data2.messages.message.length; i++) {
@@ -66,7 +74,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
             });
         }
         // Get all tasks
-        requestURL = restRootURL + "/Task/Get?name=&version=";
+        requestURL = window.restRootURL + "/Task/Get?name=&version=";
         var tasks = new Array();
         ajax_get(requestURL, function(data3) {
             for (var j = 0; j < data3.messages.message.length; j++) {
@@ -79,7 +87,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
                 });
             }
             // Get all ContextAlbums
-            requestURL = restRootURL + "/ContextAlbum/Get?name=&version=";
+            requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var albums = new Array();
             ajax_get(requestURL, function(data4) {
                 for (var k = 0; k < data4.messages.message.length; k++) {
@@ -92,7 +100,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
                     });
                 }
                 // Get all Events
-                requestURL = restRootURL + "/Event/Get?name=&version=";
+                requestURL = window.restRootURL + "/Event/Get?name=&version=";
                 var events = new Array();
                 ajax_get(requestURL, function(data5) {
                     for (var m = 0; m < data5.messages.message.length; m++) {
@@ -114,6 +122,11 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
 function editPolicyForm_activate(parent, operation, policy, tasks, events, contextAlbums, contextItemSchemas) {
     apexUtils_removeElement("editPolicyFormDiv");
     var formParent = document.getElementById(parent);
+
+    //Testing purposes
+    if(formParent === null) {
+        formParent = document.createElement("testFormParent");
+    }
     apexUtils_emptyElement(parent);
 
     var isedit = false;
@@ -407,7 +420,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
 
     triggerLI.appendChild(triggerPeriodicEventCheckbox);
 
-    triggerPeriodicEventLabel = document.createElement("label");
+    var triggerPeriodicEventLabel = document.createElement("label");
     triggerPeriodicEventLabel.setAttribute("class", "periodic-events-label");
     triggerPeriodicEventLabel.innerHTML = "is Periodic Event";
     triggerLI.appendChild(triggerPeriodicEventLabel);
@@ -433,7 +446,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
             }
         }
         for (i = 0; i < policy.state.entry.length; i++) {
-            stateEntry = policy.state.entry[i];
+            var stateEntry = policy.state.entry[i];
             var statename = stateEntry.key;
             var state = stateEntry.value;
             var stateLI = editPolicyForm_addState(statename, state, createEditOrView, policy, tasks, events,
@@ -720,7 +733,7 @@ function editPolicyForm_submitPressed() {
     var jsonString = JSON.stringify(policybean);
 
     if (createEditOrView == "CREATE") {
-        var requestURL = restRootURL + "/Policy/Create";
+        var requestURL = window.restRootURL + "/Policy/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editPolicyFormDiv");
             policyTab_reset();
@@ -728,7 +741,7 @@ function editPolicyForm_submitPressed() {
         });
     } else if (createEditOrView == "EDIT") {
         var firstStatePeriodic = $("#periodicEventsCheckbox").is(":checked")
-        var requestURL = restRootURL + "/Policy/Update?firstStatePeriodic=" + firstStatePeriodic;
+        var requestURL = window.restRootURL + "/Policy/Update?firstStatePeriodic=" + firstStatePeriodic;
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editPolicyFormDiv");
             policyTab_reset();
@@ -799,4 +812,25 @@ function editPolicyForm_getPolicyBean() {
         "states" : states
     };
     return policybean;
+}
+
+export {
+    editPolicyForm_activate,
+    editPolicyForm_editPolicy_inner,
+    editPolicyForm_State_getStateBean,
+    editPolicyForm_addNewState,
+    editPolicyForm_addState,
+    editPolicyForm_cancelPressed,
+    editPolicyForm_createPolicy,
+    editPolicyForm_deletePolicy,
+    editPolicyForm_editPolicy,
+    editPolicyForm_generateDescriptionPressed,
+    editPolicyForm_generateUUIDPressed,
+    editPolicyForm_getNextStateOptions,
+    editPolicyForm_getPolicyBean,
+    editPolicyForm_getStateOptions,
+    editPolicyForm_State_generateStateDiv,
+    editPolicyForm_submitPressed,
+    editPolicyForm_updateTriggerEventOptions,
+    editPolicyForm_viewPolicy
 }

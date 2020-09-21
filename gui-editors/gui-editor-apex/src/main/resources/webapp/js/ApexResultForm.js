@@ -19,6 +19,8 @@
  * ============LICENSE_END=========================================================
  */
 
+import {apexUtils_removeElement} from "./ApexUtils";
+
 function resultForm_activate(formParent, formHeading, formText) {
     apexUtils_removeElement("newModelDivBackground");
 
@@ -86,4 +88,8 @@ function resultForm_activate(formParent, formHeading, formText) {
 
 function resultForm_okPressed() {
     apexUtils_removeElement("newModelDivBackground");
+}
+
+export {
+    resultForm_activate, resultForm_okPressed
 }
