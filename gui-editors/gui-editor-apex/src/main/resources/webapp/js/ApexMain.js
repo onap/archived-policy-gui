@@ -19,16 +19,22 @@
  * ============LICENSE_END=========================================================
  */
 
+import {pageControl_noModelMode, pageControl_modelMode} from "./ApexPageControl";
+import {newModelForm_activate} from "./ApexNewModelForm";
+import {files_fileDownload, files_fileOpen, files_fileUpload} from "./ApexFiles";
+import {ajax_delete, ajax_get} from "./ApexAjax";
+import {modelHandling_analyse, modelHandling_validate} from "./ApexModelHandling";
+
 var restRootURL = null;
 var modelFileName = null;
 
-$("#menu").fileMenu({
-    slideSpeed : 200
-});
-
 $(document).ready(function() {
+    $("#menu").fileMenu({
+        slideSpeed : 200
+    });
     pageControl_noModelMode();
     main_getRestRootURL();
+    $(".content").fadeIn();
 });
 
 $("#menu li").not(".emptyMessage").click(function() {
@@ -114,6 +120,7 @@ function main_getRestRootURL() {
     var restContext = "apexservices/editor/";
     if (localStorage.getItem("apex_session")) {
         restRootURL = href + restContext + localStorage.getItem("apex_session");
+        window.restRootURL = href + restContext + localStorage.getItem("apex_session");
         var requestURL = restRootURL + "/Model/GetKey";
         ajax_get(requestURL, function(data) {
             $("#statusMessageTable").append("<tr><td> REST root URL set to: " + restRootURL + "</td></tr>");
@@ -166,8 +173,6 @@ $(".ebInlineMessage").mouseleave(function(e) {
     }, 200);
 });
 
-$(document).ready(function() {
-    $(".content").fadeIn();
-});
-
-exports.restRootURL = { restRootURL };
+export {
+    clearLocalStorage
+}

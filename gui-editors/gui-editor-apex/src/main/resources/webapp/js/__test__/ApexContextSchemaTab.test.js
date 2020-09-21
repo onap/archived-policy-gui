@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +18,16 @@
  * ============LICENSE_END=========================================================
  */
 
-function createTable(id) {
-    var table = document.createElement("table");
-    table.setAttribute("id", id);
-    table.setAttribute("class", "apexTable ebTable elTablelib-Table-table ebTable_striped");
-    return table;
-}
+const mod = require('../ApexContextSchemaTab');
 
-function setRowHover(rowElement) {
-    rowElement.className = "ebTableRow";
-    rowElement.onmouseover = function() {
-        this.className = "ebTableRow ebTableRow_hover";
-    };
-    rowElement.onmouseout = function() {
-        this.className = "ebTableRow";
-    };
-}
+test('Test activateContextSchema', () => {
+    const mock_activate = jest.fn(mod.contextSchemaTab_activate);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
 
-export { createTable, setRowHover };
+test('Test deactivate', () => {
+   const mock_deactivate = jest.fn(mod.contextSchemaTab_deactivate);
+   mock_deactivate();
+   expect(mock_deactivate).toBeCalledWith();
+});

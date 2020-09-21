@@ -47,4 +47,4 @@ function formUtils_generateDescription(name, version, uuid) {
     return description;
 }
 
-module.exports = {formUtils_generateDescription, formUtils_generateUUID};
+export {formUtils_generateDescription, formUtils_generateUUID};

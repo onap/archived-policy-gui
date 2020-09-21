@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,22 +18,29 @@
  * ============LICENSE_END=========================================================
  */
 
-const mod = require('../ApexFiles');
+const mod = require('../ApexNewModelForm');
 
-test('test files_open', () => {
-    const open = jest.fn(mod.files_fileOpen);
-    open();
-    expect(open).toBeCalledTimes(1);
+test('test activate', () => {
+    document.innerHTML =
+        '<div id="newModelFormDiv">' +
+        '</div>' +
+        '<div id="elementTest">' +
+        '</div>';
+
+    const mock_activate = jest.fn(mod.newModelForm_activate);
+    mock_activate(document.createElement("elementTest"));
+    expect(mock_activate).toBeCalled();
 });
 
-test('test files_download', () => {
-    const download = jest.fn(mod.files_fileDownload);
-    download();
-    expect(download).toHaveBeenCalledTimes(1);
-});
+test('Test generateUUIDPressed', () => {
+    document.innerHTML =
+        '<div id="newModelFormUuidInput"></div>';
 
-test('Test files_upload', () => {
-    const upload = jest.fn(mod.files_fileUpload);
-    upload();
-    expect(upload).toBeCalled();
+    const mock_generateUuid = jest.fn(mod.newModelForm_generateUUIDPressed);
+    mock_generateUuid.mockImplementation(() => {
+        document.createElement("newModelFormUuidInput");
+        document.getElementsByTagName("newModelFormUuidInput").value = 'test';
+    });
+    mock_generateUuid();
+    expect(mock_generateUuid).toBeCalled();
 });

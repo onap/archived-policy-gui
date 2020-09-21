@@ -18,15 +18,10 @@
  */
 
 const mod = require('../ApexContextAlbumTab');
+const utils = require('../ApexUtils');
 
-test('call deactivate', () => {
-    const deactivate = jest.fn(mod.contextAlbumTab_deactivate).mockReturnValueOnce('success');
-    deactivate();
-    expect(deactivate).toHaveBeenCalledTimes(1);
+test('Test contextAlbumTab_create', () => {
+    const mock_activate = jest.fn(mod.contextAlbumTab_activate);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
 });
-
-test('call create', () => {
-    const create = jest.fn(mod.contextAlbumTab_create).mockReturnValueOnce('success');
-    create();
-    expect(create).toHaveBeenCalledTimes(1);
-})

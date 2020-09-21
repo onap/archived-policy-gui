@@ -19,10 +19,17 @@
  * ============LICENSE_END=========================================================
  */
 
+import { formUtils_generateDescription, formUtils_generateUUID } from "./ApexFormUtils";
+import {dropdownList} from "./dropdownList";
+import {ajax_post, ajax_put, ajax_delete, ajax_get, ajax_getWithKeyInfo} from "./ApexAjax";
+import {eventTab_reset} from "./ApexEventTab";
+import {apexUtils_areYouSure, apexUtils_removeElement, apexUtils_emptyElement, createAddFormButton, scrollToTop} from './ApexUtils';
+import {keyInformationTab_reset} from "./ApexKeyInformationTab";
+
 function editEventForm_deleteEvent(parent, name, version) {
     var message = "Are you sure you want to delete Event \"" + name + ":" + version + "\"?";
     if (apexUtils_areYouSure(message)) {
-        var requestURL = restRootURL + "/Event/Delete?name=" + name + "&version=" + version;
+        var requestURL = window.restRootURL + "/Event/Delete?name=" + name + "&version=" + version;
         ajax_delete(requestURL, function(data) {
             apexUtils_removeElement("editEventFormDiv");
             eventTab_reset();
@@ -41,7 +48,7 @@ function editEventForm_editEvent(formParent, name, version) {
 
 function editEventForm_createEvent(formParent) {
     // Get all contextSchemas too for event params
-    var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+    var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (var i = 0; i < data2.messages.message.length; i++) {
@@ -59,10 +66,10 @@ function editEventForm_createEvent(formParent) {
 }
 
 function editEventForm_editEvent_inner(formParent, name, version, viewOrEdit) {
-    var requestURL = restRootURL + "/Event/Get?name=" + name + "&version=" + version;
+    var requestURL = window.restRootURL + "/Event/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexEvent", function(event) {
         // Get all contextSchemas too for event params
-        var requestURL = restRootURL + "/ContextSchema/Get?name=&version=";
+        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -82,6 +89,11 @@ function editEventForm_editEvent_inner(formParent, name, version, viewOrEdit) {
 function editEventForm_activate(parent, operation, event, contextSchemas) {
     apexUtils_removeElement("editEventFormDiv");
     var formParent = document.getElementById(parent);
+
+    //Testing purposes
+    if(formParent === null){
+        formParent = document.createElement('testFormParent');
+    }
     apexUtils_emptyElement(parent);
 
     var isedit = false;
@@ -302,7 +314,7 @@ function editEventForm_activate(parent, operation, event, contextSchemas) {
                                                                     // for
                                                                     // delete
                                                                     // button
-    paramstable_head_th = document.createElement("th");
+    var paramstable_head_th = document.createElement("th");
     paramstable_head_tr.appendChild(paramstable_head_th);
     paramstable_head_th.innerHTML = "Parameter Name: ";
     paramstable_head_th.setAttribute("class", "table-eventparam-heading form-heading");
@@ -548,14 +560,14 @@ function editEventForm_submitPressed() {
     var jsonString = JSON.stringify(eventbean);
 
     if (createEditOrView == "CREATE") {
-        var requestURL = restRootURL + "/Event/Create";
+        var requestURL = window.restRootURL + "/Event/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editEventFormDiv");
             eventTab_reset();
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = restRootURL + "/Event/Update";
+        var requestURL = window.restRootURL + "/Event/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editEventFormDiv");
             eventTab_reset();
@@ -563,4 +575,18 @@ function editEventForm_submitPressed() {
         });
     }
 
+}
+
+export {
+    editEventForm_activate,
+    editEventForm_addEventParam,
+    editEventForm_cancelPressed,
+    editEventForm_createEvent,
+    editEventForm_deleteEvent,
+    editEventForm_editEvent,
+    editEventForm_editEvent_inner,
+    editEventForm_generateDescriptionPressed,
+    editEventForm_generateUUIDPressed,
+    editEventForm_submitPressed,
+    editEventForm_viewEvent
 }

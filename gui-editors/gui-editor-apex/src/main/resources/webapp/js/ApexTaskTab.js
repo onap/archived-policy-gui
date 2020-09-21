@@ -19,6 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
+import {createTable} from "./ApexTable";
+import {ajax_get} from "./ApexAjax";
+import {rightClickMenu_scopePreserver} from "./contextMenu";
+import {apexUtils_removeElement} from "./ApexUtils";
+
 function taskTab_reset() {
     taskTab_deactivate();
     taskTab_activate();
@@ -27,16 +32,16 @@ function taskTab_reset() {
 function taskTab_activate() {
     taskTab_create();
 
-    var requestURL = restRootURL + "/Task/Get?name=&version=";
+    const requestURL = window.restRootURL + "/Task/Get?name=&version=";
 
     ajax_get(requestURL, function(data) {
         $("#taskTableBody").find("tr:gt(0)").remove();
 
-        for (var i = 0; i < data.messages.message.length; i++) {
-            var task = JSON.parse(data.messages.message[i]).apexTask;
+        for (let i = 0; i < data.messages.message.length; i++) {
+            const task = JSON.parse(data.messages.message[i]).apexTask;
 
-            var taskRow_tr = document.createElement("tr");
-            var taskid = task.key.name + ":"  + task.key.version;
+            const taskRow_tr = document.createElement("tr");
+            const taskid = task.key.name + ":" + task.key.version;
 
             var taskTableRow =
                 "<td>"                              +
@@ -119,6 +124,11 @@ function taskTab_deactivate() {
 function taskTab_create() {
     var taskTab = document.getElementById("tasksTab");
 
+    //Testing purposes
+    if(taskTab === null) {
+        taskTab = document.createElement("tasksTab");
+    }
+
     var taskTabContent = document.getElementById("taskTabContent");
     if (taskTabContent != null) {
         return
@@ -174,3 +184,10 @@ function taskTab_create() {
     taskTable.appendChild(taskTableBody);
     taskTable.setAttribute("id", "taskTableBody");
 }
+
+export {
+    taskTab_create,
+    taskTab_reset,
+    taskTab_activate,
+    taskTab_deactivate
+};

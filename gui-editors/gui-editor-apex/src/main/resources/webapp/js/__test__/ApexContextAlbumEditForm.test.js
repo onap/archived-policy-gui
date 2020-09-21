@@ -17,19 +17,28 @@
  *  ============LICENSE_END=========================================================
  */
 
-const mod = require('../ApexFormUtils');
+const mod = require('../ApexContextAlbumEditForm');
 
-test('test generate', () => {
-    const mock = jest.fn(mod.formUtils_generateUUID);
-    mock();
-    expect(mock).toBeCalledTimes(1);
-})
+test('Test mock_editContextAlbumForm_activate', () => {
+   const mock_editContextAlbumForm_activate = jest.fn(mod.editContextAlbumForm_activate);
 
-test('test edit', () => {
-    const mock = jest.fn(mod.formUtils_generateDescription);
-    mock();
-    expect(mock(null, null, null)).toBe("Generated description for a concept called \"null\" with version \"null\" and UUID \"null\"");
-    expect(mock).toBeCalledTimes(2);
+   const contextAlbum = {
+      name: 'testName',
+      version: '0.0.1',
+      scope: 'test',
+      uuid: 'testUUID',
+      description: 'testDesc',
+      writeable: true
+   };
+   const contextSchema = {
+      name: 'testName',
+      version: '0.0.1',
+      schemaFlavour: 'testFlav',
+      schemaDefinition: 'testDef',
+      uuid: 'testUUID',
+      description: 'testDesc'
+   }
 
-
-})
+   mock_editContextAlbumForm_activate('parentTest', 'CREATE', contextAlbum, contextSchema);
+   expect(mock_editContextAlbumForm_activate).toHaveBeenCalledTimes(1);
+});

@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +18,20 @@
  * ============LICENSE_END=========================================================
  */
 
-function createTable(id) {
-    var table = document.createElement("table");
-    table.setAttribute("id", id);
-    table.setAttribute("class", "apexTable ebTable elTablelib-Table-table ebTable_striped");
-    return table;
-}
+const mod = require('../ApexModelHandling');
 
-function setRowHover(rowElement) {
-    rowElement.className = "ebTableRow";
-    rowElement.onmouseover = function() {
-        this.className = "ebTableRow ebTableRow_hover";
-    };
-    rowElement.onmouseout = function() {
-        this.className = "ebTableRow";
-    };
-}
+test('Test modelHandling_analyse', () => {
+   const mock_modelHandling_analyse = jest.fn(mod.modelHandling_analyse);
+   mock_modelHandling_analyse();
+   expect(mock_modelHandling_analyse).toHaveBeenCalledWith();
+});
 
-export { createTable, setRowHover };
+test('Test modelHandling_validate', () => {
+   const mock_modelHandling_validate_ajaxget = jest.fn(mod.modelHandling_validate.ajax_get);
+   mock_modelHandling_validate_ajaxget('test', jest.fn());
+   expect(mock_modelHandling_validate_ajaxget).toHaveBeenCalledTimes(1);
+
+   const mock_modelHandling_validate = jest.fn(mod.modelHandling_validate);
+   mock_modelHandling_validate();
+   expect(mock_modelHandling_validate).toHaveBeenCalled();
+});
