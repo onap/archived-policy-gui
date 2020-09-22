@@ -2,4 +2,3 @@
 #
 daebbf523be390041a1a9c0e340a6d833aae5043                                   	GitHub Replication
 ff5a4d36b2c386794ca43a15e184b574ea49f73c                                   	saml/onap-gerrit-policy-gui-committers
-ldap:cn=onap-gerrit-policy-gui-committers,ou=Groups,dc=freestandards,dc=org	ldap/onap-gerrit-policy-gui-committers
