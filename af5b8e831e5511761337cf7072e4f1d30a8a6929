@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4458626c_e415a8fe",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/dist/bundle.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2020-09-30T11:22:39Z",
+      "side": 1,
+      "message": "this file should be generated during the build process and should not be committed.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "af5b8e831e5511761337cf7072e4f1d30a8a6929",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
