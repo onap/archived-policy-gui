@@ -32,9 +32,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
 import org.onap.policy.common.utils.resources.TextFileUtils;
+import org.onap.policy.gui.editors.apex.rest.ApexEditorMain;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -229,11 +231,15 @@ public class ApexEditorRestResource implements RestCommandHandler {
     /**
      * Uploads a TOSCA Policy Model to a configured endpoint.
      *
+     * @param userid the userid to use for upload
      * @return an ApexAPIResult that contains the operation status and success/error messages
      */
     @GET
     @Path("Model/Upload")
-    public ApexApiResult uploadModel() {
+    public ApexApiResult uploadModel(@QueryParam("userId") final String userid) {
+        if (!StringUtils.isBlank(userid)) {
+            ApexEditorMain.getParameters().setUploadUserid(userid);
+        }
         return processRestCommand(RestCommandType.MODEL, RestCommand.UPLOAD);
     }
 

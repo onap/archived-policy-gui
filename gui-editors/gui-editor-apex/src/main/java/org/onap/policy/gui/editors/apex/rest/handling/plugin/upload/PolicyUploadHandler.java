@@ -56,7 +56,7 @@ public class PolicyUploadHandler {
 
         if (StringUtils.isBlank(ApexEditorMain.getParameters().getUploadUrl())) {
             final ApexApiResult apexApiResult = new ApexApiResult(Result.FAILED);
-            apexApiResult.addMessage("Model download is disabled, parameter upload-url is not set on server");
+            apexApiResult.addMessage("Model upload is disabled, parameter upload-url is not set on server");
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;
 
