@@ -51,7 +51,7 @@ function files_fileDownload() {
 }
 
 function files_fileUpload() {
-    var requestURL = restRootURL + "/Model/Upload";
+    var requestURL = restRootURL + "/Model/Upload?userId=" + new URLSearchParams(window.location.search).get('userId');
 
     ajax_getOKOrFail(requestURL, function(data) {
         var uploadResultString = "";
