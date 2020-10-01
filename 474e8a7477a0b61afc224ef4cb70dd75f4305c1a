@@ -22,6 +22,30 @@
       "revId": "474e8a7477a0b61afc224ef4cb70dd75f4305c1a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105a51d5_353c8ece",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/dist/bundle.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2020-10-01T14:48:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a792530c_0bd471b1",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "474e8a7477a0b61afc224ef4cb70dd75f4305c1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
