@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020 AT&T
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +56,6 @@ public class PdpMonitoringServer {
      * Starts the HTTP server for the Pdp statistics monitoring GUI.
      *
      * @param parameters The Pdp parameters to use to start the server.
-     * @return
      */
     public PdpMonitoringServer(@NonNull final PdpMonitoringServerParameters parameters) {
 
