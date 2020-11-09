@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0de45ca8_db8a41a2",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2020-11-09T13:18:45Z",
+      "side": 1,
+      "message": "Correct. I\u0027ve removed the duplication in the latest patch just now.",
+      "parentUuid": "d00a81d4_b9b49bd4",
+      "range": {
+        "startLine": 154,
+        "startChar": 28,
+        "endLine": 154,
+        "endChar": 63
+      },
+      "revId": "c1e9c54e4ffd46a44ded96f15370a1cb96b4ec7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b5b8c8b9_b8f7bf61",
         "filename": "gui-pdp-monitoring/pom.xml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c1e9c54e4ffd46a44ded96f15370a1cb96b4ec7c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5099683b_c836ed00",
+        "filename": "gui-pdp-monitoring/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2020-11-09T13:18:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b5b8c8b9_b8f7bf61",
+      "range": {
+        "startLine": 100,
+        "startChar": 28,
+        "endLine": 100,
+        "endChar": 63
+      },
+      "revId": "c1e9c54e4ffd46a44ded96f15370a1cb96b4ec7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
