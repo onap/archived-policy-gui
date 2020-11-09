@@ -14,15 +14,18 @@
         "@babel/core": "^7.8.7",
         "@babel/preset-env": "^7.11.0",
         "babel-jest": "^25.1.0",
-        "jest": "^26.1.0",
+        "jest": "^26.6.3",
         "jest-sonar-reporter": "^2.0.0",
         "webpack": "^4.42.0",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3"
     },
     "dependencies": {
+        "chokidar": "^3.4.3",
         "d3": "^3.5.17",
-        "jquery": "^3.4.1"
+        "jquery": "^3.4.1",
+        "resolve-url": "^0.2.1",
+        "urix": "^0.1.0"
     },
     "jest": {
         "collectCoverage": true,

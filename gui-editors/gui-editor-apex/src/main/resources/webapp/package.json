@@ -22,8 +22,11 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "chokidar": "^3.4.3",
     "d3": "^3.5.17",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "resolve-url": "^0.2.1",
+    "urix": "^0.1.0"
   },
   "jest": {
     "collectCoverage": true,
