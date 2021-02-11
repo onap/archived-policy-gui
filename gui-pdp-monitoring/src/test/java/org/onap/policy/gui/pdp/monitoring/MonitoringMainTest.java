@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.Assert.fail;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 /**
@@ -150,9 +152,10 @@ public class MonitoringMainTest {
 
         try {
             monThread.start();
-            Thread.sleep(2000);
+            assertThat(monRestMain.awaitStart(3, TimeUnit.SECONDS)).isTrue();
             monRestMain.shutdown();
         } catch (Exception ex) {
+            monRestMain.shutdown();
             fail("test should not throw an exception");
         }
     }

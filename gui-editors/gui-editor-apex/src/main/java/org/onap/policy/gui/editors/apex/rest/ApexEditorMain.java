@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2019-2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@
 package org.onap.policy.gui.editors.apex.rest;
 
 import java.io.PrintStream;
+import java.util.concurrent.atomic.AtomicReference;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -59,7 +61,7 @@ public class ApexEditorMain {
     private ApexEditor apexEditor = null;
 
     // The parameters for the editor
-    private static ApexEditorParameters parameters = null;
+    private static AtomicReference<ApexEditorParameters> parameters = new AtomicReference<>();
 
     // Output and error streams for messages
     private final PrintStream outStream;
@@ -79,17 +81,17 @@ public class ApexEditorMain {
 
         try {
             // Get and check the parameters
-            parameters = parser.parse(args);
+            parameters.set(parser.parse(args));
         } catch (final ApexEditorParameterException e) {
             throw new ApexEditorParameterException(REST_ENDPOINT_PREFIX + this.toString() + ") parameter error, "
                 + e.getMessage() + '\n' + parser.getHelp(ApexEditorMain.class.getName()), e);
         }
-        if (parameters.isHelp()) {
+        if (parameters.get().isHelp()) {
             throw new ApexEditorParameterException(parser.getHelp(ApexEditorMain.class.getName()));
         }
 
         // Validate the parameters
-        final String validationMessage = parameters.validate();
+        final String validationMessage = parameters.get().validate();
         if (validationMessage.length() > 0) {
             throw new ApexEditorParameterException(REST_ENDPOINT_PREFIX + this.toString() + ") parameters invalid, "
                 + validationMessage + '\n' + parser.getHelp(ApexEditorMain.class.getName()));
@@ -102,29 +104,29 @@ public class ApexEditorMain {
      * Initialize the Apex editor.
      */
     public void init() {
-        outStream.println(
-            REST_ENDPOINT_PREFIX + this.toString() + ") starting at " + parameters.getBaseUri().toString() + " . . .");
+        outStream.println(REST_ENDPOINT_PREFIX + this.toString() + ") starting at "
+                        + parameters.get().getBaseUri().toString() + " . . .");
 
         try {
             state = EditorState.INITIALIZING;
 
             // Start the editor
-            apexEditor = new ApexEditor(parameters);
+            apexEditor = new ApexEditor(parameters.get());
 
             // Add a shutdown hook to shut down the editor when the process is exiting
             Runtime.getRuntime().addShutdownHook(new Thread(new ApexEditorShutdownHook()));
 
             state = EditorState.RUNNING;
 
-            if (parameters.getTimeToLive() == ApexEditorParameters.INFINITY_TIME_TO_LIVE) {
-                outStream.println(
-                    REST_ENDPOINT_PREFIX + this.toString() + ") started at " + parameters.getBaseUri().toString());
+            if (parameters.get().getTimeToLive() == ApexEditorParameters.INFINITY_TIME_TO_LIVE) {
+                outStream.println(REST_ENDPOINT_PREFIX + this.toString() + ") started at "
+                                + parameters.get().getBaseUri().toString());
             } else {
                 outStream.println(REST_ENDPOINT_PREFIX + this.toString() + ") started");
             }
 
             // Find out how long is left to wait
-            long timeRemaining = parameters.getTimeToLive();
+            long timeRemaining = parameters.get().getTimeToLive();
             while (timeRemaining == ApexEditorParameters.INFINITY_TIME_TO_LIVE || timeRemaining > 0) {
                 // decrement the time to live in the non-infinity case
                 if (timeRemaining > 0) {
@@ -185,7 +187,7 @@ public class ApexEditorMain {
      * @return the parameters
      */
     public static ApexEditorParameters getParameters() {
-        return parameters;
+        return parameters.get();
     }
 
     /**

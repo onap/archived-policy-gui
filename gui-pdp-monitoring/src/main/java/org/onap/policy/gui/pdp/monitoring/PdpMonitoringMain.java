@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +56,9 @@ public class PdpMonitoringMain {
     // The Pdp Monitoring services this class is running
     private PdpMonitoringServer pdpMonitoringServer = null;
 
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private CountDownLatch startedLatch = new CountDownLatch(1);
+
+    private CountDownLatch shutdownLatch = new CountDownLatch(1);
 
     /**
      * Constructor, kicks off the GUI service.
@@ -113,12 +116,14 @@ public class PdpMonitoringMain {
                 LOGGER.info(PDP_MONITORING_PREFIX + "{}) started", this);
             }
 
+            startedLatch.countDown();
+
             // Find out how long is left to wait
             long timeRemaining = parameters.getTimeToLive();
             if (timeRemaining >= 0) {
-                countDownLatch.await(timeRemaining, TimeUnit.SECONDS);
+                shutdownLatch.await(timeRemaining, TimeUnit.SECONDS);
             } else {
-                countDownLatch.await();
+                shutdownLatch.await();
             }
         } catch (final Exception e) {
             LOGGER.warn(this + " failed with error", e);
@@ -129,6 +134,18 @@ public class PdpMonitoringMain {
     }
 
     /**
+     * Waits for the service to enter the running state.
+     *
+     * @param timeout time to wait
+     * @param unit time units
+     * @return {@code true} if the service started within the specified time
+     * @throws InterruptedException if an interrupt occurs
+     */
+    protected boolean awaitStart(long timeout, TimeUnit unit) throws InterruptedException {
+        return startedLatch.await(timeout, unit);
+    }
+
+    /**
      * Explicitly shut down the services.
      */
     public void shutdown() {
@@ -136,7 +153,7 @@ public class PdpMonitoringMain {
             LOGGER.info(PDP_MONITORING_PREFIX + "{}) shutting down", this);
             pdpMonitoringServer.shutdown(parameters.getPort(), parameters.getDefaultRestPort());
         }
-        countDownLatch.countDown();
+        shutdownLatch.countDown();
         state = ServicesState.STOPPED;
         LOGGER.info(PDP_MONITORING_PREFIX + "{}) shutting down", this);
     }
