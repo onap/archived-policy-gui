@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -107,7 +108,7 @@ public class ContextSchemaHandler implements RestCommandHandler {
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("ContextSchema/create" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("ContextSchema/create" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
@@ -131,7 +132,7 @@ public class ContextSchemaHandler implements RestCommandHandler {
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("ContextSchema/Update" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("ContextSchema/Update" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
@@ -169,7 +170,7 @@ public class ContextSchemaHandler implements RestCommandHandler {
 
         session.finishSession(result.isOk());
 
-        LOGGER.exit("ContextSchema/Delete" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("ContextSchema/Delete" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
