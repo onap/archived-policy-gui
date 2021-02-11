@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +23,15 @@
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The ContextSchema Bean.
  */
 @XmlType
+@Getter
+@ToString
 public class BeanContextSchema extends BeanBase {
     private String name = null;
     private String version = null;
@@ -34,67 +39,4 @@ public class BeanContextSchema extends BeanBase {
     private String schemaDefinition = null;
     private String uuid = null;
     private String description = null;
-
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the version.
-     *
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Gets the uuid.
-     *
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets the schema flavour.
-     *
-     * @return the schema flavour
-     */
-    public String getSchemaFlavour() {
-        return schemaFlavour;
-    }
-
-    /**
-     * Gets the schema definition.
-     *
-     * @return the schema definition
-     */
-    public String getSchemaDefinition() {
-        return schemaDefinition;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        return "ContextSchema [name=" + name + ", version=" + version + ", schemaFlavour=" + schemaFlavour
-            + ", schemaDefinition=" + schemaDefinition + ", uuid=" + uuid + ", description=" + description + "]";
-    }
 }
