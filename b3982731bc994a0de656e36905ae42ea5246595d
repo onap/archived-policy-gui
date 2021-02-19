@@ -16,6 +16,24 @@
       "revId": "b3982731bc994a0de656e36905ae42ea5246595d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f502bc1_3f0281a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2021-02-19T18:12:42Z",
+      "side": 1,
+      "message": "Not sure. It\u0027s a strange one. Maybe it\u0027s a bug?",
+      "parentUuid": "b376b5ba_96c1f583",
+      "revId": "b3982731bc994a0de656e36905ae42ea5246595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
