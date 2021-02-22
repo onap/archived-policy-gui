@@ -177,15 +177,15 @@ public class PdpMonitoringRestResource {
                     engineStatusObject.setPolicyExecutions(engineStats.getEventCount());
                     engineStatusObject.setLastPolicyDuration(gson.toJson(
                             getValuesFromCache(id, engineStats.getEngineId() + "_last_policy_duration",
-                                    pdpStatistics.getTimeStamp().getTime(), engineStats.getLastExecutionTime()),
+                                    pdpStatistics.getTimeStamp().toEpochMilli(), engineStats.getLastExecutionTime()),
                             List.class));
                     engineStatusObject.setAveragePolicyDuration(
                             gson.toJson(getValuesFromCache(id, engineStats.getEngineId() + "_average_policy_duration",
-                                    pdpStatistics.getTimeStamp().getTime(),
+                                    pdpStatistics.getTimeStamp().toEpochMilli(),
                                     (long) engineStats.getAverageExecutionTime()), List.class));
                     engineStatusList.add(engineStatusObject);
                 } catch (final RuntimeException e) {
-                    LOGGER.warn("Error getting status of engine with ID " + engineStats.getEngineId() + "<br>", e);
+                    LOGGER.warn("Error getting status of engine with ID {}<br>", engineStats.getEngineId(), e);
                 }
             }
         } else {
