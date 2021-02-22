@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -177,11 +177,11 @@ public class PdpMonitoringRestResource {
                     engineStatusObject.setPolicyExecutions(engineStats.getEventCount());
                     engineStatusObject.setLastPolicyDuration(gson.toJson(
                             getValuesFromCache(id, engineStats.getEngineId() + "_last_policy_duration",
-                                    pdpStatistics.getTimeStamp().getTime(), engineStats.getLastExecutionTime()),
+                                    pdpStatistics.getTimeStamp().getEpochSecond(), engineStats.getLastExecutionTime()),
                             List.class));
                     engineStatusObject.setAveragePolicyDuration(
                             gson.toJson(getValuesFromCache(id, engineStats.getEngineId() + "_average_policy_duration",
-                                    pdpStatistics.getTimeStamp().getTime(),
+                                    pdpStatistics.getTimeStamp().getEpochSecond(),
                                     (long) engineStats.getAverageExecutionTime()), List.class));
                     engineStatusList.add(engineStatusObject);
                 } catch (final RuntimeException e) {
