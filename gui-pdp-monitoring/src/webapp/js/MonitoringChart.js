@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,11 +60,7 @@ function createChart(data, container, title, unit, lineStroke, nodeColour) {
     // Set the unit for the value
     svg.attr("unit", unit);
 
-    // Format the data for the chart
-    data.forEach(function(d) {
-        d.timestamp = d.timestamp;
-        d.value = +d.value;
-    });
+    data = formatDataForChart(data);
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) {
@@ -98,22 +94,8 @@ function createChart(data, container, title, unit, lineStroke, nodeColour) {
             })
 
             // Apply the tooltip to each node
-            .on(
-                    "mouseover",
-                    function(d) {
-                        d3.select("body").select(".tooltip").transition()
-                                .duration(50).style("opacity", 1);
-                        d3.select("body").select(".tooltip").html(
-                                formatDate(new Date(d.timestamp)) + "<br/>"
-                                        + d.value + (unit ? " " + unit : ""))
-                                .style("left", (d3.event.pageX) + "px").style(
-                                        "top", (d3.event.pageY - 28) + "px");
-                    }).on(
-                    "mouseout",
-                    function(d) {
-                        d3.select("body").select(".tooltip").transition()
-                                .duration(500).style("opacity", 0);
-                    });
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
 
     // Add the X Axis
     svg.append("g").attr("class", "x axis").attr("transform",
@@ -158,13 +140,8 @@ function updateChart(container, data, nodeColour) {
         left : 50
     }, width = 600 - margin.left - margin.right, height = 270 - margin.top
             - margin.bottom;
-    var parseDate = d3.time.format("%d-%b-%y").parse;
 
-    // Format the data for the chart
-    data.forEach(function(d) {
-        d.timestamp = d.timestamp;
-        d.value = +d.value;
-    });
+    data = formatDataForChart(data);
 
     // Select the chart
     var svg = d3.select(container);
@@ -195,8 +172,6 @@ function updateChart(container, data, nodeColour) {
         return y(d.value);
     });
 
-    var unit = svg.select(".line").attr("unit");
-
     // Remove all nodes
     svg.selectAll("circle").remove();
 
@@ -223,22 +198,8 @@ function updateChart(container, data, nodeColour) {
             })
 
             // Apply the tooltip to each node
-            .on(
-                    "mouseover",
-                    function(d) {
-                        d3.select("body").select(".tooltip").transition()
-                                .duration(50).style("opacity", 1);
-                        d3.select("body").select(".tooltip").html(
-                                formatDate(new Date(d.timestamp)) + "<br/>"
-                                        + d.value + (unit ? " " + unit : ""))
-                                .style("left", (d3.event.pageX) + "px").style(
-                                        "top", (d3.event.pageY - 28) + "px");
-                    }).on(
-                    "mouseout",
-                    function(d) {
-                        d3.select("body").select(".tooltip").transition()
-                                .duration(500).style("opacity", 0);
-                    });
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
 
 }
 
@@ -255,6 +216,32 @@ function initTooltip() {
  */
 function formatDate(date) {
     return date.toLocaleString().replace(',', '');
+}
+
+function formatDataForChart(data) {
+    // Format the data for the chart
+    data.forEach(function(d) {
+        d.value = +d.value;
+    });
+
+    return data;
+}
+
+function handleMouseOver(d) {
+    var unit = svg.select(".line").attr("unit");
+
+    d3.select("body").select(".tooltip").transition()
+            .duration(50).style("opacity", 1);
+    d3.select("body").select(".tooltip").html(
+            formatDate(new Date(d.timestamp)) + "<br/>"
+                    + d.value + (unit ? " " + unit : ""))
+            .style("left", (d3.event.pageX) + "px").style(
+                    "top", (d3.event.pageY - 28) + "px");
+}
+
+function handleMouseOut(d) {
+    d3.select("body").select(".tooltip").transition()
+            .duration(500).style("opacity", 0);
 }
 
 export { initTooltip, createChart, updateChart, generateRandomData };
