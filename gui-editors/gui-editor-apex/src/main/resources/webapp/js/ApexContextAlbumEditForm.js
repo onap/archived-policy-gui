@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ function editContextAlbumForm_viewContextAlbum(parent, name, version) {
     var requestURL = window.restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexContextAlbum", function(contextAlbum) {
         // Get all contextSchemas too for album item schema
-        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
+        requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -80,7 +80,7 @@ function editContextAlbumForm_editContextAlbum(formParent, name, version) {
     var requestURL = window.restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexContextAlbum", function(contextAlbum) {
         // Get all contextSchemas too for album item schema
-        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
+        requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -107,7 +107,6 @@ function editContextAlbumForm_activate(parent, operation, contextAlbum, contextS
     }
     apexUtils_emptyElement(parent);
 
-    var isedit = false;
     var createEditOrView = "";
 
     if (!operation) {
@@ -116,12 +115,7 @@ function editContextAlbumForm_activate(parent, operation, contextAlbum, contextS
         createEditOrView = operation.toUpperCase();
     }
 
-    if (createEditOrView == "CREATE") {
-        isedit = true;
-    } else if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
-        if (createEditOrView == "EDIT") {
-            isedit = true;
-        }
+    if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
 
         if (!contextAlbum) {
             console.warn("Invalid value (\"" + contextAlbum
@@ -441,7 +435,7 @@ function editContextAlbumForm_submitPressed() {
     }
     var readonly = $('#editContextAlbumFormAlbumReadOnlyCheckbox').prop('checked');
     if (readonly && scope != "EXTERNAL") {
-        var message = "Are you sure you want to set the scope ContextAlbum to \""
+        message = "Are you sure you want to set the scope ContextAlbum to \""
                 + scope
                 + "\" while it is set as Read Only. It only makes sense to use readonly for \"EXTERNAL\" Context Albums. If this Album is readonly it cannot be set!";
         if (!apexUtils_areYouSure(message)) {
@@ -449,7 +443,7 @@ function editContextAlbumForm_submitPressed() {
         }
     }
     if (!readonly && scope == "EXTERNAL") {
-        var message = "Are you sure you want to set the scope ContextAlbum to \""
+        message = "Are you sure you want to set the scope ContextAlbum to \""
                 + scope
                 + "\" while it is not set as Read Only. It only makes sense to use readonly for \"EXTERNAL\" Context Albums since EXTERNAL context cannot be set in policies.";
         if (!apexUtils_areYouSure(message)) {
@@ -475,7 +469,7 @@ function editContextAlbumForm_submitPressed() {
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = window.restRootURL + "/ContextAlbum/Update";
+        requestURL = window.restRootURL + "/ContextAlbum/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextAlbumFormDiv");
             contextAlbumTab_reset();
