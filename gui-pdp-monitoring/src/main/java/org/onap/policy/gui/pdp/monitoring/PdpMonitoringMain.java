@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -121,7 +121,9 @@ public class PdpMonitoringMain {
             // Find out how long is left to wait
             long timeRemaining = parameters.getTimeToLive();
             if (timeRemaining >= 0) {
-                shutdownLatch.await(timeRemaining, TimeUnit.SECONDS);
+                if (!shutdownLatch.await(timeRemaining, TimeUnit.SECONDS)) {
+                    shutdown();
+                }
             } else {
                 shutdownLatch.await();
             }
