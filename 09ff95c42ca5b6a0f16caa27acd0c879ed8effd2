@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cf6f3f5_63205dfa",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/PdpMonitoringMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-03T16:19:26Z",
+      "side": 1,
+      "message": "add \"!\" - only need to invoke shutdown() if the latch wasn\u0027t triggered yet",
+      "revId": "09ff95c42ca5b6a0f16caa27acd0c879ed8effd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
