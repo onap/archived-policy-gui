@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,6 +70,6 @@ function highlightSelected (id){
         el.classList.remove('pdps__link--active');
     });
     document.querySelector(`.pdps__link[href*="${id}"]`).classList.add('pdps__link--active');
-};
+}
 
 export { RenderPdpList, highlightSelected, };
