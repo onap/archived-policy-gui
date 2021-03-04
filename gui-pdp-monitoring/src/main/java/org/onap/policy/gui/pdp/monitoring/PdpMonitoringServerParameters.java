@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class PdpMonitoringServerParameters {
 
     // Base URI the HTTP server will listen on
     private static final String DEFAULT_SERVER_URI_ROOT = "http://0.0.0.0:";
-    private static final String DEFAULT_REST_PATH = "/papservices/*";
+    private static final String DEFAULT_REST_PATH = "papservices/*";
     private static final String DEFAULT_CONTEXT_PATH = "/";
     private static final String SERVER_HOST = "0.0.0.0";
     private static final int DEFAULT_REST_PORT = 17999;
@@ -70,7 +70,7 @@ public class PdpMonitoringServerParameters {
     }
 
     public URI getBaseUri() {
-        return URI.create(DEFAULT_SERVER_URI_ROOT + port + DEFAULT_REST_PATH);
+        return URI.create(DEFAULT_SERVER_URI_ROOT + port + "/" + DEFAULT_REST_PATH);
     }
 
     public String getRestPackage() {
@@ -86,7 +86,7 @@ public class PdpMonitoringServerParameters {
     }
 
     public String getDefaultRestPath() {
-        return DEFAULT_REST_PATH;
+        return "/" + DEFAULT_REST_PATH;
     }
 
     public int getDefaultRestPort() {
