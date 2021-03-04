@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -348,7 +348,7 @@ function ajax_get(requestURL, callback, useHttps, hostname, port, username, pass
         url: requestURL,
         dataType: "json",
         data: data,
-        success: function (data, textStatus, jqXHR) {
+        success: function (textStatus, jqXHR) {
             if (callback) {
                 callback(data);
             }
@@ -386,7 +386,7 @@ function ajax_get_statistics(requestURL, callback, useHttps, hostname, port, use
         url: requestURL,
         dataType: "json",
         data: data,
-        success: function (data, textStatus, jqXHR) {
+        success: function (textStatus, jqXHR) {
             if (callback) {
                 callback(data);
             }
