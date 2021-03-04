@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -165,7 +165,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     }
     // Add the tasks
     if (state && state.taskReferences && $.isArray(state.taskReferences.entry)) {
-        for (var p = 0; p < state.taskReferences.entry.length; p++) {
+        for (p = 0; p < state.taskReferences.entry.length; p++) {
             var taskEntry = state.taskReferences.entry[p];
             var taskName = taskEntry.key.name + ":" + taskEntry.key.version;
             var taskselected = {
@@ -306,7 +306,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
         }
     }
     if (state && state.stateOutputs && $.isArray(state.stateOutputs.entry)) {
-        for (var p = 0; p < state.stateOutputs.entry.length; p++) {
+        for (p = 0; p < state.stateOutputs.entry.length; p++) {
             var outputEntry = state.stateOutputs.entry[p];
             var outputName = outputEntry.key;
             var nextState = null;
@@ -391,10 +391,10 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     var logic_outputstable_body = document.createElement("tbody");
     logic_outputstable.appendChild(logic_outputstable_body);
     if (state && state.stateFinalizerLogicMap && $.isArray(state.stateFinalizerLogicMap.entry)) {
-        for (var p = 0; p < state.stateFinalizerLogicMap.entry.length; p++) {
-            var outputEntry = state.stateFinalizerLogicMap.entry[p];
-            var outputName = outputEntry.key;
-            var logic = null;
+        for (p = 0; p < state.stateFinalizerLogicMap.entry.length; p++) {
+            outputEntry = state.stateFinalizerLogicMap.entry[p];
+            outputName = outputEntry.key;
+            logic = null;
             if (outputEntry.value != null && outputEntry.value.logic != null) {
                 logic = outputEntry.value.logic;
             }
@@ -487,10 +487,6 @@ function editPolicyForm_State_addStateLogicOutput(parentTBody, disabled, statena
     finalizerlogicLabel.setAttribute("for", "editEventFormfinalizerLogicInput" + "_" + statename + "_" + random_suffix);
     finalizerlogicLabel.innerHTML = "Logic: ";
 
-    var logicString = "";
-    if (logic != null) {
-        logicString = logic;
-    }
     var edit_readOnly = disabled;
     var textarea = showHideTextarea("editEventFormfinalizerLogicInput" + "_" + statename + "_" + random_suffix, logic,
             false, !edit_readOnly, false);
@@ -752,8 +748,8 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
     }
     var logic_outputOptions = new Array();
     if (state != null && state.stateFinalizerLogicMap != null && $.isArray(state.stateFinalizerLogicMap.entry)) {
-        for (var p = 0; p < state.stateFinalizerLogicMap.entry.length; p++) {
-            var outputEntry = state.stateFinalizerLogicMap.entry[p].key;
+        for (p = 0; p < state.stateFinalizerLogicMap.entry.length; p++) {
+            outputEntry = state.stateFinalizerLogicMap.entry[p].key;
             logic_outputOptions.push({
                 "name" : outputEntry,
                 "displaytext" : outputEntry
@@ -911,7 +907,7 @@ function editPolicyForm_State_getStateBean(statename) {
                                                             // ignore (2) top
                                                             // row and bottom
                                                             // row
-        for (var i = 1; i < outputstablerows.length - 1; i++) {
+        for (i = 1; i < outputstablerows.length - 1; i++) {
             var outputTR = outputstablerows[i];
             if (outputTR && outputTR.getAttribute("output_id")) {
                 var output_id = outputTR.getAttribute("output_id");
@@ -968,7 +964,7 @@ function editPolicyForm_State_getStateBean(statename) {
                                                                     // row and
                                                                     // bottom
                                                                     // row
-        for (var i = 1; i < finalizerstablerows.length - 1; i++) {
+        for (i = 1; i < finalizerstablerows.length - 1; i++) {
             var finalizerTR = finalizerstablerows[i];
             if (finalizerTR && finalizerTR.getAttribute("finalizer_id")) {
                 var finalizer_id = finalizerTR.getAttribute("finalizer_id");
@@ -1017,7 +1013,7 @@ function editPolicyForm_State_getStateBean(statename) {
         console.error("No tasks selected for state " + statename);
         return null;
     } else { // has head so just ignore (2) top row and bottom row
-        for (var i = 1; i < taskstablerows.length - 1; i++) {
+        for (i = 1; i < taskstablerows.length - 1; i++) {
             var taskTR = taskstablerows[i];
             if (taskTR && taskTR.getAttribute("task_id")) {
                 var task_id = taskTR.getAttribute("task_id");

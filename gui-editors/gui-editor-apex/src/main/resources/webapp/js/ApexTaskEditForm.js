@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,10 +42,10 @@ function editTaskForm_createTask(formParent) {
             contextSchemas.push(dt);
         }
         // Get all contextAlbums too for task context album references
-        var requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
+        requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
         var contextAlbums = new Array();
         ajax_get(requestURL, function(data3) {
-            for (var i = 0; i < data3.messages.message.length; i++) {
+            for (i = 0; i < data3.messages.message.length; i++) {
                 var contextAlbum = JSON.parse(data3.messages.message[i]).apexContextAlbum;
                 var ca = {
                     "name" : contextAlbum.key.name,
@@ -84,7 +84,7 @@ function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
     var requestURL = window.restRootURL + "/Task/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexTask", function(task) {
         // Get all contextSchemas too for task inputfields
-        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
+        requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -97,10 +97,10 @@ function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
                 });
             }
             // Get all contextAlbums too for task context album references
-            var requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
+            requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var contextAlbums = new Array();
             ajax_get(requestURL, function(data3) {
-                for (var i = 0; i < data3.messages.message.length; i++) {
+                for (i = 0; i < data3.messages.message.length; i++) {
                     var contextAlbum = JSON.parse(data3.messages.message[i]).apexContextAlbum;
                     var ca = {
                         "name" : contextAlbum.key.name,
@@ -126,7 +126,6 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
     }
     apexUtils_emptyElement(parent);
 
-    var isedit = false;
     var createEditOrView = "";
 
     if (!operation) {
@@ -135,12 +134,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
         createEditOrView = operation.toUpperCase();
     }
 
-    if (createEditOrView == "CREATE") {
-        isedit = true;
-    } else if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
-        if (createEditOrView == "EDIT") {
-            isedit = true;
-        }
+    if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
 
         if (!task) {
             console.warn("Invalid value (\"" + task + "\") passed as a value for \"task\" for TaskForm form.");
@@ -361,9 +355,9 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
     outputfieldstable.appendChild(outputfieldstable_body);
     // Add the outputfields
     if (task && task.outputFields && task.outputFields.entry) {
-        for (var p = 0; p < task.outputFields.entry.length; p++) {
+        for (p = 0; p < task.outputFields.entry.length; p++) {
             var outputfieldEntry = task.outputFields.entry[p];
-            var contextSchema = outputfieldEntry.value.fieldSchemaKey;
+            contextSchema = outputfieldEntry.value.fieldSchemaKey;
             contextSchema["displaytext"] = contextSchema.name + ":" + contextSchema.version;
             editTaskForm_addTaskOutputField(outputfieldstable_body, (createEditOrView == "VIEW"), outputfieldEntry.key,
                     outputfieldEntry.value.optional, contextSchema, contextSchemas);
@@ -453,7 +447,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
     paramstable.appendChild(paramstable_body);
     // Add the params
     if (task && task.taskParameters && task.taskParameters.entry) {
-        for (var p = 0; p < task.taskParameters.entry.length; p++) {
+        for (p = 0; p < task.taskParameters.entry.length; p++) {
             var paramEntry = task.taskParameters.entry[p];
             var paramName = paramEntry.key;
             var paramValue = paramEntry.value.defaultValue;
@@ -503,7 +497,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
     contextstable.appendChild(contextstable_body);
     // Add the contexts
     if (task && task.contextAlbumReference && $.isArray(task.contextAlbumReference)) {
-        for (var p = 0; p < task.contextAlbumReference.length; p++) {
+        for (p = 0; p < task.contextAlbumReference.length; p++) {
             var contextEntry = task.contextAlbumReference[p];
             var contextName = contextEntry.name + ":" + contextEntry.version;
             var ce = {
@@ -887,7 +881,7 @@ function editTaskForm_submitPressed() {
     var outputfieldstablerows = document.getElementById("editTaskFormOutputFieldsTable").rows;
     if (outputfieldstablerows && outputfieldstablerows.length > 2) {
         taskbean_outputfields = new Object();
-        for (var i = 1; i < outputfieldstablerows.length - 1; i++) {
+        for (i = 1; i < outputfieldstablerows.length - 1; i++) {
             var outputfieldTR = outputfieldstablerows[i];
             if (outputfieldTR && outputfieldTR.getAttribute("outputfield_id")) {
                 var outputfield_id = outputfieldTR.getAttribute("outputfield_id");
@@ -933,7 +927,7 @@ function editTaskForm_submitPressed() {
     var paramstablerows = document.getElementById("editTaskFormParamsTable").rows;
     if (paramstablerows && paramstablerows.length > 2) {
         taskbean_parameters = new Object();
-        for (var i = 1; i < paramstablerows.length - 1; i++) {
+        for (i = 1; i < paramstablerows.length - 1; i++) {
             var paramTR = paramstablerows[i];
             if (paramTR && paramTR.getAttribute("param_id")) {
                 var param_id = paramTR.getAttribute("param_id");
@@ -955,7 +949,7 @@ function editTaskForm_submitPressed() {
     var contextstablerows = document.getElementById("editTaskFormContextsTable").rows;
     if (contextstablerows && contextstablerows.length > 2) {
         taskbean_context = new Array();
-        for (var i = 1; i < contextstablerows.length - 1; i++) {
+        for (i = 1; i < contextstablerows.length - 1; i++) {
             var contextTR = contextstablerows[i];
             if (contextTR && contextTR.getAttribute("context_id")) {
                 var context_id = contextTR.getAttribute("context_id");
@@ -1004,7 +998,7 @@ function editTaskForm_submitPressed() {
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = window.restRootURL + "/Task/Update";
+        requestURL = window.restRootURL + "/Task/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editTaskFormDiv");
             taskTab_reset();

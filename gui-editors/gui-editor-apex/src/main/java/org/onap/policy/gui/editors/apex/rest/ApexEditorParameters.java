@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,8 @@ public class ApexEditorParameters {
     private static final String DEFAULT_SERVER_URI_PREFIX = "http://";
     /** The server listens on localhost by default. */
     public static final String DEFAULT_SERVER_URI_ROOT = "localhost";
-    private static final String DEFAULT_REST_PATH = "/apexservices/";
+
+    private static final String DEFAULT_REST_PATH = "apexservices/";
     private static final String DEFAULT_STATIC_PATH = "/";
 
     // Constants for port checks
@@ -90,7 +91,7 @@ public class ApexEditorParameters {
      * @return the base URI
      */
     public URI getBaseUri() {
-        return URI.create(DEFAULT_SERVER_URI_PREFIX + listenAddress + ':' + restPort + DEFAULT_REST_PATH);
+        return URI.create(DEFAULT_SERVER_URI_PREFIX + listenAddress + ':' + restPort + "/" + DEFAULT_REST_PATH);
     }
 
     /**
