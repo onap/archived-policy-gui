@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67872516_9e9f484e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/ApexEditorMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-05T17:37:39Z",
+      "side": 1,
+      "message": "so it\u0027s OK if this is null?",
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d1ce6fd_654dc9bd",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexAjax.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-05T17:37:39Z",
+      "side": 1,
+      "message": "this change doesn\u0027t look right, as it will repeatedly apply the last \"ki\" value assigned on line 50.\n\nanother approach would be to avoid the filter() call altogether and move lines 55-56 before line 51, thus only pushing ki if the test passes.",
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d503055_9575c480",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-05T17:37:39Z",
+      "side": 1,
+      "message": "hmm.  seems like a sonar bug to me, as every \"var p\" is in its own scope (same with the \"var ki\" in the previous file).\n\nNevertheless, these functions seem very long.  Perhaps if they were broken into pieces, then the complaint about reusing a \"var\" would go away.  For that matter, these changes concern me, as it\u0027s unclear whether changing these \"global\" variables has any undesired effect later in the function.  Breaking the functions into pieces would address that concern, as well.\n\nsame comment for a number of these files",
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48a11e1a_d4d07526",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-05T17:37:39Z",
+      "side": 1,
+      "message": "is this even needed now?",
+      "range": {
+        "startLine": 397,
+        "startChar": 12,
+        "endLine": 397,
+        "endChar": 17
+      },
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a07ae60_5a655439",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-05T17:37:39Z",
+      "side": 1,
+      "message": "is this really needed?",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 21
+      },
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
