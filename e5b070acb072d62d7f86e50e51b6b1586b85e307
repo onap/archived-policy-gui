@@ -22,6 +22,30 @@
       "revId": "e5b070acb072d62d7f86e50e51b6b1586b85e307",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c27e37f_547d5929",
+        "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringUtils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 7630
+      },
+      "writtenOn": "2021-03-05T17:51:16Z",
+      "side": 0,
+      "message": "yes it appears that way, data is still in scope inside the function, It still passed all tests.",
+      "parentUuid": "bef0e9dc_e983e954",
+      "range": {
+        "startLine": 351,
+        "startChar": 27,
+        "endLine": 351,
+        "endChar": 31
+      },
+      "revId": "e5b070acb072d62d7f86e50e51b6b1586b85e307",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
