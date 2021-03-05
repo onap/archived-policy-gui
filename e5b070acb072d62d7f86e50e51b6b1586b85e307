@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bef0e9dc_e983e954",
+        "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringUtils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-05T17:41:15Z",
+      "side": 0,
+      "message": "I assume it\u0027s ok to remove this - i.e., ajax doesn\u0027t pass \"data\" when it invokes the success function.",
+      "range": {
+        "startLine": 351,
+        "startChar": 27,
+        "endLine": 351,
+        "endChar": 31
+      },
+      "revId": "e5b070acb072d62d7f86e50e51b6b1586b85e307",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
