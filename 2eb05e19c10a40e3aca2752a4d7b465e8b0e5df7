@@ -96,6 +96,30 @@
       "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c5960f_c7aa4a21",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7630
+      },
+      "writtenOn": "2021-03-08T12:16:07Z",
+      "side": 1,
+      "message": "No this is not needed, I thought it was removed in the latest patchset, it doesnt seem to have taken",
+      "parentUuid": "1a07ae60_5a655439",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 21
+      },
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
