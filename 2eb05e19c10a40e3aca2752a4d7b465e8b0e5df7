@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9d6053db_a9c41756",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/ApexEditorMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7630
+      },
+      "writtenOn": "2021-03-08T12:28:10Z",
+      "side": 1,
+      "message": "I believe so as System.out was passed as a printstream parameter without further changes.",
+      "parentUuid": "67872516_9e9f484e",
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2d1ce6fd_654dc9bd",
         "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexAjax.js",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d6063a4f_45d91550",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexAjax.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7630
+      },
+      "writtenOn": "2021-03-08T12:28:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d1ce6fd_654dc9bd",
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d503055_9575c480",
         "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "937a69d6_bd13b913",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7630
+      },
+      "writtenOn": "2021-03-08T12:28:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d503055_9575c480",
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -73,6 +127,30 @@
       "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4155a54_93c1c849",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 7630
+      },
+      "writtenOn": "2021-03-08T12:28:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "48a11e1a_d4d07526",
+      "range": {
+        "startLine": 397,
+        "startChar": 12,
+        "endLine": 397,
+        "endChar": 17
+      },
+      "revId": "2eb05e19c10a40e3aca2752a4d7b465e8b0e5df7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
