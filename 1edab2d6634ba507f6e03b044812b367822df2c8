@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c48e0632_c0a17c2e",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-03-10T15:03:27Z",
+      "side": 1,
+      "message": "As Pam commented, should be 2.4.2-SNAPSHOT, see:\nhttps://wiki.onap.org/display/DW/Policy+Framework+Project%3A+Component+Versions",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "1edab2d6634ba507f6e03b044812b367822df2c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
