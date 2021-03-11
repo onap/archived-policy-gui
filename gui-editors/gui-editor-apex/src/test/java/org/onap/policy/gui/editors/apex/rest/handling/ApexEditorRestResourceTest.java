@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
 
         result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
-        final int sessionId = Integer.valueOf(result.getMessages().get(0));
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
@@ -105,7 +105,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
 
         target("editor/" + corruptSessionId + "/Model/Update").request().put(csEntity, ApexApiResult.class);
 
-        result = target("editor/" + corruptSessionId + "/Model/GetKey").request().get(ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Model/GetKey").request().get(ApexApiResult.class);
 
         result = target("editor/" + sessionId + "/Model/GetKey").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
@@ -114,7 +114,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/12345/Model/GetKey").request().get(ApexApiResult.class);
         assertEquals(Result.FAILED, result.getResult());
 
-        result = target("editor/" + corruptSessionId + "/Model/Get").request().get(ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Model/Get").request().get(ApexApiResult.class);
 
         result = target("editor/" + sessionId + "/Model/Get").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
@@ -128,14 +128,23 @@ public class ApexEditorRestResourceTest extends JerseyTest {
 
         resultString = target("editor/" + sessionId + "/Model/Download").request().get(String.class);
         assertNotNull(resultString);
+    }
 
-        resultString = target("editor/-12345/Model/Download").request().get(String.class);
+    @Test
+    public void testSessionCreateExt() {
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+        target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+
+        String resultString = target("editor/-12345/Model/Download").request().get(String.class);
         assertEquals("", resultString);
 
         resultString = target("editor/12345/Model/Download").request().get(String.class);
         assertEquals("", resultString);
 
-        result = target("editor/" + corruptSessionId + "/KeyInformation/Get").request().get(ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/KeyInformation/Get").request().get(ApexApiResult.class);
 
         result = target("editor/" + sessionId + "/KeyInformation/Get").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
@@ -144,7 +153,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/12345/KeyInformation/Get").request().get(ApexApiResult.class);
         assertEquals(Result.FAILED, result.getResult());
 
-        result = target("editor/" + corruptSessionId + "/Model/Delete").request().delete(ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Model/Delete").request().delete(ApexApiResult.class);
 
         result = target("editor/" + sessionId + "/Model/Delete").request().delete(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
@@ -158,7 +167,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
     public void testContextSchema() throws IOException {
         ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
-        final int sessionId = Integer.valueOf(result.getMessages().get(0));
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
 
@@ -260,6 +269,19 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/" + sessionId + "/ContextSchema/Delete").queryParam("name", "Hello")
             .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
+    }
+
+    @Test
+    public void testContextSchemaExt() throws IOException {
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+
+        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        target("editor/" + sessionId + "/ContextSchema/Get").queryParam("name", (String) null)
+            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+
         result = target("editor/" + sessionId + "/ContextSchema/Delete").queryParam("name", (String) null)
             .queryParam("version", (String) null).request().delete(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
@@ -269,7 +291,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
     public void testContextAlbum() throws IOException {
         ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
-        final int sessionId = Integer.valueOf(result.getMessages().get(0));
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
         final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
 
         result = target("editor/-12345/Validate/ContextAlbum").request().get(ApexApiResult.class);
@@ -369,8 +391,20 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/" + sessionId + "/ContextAlbum/Delete").queryParam("name", "Hello")
             .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/ContextAlbum/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+    }
+
+    @Test
+    public void testContextAlbumExt() throws IOException {
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+
+        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        target("editor/" + sessionId + "/ContextAlbum/Get").queryParam("name", (String) null)
+            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
@@ -380,7 +414,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
 
         ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
-        final int sessionId = Integer.valueOf(result.getMessages().get(0));
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         result = target("editor/-12345/Validate/Event").request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
@@ -506,6 +540,32 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/" + sessionId + "/Event/Get").queryParam("name", "Hello")
             .queryParam("version", (String) null).request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
+    }
+
+    @Test
+    public void testEventExt() {
+        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+
+        String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
+            + "\"namespace\"        : \"somewhere.over.the.rainbow\"," + "\"source\"           : \"beginning\","
+            + "\"target\"           : \"end\"," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+
+        entityString = "{" + "\"name\"             : \"Hiya\"," + "\"version\"          : \"0.0.2\","
+            + "\"namespace\"        : \"somewhere.over.the.rainbow\"," + "\"source\"           : \"beginning\","
+            + "\"target\"           : \"end\"," + "\"parameters\"       : {},"
+            + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        entity  = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+
+        target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + sessionId + "/Event/Update").request().put(entity, ApexApiResult.class);
         result = target("editor/" + sessionId + "/Event/Get").queryParam("name", "IDontExist")
             .queryParam("version", (String) null).request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
@@ -552,7 +612,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
 
         ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
-        final int sessionId = Integer.valueOf(result.getMessages().get(0));
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         result = target("editor/-12345/Validate/Task").request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
@@ -684,11 +744,33 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
         result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
+    }
 
+    @Test
+    public void testTaskExt() throws IOException {
+        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+
+        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
+            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+
+        String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
+            + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
         entityString = "{" + "\"name\"             : \"HowsItGoing3\"," + "\"version\"          : \"0.0.2\","
             + "\"taskLogic\"        : {\"logicFlavour\" : \"LemonAndLime\", \"logic\" : \"lots of lemons,"
             + " lots of lime\"}," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
+
         entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
         result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
@@ -837,9 +919,30 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/12345/Validate/Event").queryParam("name", (String) null)
             .queryParam("version", (String) null).request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
+    }
 
-        target("editor/" + corruptSessionId + "/Task/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+    @Test
+    public void testTaskExt_2() throws IOException {
+        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+
+        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
+            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+
+        String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
+            + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+
+        target("editor/1234545/Task/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
 
         result = target("editor/-123345/Task/Delete").queryParam("name", (String) null)
             .queryParam("version", (String) null).request().delete(ApexApiResult.class);
@@ -861,7 +964,7 @@ public class ApexEditorRestResourceTest extends JerseyTest {
 
         ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
         assertEquals(Result.SUCCESS, result.getResult());
-        final int sessionId = Integer.valueOf(result.getMessages().get(0));
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         result = target("editor/-12345/Model/Validate").request().get(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
@@ -1055,6 +1158,49 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
         System.err.println(result);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
+    }
+
+    @Test
+    public void testPolicyExt() throws IOException {
+        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+
+        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+
+        String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
+            + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
+            + "\"states\"           : {" + " \"state\"           : {" + "  \"name\"           : \"state\","
+            + "  \"trigger\"        : {\"name\" : \"inEvent\", \"version\" : \"0.0.1\"},"
+            + "  \"defaultTask\"    : {\"name\" : \"task\", \"version\" : \"0.0.1\"}," + "  \"stateOutputs\"   : {"
+            + "   \"so0\"           : {" + "    \"event\"        : {\"name\" : \"inEvent\", \"version\" : \"0.0.1\"},"
+            + "    \"nextState\"    : null" + "   }" + "  }," + "  \"tasks\"          : {" + "   \"tr0\"           : {"
+            + "    \"task\"         : {\"name\" : \"task\", \"version\" : \"0.0.1\"},"
+            + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
+            + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+
+        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+
+        entityString = "{" + "\"name\"             : \"HelloAnother\"," + "\"version\"          : \"0.0.2\","
+            + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
+            + "\"states\"           : {" + " \"state\"           : {" + "  \"name\"           : \"state\","
+            + "  \"trigger\"        : {\"name\" : \"inEvent\", \"version\" : \"0.0.1\"},"
+            + "  \"defaultTask\"    : {\"name\" : \"task\", \"version\" : \"0.0.1\"}," + "  \"stateOutputs\"   : {"
+            + "   \"so0\"           : {" + "    \"event\"        : {\"name\" : \"inEvent\", \"version\" : \"0.0.1\"},"
+            + "    \"nextState\"    : null" + "   }" + "  }," + "  \"tasks\"          : {" + "   \"tr0\"           : {"
+            + "    \"task\"         : {\"name\" : \"task\", \"version\" : \"0.0.1\"},"
+            + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
+            + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
 
         entityString = "{" + "\"name\"             : \"Hello10\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
@@ -1335,6 +1481,47 @@ public class ApexEditorRestResourceTest extends JerseyTest {
         result = target("editor/-123345/Policy/Delete").queryParam("name", (String) null)
             .queryParam("version", (String) null).request().delete(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
+
+    }
+
+    @Test
+    public void testPolicyExt_2() throws IOException {
+        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+
+        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        final int sessionId = Integer.parseInt(result.getMessages().get(0));
+
+        target("editor/" + corruptSessionId + "/Model/Validate").request().get(ApexApiResult.class);
+        target("editor/" + sessionId + "/Model/Validate").queryParam("name", "%%%$£")
+            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+
+        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+
+        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+
+        String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
+            + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
+            + "\"states\"           : {" + " \"state\"           : {" + "  \"name\"           : \"state\","
+            + "  \"trigger\"        : {\"name\" : \"inEvent\", \"version\" : \"0.0.1\"},"
+            + "  \"defaultTask\"    : {\"name\" : \"task\", \"version\" : \"0.0.1\"}," + "  \"stateOutputs\"   : {"
+            + "   \"so0\"           : {" + "    \"event\"        : {\"name\" : \"inEvent\", \"version\" : \"0.0.1\"},"
+            + "    \"nextState\"    : null" + "   }" + "  }," + "  \"tasks\"          : {" + "   \"tr0\"           : {"
+            + "    \"task\"         : {\"name\" : \"task\", \"version\" : \"0.0.1\"},"
+            + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
+            + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        target("editor/" + corruptSessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+
+        entityString = "{" + "\"name\"             : \"GoodTaSeeYa\"," + "\"version\"          : \"0.0.2\","
+            + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
+            + "\"states\"           : null," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
+            + "\"description\"      : \"A description of hello\"" + "}";
+        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
+        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+
         result = target("editor/123345/Policy/Delete").queryParam("name", (String) null)
             .queryParam("version", (String) null).request().delete(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
@@ -1345,4 +1532,5 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             .queryParam("version", (String) null).request().delete(ApexApiResult.class);
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
+
 }
