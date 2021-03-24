@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,6 @@ function taskTab_activate() {
             const task = JSON.parse(data.messages.message[i]).apexTask;
 
             const taskRow_tr = document.createElement("tr");
-            const taskid = task.key.name + ":" + task.key.version;
 
             var taskTableRow =
                 "<td>"                              +
@@ -68,8 +67,8 @@ function taskTab_activate() {
             taskTableRow += "</tbody></table></td>";
 
             taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
-            for (var f = 0; f < task.outputFields.entry.length; f++) {
-                var fieldEntry = task.outputFields.entry[f];
+            for (var t = 0; t < task.outputFields.entry.length; t++) {
+                fieldEntry = task.outputFields.entry[t];
 
                 taskTableRow +=
                     "<tr><td>"                        +
@@ -134,7 +133,7 @@ function taskTab_create() {
         return
     }
 
-    var taskTabContent = document.createElement("taskTabContent");
+    taskTabContent = document.createElement("taskTabContent");
     taskTab.appendChild(taskTabContent);
     taskTabContent.setAttribute("id", "taskTabContent");
     taskTabContent.addEventListener('contextmenu', rightClickMenu_scopePreserver("taskTabContent", "Task", null, null));

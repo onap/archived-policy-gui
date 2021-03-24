@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,9 +55,9 @@ function dropdownList_display_hide(optionDiv) {
 }
 function dropdownList_filter(optionDiv, optionUl) {
     var input, filter, ul;
-    var input = document.getElementById(optionDiv + "_search");
-    var filter = input.value.toUpperCase();
-    var ul = document.getElementById(optionDiv + "_options_list_ul");
+    input = document.getElementById(optionDiv + "_search");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById(optionDiv + "_options_list_ul");
     var lis = ul.querySelectorAll("#" + ul.id + " > li"); // get li direct
                                                             // child elements
     for (var i = 0; i < lis.length; i++) {

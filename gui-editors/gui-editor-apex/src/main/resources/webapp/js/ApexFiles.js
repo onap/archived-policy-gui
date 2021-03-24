@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,17 +28,17 @@ const {modelFileName} = require("./ApexNewModelForm");
 function files_fileOpen() {
     $('<input type="file">').on('change', function() {
         var reader = new FileReader();
-        var modelFileName = this.files[0].name;
+        var fileName = this.files[0].name;
         reader.readAsText(this.files[0]);
 
         reader.onload = function(event) {
             var requestURL = window.restRootURL + "/Model/Load";
             ajax_put(requestURL, event.target.result, function(resultData) {
                 localStorage.setItem("apex_model_loaded", true);
-                var requestURL = window.restRootURL + "/Model/GetKey";
+                requestURL = window.restRootURL + "/Model/GetKey";
                 ajax_get(requestURL, function(data) {
                     var modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
-                    pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
+                    pageControl_modelMode(modelKey.name, modelKey.version, fileName);
                 });
             });
         };

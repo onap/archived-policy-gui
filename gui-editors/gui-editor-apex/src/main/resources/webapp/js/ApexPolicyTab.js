@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,9 +67,9 @@ function policyTab_activate() {
                 }
             }
 
-            for (var s = 0; s < policy.state.entry.length; s++) {
-                var stateName = policy.state.entry[s].key;
-                var state     = policy.state.entry[s].value;
+            for (var p = 0; p < policy.state.entry.length; p++) {
+                var stateName = policy.state.entry[p].key;
+                state     = policy.state.entry[p].value;
 
                 policyTableRow +=
                     "<tr><td>"                                            +
@@ -179,7 +179,7 @@ function policyTab_create() {
         return
     }
 
-    var policyTabContent = document.createElement("policyTabContent");
+    policyTabContent = document.createElement("policyTabContent");
     policyTab.appendChild(policyTabContent);
     policyTabContent.setAttribute("id", "policyTabContent");
     policyTabContent.addEventListener('contextmenu', rightClickMenu_scopePreserver("policyTabContent", "Policy", null, null));
