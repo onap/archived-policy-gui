@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ function editEventForm_editEvent_inner(formParent, name, version, viewOrEdit) {
     var requestURL = window.restRootURL + "/Event/Get?name=" + name + "&version=" + version;
     ajax_getWithKeyInfo(requestURL, "apexEvent", function(event) {
         // Get all contextSchemas too for event params
-        var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
+        requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (var i = 0; i < data2.messages.message.length; i++) {
@@ -96,19 +96,14 @@ function editEventForm_activate(parent, operation, event, contextSchemas) {
     }
     apexUtils_emptyElement(parent);
 
-    var isedit = false;
     var createEditOrView = "";
     if (!operation) {
         console.warn("No operation specified for EventForm form")
     } else {
         createEditOrView = operation.toUpperCase()
     }
-    if (createEditOrView == "CREATE") {
-        isedit = true;
-    } else if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
-        if (createEditOrView == "EDIT") {
-            isedit = true;
-        }
+
+    if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
 
         if (!event) {
             console.warn("Invalid value (\"" + event + "\") passed as a value for \"event\" for EventForm form.");
@@ -559,15 +554,17 @@ function editEventForm_submitPressed() {
     }
     var jsonString = JSON.stringify(eventbean);
 
+    var requestURL;
+
     if (createEditOrView == "CREATE") {
-        var requestURL = window.restRootURL + "/Event/Create";
+        requestURL = window.restRootURL + "/Event/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editEventFormDiv");
             eventTab_reset();
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = window.restRootURL + "/Event/Update";
+        requestURL = window.restRootURL + "/Event/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editEventFormDiv");
             eventTab_reset();

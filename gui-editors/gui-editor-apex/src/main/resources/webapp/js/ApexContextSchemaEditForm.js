@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,6 @@ function editContextSchemaForm_activate(parent, operation, contextSchema) {
     }
     apexUtils_emptyElement(parent);
 
-    var isedit = false;
     var createEditOrView = "";
 
     if (!operation) {
@@ -76,12 +75,7 @@ function editContextSchemaForm_activate(parent, operation, contextSchema) {
         createEditOrView = operation.toUpperCase();
     }
 
-    if (createEditOrView == "CREATE") {
-        isedit = true;
-    } else if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
-        if (createEditOrView == "EDIT") {
-            isedit = true;
-        }
+        if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
 
         if (!contextSchema) {
             console.warn("Invalid value (\"" + contextSchema
@@ -354,6 +348,8 @@ function editContextSchemaForm_submitPressed() {
     var name = $('#editContextSchemaFormNameInput').val();
     var version = $('#editContextSchemaFormVersionInput').val()
 
+    var requestURL;
+
     var jsonString = JSON.stringify({
         "name" : name,
         "version" : version,
@@ -364,14 +360,14 @@ function editContextSchemaForm_submitPressed() {
     });
 
     if (createEditOrView == "CREATE") {
-        var requestURL = window.restRootURL + "/ContextSchema/Create";
+        requestURL = window.restRootURL + "/ContextSchema/Create";
         ajax_post(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextSchemaFormDiv");
             contextSchemaTab_reset();
             keyInformationTab_reset()
         });
     } else if (createEditOrView == "EDIT") {
-        var requestURL = window.restRootURL + "/ContextSchema/Update";
+        requestURL = window.restRootURL + "/ContextSchema/Update";
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editContextSchemaFormDiv");
             contextSchemaTab_reset();

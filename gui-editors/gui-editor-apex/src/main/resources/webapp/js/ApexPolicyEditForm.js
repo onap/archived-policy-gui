@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -129,7 +129,6 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     }
     apexUtils_emptyElement(parent);
 
-    var isedit = false;
     var createEditOrView = "";
 
     if (!operation) {
@@ -138,12 +137,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
         createEditOrView = operation.toUpperCase();
     }
 
-    if (createEditOrView == "CREATE") {
-        isedit = true;
-    } else if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
-        if (createEditOrView == "EDIT") {
-            isedit = true;
-        }
+    if (createEditOrView == "EDIT" || createEditOrView == "VIEW") {
 
         if (!policy) {
             console.warn("Invalid value (\"" + policy + "\") passed as a value for \"policy\" for PolicyForm form.");
@@ -306,7 +300,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     var firststateoptions = new Array();
     var firststateselected = null;
     if (policy != null && policy.state != null) {
-        for (i = 0; i < policy.state.entry.length; i++) {
+        for (var i = 0; i < policy.state.entry.length; i++) {
             if (policy.state.entry[i] != null && policy.state.entry[i].key != null) {
                 var statename = policy.state.entry[i].key;
                 firststateoptions.push({
@@ -341,7 +335,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     if (policy != null && policy.firstState != null && policy.firstState != "" && policy.state != null) {
         for (i = 0; i < policy.state.entry.length; i++) {
             if (policy.state.entry[i] != null && policy.state.entry[i].key != null) {
-                var statename = policy.state.entry[i].key;
+                statename = policy.state.entry[i].key;
                 var state = policy.state.entry[i].value;
                 if (statename != null && statename == policy.firstState) {
                     triggerevent = {
@@ -438,7 +432,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     if (policy && policy.state) {
         var states = policy.state.entry;
         for ( var s in states) {
-            var state = states[s];
+            state = states[s];
             if (state.key == policy.firstState) {
                 states.splice(s, 1);
                 states.unshift(state);
@@ -447,8 +441,8 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
         }
         for (i = 0; i < policy.state.entry.length; i++) {
             var stateEntry = policy.state.entry[i];
-            var statename = stateEntry.key;
-            var state = stateEntry.value;
+            statename = stateEntry.key;
+            state = stateEntry.value;
             var stateLI = editPolicyForm_addState(statename, state, createEditOrView, policy, tasks, events,
                     contextAlbums, contextItemSchemas);
             statesUL.appendChild(stateLI);
@@ -565,7 +559,7 @@ function editPolicyForm_addNewState(statesUL, createEditOrView, policy, tasks, e
         document.getElementById("editEventFormNewStateInput").value = "";
     }
     if (policy && policy.state) {
-        for (i = 0; i < policy.state.entry.length; i++) {
+        for (var i = 0; i < policy.state.entry.length; i++) {
             if (statename.toUpperCase() == policy.state.entry[i].key.toUpperCase()) {
                 alert("Policy " + policy.policyKey.name + ":" + policy.policyKey.version
                         + " already contains a state called \"" + statename + "\".");
@@ -625,14 +619,14 @@ function editPolicyForm_updateTriggerEventOptions(events) {
             }
         }
     } else {
-        var triggerSelectDiv = document.getElementById("editEventFormSelectTrigger_dropdownList");
+        triggerSelectDiv = document.getElementById("editEventFormSelectTrigger_dropdownList");
         triggerSelectDiv.innerHTML = "No Event Selected";
         var periodicEventsCheckbox = $("#periodicEventsCheckbox");
         if (periodicEventsCheckbox.is(":checked")) {
             periodicEventsCheckbox.attr("checked", false);
         }
         if (createEditOrView == "CREATE") {
-            var periodicCheckbox = document.getElementById("periodicEventsCheckbox");
+            periodicCheckbox = document.getElementById("periodicEventsCheckbox");
             if (!periodicCheckbox.hasAttribute("disabled")) {
                 periodicCheckbox.disabled = true;
             }
@@ -641,7 +635,7 @@ function editPolicyForm_updateTriggerEventOptions(events) {
     if (stateevent) {
         triggerSelectDiv.innerHTML = stateevent.displaytext;
         if (stateevent.displaytext.indexOf("PeriodicEvent") == -1) {
-            var periodicEventsCheckbox = $("#periodicEventsCheckbox");
+            periodicEventsCheckbox = $("#periodicEventsCheckbox");
             if (periodicEventsCheckbox.is(":checked")) {
                 periodicEventsCheckbox.attr("checked", false);
             }
@@ -741,7 +735,7 @@ function editPolicyForm_submitPressed() {
         });
     } else if (createEditOrView == "EDIT") {
         var firstStatePeriodic = $("#periodicEventsCheckbox").is(":checked")
-        var requestURL = window.restRootURL + "/Policy/Update?firstStatePeriodic=" + firstStatePeriodic;
+        requestURL = window.restRootURL + "/Policy/Update?firstStatePeriodic=" + firstStatePeriodic;
         ajax_put(requestURL, jsonString, function(resultData) {
             apexUtils_removeElement("editPolicyFormDiv");
             policyTab_reset();
