@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c099d1ea_de26ea00",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexAjax.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "this isn\u0027t right - now the filter always returns the same value, regardless of which item is being filtered",
+      "range": {
+        "startLine": 53,
+        "startChar": 50,
+        "endLine": 53,
+        "endChar": 52
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3e05ac5_4ad61699",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "j",
+      "range": {
+        "startLine": 169,
+        "startChar": 55,
+        "endLine": 169,
+        "endChar": 56
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c1efb8_3e44deff",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "h",
+      "range": {
+        "startLine": 310,
+        "startChar": 55,
+        "endLine": 310,
+        "endChar": 56
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918b313c_aef6392c",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "f",
+      "range": {
+        "startLine": 395,
+        "startChar": 61,
+        "endLine": 395,
+        "endChar": 62
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ed807af_cd5e566c",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "k",
+      "range": {
+        "startLine": 911,
+        "startChar": 44,
+        "endLine": 911,
+        "endChar": 45
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05bc49fa_3415f9c3",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexPolicyEditForm_State.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "g",
+      "range": {
+        "startLine": 968,
+        "startChar": 50,
+        "endLine": 968,
+        "endChar": 51
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "309de6aa_be28257d",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexTaskEditForm.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "y",
+      "range": {
+        "startLine": 49,
+        "startChar": 69,
+        "endLine": 49,
+        "endChar": 70
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ff00c5_58e987af",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexTaskEditForm.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "y",
+      "range": {
+        "startLine": 104,
+        "startChar": 73,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4793923c_17f3b1a8",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/showhideTextarea.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 1,
+      "message": "true",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 33
+      },
+      "revId": "0ae3ae454a104c62b0bcf0d47ccd7c933c9cc907",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

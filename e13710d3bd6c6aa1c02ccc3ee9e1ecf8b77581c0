@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a7ae01c_0709d6a2",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/ApexContextSchemaEditForm.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-03-25T13:25:57Z",
+      "side": 0,
+      "message": "sonar really reports this as a dup of 367?  That\u0027s crazy.",
+      "range": {
+        "startLine": 374,
+        "startChar": 8,
+        "endLine": 374,
+        "endChar": 12
+      },
+      "revId": "e13710d3bd6c6aa1c02ccc3ee9e1ecf8b77581c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
