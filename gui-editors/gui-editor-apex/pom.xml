@@ -3,6 +3,7 @@
    Copyright (C) 2018 Ericsson. All rights reserved.
    Modifications Copyright (C) 2019-2020 Nordix Foundation.
    Modifications Copyright (C) 2020 Bell Canada.
+   Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -33,7 +34,7 @@
     <description>Web client for editing Apex policies</description>
 
     <properties>
-        <policy.apex-pdp.version>2.4.0</policy.apex-pdp.version>
+        <policy.apex-pdp.version>2.5.0</policy.apex-pdp.version>
         <webapp.dir>src/main/resources/webapp</webapp.dir>
         <sonar.nodejs.executable>${project.basedir}/src/main/resources/webapp/node/node</sonar.nodejs.executable>
         <sonar.sources>${project.basedir}/src/main/java,${project.basedir}/src/main/resources/webapp/js</sonar.sources>
