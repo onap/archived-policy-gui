@@ -135,6 +135,18 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <outputDirectory>${project.build.directory}/classes</outputDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>webapp/node/**</exclude>
+                    <exclude>webapp/node_modules/**</exclude>
+                    <exclude>webapp/webpack.config.js</exclude>
+                    <exclude>webapp/package.json</exclude>
+                    <exclude>webapp/package-lock.json</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
@@ -180,32 +192,6 @@
                         <goals>
                             <goal>webpack</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <overwrite>true</overwrite>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>Copy frontend build to target</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/classes/webapp</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${webapp.dir}/dist</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                            </resources>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
