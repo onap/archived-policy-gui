@@ -84,7 +84,7 @@ public class ApexEditorMain {
         this.outStream = outStream;
 
         // Editor parameter parsing
-        final ApexEditorParameterParser parser = new ApexEditorParameterParser();
+        final var parser = new ApexEditorParameterParser();
 
         try {
             // Get and check the parameters
@@ -216,7 +216,7 @@ public class ApexEditorMain {
      */
     public static void main(final String[] args) {
         try {
-            final ApexEditorMain editorMain = new ApexEditorMain(args, System.out);
+            final var editorMain = new ApexEditorMain(args, System.out);
             editorMain.init();
         } catch (final Exception e) {
             LOGGER.error("start failed", e);

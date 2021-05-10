@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,10 +77,10 @@ public class RestInterfaceTest {
         // Start the editor
         editorMain = new ApexEditorMain(EDITOR_MAIN_ARGS, System.out);
         // prevent a stray stdin value from killing the editor
-        final ByteArrayInputStream input = new ByteArrayInputStream("".getBytes());
+        final var input = new ByteArrayInputStream("".getBytes());
         System.setIn(input);
         // Init the editor in a separate thread
-        final Runnable testThread = new Runnable() {
+        final var testThread = new Runnable() {
             @Override
             public void run() {
                 editorMain.init();

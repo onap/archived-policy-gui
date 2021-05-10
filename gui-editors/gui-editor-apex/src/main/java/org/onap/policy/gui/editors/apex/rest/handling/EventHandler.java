@@ -106,7 +106,7 @@ public class EventHandler implements RestCommandHandler {
     private ApexApiResult createEvent(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanEvent jsonbean = RestUtils.getJsonParameters(jsonString, BeanEvent.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanEvent.class);
 
         session.editModel();
 
@@ -132,7 +132,7 @@ public class EventHandler implements RestCommandHandler {
      * @return result the result of the parameter creation operation
      */
     private ApexApiResult createEventParameters(final RestSession session, final BeanEvent jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getParameters() == null || jsonbean.getParameters().isEmpty()) {
             return result;
@@ -175,7 +175,7 @@ public class EventHandler implements RestCommandHandler {
     private ApexApiResult updateEvent(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanEvent jsonbean = RestUtils.getJsonParameters(jsonString, BeanEvent.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanEvent.class);
 
         if (blank2Null(jsonbean.getName()) == null || blank2Null(jsonbean.getVersion()) == null) {
             LOGGER.exit("Event/Update" + NOT_OK);

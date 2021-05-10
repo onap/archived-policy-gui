@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +67,7 @@ public class PdpMonitoringServerParameterParser {
             throw new PdpMonitoringServerParameterException("invalid command line arguments specified", e);
         }
 
-        final PdpMonitoringServerParameters parameters = new PdpMonitoringServerParameters();
+        final var parameters = new PdpMonitoringServerParameters();
         final String[] remainingArgs = commandLine.getArgs();
 
         if (commandLine.getArgs().length > 0) {
@@ -102,8 +103,8 @@ public class PdpMonitoringServerParameterParser {
      * @return help string
      */
     public String getHelp(final String mainClassName) {
-        final StringWriter stringWriter = new StringWriter();
-        final PrintWriter stringPrintWriter = new PrintWriter(stringWriter);
+        final var stringWriter = new StringWriter();
+        final var stringPrintWriter = new PrintWriter(stringWriter);
 
         final HelpFormatter helpFormatter = new HelpFormatter();
         helpFormatter.printHelp(stringPrintWriter, 120, mainClassName + " [options...] ", "", options, 0, 0, "");

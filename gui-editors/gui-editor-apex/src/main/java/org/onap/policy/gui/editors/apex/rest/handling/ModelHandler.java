@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2019-2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -182,7 +183,7 @@ public class ModelHandler implements RestCommandHandler {
     private ApexApiResult createModel(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanModel jsonbean = RestUtils.getJsonParameters(jsonString, BeanModel.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanModel.class);
 
         session.editModel();
 
@@ -206,7 +207,7 @@ public class ModelHandler implements RestCommandHandler {
     private ApexApiResult updateModel(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanModel jsonbean = RestUtils.getJsonParameters(jsonString, BeanModel.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanModel.class);
 
         session.editModel();
 
@@ -345,7 +346,7 @@ public class ModelHandler implements RestCommandHandler {
     private String addKeyInfo2Message(final RestSession session, final String message) {
         final Gson gson = new GsonBuilder().serializeNulls().enableComplexMapKeySerialization().create();
 
-        JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
+        var jsonObject = gson.fromJson(message, JsonObject.class);
         if (jsonObject == null) {
             return message;
         }
@@ -354,7 +355,7 @@ public class ModelHandler implements RestCommandHandler {
         String version = readFieldFromJsonObject(jsonObject, VERSION, null);
 
         if (name == null && version == null) {
-            JsonObject newJsonObject = getSubJsonObject(jsonObject);
+            var newJsonObject = getSubJsonObject(jsonObject);
 
             if (newJsonObject != null) {
                 jsonObject = newJsonObject;

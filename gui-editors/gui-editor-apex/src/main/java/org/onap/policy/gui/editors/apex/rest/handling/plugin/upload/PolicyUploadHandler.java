@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,7 +63,7 @@ public class PolicyUploadHandler {
 
         }
 
-        final UploadPolicyRequestDto uploadPolicyRequestDto = new UploadPolicyRequestDto();
+        final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
         uploadPolicyRequestDto.setUserId(ApexEditorMain.getParameters().getUploadUserid());
         uploadPolicyRequestDto
             .setFileData(Base64.getEncoder().encodeToString(toscaServiceTemplate.getBytes(StandardCharsets.UTF_8)));
@@ -70,19 +71,19 @@ public class PolicyUploadHandler {
             String.format("%s.%s.%s", policyModelUuid, policyModelKey.getName(), policyModelKey.getVersion()));
 
         try {
-            final Response response = ClientBuilder.newClient().target(ApexEditorMain.getParameters().getUploadUrl())
+            final var response = ClientBuilder.newClient().target(ApexEditorMain.getParameters().getUploadUrl())
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(uploadPolicyRequestDto, MediaType.APPLICATION_JSON));
 
             if (response.getStatus() == 201) {
-                final ApexApiResult apexApiResult = new ApexApiResult(Result.SUCCESS);
+                final var apexApiResult = new ApexApiResult(Result.SUCCESS);
                 String.format("uploading Policy '%s' to URL '%s' with userId '%s' was successful",
                     policyModelKey.getId(), ApexEditorMain.getParameters().getUploadUrl(),
                     ApexEditorMain.getParameters().getUploadUserid());
                 LOGGER.exit("Model/Upload: OK");
                 return apexApiResult;
             } else {
-                final ApexApiResult apexApiResult = new ApexApiResult(Result.FAILED);
+                final var apexApiResult = new ApexApiResult(Result.FAILED);
                 apexApiResult.addMessage(
                     String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with status %s",
                         policyModelKey.getId(), ApexEditorMain.getParameters().getUploadUrl(),
@@ -91,7 +92,7 @@ public class PolicyUploadHandler {
                 return apexApiResult;
             }
         } catch (Exception e) {
-            final ApexApiResult apexApiResult = new ApexApiResult(Result.FAILED);
+            final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult
                 .addMessage(String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with error %s",
                     policyModelKey.getId(), ApexEditorMain.getParameters().getUploadUrl(),

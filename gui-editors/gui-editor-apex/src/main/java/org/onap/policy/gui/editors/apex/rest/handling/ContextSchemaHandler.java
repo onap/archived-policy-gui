@@ -101,7 +101,7 @@ public class ContextSchemaHandler implements RestCommandHandler {
 
         session.editModel();
 
-        final BeanContextSchema jsonbean = RestUtils.getJsonParameters(jsonString, BeanContextSchema.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanContextSchema.class);
         ApexApiResult result = session.getApexModelEdited().createContextSchema(jsonbean.getName(),
             jsonbean.getVersion(), jsonbean.getSchemaFlavour(), jsonbean.getSchemaDefinition(), jsonbean.getUuid(),
             jsonbean.getDescription());
@@ -124,7 +124,7 @@ public class ContextSchemaHandler implements RestCommandHandler {
 
         session.editModel();
 
-        final BeanContextSchema jsonbean = RestUtils.getJsonParameters(jsonString, BeanContextSchema.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanContextSchema.class);
 
         ApexApiResult result = session.getApexModelEdited().updateContextSchema(jsonbean.getName(),
             jsonbean.getVersion(), jsonbean.getSchemaFlavour(), jsonbean.getSchemaDefinition(), jsonbean.getUuid(),

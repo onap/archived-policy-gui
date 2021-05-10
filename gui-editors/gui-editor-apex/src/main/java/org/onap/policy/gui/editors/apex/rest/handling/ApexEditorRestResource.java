@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -114,7 +115,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
             return new ApexApiResult(Result.FAILED, "Session ID must be set to -1 to create sessions: " + sessionId);
         }
 
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
         SESSION_HANDLER.createSession(result);
         return result;
     }
@@ -632,7 +633,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     private ApexApiResult processRestCommand(final RestCommandType commandType, final RestCommand command) {
         LOGGER.entry(commandType);
         try {
-            ApexApiResult result = new ApexApiResult();
+            var result = new ApexApiResult();
             RestSession session = SESSION_HANDLER.getSession(sessionId, result);
             if (session == null) {
                 return result;
@@ -659,7 +660,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
         final String jsonString) {
         LOGGER.entry(commandType, jsonString);
         try {
-            ApexApiResult result = new ApexApiResult();
+            var result = new ApexApiResult();
             RestSession session = SESSION_HANDLER.getSession(sessionId, result);
             if (session == null) {
                 return result;
@@ -687,7 +688,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
         final String name, final String version) {
         LOGGER.entry(commandType, name, version);
         try {
-            ApexApiResult result = new ApexApiResult();
+            var result = new ApexApiResult();
             RestSession session = SESSION_HANDLER.getSession(sessionId, result);
             if (session == null) {
                 return result;
@@ -820,7 +821,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      * handling.
      */
     protected static int createCorruptSession() {
-        final ApexEditorRestResource apexEditorRestResource = new ApexEditorRestResource();
+        final var apexEditorRestResource = new ApexEditorRestResource();
         final ApexApiResult result = apexEditorRestResource.createSession();
         final int corruptSessionId = Integer.parseInt(result.getMessages().get(0));
 

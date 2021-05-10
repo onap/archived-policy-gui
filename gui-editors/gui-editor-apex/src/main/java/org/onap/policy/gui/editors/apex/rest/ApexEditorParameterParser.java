@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,7 +124,7 @@ public class ApexEditorParameterParser {
             throw new ApexEditorParameterException("invalid command line arguments specified : " + e.getMessage());
         }
 
-        final ApexEditorParameters parameters = new ApexEditorParameters();
+        final var parameters = new ApexEditorParameters();
         final String[] remainingArgs = commandLine.getArgs();
 
         if (commandLine.getArgs().length > 0) {
@@ -180,10 +181,10 @@ public class ApexEditorParameterParser {
      * @return the help
      */
     public String getHelp(final String mainClassName) {
-        final StringWriter stringWriter = new StringWriter();
-        final PrintWriter stringPrintWriter = new PrintWriter(stringWriter);
+        final var stringWriter = new StringWriter();
+        final var stringPrintWriter = new PrintWriter(stringWriter);
 
-        final HelpFormatter helpFormatter = new HelpFormatter();
+        final var helpFormatter = new HelpFormatter();
         helpFormatter.printHelp(stringPrintWriter, COMMAND_HELP_MAX_LINE_WIDTH, mainClassName + " [options...] ", null,
             options, 0, 1, "");
 

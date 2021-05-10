@@ -140,7 +140,7 @@ public class MonitoringMainTest {
     public void testMonitoringForeverStart() {
         final String[] eventArgs = {"-t", "-1"};
 
-        PdpMonitoringMain monRestMain = new PdpMonitoringMain(eventArgs);
+        var monRestMain = new PdpMonitoringMain(eventArgs);
 
         Thread monThread = new Thread() {
             @Override

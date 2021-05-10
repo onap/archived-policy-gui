@@ -23,7 +23,6 @@
 package org.onap.policy.gui.editors.apex.rest.handling;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
@@ -84,19 +83,19 @@ public abstract class RestUtils {
             return JsonNull.INSTANCE;
         }
         if (val.isJsonPrimitive() && ((JsonPrimitive) val).isString()) {
-            final String v = ((JsonPrimitive) val).getAsString();
+            final var v = ((JsonPrimitive) val).getAsString();
             if (v == null || "".equals(v)) {
                 return JsonNull.INSTANCE;
             }
         }
         if (val.isJsonArray()) {
-            final JsonArray arr = val.getAsJsonArray();
+            final var arr = val.getAsJsonArray();
             for (int i = 0; i < arr.size(); i++) {
                 arr.set(i, blank2null(arr.get(i)));
             }
         }
         if (val.isJsonObject()) {
-            final JsonObject o = val.getAsJsonObject();
+            final var o = val.getAsJsonObject();
             for (final Entry<String, JsonElement> e : o.entrySet()) {
                 e.setValue(blank2null(e.getValue()));
             }
@@ -112,9 +111,9 @@ public abstract class RestUtils {
      * @return a map of the JSON strings
      */
     public static Map<String, String> getJsonParameters(final String jsonString) {
-        final GsonBuilder gb = new GsonBuilder();
+        final var gb = new GsonBuilder();
         gb.serializeNulls().enableComplexMapKeySerialization();
-        final JsonObject jsonObject = gb.create().fromJson(jsonString, JsonObject.class);
+        final var jsonObject = gb.create().fromJson(jsonString, JsonObject.class);
 
         final Map<String, String> jsonMap = new TreeMap<>();
         for (final Entry<String, JsonElement> jsonEntry : jsonObject.entrySet()) {
@@ -134,9 +133,9 @@ public abstract class RestUtils {
      * @return a map of the JSON strings
      */
     public static <C extends BeanBase> C getJsonParameters(final String jsonString, final Class<C> clz) {
-        final GsonBuilder gb = new GsonBuilder();
+        final var gb = new GsonBuilder();
         gb.serializeNulls().enableComplexMapKeySerialization();
-        final JsonObject jsonObject = gb.create().fromJson(jsonString, JsonObject.class);
+        final var jsonObject = gb.create().fromJson(jsonString, JsonObject.class);
 
         for (final Entry<String, JsonElement> jsonEntry : jsonObject.entrySet()) {
             final JsonElement val = jsonEntry.getValue();
@@ -167,7 +166,7 @@ public abstract class RestUtils {
         } else {
             return null;
         }
-        final StreamSource source = new StreamSource(new StringReader(jsonString));
+        final var source = new StreamSource(new StringReader(jsonString));
         final JAXBElement<C> rootElement = unmarshaller.unmarshal(source, clz);
         return rootElement.getValue();
     }
@@ -179,7 +178,7 @@ public abstract class RestUtils {
      * @return the JSO nfrom concept
      */
     public static String getJsonfromConcept(final Object object) {
-        final GsonBuilder gb = new GsonBuilder();
+        final var gb = new GsonBuilder();
         gb.serializeNulls().enableComplexMapKeySerialization();
         return gb.create().toJson(object);
     }

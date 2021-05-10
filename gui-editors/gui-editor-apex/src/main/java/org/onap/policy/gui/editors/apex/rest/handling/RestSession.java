@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,7 +107,7 @@ public class RestSession {
         }
 
         @SuppressWarnings("unchecked")
-        Map<String, Object> apexEngineServiceParameterMap = (Map<String, Object>) toscaServiceTemplate
+        var apexEngineServiceParameterMap = (Map<String, Object>) toscaServiceTemplate
             .getToscaTopologyTemplate().getPoliciesAsMap().values().iterator().next().getProperties()
             .get(ENGINE_SERVICE_PARAMETERS);
 
@@ -174,8 +175,7 @@ public class RestSession {
         ToscaPolicy ap = toscaServiceTemplate.getToscaTopologyTemplate().getPoliciesAsMap().values().iterator().next();
 
         @SuppressWarnings("unchecked")
-        Map<String, Object> apexEngineServiceParameterMap = (Map<String, Object>) ap.getProperties()
-            .get(ENGINE_SERVICE_PARAMETERS);
+        var apexEngineServiceParameterMap = (Map<String, Object>) ap.getProperties().get(ENGINE_SERVICE_PARAMETERS);
 
         Object decoded = null;
         try {
@@ -186,7 +186,7 @@ public class RestSession {
 
         apexEngineServiceParameterMap.put(POLICY_TYPE_IMPL, decoded);
 
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
         try {
             result.addMessage(new StandardYamlCoder().encode(toscaServiceTemplate));
         } catch (CoderException e) {

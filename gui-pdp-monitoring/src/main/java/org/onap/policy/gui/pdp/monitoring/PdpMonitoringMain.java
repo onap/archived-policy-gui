@@ -25,7 +25,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 import lombok.ToString;
-import org.onap.policy.common.parameters.ValidationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +67,7 @@ public class PdpMonitoringMain {
     public PdpMonitoringMain(final String[] args) {
 
         // Server parameter parsing
-        final PdpMonitoringServerParameterParser parser = new PdpMonitoringServerParameterParser();
+        final var parser = new PdpMonitoringServerParameterParser();
 
         try {
             // Get and check the parameters
@@ -83,7 +82,7 @@ public class PdpMonitoringMain {
         }
 
         // Validate the parameters
-        final ValidationResult validationResult = parameters.validate();
+        final var validationResult = parameters.validate();
         if (!validationResult.isValid()) {
             throw new PdpMonitoringServerParameterException(
                     PDP_MONITORING_PREFIX + this + ") parameters invalid, " + validationResult.getResult() + '\n'
@@ -180,7 +179,7 @@ public class PdpMonitoringMain {
      */
     public static void main(final String[] args) {
         try {
-            final PdpMonitoringMain main = new PdpMonitoringMain(args);
+            final var main = new PdpMonitoringMain(args);
             main.init();
         } catch (final Exception e) {
             LOGGER.error("start failed", e);

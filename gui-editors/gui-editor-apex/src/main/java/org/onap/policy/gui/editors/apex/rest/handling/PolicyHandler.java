@@ -118,7 +118,7 @@ public class PolicyHandler implements RestCommandHandler {
     public ApexApiResult createPolicy(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanPolicy jsonbean = RestUtils.getJsonParameters(jsonString, BeanPolicy.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanPolicy.class);
 
         session.editModel();
 
@@ -145,7 +145,7 @@ public class PolicyHandler implements RestCommandHandler {
      *         can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult createPolicyContent(RestSession session, BeanPolicy jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getStates() == null || jsonbean.getStates().isEmpty()) {
             result.setResult(Result.FAILED);
@@ -306,7 +306,7 @@ public class PolicyHandler implements RestCommandHandler {
     private ApexApiResult createStateContextReferences(final RestSession session, final String policyName,
         final String policyVersion, final String stateName, final BeanState stateBean) {
 
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         final BeanKeyRef[] contextReferences = stateBean.getContexts();
         if (contextReferences == null || contextReferences.length == 0) {
@@ -353,7 +353,7 @@ public class PolicyHandler implements RestCommandHandler {
     private ApexApiResult createStateFinalizers(final RestSession session, final String policyName,
         final String policyVersion, final String stateName, final BeanState stateBean) {
 
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         final Map<String, BeanLogic> finalizers = stateBean.getFinalizers();
         if (finalizers == null || finalizers.isEmpty()) {
@@ -400,7 +400,7 @@ public class PolicyHandler implements RestCommandHandler {
     private ApexApiResult createStateOutputs(final RestSession session, final String policyName,
         final String policyVersion, final String stateName, final BeanState stateBean) {
 
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         final Map<String, BeanStateOutput> stateOutputs = stateBean.getStateOutputs();
         if (stateOutputs == null || stateOutputs.isEmpty()) {
@@ -453,7 +453,7 @@ public class PolicyHandler implements RestCommandHandler {
     private ApexApiResult createStateTaskReferences(final RestSession session, final String policyName,
         final String policyVersion, final String stateName, final BeanState stateBean) {
 
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         final Map<String, BeanStateTaskRef> taskMap = stateBean.getTasks();
         if (taskMap == null || taskMap.isEmpty()) {
@@ -506,7 +506,7 @@ public class PolicyHandler implements RestCommandHandler {
 
         LOGGER.entry(jsonString);
 
-        final BeanPolicy jsonbean = RestUtils.getJsonParameters(jsonString, BeanPolicy.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanPolicy.class);
 
         if (blank2Null(jsonbean.getName()) == null || blank2Null(jsonbean.getVersion()) == null) {
             LOGGER.exit("Task/Update" + NOT_OK);

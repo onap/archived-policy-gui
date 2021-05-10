@@ -111,7 +111,7 @@ public class TaskHandler implements RestCommandHandler {
     private ApexApiResult createTask(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanTask jsonbean = RestUtils.getJsonParameters(jsonString, BeanTask.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanTask.class);
 
         session.editModel();
 
@@ -166,7 +166,7 @@ public class TaskHandler implements RestCommandHandler {
      * @return the result of the operation
      */
     private ApexApiResult createInputFields(final RestSession session, final BeanTask jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getInputFields() == null || jsonbean.getInputFields().isEmpty()) {
             return result;
@@ -214,7 +214,7 @@ public class TaskHandler implements RestCommandHandler {
      * @return the result of the operation
      */
     private ApexApiResult createOutputFields(final RestSession session, final BeanTask jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getOutputFields() == null || jsonbean.getOutputFields().isEmpty()) {
             return result;
@@ -262,7 +262,7 @@ public class TaskHandler implements RestCommandHandler {
      * @return the result of the operation
      */
     private ApexApiResult createTaskLogic(final RestSession session, final BeanTask jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getTaskLogic() == null) {
             return result;
@@ -288,7 +288,7 @@ public class TaskHandler implements RestCommandHandler {
      * @return the result of the operation
      */
     private ApexApiResult createTaskParameters(final RestSession session, final BeanTask jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getParameters() == null || jsonbean.getParameters().isEmpty()) {
             return result;
@@ -326,7 +326,7 @@ public class TaskHandler implements RestCommandHandler {
      * @return the result of the operation
      */
     private ApexApiResult createContextReferences(final RestSession session, final BeanTask jsonbean) {
-        ApexApiResult result = new ApexApiResult();
+        var result = new ApexApiResult();
 
         if (jsonbean.getContexts() == null || jsonbean.getContexts().length == 0) {
             return result;
@@ -365,7 +365,7 @@ public class TaskHandler implements RestCommandHandler {
     private ApexApiResult updateTask(final RestSession session, final String jsonString) {
         LOGGER.entry(jsonString);
 
-        final BeanTask jsonbean = RestUtils.getJsonParameters(jsonString, BeanTask.class);
+        final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanTask.class);
 
         if (blank2Null(jsonbean.getName()) == null || blank2Null(jsonbean.getVersion()) == null) {
             LOGGER.exit("Task/Update" + NOT_OK);

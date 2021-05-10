@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,7 +120,7 @@ public class PdpMonitoringRestResource {
             @QueryParam("username") final String username, @QueryParam("password") final String password,
             @QueryParam("id") final String id) throws HttpClientConfigException, CoderException {
 
-        PdpGroups pdpGroups = getHttpClient(useHttps, hostname, port, username, password, "policy/pap/v1/pdps").get()
+        var pdpGroups = getHttpClient(useHttps, hostname, port, username, password, "policy/pap/v1/pdps").get()
                 .readEntity(PdpGroups.class);
         String groupName;
         String subGroup;
@@ -139,7 +140,7 @@ public class PdpMonitoringRestResource {
                         .filter(instance -> instance.getInstanceId().equals(instanceId)))
                 .filter(Objects::nonNull).findFirst().orElseThrow();
 
-        final StatisticsResponse responseObject = new StatisticsResponse();
+        final var responseObject = new StatisticsResponse();
 
         // Engine Service data
         responseObject.setEngineId(pdp.getInstanceId());
@@ -204,7 +205,7 @@ public class PdpMonitoringRestResource {
 
     private HttpClient getHttpClient(String useHttps, String hostname, int port, String username, String password,
             String basePath) throws HttpClientConfigException {
-        BusTopicParams busParams = new BusTopicParams();
+        var busParams = new BusTopicParams();
         busParams.setClientName("pdp-monitoring");
         busParams.setHostname(hostname);
         busParams.setManaged(false);

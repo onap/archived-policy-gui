@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +22,6 @@
 
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -53,7 +53,7 @@ public abstract class BeanBase {
         // Use field approach
         if (field != null) {
             try {
-                final Field f = this.getClass().getDeclaredField(field);
+                final var f = this.getClass().getDeclaredField(field);
                 f.trySetAccessible();
                 return (String) (f.get(this));
             } catch (final Exception e) {
