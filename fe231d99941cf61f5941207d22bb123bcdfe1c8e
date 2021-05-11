@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fa21c5e_4946f5fb",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2021-05-11T14:08:28Z",
+      "side": 1,
+      "message": "May be add a one liner short description to it when you raise subsequent reviews.",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "fe231d99941cf61f5941207d22bb123bcdfe1c8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
