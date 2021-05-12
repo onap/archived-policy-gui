@@ -22,7 +22,6 @@
 
 package org.onap.policy.gui.editors.apex.rest.handling;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
@@ -317,7 +316,7 @@ public class ModelHandler implements RestCommandHandler {
      * @return The list result, containing JSON augmented representations of objects stored in its "messages" array
      */
     private ApexApiResult addKeyInfo2Messages(final RestSession session, final ApexApiResult incomingResult) {
-        final ApexApiResult result = new ApexApiResult(incomingResult.getResult());
+        final var result = new ApexApiResult(incomingResult.getResult());
         result.setMessages(incomingResult.getMessages());
 
         final List<String> messages = incomingResult.getMessages();
@@ -344,7 +343,7 @@ public class ModelHandler implements RestCommandHandler {
      * @return the augmented message
      */
     private String addKeyInfo2Message(final RestSession session, final String message) {
-        final Gson gson = new GsonBuilder().serializeNulls().enableComplexMapKeySerialization().create();
+        final var gson = new GsonBuilder().serializeNulls().enableComplexMapKeySerialization().create();
 
         var jsonObject = gson.fromJson(message, JsonObject.class);
         if (jsonObject == null) {
@@ -418,21 +417,21 @@ public class ModelHandler implements RestCommandHandler {
     private boolean setUuidAndDescription(final RestSession session, JsonObject jsonObject, String name,
         String version) {
         // Look up the key information for the name and version
-        JsonObject keyInfoJsonObject = lookupKeyInfo(session, name, version);
-        if (keyInfoJsonObject == null || keyInfoJsonObject.get(APEX_KEY_INFO) != null) {
+        JsonObject keyInfo = lookupKeyInfo(session, name, version);
+        if (keyInfo == null || keyInfo.get(APEX_KEY_INFO) != null) {
             return false;
         }
 
-        if (keyInfoJsonObject.get(APEX_KEY_INFO).getAsJsonObject().get("UUID") != null) {
+        if (keyInfo.get(APEX_KEY_INFO).getAsJsonObject().get("UUID") != null) {
             jsonObject.addProperty(UUID,
-                keyInfoJsonObject.get(APEX_KEY_INFO).getAsJsonObject().get("UUID").getAsString());
+                keyInfo.get(APEX_KEY_INFO).getAsJsonObject().get("UUID").getAsString());
         } else {
             jsonObject.addProperty(UUID, (String) null);
         }
 
-        if (keyInfoJsonObject.get(APEX_KEY_INFO).getAsJsonObject().get(DESCRIPTION) != null) {
+        if (keyInfo.get(APEX_KEY_INFO).getAsJsonObject().get(DESCRIPTION) != null) {
             jsonObject.addProperty(DESCRIPTION,
-                keyInfoJsonObject.get(APEX_KEY_INFO).getAsJsonObject().get(DESCRIPTION).getAsString());
+                keyInfo.get(APEX_KEY_INFO).getAsJsonObject().get(DESCRIPTION).getAsString());
         } else {
             jsonObject.addProperty(DESCRIPTION, (String) null);
         }
@@ -456,7 +455,7 @@ public class ModelHandler implements RestCommandHandler {
             return null;
         }
 
-        final Gson gson = new GsonBuilder().serializeNulls().enableComplexMapKeySerialization().create();
+        final var gson = new GsonBuilder().serializeNulls().enableComplexMapKeySerialization().create();
         final String keyInfoJson = keyInfoMessages.get(0);
         return gson.fromJson(keyInfoJson, JsonObject.class);
     }

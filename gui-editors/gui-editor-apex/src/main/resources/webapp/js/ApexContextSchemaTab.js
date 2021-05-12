@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,8 +37,8 @@ function contextSchemaTab_activate() {
     ajax_get(requestURL, function(data) {
         $("#contextSchemaTableBody").find("tr:gt(0)").remove();
 
-        for (var i = 0; i < data.messages.message.length; i++) {
-            var contextSchema = JSON.parse(data.messages.message[i]).apexContextSchema;
+        for (let msg of data.messages.message) {
+            var contextSchema = JSON.parse(msg).apexContextSchema;
 
             var contextSchemaRow_tr = document.createElement("tr");
             var contextSchemaid = contextSchema.key.name + ":"  + contextSchema.key.version;

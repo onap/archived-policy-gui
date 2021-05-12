@@ -25,7 +25,6 @@ import java.util.Base64;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.policy.apex.model.basicmodel.concepts.AxArtifactKey;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
@@ -56,7 +55,7 @@ public class PolicyUploadHandler {
         LOGGER.entry();
 
         if (StringUtils.isBlank(ApexEditorMain.getParameters().getUploadUrl())) {
-            final ApexApiResult apexApiResult = new ApexApiResult(Result.FAILED);
+            final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult.addMessage("Model upload is disabled, parameter upload-url is not set on server");
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;

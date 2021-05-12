@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +34,8 @@ function createEngineServiceTable() {
     }));
     var tableRow = document.createElement("tr");
     var tableData = "";
-    for ( var h in headers) {
-        tableData += "<td id=" + tableId + "_" + headers[h].id + "></td>";
+    for (let h of headers) {
+        tableData += "<td id=" + tableId + "_" + h.id + "></td>";
     }
     tableRow.innerHTML = tableData;
     $(table).children("#engineTableBody").append(tableRow);
@@ -54,7 +55,7 @@ function setEngineServiceData(engineId, groupName, subGroupName, healthStatus, p
 
     var engineServiceTable = $("#engineServicesTable");
 
-    for ( var h in headers) {
+    for (let h in headers) {
         var td = engineServiceTable.find("#" + tableId + "_" + headers[h]);
         if (td.html() !== data[h]) {
             engineServiceTable.find("#" + tableId + "_" + headers[h]).html(data[h]);

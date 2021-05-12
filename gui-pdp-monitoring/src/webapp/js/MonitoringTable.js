@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +33,7 @@ function createEngineTable(parent, id, tableHeaders) {
     tableHead.appendChild(tableHeaderRow);
     tableHeaderRow.setAttribute("id", "engineTableHeaderRow");
 
-    for ( var t in tableHeaders) {
+    for (let t in tableHeaders) {
         var tableHeader = document.createElement("th");
         tableHeaderRow.appendChild(tableHeader);
         tableHeader.setAttribute("id", "engineTableHeader");

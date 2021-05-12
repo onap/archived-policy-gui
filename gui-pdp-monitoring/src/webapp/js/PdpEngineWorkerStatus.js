@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +42,8 @@ function createEngineStatusTable(id, startStopStatus) {
     }));
     var tableRow = document.createElement("tr");
     var tableData = "";
-    for ( var h in headers) {
-        tableData += "<td id=" + tableId + "_" + headers[h].id + "></td>";
+    for (let h of headers) {
+        tableData += "<td id=" + tableId + "_" + h.id + "></td>";
     }
     tableRow.innerHTML = tableData;
     // var actionTD = $(tableRow).find("#" + tableId + "_action");
@@ -76,23 +77,23 @@ function setEngineStatusData(engineStatusData, changed) {
     var headers = config.engineStatus.headers.map(function(a) {
         return a.id;
     });
-    for ( var esd in engineStatusData) {
-        var id = tableId + "_" + engineStatusData[esd].id;
+    for (let esd of engineStatusData) {
+        var id = tableId + "_" + esd.id;
         var existingTable = undefined;
-        for ( var est in window.engineStatusTables) {
-            if (id === window.engineStatusTables[est].getAttribute("id")) {
-                existingTable = window.engineStatusTables[est];
+        for (let est of window.engineStatusTables) {
+            if (id === est.getAttribute("id")) {
+                existingTable = est;
             }
         }
 
-        var data = [ engineStatusData[esd].timestamp, id.split("_")[1], engineStatusData[esd].status,
-                engineStatusData[esd].lastMessage, engineStatusData[esd].upTime,
-                engineStatusData[esd].policyExecutions ];
+        var data = [ esd.timestamp, id.split("_")[1], esd.status,
+                esd.lastMessage, esd.upTime,
+                esd.policyExecutions ];
 
         var table = existingTable;
         // If no table already exists for the engine, add one
         if (!table || changed) {
-            table = createEngineStatusTable(id, engineStatusData[esd].status);
+            table = createEngineStatusTable(id, esd.status);
             table.setAttribute("id", id);
             table.style["margin-bottom"] = "10px";
             table.style.display = "inline-block";
@@ -100,7 +101,7 @@ function setEngineStatusData(engineStatusData, changed) {
         }
 
         // Update data in table
-        for ( var h in headers) {
+        for (let h in headers) {
             var td = $(table).find("#" + tableId + "_" + headers[h]);
             if (td.html() !== data[h]) {
                 $(table).find("#" + tableId + "_" + headers[h]).html(data[h]);
@@ -114,7 +115,7 @@ function setEngineStatusData(engineStatusData, changed) {
         var chartConfig = config.engineChart.lastPolicyDurationChart;
         var lastPolicyDurationChart = wrapper.find("#" + chartConfig.parent)[0];
         if (lastPolicyDurationChart) {
-            updateChart(lastPolicyDurationChart, JSON.parse(engineStatusData[esd].lastPolicyDuration),
+            updateChart(lastPolicyDurationChart, JSON.parse(esd.lastPolicyDuration),
                     chartConfig.nodeColour);
         } else {
             chartConfig = config.engineChart.lastPolicyDurationChart;
@@ -122,7 +123,7 @@ function setEngineStatusData(engineStatusData, changed) {
             lastPolicyDurationDiv.setAttribute("id", chartConfig.parent);
             lastPolicyDurationDiv.setAttribute("class", "papChart");
 
-            createChart(engineStatusData[esd].lastPolicyDuration, lastPolicyDurationDiv,
+            createChart(esd.lastPolicyDuration, lastPolicyDurationDiv,
                     chartConfig.title, chartConfig.unit, chartConfig.lineStroke, chartConfig.nodeColour);
             $(chartWrapper).append(lastPolicyDurationDiv);
         }
@@ -130,14 +131,14 @@ function setEngineStatusData(engineStatusData, changed) {
         chartConfig = config.engineChart.averagePolicyDurationChart;
         var averagePolicyDurationChart = wrapper.find("#" + chartConfig.parent)[0];
         if (averagePolicyDurationChart) {
-            updateChart(averagePolicyDurationChart, JSON.parse(engineStatusData[esd].averagePolicyDuration),
+            updateChart(averagePolicyDurationChart, JSON.parse(esd.averagePolicyDuration),
                     chartConfig.nodeColour);
         } else {
             chartConfig = config.engineChart.averagePolicyDurationChart;
             var averagePolicyDurationDiv = document.createElement("div");
             averagePolicyDurationDiv.setAttribute("id", chartConfig.parent);
             averagePolicyDurationDiv.setAttribute("class", "papChart");
-            createChart(engineStatusData[esd].averagePolicyDuration, averagePolicyDurationDiv,
+            createChart(esd.averagePolicyDuration, averagePolicyDurationDiv,
                     chartConfig.title, chartConfig.unit, chartConfig.lineStroke, chartConfig.nodeColour);
             $(chartWrapper).append(averagePolicyDurationDiv);
         }

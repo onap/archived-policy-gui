@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +31,8 @@ function editContextAlbumForm_createContextAlbum(formParent) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (var i = 0; i < data2.messages.message.length; i++) {
-            var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+        for (let msg of data2.messages.message) {
+            var contextSchema = JSON.parse(msg).apexContextSchema;
             contextSchemas.push({
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -62,8 +63,8 @@ function editContextAlbumForm_viewContextAlbum(parent, name, version) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (var i = 0; i < data2.messages.message.length; i++) {
-                var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+            for (let msg of data2.messages.message) {
+                var contextSchema = JSON.parse(msg).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,
@@ -83,8 +84,8 @@ function editContextAlbumForm_editContextAlbum(formParent, name, version) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (var i = 0; i < data2.messages.message.length; i++) {
-                var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+            for (let msg of data2.messages.message) {
+                var contextSchema = JSON.parse(msg).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,

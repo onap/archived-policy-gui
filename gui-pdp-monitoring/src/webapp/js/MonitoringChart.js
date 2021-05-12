@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -120,7 +121,7 @@ function createChart(data, container, title, unit, lineStroke, nodeColour) {
  */
 function generateRandomData() {
     var data = [];
-    for (var i = 0; i < 30; i++) {
+    for (let i = 0; i < 30; i++) {
         data.push({
             timestamp : new Date().getTime() - (i * 5000),
             value : Math.floor(Math.random() * 100) + 1
