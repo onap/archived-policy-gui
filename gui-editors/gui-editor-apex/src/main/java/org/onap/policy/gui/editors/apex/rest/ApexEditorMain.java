@@ -143,10 +143,11 @@ public class ApexEditorMain {
                 // Wait for a second
                 Thread.sleep(EDITOR_RNNING_CHECK_TIMEOUT);
             }
+        } catch (final InterruptedException e) {
+            showError(e);
+            Thread.currentThread().interrupt();
         } catch (final Exception e) {
-            String message = REST_ENDPOINT_PREFIX + this + ") failed at with error: " + e.getMessage();
-            outStream.println(message);
-            LOGGER.warn(message, e);
+            showError(e);
         } finally {
             if (apexEditor != null) {
                 apexEditor.shutdown();
@@ -154,6 +155,12 @@ public class ApexEditorMain {
             }
             state = EditorState.STOPPED;
         }
+    }
+
+    private void showError(final Exception e) {
+        String message = REST_ENDPOINT_PREFIX + this + ") failed at with error: " + e.getMessage();
+        outStream.println(message);
+        LOGGER.warn(message, e);
     }
 
     /**
