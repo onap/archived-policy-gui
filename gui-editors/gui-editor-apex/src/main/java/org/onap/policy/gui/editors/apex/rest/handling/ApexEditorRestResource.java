@@ -823,7 +823,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
     protected static int createCorruptSession() {
         final var apexEditorRestResource = new ApexEditorRestResource();
         final ApexApiResult result = apexEditorRestResource.createSession();
-        final int corruptSessionId = Integer.parseInt(result.getMessages().get(0));
+        final var corruptSessionId = Integer.parseInt(result.getMessages().get(0));
 
         SESSION_HANDLER.setCorruptSession(corruptSessionId);
 

@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,8 +38,8 @@ function taskTab_activate() {
     ajax_get(requestURL, function(data) {
         $("#taskTableBody").find("tr:gt(0)").remove();
 
-        for (let i = 0; i < data.messages.message.length; i++) {
-            const task = JSON.parse(data.messages.message[i]).apexTask;
+        for (var i in data.messages.message) {
+            const task = JSON.parse(i).apexTask;
 
             const taskRow_tr = document.createElement("tr");
 
@@ -51,8 +52,8 @@ function taskTab_activate() {
                 "</td>";
 
             taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
-            for (var f = 0; f < task.inputFields.entry.length; f++) {
-                var fieldEntry = task.inputFields.entry[f];
+            for (var f in task.inputFields.entry) {
+                var fieldEntry = f;
 
                 taskTableRow +=
                     "<tr><td>"                        +
@@ -67,8 +68,8 @@ function taskTab_activate() {
             taskTableRow += "</tbody></table></td>";
 
             taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
-            for (var t = 0; t < task.outputFields.entry.length; t++) {
-                fieldEntry = task.outputFields.entry[t];
+            for (var t in task.outputFields.entry) {
+                fieldEntry = t;
 
                 taskTableRow +=
                     "<tr><td>"                        +
@@ -83,8 +84,8 @@ function taskTab_activate() {
             taskTableRow += "</tbody></table></td>";
 
             taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Parameter Name</th><th>Default Value</th></tr></thead><tbody>";
-            for (var p = 0; p < task.taskParameters.entry.length; p++) {
-                var parameterEntry = task.taskParameters.entry[p];
+            for (var p in task.taskParameters.entry) {
+                var parameterEntry = p;
 
                 taskTableRow +=
                     "<tr><td>"                        +
@@ -97,8 +98,7 @@ function taskTab_activate() {
             taskTableRow += "</tbody></table></td>";
 
             taskTableRow += "<td><table class='ebTable'><tbody>";
-            for (var c = 0; c < task.contextAlbumReference.length; c++) {
-                var contextAlbumReference = task.contextAlbumReference[c];
+            for (var contextAlbumReference in task.contextAlbumReference) {
 
                 taskTableRow +=
                     "<tr><td>"                            +

@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -309,9 +310,9 @@ function clearEngineURL(clearPdps) {
 
 function getPdpList(data) {
     const pdpArray = [];
-    for (let i = 0; i < data.groups.length; i++) {
+    for (var i in data.groups) {
         var map = {};
-        map.title = data.groups[i].name;
+        map.title = i.name;
         map.children = [];
         (data.groups[i].pdpSubgroups).forEach((pdpSubgroup, index) => {
             map.children[index] = {};
@@ -348,9 +349,9 @@ function ajax_get(requestURL, callback, useHttps, hostname, port, username, pass
         url: requestURL,
         dataType: "json",
         data: data,
-        success: function (data, textStatus, jqXHR) {
+        success: function (data2, textStatus, jqXHR) {
             if (callback) {
-                callback(data);
+                callback(data2);
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -386,9 +387,9 @@ function ajax_get_statistics(requestURL, callback, useHttps, hostname, port, use
         url: requestURL,
         dataType: "json",
         data: data,
-        success: function (data, textStatus, jqXHR) {
+        success: function (data2, textStatus, jqXHR) {
             if (callback) {
-                callback(data);
+                callback(data2);
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {

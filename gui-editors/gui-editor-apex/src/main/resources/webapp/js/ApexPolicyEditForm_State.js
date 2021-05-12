@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,8 +82,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     contextstable.appendChild(contextstable_body);
     // Add the contexts
     if (state && state.contextAlbumReference && $.isArray(state.contextAlbumReference)) {
-        for (var p = 0; p < state.contextAlbumReference.length; p++) {
-            var contextEntry = state.contextAlbumReference[p];
+        for (var contextEntry in state.contextAlbumReference) {
             var contextName = contextEntry.name + ":" + contextEntry.version;
             var ce = {
                 "name" : contextEntry.name,
@@ -165,8 +165,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     }
     // Add the tasks
     if (state && state.taskReferences && $.isArray(state.taskReferences.entry)) {
-        for (var j = 0; j < state.taskReferences.entry.length; j++) {
-            var taskEntry = state.taskReferences.entry[j];
+        for (var taskEntry in state.taskReferences.entry) {
             var taskName = taskEntry.key.name + ":" + taskEntry.key.version;
             var taskselected = {
                 "name" : taskEntry.key.name,
@@ -294,8 +293,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
         "state" : null
     });
     if (policy && policy.state && policy.state.entry && $.isArray(policy.state.entry)) {
-        for (var s = 0; s < policy.state.entry.length; s++) {
-            var st = policy.state.entry[s];
+        for (var st in policy.state.entry) {
             if (statename != st.key) { // state cannot have itself as nextstate
                 stateNextStateOptions.push({
                     "name" : st.key,
@@ -306,8 +304,8 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
         }
     }
     if (state && state.stateOutputs && $.isArray(state.stateOutputs.entry)) {
-        for (var h = 0; h < state.stateOutputs.entry.length; h++) {
-            var outputEntry = state.stateOutputs.entry[h];
+        for (var h in state.stateOutputs.entry) {
+            var outputEntry = h;
             var outputName = outputEntry.key;
             var nextState = null;
             var nxtst = outputEntry.value.nextState.localName;
@@ -391,8 +389,8 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     var logic_outputstable_body = document.createElement("tbody");
     logic_outputstable.appendChild(logic_outputstable_body);
     if (state && state.stateFinalizerLogicMap && $.isArray(state.stateFinalizerLogicMap.entry)) {
-        for (var f = 0; f < state.stateFinalizerLogicMap.entry.length; f++) {
-            outputEntry = state.stateFinalizerLogicMap.entry[f];
+        for (var f in state.stateFinalizerLogicMap.entry) {
+            outputEntry = f;
             outputName = outputEntry.key;
             logic = null;
             if (outputEntry.value != null && outputEntry.value.logic != null) {
@@ -738,8 +736,8 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
     }
     var dir_outputOptions = new Array();
     if (state != null && state.stateOutputs != null && $.isArray(state.stateOutputs.entry)) {
-        for (var p = 0; p < state.stateOutputs.entry.length; p++) {
-            var outputEntry = state.stateOutputs.entry[p].key;
+        for (var p in state.stateOutputs.entry) {
+            var outputEntry = p.key;
             dir_outputOptions.push({
                 "name" : outputEntry,
                 "displaytext" : outputEntry
@@ -748,8 +746,8 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
     }
     var logic_outputOptions = new Array();
     if (state != null && state.stateFinalizerLogicMap != null && $.isArray(state.stateFinalizerLogicMap.entry)) {
-        for (var l = 0; l < state.stateFinalizerLogicMap.entry.length; l++) {
-            outputEntry = state.stateFinalizerLogicMap.entry[l].key;
+        for (var l in state.stateFinalizerLogicMap.entry) {
+            outputEntry = l.key;
             logic_outputOptions.push({
                 "name" : outputEntry,
                 "displaytext" : outputEntry
@@ -757,7 +755,7 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
         }
     }
     var dir_selectDiv = document.createElement("div");
-    dir_selectDiv.appendChild(new dropdownList("editPolicyFormTaskDirectOutputSelection" + "_" + stateName + "_"
+    dir_selectDiv.appendChild(dropdownList("editPolicyFormTaskDirectOutputSelection" + "_" + stateName + "_"
             + random_suffix, dir_outputOptions, dir_outputselected, disabled, null, function() {
         return editPolicyForm_State_getDirectOutputMappingOptions(stateName);
     }));
@@ -1083,7 +1081,7 @@ function editPolicyForm_State_getStateBean(statename) {
                 };
 
                 var r2 = document.getElementById("editPolicyFormTaskIsDefault_" + statename + "_" + task_id);
-                if (taskstablerows.length <= 3 || (r2 != null && r2.checked == true)) { // default
+                if (taskstablerows.length <= 3 || (r2 != null && r2.checked)) {         // default
                                                                                         // is
                                                                                         // checked
                                                                                         // or

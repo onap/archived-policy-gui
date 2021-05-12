@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,8 +52,8 @@ function editEventForm_createEvent(formParent) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (var i = 0; i < data2.messages.message.length; i++) {
-            var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+        for (var msg in data2.messages.message) {
+            var contextSchema = JSON.parse(msg).apexContextSchema;
             var dt = {
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -72,8 +73,8 @@ function editEventForm_editEvent_inner(formParent, name, version, viewOrEdit) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (var i = 0; i < data2.messages.message.length; i++) {
-                var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+            for (var msg in data2.messages.message) {
+                var contextSchema = JSON.parse(msg).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,
@@ -325,8 +326,7 @@ function editEventForm_activate(parent, operation, event, contextSchemas) {
     paramstable.appendChild(paramstable_body);
     // Add the parameters
     if (event && event.parameter && event.parameter.entry) {
-        for (var p = 0; p < event.parameter.entry.length; p++) {
-            var fieldEntry = event.parameter.entry[p];
+        for (var fieldEntry in event.parameter.entry) {
             var contextSchema = fieldEntry.value.fieldSchemaKey;
             var optional = fieldEntry.value.optional;
             contextSchema["displaytext"] = contextSchema.name + ":" + contextSchema.version;
@@ -470,7 +470,7 @@ function editEventForm_addEventParam(parentTBody, disabled, name, optional, cont
     if (name == null && contextSchema == null && !disabled) {
         paramOptionalInput.setAttribute("class", "field-eventparam-optional.new");
     }
-    if (optional == true) {
+    if (optional) {
         paramOptionalInput.checked = true;
     } else {
         paramOptionalInput.checked = false;
