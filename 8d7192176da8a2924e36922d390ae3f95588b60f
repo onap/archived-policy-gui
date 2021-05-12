@@ -22,6 +22,30 @@
       "revId": "8d7192176da8a2924e36922d390ae3f95588b60f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1436f8ba_462919da",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2021-05-12T18:34:00Z",
+      "side": 1,
+      "message": "I like that 😊",
+      "parentUuid": "4a99459a_b4d4916c",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 42
+      },
+      "revId": "8d7192176da8a2924e36922d390ae3f95588b60f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
