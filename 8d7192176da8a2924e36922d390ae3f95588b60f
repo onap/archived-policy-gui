@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a99459a_b4d4916c",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-05-12T09:01:06Z",
+      "side": 1,
+      "message": "I think we can be a bit more descriptive. How about:\n\n\"This module contains the implementation code for the CLAMP GUIs in the Policy Framework\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 42
+      },
+      "revId": "8d7192176da8a2924e36922d390ae3f95588b60f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
