@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,8 +43,8 @@ function createEngineSummaryTable() {
     }));
     var tableRow = document.createElement("tr");
     var tableData = "";
-    for ( var h in headers) {
-        tableData += "<td id=" + tableId + "_" + headers[h].id + "></td>";
+    for (let h of headers) {
+        tableData += "<td id=" + tableId + "_" + h.id + "></td>";
     }
     tableRow.innerHTML = tableData;
 
@@ -69,7 +70,7 @@ function _setEngineSummaryData(timestamp, avgPolicyDuration, policyDeployCount, 
 
     var engineSummaryTable = $("#engineSummaryTable");
 
-    for ( var h in headers) {
+    for (let h in headers) {
         var td = engineSummaryTable.find("#" + tableId + "_" + headers[h]);
         if (td.html() !== data[h]) {
             engineSummaryTable.find("#" + tableId + "_" + headers[h]).html(data[h]);
@@ -98,9 +99,9 @@ function _setEngineSummaryData(timestamp, avgPolicyDuration, policyDeployCount, 
 
 function getUptimeOfOldestEngine(data) {
     var oldestUpTime = -1;
-    for ( var d in data) {
-        if (data[d].upTime > oldestUpTime) {
-            oldestUpTime = data[d].upTime;
+    for (let d of data) {
+        if (d.upTime > oldestUpTime) {
+            oldestUpTime = d.upTime;
         }
     }
     return oldestUpTime;
@@ -108,8 +109,8 @@ function getUptimeOfOldestEngine(data) {
 
 function getSumOfPolicyExecutions(data) {
     var totalPolicyExecutions = 0;
-    for ( var d in data) {
-        totalPolicyExecutions += data[d].policyExecutions;
+    for (let d of data) {
+        totalPolicyExecutions += d.policyExecutions;
     }
     return totalPolicyExecutions;
 }
@@ -117,23 +118,23 @@ function getSumOfPolicyExecutions(data) {
 function getAvgPolicyDuration(data) {
     var chartData = [];
     var avgPolicyDurations = [];
-    for ( var d in data) {
-        var avgPolicyDuration = data[d].averagePolicyDuration;
+    for (let d of data) {
+        var avgPolicyDuration = d.averagePolicyDuration;
         avgPolicyDurations.push(avgPolicyDuration);
     }
 
     if (avgPolicyDurations.length > 0) {
         chartData = avgPolicyDurations[0];
-        for (var i = 1; i < avgPolicyDurations.length; i++) {
+        for (let i = 1; i < avgPolicyDurations.length; i++) {
             var engineData = avgPolicyDurations[i];
-            for ( var c in chartData) {
+            for ( let c in chartData) {
                 chartData[c].value += engineData[c].value;
             }
         }
     }
 
-    for ( var c2 in chartData) {
-        chartData[c2].value = Math.round(chartData[c2].value / data.length);
+    for (let c2 of chartData) {
+        c2.value = Math.round(c2.value / data.length);
     }
 
     return chartData;

@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,8 +82,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     contextstable.appendChild(contextstable_body);
     // Add the contexts
     if (state && state.contextAlbumReference && $.isArray(state.contextAlbumReference)) {
-        for (var p = 0; p < state.contextAlbumReference.length; p++) {
-            var contextEntry = state.contextAlbumReference[p];
+        for (let contextEntry of state.contextAlbumReference) {
             var contextName = contextEntry.name + ":" + contextEntry.version;
             var ce = {
                 "name" : contextEntry.name,
@@ -165,8 +165,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     }
     // Add the tasks
     if (state && state.taskReferences && $.isArray(state.taskReferences.entry)) {
-        for (var j = 0; j < state.taskReferences.entry.length; j++) {
-            var taskEntry = state.taskReferences.entry[j];
+        for (let taskEntry of state.taskReferences.entry) {
             var taskName = taskEntry.key.name + ":" + taskEntry.key.version;
             var taskselected = {
                 "name" : taskEntry.key.name,
@@ -294,8 +293,7 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
         "state" : null
     });
     if (policy && policy.state && policy.state.entry && $.isArray(policy.state.entry)) {
-        for (var s = 0; s < policy.state.entry.length; s++) {
-            var st = policy.state.entry[s];
+        for (let st of policy.state.entry) {
             if (statename != st.key) { // state cannot have itself as nextstate
                 stateNextStateOptions.push({
                     "name" : st.key,
@@ -306,11 +304,10 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
         }
     }
     if (state && state.stateOutputs && $.isArray(state.stateOutputs.entry)) {
-        for (var h = 0; h < state.stateOutputs.entry.length; h++) {
-            var outputEntry = state.stateOutputs.entry[h];
-            var outputName = outputEntry.key;
-            var nextState = null;
-            var nxtst = outputEntry.value.nextState.localName;
+        for (let outputEntry of state.stateOutputs.entry) {
+            let outputName = outputEntry.key;
+            let nextState = null;
+            let nxtst = outputEntry.value.nextState.localName;
             if (nxtst != null && nxtst.toUpperCase() != "NULL") {
                 nextState = {
                     "name" : nxtst,
@@ -391,9 +388,8 @@ function editPolicyForm_State_generateStateDiv(createEditOrView, policy, statena
     var logic_outputstable_body = document.createElement("tbody");
     logic_outputstable.appendChild(logic_outputstable_body);
     if (state && state.stateFinalizerLogicMap && $.isArray(state.stateFinalizerLogicMap.entry)) {
-        for (var f = 0; f < state.stateFinalizerLogicMap.entry.length; f++) {
-            outputEntry = state.stateFinalizerLogicMap.entry[f];
-            outputName = outputEntry.key;
+        for (let outputEntry of state.stateFinalizerLogicMap.entry) {
+            let outputName = outputEntry.key;
             logic = null;
             if (outputEntry.value != null && outputEntry.value.logic != null) {
                 logic = outputEntry.value.logic;
@@ -738,8 +734,8 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
     }
     var dir_outputOptions = new Array();
     if (state != null && state.stateOutputs != null && $.isArray(state.stateOutputs.entry)) {
-        for (var p = 0; p < state.stateOutputs.entry.length; p++) {
-            var outputEntry = state.stateOutputs.entry[p].key;
+        for (let p of state.stateOutputs.entry) {
+            var outputEntry = p.key;
             dir_outputOptions.push({
                 "name" : outputEntry,
                 "displaytext" : outputEntry
@@ -748,8 +744,8 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
     }
     var logic_outputOptions = new Array();
     if (state != null && state.stateFinalizerLogicMap != null && $.isArray(state.stateFinalizerLogicMap.entry)) {
-        for (var l = 0; l < state.stateFinalizerLogicMap.entry.length; l++) {
-            outputEntry = state.stateFinalizerLogicMap.entry[l].key;
+        for (let l of state.stateFinalizerLogicMap.entry) {
+            outputEntry = l.key;
             logic_outputOptions.push({
                 "name" : outputEntry,
                 "displaytext" : outputEntry
@@ -757,7 +753,7 @@ function editPolicyForm_State_addPolicyTask(parentTBody, disabled, isdefault, st
         }
     }
     var dir_selectDiv = document.createElement("div");
-    dir_selectDiv.appendChild(new dropdownList("editPolicyFormTaskDirectOutputSelection" + "_" + stateName + "_"
+    dir_selectDiv.appendChild(dropdownList("editPolicyFormTaskDirectOutputSelection" + "_" + stateName + "_"
             + random_suffix, dir_outputOptions, dir_outputselected, disabled, null, function() {
         return editPolicyForm_State_getDirectOutputMappingOptions(stateName);
     }));
@@ -809,7 +805,7 @@ function editPolicyForm_State_getLogicOutputMappingOptions(statename) {
                                                                     // row and
                                                                     // bottom
                                                                     // row
-        for (var i = 1; i < finalizerstablerows.length - 1; i++) {
+        for (let i = 1; i < finalizerstablerows.length - 1; i++) {
             var finalizerTR = finalizerstablerows[i];
             if (finalizerTR && finalizerTR.getAttribute("finalizer_id")) {
                 var finalizer_id = finalizerTR.getAttribute("finalizer_id");
@@ -834,7 +830,7 @@ function editPolicyForm_State_getDirectOutputMappingOptions(statename) {
                                                             // ignore (2) top
                                                             // row and bottom
                                                             // row
-        for (var i = 1; i < outputstablerows.length - 1; i++) {
+        for (let i = 1; i < outputstablerows.length - 1; i++) {
             var outputTR = outputstablerows[i];
             if (outputTR && outputTR.getAttribute("output_id")) {
                 var output_id = outputTR.getAttribute("output_id");
@@ -884,7 +880,7 @@ function editPolicyForm_State_getStateBean(statename) {
                                                                 // just ignore
                                                                 // (1) bottom
                                                                 // row
-        for (var i = 0; i < contextstablerows.length - 1; i++) {
+        for (let i = 0; i < contextstablerows.length - 1; i++) {
             var contextTR = contextstablerows[i];
             if (contextTR && contextTR.getAttribute("context_id")) {
                 var context_id = contextTR.getAttribute("context_id");
@@ -907,7 +903,7 @@ function editPolicyForm_State_getStateBean(statename) {
                                                             // ignore (2) top
                                                             // row and bottom
                                                             // row
-        for (var k = 1; k < outputstablerows.length - 1; k++) {
+        for (let k = 1; k < outputstablerows.length - 1; k++) {
             var outputTR = outputstablerows[k];
             if (outputTR && outputTR.getAttribute("output_id")) {
                 var output_id = outputTR.getAttribute("output_id");
@@ -964,7 +960,7 @@ function editPolicyForm_State_getStateBean(statename) {
                                                                     // row and
                                                                     // bottom
                                                                     // row
-        for (var g = 1; g < finalizerstablerows.length - 1; g++) {
+        for (let g = 1; g < finalizerstablerows.length - 1; g++) {
             var finalizerTR = finalizerstablerows[g];
             if (finalizerTR && finalizerTR.getAttribute("finalizer_id")) {
                 var finalizer_id = finalizerTR.getAttribute("finalizer_id");
@@ -1013,7 +1009,7 @@ function editPolicyForm_State_getStateBean(statename) {
         console.error("No tasks selected for state " + statename);
         return null;
     } else { // has head so just ignore (2) top row and bottom row
-        for (var h = 1; h < taskstablerows.length - 1; h++) {
+        for (let h = 1; h < taskstablerows.length - 1; h++) {
             var taskTR = taskstablerows[h];
             if (taskTR && taskTR.getAttribute("task_id")) {
                 var task_id = taskTR.getAttribute("task_id");
@@ -1083,7 +1079,7 @@ function editPolicyForm_State_getStateBean(statename) {
                 };
 
                 var r2 = document.getElementById("editPolicyFormTaskIsDefault_" + statename + "_" + task_id);
-                if (taskstablerows.length <= 3 || (r2 != null && r2.checked == true)) { // default
+                if (taskstablerows.length <= 3 || (r2 != null && r2.checked)) {         // default
                                                                                         // is
                                                                                         // checked
                                                                                         // or
