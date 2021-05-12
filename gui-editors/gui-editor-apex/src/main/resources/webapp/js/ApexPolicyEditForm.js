@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,8 +65,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (var i = 0; i < data2.messages.message.length; i++) {
-            var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+        for (var i in data2.messages.message) {
+            var contextSchema = JSON.parse(i).apexContextSchema;
             contextSchemas.push({
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -77,8 +78,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
         requestURL = window.restRootURL + "/Task/Get?name=&version=";
         var tasks = new Array();
         ajax_get(requestURL, function(data3) {
-            for (var j = 0; j < data3.messages.message.length; j++) {
-                var task = JSON.parse(data3.messages.message[j]).apexTask;
+            for (var j in data3.messages.message) {
+                var task = JSON.parse(j).apexTask;
                 tasks.push({
                     "name" : task.key.name,
                     "version" : task.key.version,
@@ -90,8 +91,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
             requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var albums = new Array();
             ajax_get(requestURL, function(data4) {
-                for (var k = 0; k < data4.messages.message.length; k++) {
-                    var album = JSON.parse(data4.messages.message[k]).apexContextAlbum;
+                for (var k in data4.messages.message) {
+                    var album = JSON.parse(k).apexContextAlbum;
                     albums.push({
                         "name" : album.key.name,
                         "version" : album.key.version,
@@ -103,8 +104,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
                 requestURL = window.restRootURL + "/Event/Get?name=&version=";
                 var events = new Array();
                 ajax_get(requestURL, function(data5) {
-                    for (var m = 0; m < data5.messages.message.length; m++) {
-                        var event = JSON.parse(data5.messages.message[m]).apexEvent;
+                    for (var m in data5.messages.message) {
+                        var event = JSON.parse(m).apexEvent;
                         events.push({
                             "name" : event.key.name,
                             "version" : event.key.version,
@@ -300,9 +301,9 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     var firststateoptions = new Array();
     var firststateselected = null;
     if (policy != null && policy.state != null) {
-        for (var i = 0; i < policy.state.entry.length; i++) {
-            if (policy.state.entry[i] != null && policy.state.entry[i].key != null) {
-                var statename = policy.state.entry[i].key;
+        for (var i in policy.state.entry) {
+            if (i != null && i.key != null) {
+                var statename = i.key;
                 firststateoptions.push({
                     "name" : statename,
                     "displaytext" : statename
@@ -333,10 +334,10 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     triggerLabel.innerHTML = "Policy Trigger Event: ";
     var triggerevent = null;
     if (policy != null && policy.firstState != null && policy.firstState != "" && policy.state != null) {
-        for (i = 0; i < policy.state.entry.length; i++) {
-            if (policy.state.entry[i] != null && policy.state.entry[i].key != null) {
-                statename = policy.state.entry[i].key;
-                var state = policy.state.entry[i].value;
+        for (i in policy.state.entry) {
+            if (i != null && i.key != null) {
+                statename = i.key;
+                var state = i.value;
                 if (statename != null && statename == policy.firstState) {
                     triggerevent = {
                         "name" : state.trigger.name,
@@ -439,8 +440,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
                 break;
             }
         }
-        for (i = 0; i < policy.state.entry.length; i++) {
-            var stateEntry = policy.state.entry[i];
+        for (stateEntry in policy.state.entry) {
             statename = stateEntry.key;
             state = stateEntry.value;
             var stateLI = editPolicyForm_addState(statename, state, createEditOrView, policy, tasks, events,
@@ -559,8 +559,8 @@ function editPolicyForm_addNewState(statesUL, createEditOrView, policy, tasks, e
         document.getElementById("editEventFormNewStateInput").value = "";
     }
     if (policy && policy.state) {
-        for (var i = 0; i < policy.state.entry.length; i++) {
-            if (statename.toUpperCase() == policy.state.entry[i].key.toUpperCase()) {
+        for (var state: policy.state.entry) {
+            if (statename.toUpperCase() == state.key.toUpperCase()) {
                 alert("Policy " + policy.policyKey.name + ":" + policy.policyKey.version
                         + " already contains a state called \"" + statename + "\".");
                 document.getElementById("editEventFormNewStateInput").focus();
@@ -580,11 +580,11 @@ function editPolicyForm_getStateOptions() {
             "#editEventFormStates > li[stateName]"); // get li direct child
                                                         // elements with an
                                                         // attribute "stateName"
-    for (var i = 0; i < stateslis.length; i++) {
-        if (stateslis != null && stateslis[i] != null && stateslis[i].getAttribute("stateName") != null) {
+    for (var li: stateslis) {
+        if (stateslis != null && li != null && li.getAttribute("stateName") != null) {
             stateoptions.push({
-                "name" : stateslis[i].getAttribute("stateName"),
-                "displaytext" : stateslis[i].getAttribute("stateName")
+                "name" : li.getAttribute("stateName"),
+                "displaytext" : li.getAttribute("stateName")
             });
         }
     }
@@ -784,10 +784,10 @@ function editPolicyForm_getPolicyBean() {
             "#editEventFormStates > li[stateName]"); // get li direct child
                                                         // elements with an
                                                         // attribute "stateName"
-    for (var i = 0; i < stateslis.length; i++) { // ignore last li ... it has
+    for (var li: stateslis) {                       // ignore last li ... it has
                                                     // the new state button etc.
-        if (stateslis != null && stateslis[i] != null && stateslis[i].getAttribute("stateName") != null) {
-            var statename = stateslis[i].getAttribute("stateName");
+        if (stateslis != null && li != null && li.getAttribute("stateName") != null) {
+            var statename = li.getAttribute("stateName");
             var state = editPolicyForm_State_getStateBean(statename);
             if (state == null) {
                 return null;
@@ -796,7 +796,7 @@ function editPolicyForm_getPolicyBean() {
         }
     }
 
-    var policybean = {
+    return {
         "name" : name,
         "version" : version,
         "uuid" : uuid,
@@ -805,7 +805,6 @@ function editPolicyForm_getPolicyBean() {
         "firstState" : firststateselectedoption.name,
         "states" : states
     };
-    return policybean;
 }
 
 export {
