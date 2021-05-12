@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e7ab4d9_9cd6e2b4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-12T22:14:49Z",
+      "side": 1,
+      "message": "seemed better to keep the type here, so renamed the variable, instead, in attempt to satisfy sonar",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 420,
+        "endChar": 26
+      },
+      "revId": "a5924ba4af2ebeb411a1001e450e764ad5934d89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
