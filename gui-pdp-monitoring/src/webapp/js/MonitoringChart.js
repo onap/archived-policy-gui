@@ -26,36 +26,36 @@ import * as d3 from "d3";
 function createChart(data, container, title, unit, lineStroke, nodeColour) {
     // Set the dimensions of the canvas
     var margin = {
-        top : 30,
-        right : 20,
-        bottom : 30,
-        left : 50
+        top: 30,
+        right: 20,
+        bottom: 30,
+        left: 50
     }, width = 600 - margin.left - margin.right, height = 270 - margin.top
-            - margin.bottom;
+        - margin.bottom;
 
     // Set the ranges
-    var x = d3.time.scale().range([ 0, width ]);
-    var y = d3.scale.linear().range([ height, 0 ]);
+    var x = d3.time.scale().range([0, width]);
+    var y = d3.scale.linear().range([height, 0]);
 
     // Define the axes
     var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5).innerTickSize(
-            -height).outerTickSize(0).tickPadding(10);
+        -height).outerTickSize(0).tickPadding(10);
 
     var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10).innerTickSize(
-            -width).outerTickSize(0).tickPadding(10);
+        -width).outerTickSize(0).tickPadding(10);
 
     // Define the line
-    var valueline = d3.svg.line().x(function(d) {
+    var valueline = d3.svg.line().x(function (d) {
         return x(d.timestamp);
-    }).y(function(d) {
+    }).y(function (d) {
         return y(d.value);
     });
 
     // Add the svg canvas to the container
     var svg = d3.select(container).append("svg").attr("preserveAspectRatio",
-            "xMinYMin meet").attr("viewBox", "0 0 600 400").classed(
-            "svg-content-responsive", true).append("g").attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+        "xMinYMin meet").attr("viewBox", "0 0 600 400").classed(
+        "svg-content-responsive", true).append("g").attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
     // Set the unit for the value
     svg.attr("unit", unit);
@@ -63,12 +63,12 @@ function createChart(data, container, title, unit, lineStroke, nodeColour) {
     data = formatDataForChart(data);
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) {
+    x.domain(d3.extent(data, function (d) {
         return d.timestamp;
     }));
-    y.domain([ 0, d3.max(data, function(d) {
+    y.domain([0, d3.max(data, function (d) {
         return Math.ceil((d.value + 1) / 10) * 10;
-    }) ]);
+    })]);
 
     // Set the colour of the line
     if (!lineStroke) {
@@ -82,36 +82,36 @@ function createChart(data, container, title, unit, lineStroke, nodeColour) {
 
     // Add the valueline path
     svg.append("path").attr("class", "line").data(data).attr("unit", unit)
-            .attr("stroke", lineStroke).attr("d", valueline(data));
+        .attr("stroke", lineStroke).attr("d", valueline(data));
 
     // Add the scatterplot
     svg.selectAll("circle").data(data).enter().append("circle").attr("r", 3.5)
-            .attr("class", "circle").attr("fill", nodeColour).attr("cx",
-                    function(d) {
-                        return x(d.timestamp);
-                    }).attr("cy", function(d) {
-                return y(d.value);
-            })
+        .attr("class", "circle").attr("fill", nodeColour).attr("cx",
+        function (d) {
+            return x(d.timestamp);
+        }).attr("cy", function (d) {
+        return y(d.value);
+    })
 
-            // Apply the tooltip to each node
-            .on("mouseover", handleMouseOver)
-            .on("mouseout", handleMouseOut);
+        // Apply the tooltip to each node
+        .on("mouseover", handleMouseOver)
+        .on("mouseout", handleMouseOut);
 
     // Add the X Axis
     svg.append("g").attr("class", "x axis").attr("transform",
-            "translate(0," + height + ")").call(xAxis);
+        "translate(0," + height + ")").call(xAxis);
 
     // Add the Y Axis
     svg.append("g").attr("class", "y axis").call(yAxis);
 
     // Add the title
     svg.append("text").attr("x", (width / 2)).attr("y", 0 - (margin.top / 2))
-            .attr("text-anchor", "middle").style("font-size", "16px").style(
-                    "text-decoration", "underline").text(title);
+        .attr("text-anchor", "middle").style("font-size", "16px").style(
+        "text-decoration", "underline").text(title);
 
     // Add the background
     svg.selectAll(".tick:not(:first-of-type) line").attr("stroke", "#777")
-            .attr("stroke-dasharray", "2,2");
+        .attr("stroke-dasharray", "2,2");
 }
 
 /*
@@ -122,8 +122,8 @@ function generateRandomData() {
     var data = [];
     for (var i = 0; i < 30; i++) {
         data.push({
-            timestamp : new Date().getTime() - (i * 5000),
-            value : Math.floor(Math.random() * 100) + 1
+            timestamp: new Date().getTime() - (i * 5000),
+            value: Math.floor(Math.random() * 100) + 1
         });
     }
     return data;
@@ -134,12 +134,12 @@ function generateRandomData() {
  */
 function updateChart(container, data, nodeColour) {
     var margin = {
-        top : 30,
-        right : 20,
-        bottom : 30,
-        left : 50
+        top: 30,
+        right: 20,
+        bottom: 30,
+        left: 50
     }, width = 600 - margin.left - margin.right, height = 270 - margin.top
-            - margin.bottom;
+        - margin.bottom;
 
     data = formatDataForChart(data);
 
@@ -147,28 +147,28 @@ function updateChart(container, data, nodeColour) {
     var svg = d3.select(container);
 
     // Set the ranges
-    var x = d3.time.scale().range([ 0, width ]);
-    var y = d3.scale.linear().range([ height, 0 ]);
+    var x = d3.time.scale().range([0, width]);
+    var y = d3.scale.linear().range([height, 0]);
 
     // Define the axes
     var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5).innerTickSize(
-            -height).outerTickSize(0).tickPadding(10);
+        -height).outerTickSize(0).tickPadding(10);
 
     var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10).innerTickSize(
-            -width).outerTickSize(0).tickPadding(10);
+        -width).outerTickSize(0).tickPadding(10);
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) {
+    x.domain(d3.extent(data, function (d) {
         return d.timestamp;
     }));
-    y.domain([ 0, d3.max(data, function(d) {
+    y.domain([0, d3.max(data, function (d) {
         return Math.ceil((d.value + 1) / 10) * 10;
-    }) ]);
+    })]);
 
     // Update the valueline path
-    var valueline = d3.svg.line().x(function(d) {
+    var valueline = d3.svg.line().x(function (d) {
         return x(d.timestamp);
-    }).y(function(d) {
+    }).y(function (d) {
         return y(d.value);
     });
 
@@ -182,24 +182,24 @@ function updateChart(container, data, nodeColour) {
 
     // Make the changes
     svg.select(".line").data(data) // change the line
-    .transition().duration(750).attr("d", valueline(data));
+        .transition().duration(750).attr("d", valueline(data));
     svg.select(".x.axis") // change the x axis
-    .transition().duration(750).call(xAxis.ticks(5));
+        .transition().duration(750).call(xAxis.ticks(5));
     svg.select(".y.axis") // change the y axis
-    .transition().duration(750).call(yAxis);
+        .transition().duration(750).call(yAxis);
 
     // Redraw the nodes based on the new data
     svg.select("svg").select("g").selectAll("circle").data(data).enter()
-            .append("circle").attr("r", 3.5).attr("class", "circle").attr(
-                    "fill", nodeColour).attr("cx", function(d) {
-                return x(d.timestamp);
-            }).attr("cy", function(d) {
-                return y(d.value);
-            })
+        .append("circle").attr("r", 3.5).attr("class", "circle").attr(
+        "fill", nodeColour).attr("cx", function (d) {
+        return x(d.timestamp);
+    }).attr("cy", function (d) {
+        return y(d.value);
+    })
 
-            // Apply the tooltip to each node
-            .on("mouseover", handleMouseOver)
-            .on("mouseout", handleMouseOut);
+        // Apply the tooltip to each node
+        .on("mouseover", handleMouseOver)
+        .on("mouseout", handleMouseOut);
 
 }
 
@@ -208,7 +208,7 @@ function updateChart(container, data, nodeColour) {
  */
 function initTooltip() {
     d3.select("body").append("div").attr("class", "tooltip").attr("id",
-            "tooltip").style("opacity", 0);
+        "tooltip").style("opacity", 0);
 }
 
 /*
@@ -220,7 +220,7 @@ function formatDate(date) {
 
 function formatDataForChart(data) {
     // Format the data for the chart
-    data.forEach(function(d) {
+    data.forEach(function (d) {
         d.value = +d.value;
     });
 
@@ -231,17 +231,17 @@ function handleMouseOver(d) {
     var unit = svg.select(".line").attr("unit");
 
     d3.select("body").select(".tooltip").transition()
-            .duration(50).style("opacity", 1);
+        .duration(50).style("opacity", 1);
     d3.select("body").select(".tooltip").html(
-            formatDate(new Date(d.timestamp)) + "<br/>"
-                    + d.value + (unit ? " " + unit : ""))
-            .style("left", (d3.event.pageX) + "px").style(
-                    "top", (d3.event.pageY - 28) + "px");
+        formatDate(new Date(d.timestamp)) + "<br/>"
+        + d.value + (unit ? " " + unit : ""))
+        .style("left", (d3.event.pageX) + "px").style(
+        "top", (d3.event.pageY - 28) + "px");
 }
 
 function handleMouseOut(d) {
     d3.select("body").select(".tooltip").transition()
-            .duration(500).style("opacity", 0);
+        .duration(500).style("opacity", 0);
 }
 
-export { initTooltip, createChart, updateChart, generateRandomData };
+export {initTooltip, createChart, updateChart, generateRandomData};
