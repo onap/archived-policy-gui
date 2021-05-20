@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f207838_05f47267",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "maybe create a JIRA to clean this up later - there\u0027s a lot in here that isn\u0027t relevant",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c10d0378_cd43cc33",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "let\u0027s remove these; repo.npm is defined in policy-parent and I don\u0027t think we need to override repo.node at this point in time\n\nif we want to keep the ability to override repo.node, then repo.node should be added to parent/integration/pom instead",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 54
+      },
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2091c96_6820e5be",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "can delete this line",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3389d54e_19efdd1e",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "also need to specify a particular version of npm?",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aed8cceb_4b423277",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "in other gui poms, we also have a plugin to remove node, node_modules, and dist during \"maven clean\".  should we add that here, too?",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfc19f92_877e1a69",
+        "filename": "gui-clamp/ui-react/src/api/LoopActionService.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "@committers: should we change tabs to spaces during this move?  or just leave everything as is for now?  this seems like a good time to do the conversion",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46105e80_7c252e37",
+        "filename": "gui-clamp/ui-react/src/api/PoliciesListCacheMockFile.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-20T16:26:04Z",
+      "side": 1,
+      "message": "add newline at end of file\n\nsame comment for other files",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
