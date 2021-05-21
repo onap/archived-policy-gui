@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c0965f1_f0c593ff",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-21T13:02:46Z",
+      "side": 1,
+      "message": "nice!  I didn\u0027t know about this - thanks for the new knowledge!",
+      "revId": "4ea0f910d4ad5c15915eec49b5057d7af5c6dbf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
