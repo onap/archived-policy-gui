@@ -84,6 +84,23 @@
     },
     {
       "key": {
+        "uuid": "0aaef913_37dfa838",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-05-25T13:22:22Z",
+      "side": 1,
+      "message": "I think we still need this line, as the default repo is periodically inaccessible",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2091c96_6820e5be",
         "filename": "gui-clamp/pom.xml",
         "patchSetId": 2
