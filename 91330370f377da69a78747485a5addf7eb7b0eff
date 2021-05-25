@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a6f1e449_5710378e",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Created Jira to refactor gitignore\n\nhttps://jira.onap.org/browse/POLICY-3325",
+      "parentUuid": "0f207838_05f47267",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c10d0378_cd43cc33",
         "filename": "gui-clamp/pom.xml",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "08ea2ae5_5e67c657",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c10d0378_cd43cc33",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 54
+      },
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2091c96_6820e5be",
         "filename": "gui-clamp/pom.xml",
         "patchSetId": 2
@@ -56,6 +98,24 @@
       "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74f7cff3_8df7a312",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2091c96_6820e5be",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "2c345dc5_a8621913",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3389d54e_19efdd1e",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aed8cceb_4b423277",
         "filename": "gui-clamp/pom.xml",
         "patchSetId": 2
@@ -90,6 +168,24 @@
       "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b077749_6b54117e",
+        "filename": "gui-clamp/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aed8cceb_4b423277",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "22b033a3_9b2c6ca6",
+        "filename": "gui-clamp/ui-react/src/api/LoopActionService.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0aa1b27_a74e9bb5",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46105e80_7c252e37",
         "filename": "gui-clamp/ui-react/src/api/PoliciesListCacheMockFile.json",
         "patchSetId": 2
@@ -154,6 +274,24 @@
       "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf6674f5_69c2c701",
+        "filename": "gui-clamp/ui-react/src/api/PoliciesListCacheMockFile.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-25T08:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46105e80_7c252e37",
+      "revId": "91330370f377da69a78747485a5addf7eb7b0eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
