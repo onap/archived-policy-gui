@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "55c6db46_d8a864bd",
+        "filename": "gui-clamp/ui-react/src/utils/OnapUtils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-27T09:12:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dd8c80d_9f0d1ddf",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "ffc076573e530c822fbf6ce6f02c135a33ae636c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f339719_a6ac1613",
         "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringChart.js",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "ffc076573e530c822fbf6ce6f02c135a33ae636c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f70aa47_9636b154",
+        "filename": "gui-pdp-monitoring/src/webapp/js/MonitoringChart.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-05-27T09:12:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f339719_a6ac1613",
+      "revId": "ffc076573e530c822fbf6ce6f02c135a33ae636c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
