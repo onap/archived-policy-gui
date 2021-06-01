@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4f5d79f_0d3c8854",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-01T13:51:10Z",
+      "side": 1,
+      "message": "is there no way to simply say \"ignore anything that starts with \u0027.\u0027\"?",
+      "revId": "46b223e3150bb1a6bcf878406182bfc31e90eac0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebb97bc1_0514f0c4",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-01T13:51:10Z",
+      "side": 1,
+      "message": "missing newline at the end of the file",
+      "revId": "46b223e3150bb1a6bcf878406182bfc31e90eac0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
