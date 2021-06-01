@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "cb56787b_bbc229f4",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 477
+      },
+      "writtenOn": "2021-06-01T14:52:13Z",
+      "side": 1,
+      "message": "I think for .idea, should include at least an entry to ignore *.iml project files, check out other repos for a reference",
+      "revId": "46b223e3150bb1a6bcf878406182bfc31e90eac0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ebb97bc1_0514f0c4",
         "filename": "gui-clamp/.gitignore",
         "patchSetId": 1
