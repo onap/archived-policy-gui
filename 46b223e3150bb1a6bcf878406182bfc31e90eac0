@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ea7add21_be16a3c8",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-02T12:43:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f5d79f_0d3c8854",
+      "revId": "46b223e3150bb1a6bcf878406182bfc31e90eac0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb56787b_bbc229f4",
         "filename": "gui-clamp/.gitignore",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "46b223e3150bb1a6bcf878406182bfc31e90eac0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4614ef3_22e2096d",
+        "filename": "gui-clamp/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-02T12:43:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb56787b_bbc229f4",
+      "revId": "46b223e3150bb1a6bcf878406182bfc31e90eac0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
