@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c26ed6b_32cf332b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-06-02T12:58:49Z",
+      "side": 1,
+      "message": "Commit message should be \u003c\u003d 50 characters\n\nSee\nhttps://wiki.onap.org/display/DW/Commit+Messages",
+      "revId": "bb3c0eb0698057e250e06e2206af6504d39b86ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
