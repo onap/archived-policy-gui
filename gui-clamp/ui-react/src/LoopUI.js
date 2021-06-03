@@ -54,6 +54,7 @@ import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { Link } from 'react-router-dom';
+import ReadAndConvertYaml from "./modern-components/ReadAndConvertYaml";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -298,6 +299,7 @@ export default class LoopUI extends React.Component {
   renderRoutes() {
     return (
       <React.Fragment>
+        <Route path="/readToscaTemplate" render={ (routeProps) => (<ReadAndConvertYaml { ...routeProps } />) }/>
         <Route path="/viewLoopTemplatesModal" render={ (routeProps) => (<ViewLoopTemplatesModal { ...routeProps } />) }/>
         <Route path="/manageDictionaries" render={ (routeProps) => (<ManageDictionaries { ...routeProps } />) }/>
         <Route path="/viewAllPolicies" render={ (routeProps) => (<ViewAllPolicies { ...routeProps } />) }/>
