@@ -46,6 +46,30 @@
       "revId": "61bb4220b57d5c176709aeca81b0176c980291cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b407f1da_b3188752",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-03T15:44:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "18589da7_04020408",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 37
+      },
+      "revId": "61bb4220b57d5c176709aeca81b0176c980291cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
