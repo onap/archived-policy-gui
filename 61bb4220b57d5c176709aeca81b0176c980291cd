@@ -22,6 +22,30 @@
       "revId": "61bb4220b57d5c176709aeca81b0176c980291cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18589da7_04020408",
+        "filename": "gui-editors/gui-editor-apex/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7662
+      },
+      "writtenOn": "2021-06-03T15:29:31Z",
+      "side": 1,
+      "message": "It complains, when I try to remove the version number.\nI used inline library for mocking http request. It\u0027s mocking static method, and that\u0027s why I\u0027ve changed the artifact.",
+      "parentUuid": "3ea2257a_e3194177",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 37
+      },
+      "revId": "61bb4220b57d5c176709aeca81b0176c980291cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
