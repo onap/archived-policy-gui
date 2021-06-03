@@ -1,6 +1,6 @@
 {
 	"name": "onap-policy-clamp-ui",
-	"version": "${project.version}",
+	"version": "2.1.0-SNAPSHOT",
 	"description": "ONAP Policy Clamp UI",
 	"author": "ONAP Policy Team",
 	"license": "Apache-2.0",
@@ -8,11 +8,11 @@
 		"registry": "${npm.publish.url}"
 	},
 	"main": "index.js",
-	"proxy": "https://localhost:8443",
 	"scripts": {
 		"start": "HTTPS=true react-scripts start",
 		"build": "react-scripts build",
 		"test": "jest",
+		"test:clear": "jest --clearCache",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
 		"eject": "react-scripts eject"
@@ -25,30 +25,34 @@
 		"src/theme"
 	],
 	"dependencies": {
-		"@json-editor/json-editor": "2.5.2",
 		"@fortawesome/fontawesome-free": "5.15.2",
-		"react": "17.0.1",
-		"react-dom": "17.0.1",
-		"react-scripts": "4.0.3",
-		"react-bootstrap": "1.5.2",
+		"@json-editor/json-editor": "2.5.2",
+		"@material-ui/core": "^4.11.3",
+		"@material-ui/icons": "^4.11.2",
 		"bootstrap-css-only": "4.3.1",
-		"styled-components": "5.2.1",
-		"react-router-dom": "5.2.0",
-		"@material-ui/core": "4.11.3",
-		"@material-ui/icons": "4.11.2",
+		"http-proxy-middleware": "^0.19.1",
+		"js-yaml": "^4.1.0",
+		"js-yaml-loader": "^1.2.2",
 		"material-table": "1.68.1",
+		"react": "17.0.1",
+		"react-bootstrap": "1.5.2",
+		"react-dom": "17.0.1",
+		"react-native-fs": "^2.18.0",
+		"react-router-dom": "5.2.0",
+		"react-scripts": "4.0.3",
 		"react-select": "4.2.1",
-		"react-uuid": "1.0.2"
+		"react-uuid": "1.0.2",
+		"styled-components": "5.2.1"
 	},
 	"devDependencies": {
-		"jest": "26.6.0",
-		"babel-jest": "26.6.0",
+		"@babel/plugin-proposal-class-properties": "7.13.0",
 		"@babel/preset-env": "7.13.10",
 		"@babel/preset-react": "7.12.13",
-		"@babel/plugin-proposal-class-properties": "7.13.0",
+		"babel-jest": "26.6.0",
 		"enzyme": "3.11.0",
 		"enzyme-adapter-react-17-updated": "1.0.2",
 		"enzyme-to-json": "3.6.1",
+		"jest": "26.6.0",
 		"jest-fetch-mock": "3.0.3"
 	},
 	"browserslist": [
@@ -95,4 +99,3 @@
 		]
 	}
 }
-
