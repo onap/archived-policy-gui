@@ -6,6 +6,10 @@ exports[`Verify LoopUI Test the render method 1`] = `
 >
   <Memo(l) />
   <Route
+    path="/readToscaTemplate"
+    render={[Function]}
+  />
+  <Route
     path="/viewLoopTemplatesModal"
     render={[Function]}
   />
