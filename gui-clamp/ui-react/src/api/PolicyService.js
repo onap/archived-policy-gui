@@ -41,7 +41,7 @@ export default class PolicyService {
         console.error("getPoliciesList error occurred ", error);
         alert("getPoliciesList error occurred " + error);
         return undefined;
-      })
+      });
   }
 
   static createNewPolicy(policyModelType, policyModelVersion, policyName, policyVersion, policyJson) {
@@ -92,6 +92,60 @@ export default class PolicyService {
       .catch(function (error) {
         console.error("deletePolicy error occurred ", error);
         alert("deletePolicy error occurred " + error);
+        return undefined;
+      });
+  }
+
+  static updatePdpDeployment(pdpOperationsList) {
+    return fetch(window.location.pathname + 'restservices/clds/v2/policies/pdpDeployment', {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(pdpOperationsList)
+    })
+      .then(function (response) {
+        console.debug("updatePdpDeployment response received: ", response.status);
+        if (response.ok) {
+          console.info("updatePdpDeployment query successful");
+          return response.text();
+        } else {
+          return response.text().then(responseBody => {
+            throw new Error("HTTP " + response.status + "," + responseBody);
+          })
+        }
+      })
+      .catch(function (error) {
+        console.error("updatePdpDeployment error occurred ", error);
+        alert("updatePdpDeployment error occurred " + error);
+        return undefined;
+      });
+  }
+
+  static sendNewPolicyModel(newPolicyModel) {
+    return fetch(window.location.pathname + 'restservices/clds/v2/policies/policytype', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        "Content-Type": "plain/text"
+      },
+      body: newPolicyModel
+    })
+      .then(function (response) {
+        console.debug("sendNewPolicyModel response received: ", response.status);
+        if (response.ok) {
+          console.info("sendNewPolicyModel query successful");
+          return response.text();
+        } else {
+          return response.text().then(responseBody => {
+            throw new Error("HTTP " + response.status + "," + responseBody);
+          })
+        }
+      })
+      .catch(function (error) {
+        console.error("sendNewPolicyModel error occurred ", error);
+        alert("sendNewPolicyModel error occurred " + error);
         return undefined;
       });
   }

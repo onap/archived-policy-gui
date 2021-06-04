@@ -26,7 +26,6 @@ export { default as CreateLoopModal } from './src/components/dialogs/Loop/Create
 export { default as DeployLoopModal } from './src/components/dialogs/Loop/DeployLoopModal';
 export { default as LoopActionService } from './src/api/LoopActionService';
 export { default as LoopCache } from './src/api/LoopCache';
-export { default as PoliciesListCache } from './src/api/PoliciesListCache';
 export { default as LoopLogs } from './src/components/loop_viewer/logs/LoopLogs';
 export { default as LoopPropertiesModal } from './src/components/dialogs/Loop/LoopPropertiesModal';
 export { default as LoopService } from './src/api/LoopService';
@@ -52,3 +51,6 @@ export { default as UserInfoModal } from './src/components/dialogs/UserInfoModal
 export { default as UserService } from './src/api/UserService';
 export { default as ViewLoopTemplatesModal } from './src/components/dialogs/Tosca/ViewLoopTemplatesModal';
 export { default as ViewAllPolicies } from './src/components/dialogs/Policy/ViewAllPolicies';
+export { default as PolicyDeploymentEditor } from './src/components/dialogs/Policy/PolicyDeploymentEditor';
+export { default as PoliciesTreeViewer } from './src/components/dialogs/Policy/PoliciesTreeViewer';
+export { default as PolicyToscaFileSelector } from './src/components/dialogs/Policy/PolicyToscaFileSelector';
