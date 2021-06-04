@@ -16,6 +16,24 @@
       "revId": "db2559f90ff6010c1433c86a16ee307d23300ba3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "026dcf2e_63620fc7",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-04T15:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81483deb_51f9ab09",
+      "revId": "db2559f90ff6010c1433c86a16ee307d23300ba3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

@@ -70,6 +70,30 @@
       "revId": "3864ec9e2c7688299f9f0415126e1938a856c3e6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef3ecf47_e9361bbd",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-04T15:27:11Z",
+      "side": 1,
+      "message": "This file tells npm what dependencies to download. It is copied into the /target directory at build-time. The maven npm plugin then downloads the dependencies and runs the tests.",
+      "parentUuid": "bb1de2c5_7adcd6c3",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "3864ec9e2c7688299f9f0415126e1938a856c3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
