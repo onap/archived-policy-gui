@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccdfb093_27d56e7f",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2021-06-04T18:52:42Z",
+      "side": 1,
+      "message": "Is there a possibility to take this as input from user? Or make this configurable?",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
