@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa5025c8_3d21e4f9",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-06-04T10:46:49Z",
+      "side": 1,
+      "message": "I thought we got rid of these tabs.\n\nCan you remove them?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "3864ec9e2c7688299f9f0415126e1938a856c3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
