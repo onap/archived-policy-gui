@@ -46,6 +46,30 @@
       "revId": "3864ec9e2c7688299f9f0415126e1938a856c3e6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb1de2c5_7adcd6c3",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-04T13:24:31Z",
+      "side": 1,
+      "message": "I think this is a generated file, in which case, it doesn\u0027t matter either way.",
+      "parentUuid": "4fd24d26_d84cc326",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "3864ec9e2c7688299f9f0415126e1938a856c3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
