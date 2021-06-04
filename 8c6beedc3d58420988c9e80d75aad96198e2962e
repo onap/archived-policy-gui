@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7c6db0f_ff659edd",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/__snapshots__/PolicyEditor.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-04T16:21:36Z",
+      "side": 1,
+      "message": "trailing spaces",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 29
+      },
+      "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4e3fb10_67100872",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/__snapshots__/PolicyEditor.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-04T16:21:36Z",
+      "side": 1,
+      "message": "trailing spaces",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 29
+      },
+      "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f311213_84c61e67",
+        "filename": "gui-clamp/ui-react/src/setupTests.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-04T16:21:36Z",
+      "side": 1,
+      "message": "is this right?",
+      "range": {
+        "startLine": 25,
+        "startChar": 21,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
