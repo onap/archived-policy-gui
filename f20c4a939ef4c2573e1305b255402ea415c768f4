@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7144efa0_900eadd2",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-07T08:09:27Z",
+      "side": 1,
+      "message": "Normally we use to put all the different queries in api folder.\nBetter to be consistent with the existing project 😊",
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0727ff6f_59e19603",
         "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
         "patchSetId": 5
@@ -60,6 +77,47 @@
         "endLine": 17,
         "endChar": 75
       },
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc3dc93d_102d0c6a",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-07T08:09:27Z",
+      "side": 1,
+      "message": "Usually we create a rest endpoint on the clampBE that is called by the UI, the clamp be has the knowledge of the different password ... for policy, and everything is configured in OOM already.\nThe only creds that should be forwarded to the CLAMPbe are the user creds.",
+      "parentUuid": "afe24061_4add2a4c",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32190bce_21ed0664",
+        "filename": "gui-clamp/ui-react/src/modern-components/ReadAndConvertYaml.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-07T08:09:27Z",
+      "side": 1,
+      "message": "Why not putting that class in the existing component/dialog folder ?",
       "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
