@@ -212,6 +212,30 @@
       "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0684ca1_b23c3407",
+        "filename": "gui-clamp/ui-react/src/setupTests.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-08T12:13:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e490aa19_f16c05c0",
+      "range": {
+        "startLine": 25,
+        "startChar": 21,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
