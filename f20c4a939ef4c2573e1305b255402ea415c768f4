@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0c561d49_dc242047",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-08T09:01:43Z",
+      "side": 1,
+      "message": "I will change this",
+      "parentUuid": "7144efa0_900eadd2",
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0727ff6f_59e19603",
         "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2021-06-04T20:07:24Z",
       "side": 1,
       "message": "will this be right, the assumption of running in same host?",
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5feb7e62_64a7bda9",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-08T09:01:43Z",
+      "side": 1,
+      "message": "I will change this",
+      "parentUuid": "0727ff6f_59e19603",
       "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -107,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "f0f1d88b_67c5dc76",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-08T09:01:43Z",
+      "side": 1,
+      "message": "I will do this as suggested by Seb",
+      "parentUuid": "fc3dc93d_102d0c6a",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "32190bce_21ed0664",
         "filename": "gui-clamp/ui-react/src/modern-components/ReadAndConvertYaml.js",
         "patchSetId": 5
@@ -118,6 +178,24 @@
       "writtenOn": "2021-06-07T08:09:27Z",
       "side": 1,
       "message": "Why not putting that class in the existing component/dialog folder ?",
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2602041c_5c5dbb02",
+        "filename": "gui-clamp/ui-react/src/modern-components/ReadAndConvertYaml.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-08T09:01:43Z",
+      "side": 1,
+      "message": "Yes, I can do this.",
+      "parentUuid": "32190bce_21ed0664",
       "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
