@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "12cfae81_2e3993b9",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/__snapshots__/PolicyEditor.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-08T12:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d84d13ab_c3d32716",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 29
+      },
+      "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4e3fb10_67100872",
         "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/__snapshots__/PolicyEditor.test.js.snap",
         "patchSetId": 1
@@ -93,6 +117,30 @@
       "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38f6dc1e_afc42197",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/__snapshots__/PolicyEditor.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-08T12:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aed73b3_9bc0dc39",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 29
+      },
+      "revId": "8c6beedc3d58420988c9e80d75aad96198e2962e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
