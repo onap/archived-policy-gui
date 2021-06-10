@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40653629_a58118f8",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "Same comment for the caret",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efac8a49_62b0d053",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "Same comment for the caret",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cdb2945_786178e9",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "Even if NPM dependencies are widely using that behind the scene, I would avoid that(^ or ~) in order to have a more reproductible build.\nYou can notice that all the dep I\u0027ve set previously do not have the ^ or ~ 😊",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e262b2de_26c5ea35",
+        "filename": "gui-clamp/ui-react/src/LoopUI.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "Update the license modifications",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72781949_168b2034",
+        "filename": "gui-clamp/ui-react/src/api/GetToscaTemplate.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "Change your license 😊",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9400a6c_f2bfb73b",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ReadAndConvertYaml.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "License, change the company",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ef60988_a108fe51",
+        "filename": "gui-clamp/ui-react/src/components/menu/MenuBar.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-10T20:00:01Z",
+      "side": 1,
+      "message": "License modifications",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
