@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "48be3865_8aa4bcb9",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-10T13:27:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c561d49_dc242047",
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0727ff6f_59e19603",
         "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
         "patchSetId": 5
@@ -69,6 +87,24 @@
       "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8dad8be_b296d4f0",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-10T13:27:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5feb7e62_64a7bda9",
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -164,6 +200,30 @@
       "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bcdfdcc_df6b8f7f",
+        "filename": "gui-clamp/ui-react/src/modern-components/GetToscaTemplate.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-10T13:27:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f1d88b_67c5dc76",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "f20c4a939ef4c2573e1305b255402ea415c768f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
