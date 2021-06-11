@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "84b777fa_43bc341e",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40653629_a58118f8",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efac8a49_62b0d053",
         "filename": "gui-clamp/ui-react/package.json",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40a87c83_a6eae220",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efac8a49_62b0d053",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "90c756b6_867b36cd",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cdb2945_786178e9",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e262b2de_26c5ea35",
         "filename": "gui-clamp/ui-react/src/LoopUI.js",
         "patchSetId": 8
@@ -67,6 +121,24 @@
       "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4da11bee_3822abdf",
+        "filename": "gui-clamp/ui-react/src/LoopUI.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e262b2de_26c5ea35",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "2ab7cfea_6144f773",
+        "filename": "gui-clamp/ui-react/src/api/GetToscaTemplate.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72781949_168b2034",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9400a6c_f2bfb73b",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ReadAndConvertYaml.js",
         "patchSetId": 8
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "bad67049_7c40e6ee",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ReadAndConvertYaml.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9400a6c_f2bfb73b",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ef60988_a108fe51",
         "filename": "gui-clamp/ui-react/src/components/menu/MenuBar.js",
         "patchSetId": 8
@@ -118,6 +226,24 @@
       "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2d4a8a7_6a7bdfc0",
+        "filename": "gui-clamp/ui-react/src/components/menu/MenuBar.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-11T11:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ef60988_a108fe51",
+      "revId": "c22316601c225204361d193a7aa551f2e4bf7f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
