@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1552b870_b15d72b4",
+        "filename": "gui-clamp/ui-react/src/LoopUI.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-11T12:13:13Z",
+      "side": 1,
+      "message": "Date ?? 😄",
+      "revId": "451ebd54ef032ea06167045dc20372ae97660823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9dbf647_585dcae6",
+        "filename": "gui-clamp/ui-react/src/api/GetToscaTemplate.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-11T12:13:13Z",
+      "side": 1,
+      "message": "???? 😄",
+      "revId": "451ebd54ef032ea06167045dc20372ae97660823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2e7e2b9_4dad65ca",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ReadAndConvertYaml.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-11T12:13:13Z",
+      "side": 1,
+      "message": "??? 😄",
+      "revId": "451ebd54ef032ea06167045dc20372ae97660823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "643eb56f_692b025d",
+        "filename": "gui-clamp/ui-react/src/components/menu/MenuBar.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-11T12:13:13Z",
+      "side": 1,
+      "message": "Date ?? 😄",
+      "revId": "451ebd54ef032ea06167045dc20372ae97660823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
