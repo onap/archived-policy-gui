@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +26,6 @@ import java.util.Base64;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.policy.apex.model.basicmodel.concepts.AxArtifactKey;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
@@ -56,7 +56,7 @@ public class PolicyUploadHandler {
         LOGGER.entry();
 
         if (StringUtils.isBlank(ApexEditorMain.getParameters().getUploadUrl())) {
-            final ApexApiResult apexApiResult = new ApexApiResult(Result.FAILED);
+            final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult.addMessage("Model upload is disabled, parameter upload-url is not set on server");
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;

@@ -3,6 +3,7 @@
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -90,7 +91,7 @@ public abstract class RestUtils {
         }
         if (val.isJsonArray()) {
             final var arr = val.getAsJsonArray();
-            for (int i = 0; i < arr.size(); i++) {
+            for (var i = 0; i < arr.size(); i++) {
                 arr.set(i, blank2null(arr.get(i)));
             }
         }
@@ -156,7 +157,7 @@ public abstract class RestUtils {
     public static <C extends AxConcept> C getConceptFromJson(final String jsonString, final Class<C> clz)
         throws JAXBException {
         Unmarshaller unmarshaller = null;
-        final JAXBContext jaxbContext = JAXBContext.newInstance(clz);
+        final var jaxbContext = JAXBContext.newInstance(clz);
         unmarshaller = jaxbContext.createUnmarshaller();
         if (jsonString.matches(JSON_INPUT_TYPE_REGEXP)) {
             unmarshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
