@@ -106,7 +106,7 @@ public class PdpMonitoringServerParameterParser {
         final var stringWriter = new StringWriter();
         final var stringPrintWriter = new PrintWriter(stringWriter);
 
-        final HelpFormatter helpFormatter = new HelpFormatter();
+        final var helpFormatter = new HelpFormatter();
         helpFormatter.printHelp(stringPrintWriter, 120, mainClassName + " [options...] ", "", options, 0, 0, "");
 
         return stringWriter.toString();

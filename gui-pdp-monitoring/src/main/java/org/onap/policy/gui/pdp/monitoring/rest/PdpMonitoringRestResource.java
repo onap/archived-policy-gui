@@ -45,7 +45,6 @@ import org.onap.policy.common.endpoints.http.client.HttpClientConfigException;
 import org.onap.policy.common.endpoints.http.client.HttpClientFactoryInstance;
 import org.onap.policy.common.utils.coder.CoderException;
 import org.onap.policy.common.utils.coder.StandardCoder;
-import org.onap.policy.models.pdp.concepts.Pdp;
 import org.onap.policy.models.pdp.concepts.PdpEngineWorkerStatistics;
 import org.onap.policy.models.pdp.concepts.PdpGroups;
 import org.onap.policy.models.pdp.concepts.PdpStatistics;
@@ -134,7 +133,7 @@ public class PdpMonitoringRestResource {
             throw new IllegalArgumentException("Cannot parse groupName, subGroup and instanceId from " + id);
         }
 
-        Pdp pdp = pdpGroups.getGroups().stream().filter(group -> group.getName().equals(groupName))
+        var pdp = pdpGroups.getGroups().stream().filter(group -> group.getName().equals(groupName))
                 .flatMap(group -> group.getPdpSubgroups().stream().filter(sub -> sub.getPdpType().equals(subGroup)))
                 .flatMap(sub -> sub.getPdpInstances().stream()
                         .filter(instance -> instance.getInstanceId().equals(instanceId)))
@@ -157,7 +156,7 @@ public class PdpMonitoringRestResource {
         final List<EngineStatus> engineStatusList = new ArrayList<>();
 
         if (!pdpStats.isEmpty()) {
-            PdpStatistics pdpStatistics = pdpStats.get(groupName).get(subGroup).get(0);
+            var pdpStatistics = pdpStats.get(groupName).get(subGroup).get(0);
             responseObject.setTimeStamp(pdpStatistics.getTimeStamp().toString());
             responseObject.setPolicyDeployCount(pdpStatistics.getPolicyDeployCount());
             responseObject.setPolicyDeploySuccessCount(pdpStatistics.getPolicyDeploySuccessCount());
@@ -169,7 +168,7 @@ public class PdpMonitoringRestResource {
             // Engine Status data
             for (final PdpEngineWorkerStatistics engineStats : pdpStatistics.getEngineStats()) {
                 try {
-                    final EngineStatus engineStatusObject = new EngineStatus();
+                    final var engineStatusObject = new EngineStatus();
                     engineStatusObject.setTimestamp(pdpStatistics.getTimeStamp().toString());
                     engineStatusObject.setId(engineStats.getEngineId());
                     engineStatusObject.setStatus(engineStats.getEngineWorkerState().name());

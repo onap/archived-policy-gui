@@ -212,7 +212,7 @@ public class RestSession {
 
         AxArtifactKey policyModelKey = apexModelBeingUploaded.getPolicyModel().getKey();
 
-        String policyModelUUid = apexModelBeingUploaded.getPolicyModel().getKeyInformation().get(policyModelKey)
+        var policyModelUUid = apexModelBeingUploaded.getPolicyModel().getKeyInformation().get(policyModelKey)
             .getUuid().toString();
         return new PolicyUploadHandler().doUpload(result.getMessage(), policyModelKey, policyModelUUid);
     }
