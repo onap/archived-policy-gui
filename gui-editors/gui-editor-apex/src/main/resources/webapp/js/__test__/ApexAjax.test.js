@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,19 +20,23 @@
 const mod = require('../ApexAjax');
 
 const requestURL = "http://localhost:7979";
-const data = {
-    useHttps: 'useHttps',
-    hostname: 'hostname',
-    port: 'port',
-    username: 'username',
-    password: 'password',
-    messages: {
-        message: ''
-    },
-    content: ['01', '02'],
-    result: 'ok',
-    ok: true
-}
+let data = {};
+
+beforeEach(() => {
+    data = {
+        useHttps: 'useHttps',
+        hostname: 'hostname',
+        port: 'port',
+        username: 'username',
+        password: 'password',
+        messages: {
+            message: ''
+        },
+        content: ['01', '02'],
+        result: 'ok',
+        ok: true
+    };
+});
 
 test('Test ajax_get error', () => {
    const callback = jest.fn();
@@ -44,15 +48,68 @@ test('Test ajax_get error', () => {
    expect(mock_get_error).toHaveBeenCalled();
 });
 
-test('Test ajax_get success', () => {
-    const callback = jest.fn();
+test('Test ajax_get success', (done) => {
+    const callback = jest.fn((actualData) => {
+        expect(actualData).toEqual(data);
+        done();
+    });
     const jqXHR = { status: 200, responseText: "" };
     $.ajax = jest.fn().mockImplementation((args) => {
         args.success(data, null, jqXHR);
     });
-    const mock_get_success = jest.fn(mod.ajax_get(requestURL, callback));
-    mock_get_success();
-    expect(mock_get_success).toHaveBeenCalled();
+    mod.ajax_get(requestURL, callback);
+});
+
+test('Test ajax_getWithKeyInfo success', (done) => {
+    const myCallback = jest.fn((actual) => {
+        expect(actual).toEqual({
+            key: {
+                name: "name1",
+                version: "version1"
+            },
+            uuid: "UUID1",
+            description: "description1"
+        });
+        done();
+    });
+    data.messages = {
+        message: [
+            '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
+            ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
+        ]
+    };
+    const jqXHR = {status: 200, responseText: ""};
+
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
+    mod.ajax_getWithKeyInfo("requestUrl", "objectType", myCallback, undefined);
+});
+
+test('Test ajax_getWithKeyInfo with custom key success', (done) => {
+    const myCallback = jest.fn((actual) => {
+        expect(actual).toEqual({
+            customKey: {
+                name: "name1",
+                version: "version1"
+            },
+            uuid: "UUID1",
+            description: "description1"
+        });
+        done();
+    });
+    data.messages = {
+        message: [
+            '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1",' +
+            ' "version": "version1"}}, "objectType": {"customKey": {"name": "name1", "version": "version1"}}}'
+        ]
+    };
+    const jqXHR = {status: 200, responseText: ""};
+
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
+    mod.ajax_getWithKeyInfo("requestUrl", "objectType", myCallback, "customKey");
 });
 
 test('Test ajax_delete error', () => {
@@ -66,15 +123,16 @@ test('Test ajax_delete error', () => {
     expect(mock_delete_error).toHaveBeenCalled();
 });
 
-test('Test ajax_delete success', () => {
-    const callback = jest.fn();
+test('Test ajax_delete success', (done) => {
+    const callback = jest.fn((actualData) => {
+        expect(actualData).toEqual(data);
+        done();
+    });
     const jqXHR = { status: 200, responseText: "" };
     $.ajax = jest.fn().mockImplementation((args) => {
         args.success(data, null, jqXHR);
     });
-    const mock_delete_success = jest.fn(mod.ajax_delete(requestURL, callback));
-    mock_delete_success();
-    expect(mock_delete_success).toHaveBeenCalled();
+    mod.ajax_delete(requestURL, callback);
 });
 
 test('Test ajax_post error', () => {
@@ -88,15 +146,16 @@ test('Test ajax_post error', () => {
     expect(mock_post_error).toHaveBeenCalled();
 });
 
-test('Test ajax_post success', () => {
-    const callback = jest.fn();
+test('Test ajax_post success', (done) => {
+    const callback = jest.fn((actualData) => {
+        expect(actualData).toEqual(data);
+        done();
+    });
     const jqXHR = { status: 200, responseText: "" };
     $.ajax = jest.fn().mockImplementation((args) => {
         args.success(data, null, jqXHR);
     });
-    const mock_post_success = jest.fn(mod.ajax_post(requestURL, data, callback));
-    mock_post_success();
-    expect(mock_post_success).toHaveBeenCalled();
+    mod.ajax_post(requestURL, data, callback);
 });
 
 test('Test ajax_put error', () => {
@@ -110,16 +169,17 @@ test('Test ajax_put error', () => {
     expect(mock_put_error).toHaveBeenCalled();
 });
 
-test('Test ajax_put success', () => {
-    const callback = jest.fn();
+test('Test ajax_put success', (done) => {
+    const callback = jest.fn((actualData) => {
+        expect(actualData).toEqual(data);
+        done();
+    });
     const jqXHR = { status: 200, responseText: "" };
 
     $.ajax = jest.fn().mockImplementation((args) => {
         args.success(data, null, jqXHR);
     });
-    const mock_put_success = jest.fn(mod.ajax_put(requestURL, data, callback));
-    mock_put_success();
-    expect(mock_put_success).toHaveBeenCalled();
+    mod.ajax_put(requestURL, data, callback);
 });
 
 test('Test ajax_getOKOrFail error', () => {
@@ -133,16 +193,15 @@ test('Test ajax_getOKOrFail error', () => {
     expect(mock_getOKOrFail_error).toHaveBeenCalled();
 });
 
-test('Test ajax_getOKOrFail success', () => {
-    const callback = jest.fn();
+test('Test ajax_getOKOrFail success', (done) => {
+    const callback = jest.fn((actualData) => {
+        expect(actualData).toEqual(data);
+        done();
+    });
     const jqXHR = { status: 200, responseText: "" };
 
     $.ajax = jest.fn().mockImplementation((args) => {
         args.success(data, null, jqXHR);
     });
-    const mock_getOKOrFail_success = jest.fn(mod.ajax_getOKOrFail(requestURL, callback));
-    mock_getOKOrFail_success();
-    expect(mock_getOKOrFail_success).toHaveBeenCalled();
+    mod.ajax_getOKOrFail(requestURL, callback);
 });
-
-test.todo('Test ajax_getWithKeyInfo');

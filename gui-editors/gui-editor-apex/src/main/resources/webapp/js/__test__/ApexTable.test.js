@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,21 +17,27 @@
  *  ============LICENSE_END=========================================================
  */
 
-const mod = require('../ApexTable');
+const ApexTable = require("../ApexTable")
 
-let wrapper = document.createElement("example");
-wrapper.setAttribute("id", "engineSummary_wrapper");
-wrapper.setAttribute("class", "wrapper_borderless");
+test("Test createTable", () => {
+    const expected = document.createElement("table");
+    expected.id = "my-id";
+    expected.className = "apexTable ebTable elTablelib-Table-table ebTable_striped";
 
-test('call createTable', () => {
-    const createTable = mod.createTable('01');
-    expect(createTable.getAttribute('id')).toBeDefined();
-    expect(createTable.getAttribute('class')).toBeDefined();
-    expect(createTable.getAttribute('id').valueOf()).toBe('01');
+    const actual = ApexTable.createTable(expected.id);
+    expect(actual).toEqual(actual);
 });
 
-test('test setRowHover', () => {
-    const mock = jest.fn(mod.setRowHover(wrapper));
-    mock();
-    expect(mock).toBeCalledTimes(1);
-})
+test("Test setRowHover", () => {
+    const element = {
+        className: null,
+        onmouseover: null,
+        onmouseout: null
+    };
+
+    ApexTable.setRowHover(element);
+
+    expect(element.className).toBe("ebTableRow");
+    expect(typeof element.onmouseover).toBe("function");
+    expect(typeof element.onmouseout).toBe("function");
+});
