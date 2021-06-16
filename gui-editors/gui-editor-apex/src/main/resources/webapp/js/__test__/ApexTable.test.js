@@ -17,7 +17,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-const ApexTable = require("../ApexTable")
+const ApexTable = require("../ApexTable");
 
 test("Test createTable", () => {
     const expected = document.createElement("table");
@@ -25,7 +25,7 @@ test("Test createTable", () => {
     expected.className = "apexTable ebTable elTablelib-Table-table ebTable_striped";
 
     const actual = ApexTable.createTable(expected.id);
-    expect(actual).toEqual(actual);
+    expect(actual).toEqual(expected);
 });
 
 test("Test setRowHover", () => {

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,19 +19,78 @@
  */
 
 const mod = require('../ApexModelHandling');
+const ApexResultForm = require("../ApexResultForm");
 
-test('Test modelHandling_analyse', () => {
-   const mock_modelHandling_analyse = jest.fn(mod.modelHandling_analyse);
-   mock_modelHandling_analyse();
-   expect(mock_modelHandling_analyse).toHaveBeenCalledWith();
+afterEach(() => {
+   document.body.innerHTML = '';
 });
 
-test('Test modelHandling_validate', () => {
-   const mock_modelHandling_validate_ajaxget = jest.fn(mod.modelHandling_validate.ajax_get);
-   mock_modelHandling_validate_ajaxget('test', jest.fn());
-   expect(mock_modelHandling_validate_ajaxget).toHaveBeenCalledTimes(1);
+test('Test modelHandling_analyse', (done) => {
+   const data = {
+      useHttps: 'useHttps',
+      hostname: 'hostname',
+      port: 'port',
+      username: 'username',
+      password: 'password',
+      messages: {
+         message: [
+            '{"apexKeyInfo": null}'
+         ]
+      },
+      content: ['01'],
+      result: 'ok',
+      ok: true
+   };
+   const expectedMessage  = '{"apexKeyInfo": null}';
+   document.body.innerHTML = '<div id="mainArea"></div>';
 
-   const mock_modelHandling_validate = jest.fn(mod.modelHandling_validate);
-   mock_modelHandling_validate();
-   expect(mock_modelHandling_validate).toHaveBeenCalled();
+   $.ajax = jest.fn().mockImplementation((args) => {
+      args.success(data, null, null);
+   });
+
+   ApexResultForm.resultForm_activate = jest.fn((element, heading, message) => {
+      expect(element).not.toBeNull();
+      expect(heading).toBe('Model Analysis Result');
+      expect(message).toBe(expectedMessage);
+      done();
+   });
+
+   mod.modelHandling_analyse();
+});
+
+test('Test modelHandling_validate', (done) => {
+   const data = {
+      useHttps: 'useHttps',
+      hostname: 'hostname',
+      port: 'port',
+      username: 'username',
+      password: 'password',
+      messages: {
+         message: [
+            '{"apexKeyInfo": null}',
+            '{"apexPolicy": null}',
+            '{"apexEvent": null}'
+         ]
+      },
+      content: ['01'],
+      result: 'ok',
+      ok: true
+   };
+
+   const expectedMessage  = '{"apexPolicy": null}\n{"apexEvent": null}\n';
+
+   document.body.innerHTML = '<div id="mainArea"></div>';
+
+   $.ajax = jest.fn().mockImplementation((args) => {
+      args.success(data, null, null);
+   });
+
+   ApexResultForm.resultForm_activate = jest.fn((element, heading, message) => {
+      expect(element).not.toBeNull();
+      expect(heading).toBe('Model Validation Result');
+      expect(message).toBe(expectedMessage);
+      done();
+   });
+
+   mod.modelHandling_validate();
 });
