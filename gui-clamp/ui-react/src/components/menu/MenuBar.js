@@ -89,6 +89,7 @@ export default class MenuBar extends React.Component {
       <Navbar.Collapse>
         <StyledNavDropdown title="Tosca">
           <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">View Tosca Template</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/uploadToscaFile">Upload Tosca to Commissioning</NavDropdown.Item>
         </StyledNavDropdown>
         <StyledNavDropdown title="POLICY Framework">
           <NavDropdown.Item as={ StyledLink } to="/viewAllPolicies">View All Policies</NavDropdown.Item>

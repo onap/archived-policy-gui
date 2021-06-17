@@ -54,3 +54,7 @@ export { default as ViewAllPolicies } from './src/components/dialogs/Policy/View
 export { default as PolicyDeploymentEditor } from './src/components/dialogs/Policy/PolicyDeploymentEditor';
 export { default as PoliciesTreeViewer } from './src/components/dialogs/Policy/PoliciesTreeViewer';
 export { default as PolicyToscaFileSelector } from './src/components/dialogs/Policy/PolicyToscaFileSelector';
+export { default as GetLocalToscaFileForUpload } from './src/components/dialogs/GetLocalToscaFileForUpload';
+export { default as ReadAndConvertYaml } from './src/components/dialogs/ReadAndConvertYaml';
+export { default as UploadToscaFile } from './src/api/UploadToscaFile';
+export { default as GetToscaTemplate } from './src/api/GetToscaTemplate';
