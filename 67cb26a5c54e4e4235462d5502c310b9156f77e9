@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "492266c8_85fdea0a",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-18T17:01:25Z",
+      "side": 1,
+      "message": "why not just:\n\n  const clElements \u003d Object.values(props.elements)",
+      "revId": "67cb26a5c54e4e4235462d5502c310b9156f77e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f56ade0c_6687deb1",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-18T17:01:25Z",
+      "side": 1,
+      "message": "sure you want \"[0]\"? (it wasn\u0027t there in the previous version)",
+      "range": {
+        "startLine": 31,
+        "startChar": 28,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "67cb26a5c54e4e4235462d5502c310b9156f77e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
