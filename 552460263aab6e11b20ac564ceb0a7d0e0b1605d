@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19608b32_c4e237be",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-18T15:45:40Z",
+      "side": 1,
+      "message": "why not just use Object.values() ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "552460263aab6e11b20ac564ceb0a7d0e0b1605d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3988c9cf_7b674e3f",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopItem.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-18T15:45:40Z",
+      "side": 1,
+      "message": "trailing spaces\n\nsame comment below",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "552460263aab6e11b20ac564ceb0a7d0e0b1605d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
