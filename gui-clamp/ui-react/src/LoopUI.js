@@ -17,6 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * ============LICENSE_END=========================================================
  */
+
 import React from 'react';
 import styled from 'styled-components';
 import MenuBar from './components/menu/MenuBar';
@@ -51,6 +52,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import { Link } from 'react-router-dom';
 import ReadAndConvertYaml from "./components/dialogs/ReadAndConvertYaml";
+import MonitoringControlLoopModal from "./components/dialogs/ControlLoop/MonitoringControlLoopModal";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -378,6 +380,7 @@ export default class LoopUI extends React.Component {
                                                                               showSucAlert={ this.showSucAlert }
                                                                               showFailAlert={ this.showFailAlert }/>) }
         />
+        <Route path="/monitoring" render={ (routeProps) => (<MonitoringControlLoopModal { ...routeProps } />) }/>
       </React.Fragment>
     );
   }
