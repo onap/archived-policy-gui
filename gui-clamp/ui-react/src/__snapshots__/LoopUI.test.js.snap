@@ -77,6 +77,10 @@ exports[`Verify LoopUI Test the render method 1`] = `
     path="/refreshStatus"
     render={[Function]}
   />
+  <Route
+    path="/monitoring"
+    render={[Function]}
+  />
   <div />
   <div>
     <Alert
