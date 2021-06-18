@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "119bbd1b_621996fa",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-18T16:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19608b32_c4e237be",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "552460263aab6e11b20ac564ceb0a7d0e0b1605d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3988c9cf_7b674e3f",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopItem.js",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "552460263aab6e11b20ac564ceb0a7d0e0b1605d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "866391fb_2f4dd344",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopItem.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-18T16:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3988c9cf_7b674e3f",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "552460263aab6e11b20ac564ceb0a7d0e0b1605d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
