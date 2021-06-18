@@ -117,6 +117,9 @@ export default class MenuBar extends React.Component {
           <NavDropdown.Item as={ StyledLink } to="/deploy" disabled={ this.state.disabled }>Deploy to DCAE (DEPLOY)</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/undeploy" disabled={ this.state.disabled }>UnDeploy to DCAE (UNDEPLOY)</NavDropdown.Item>
         </StyledNavDropdown>
+        <StyledNavDropdown title="TOSCA Control Loop">
+          <NavDropdown.Item as={ StyledLink } to="/monitoring">Monitoring Control Loop</NavDropdown.Item>
+        </StyledNavDropdown>
         <StyledNavDropdown title="Help">
           <StyledNavLink href="https://wiki.onap.org/" target="_blank">Wiki</StyledNavLink>
           <StyledNavLink href="mailto:onap-discuss@lists.onap.org?subject=CLAMP&body=Please send us suggestions or feature enhancements or defect. If possible, please send us the steps to replicate any defect.">Contact
