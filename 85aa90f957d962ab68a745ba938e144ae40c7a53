@@ -16,6 +16,24 @@
       "revId": "85aa90f957d962ab68a745ba938e144ae40c7a53",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2335f9b3_1be70027",
+        "filename": "gui-clamp/ui-react-lib/libIndex.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-21T10:06:06Z",
+      "side": 0,
+      "message": "Done\n\nI reverted back the previous license and amended the Nordix Change underneath in the AT\u0026T license.",
+      "parentUuid": "8dd8092c_c1c3ea2a",
+      "revId": "85aa90f957d962ab68a745ba938e144ae40c7a53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a88741f8_f30dbe81",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-21T10:06:06Z",
+      "side": 1,
+      "message": "Done\n\nI converted this object to a map which also I can remove the 0 element of the list.",
+      "parentUuid": "492266c8_85fdea0a",
+      "revId": "67cb26a5c54e4e4235462d5502c310b9156f77e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f56ade0c_6687deb1",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "67cb26a5c54e4e4235462d5502c310b9156f77e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b846609_c52ae4bb",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-21T10:06:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f56ade0c_6687deb1",
+      "range": {
+        "startLine": 31,
+        "startChar": 28,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "67cb26a5c54e4e4235462d5502c310b9156f77e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
