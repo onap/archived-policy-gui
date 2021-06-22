@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15f9baf7_86530072",
+        "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-22T07:41:49Z",
+      "side": 1,
+      "message": "Same comment than for the GetTosca ... compo\n\nUsually we define classes, could you follow the same pattern used in the others api compo please ?",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936af0b2_83b4a9a5",
+        "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-22T07:41:49Z",
+      "side": 1,
+      "message": "Not sure why we have that React fragment here ? Normally this should not be in the API folder",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da45b110_b7bf9a14",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/GetLocalToscaFileForUpload.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-22T07:41:49Z",
+      "side": 1,
+      "message": "Could you move that compo to components/Tosca folder.\nAlso usually we create javascript classes so that people can take the lib and extend/change our react components.\nThat\u0027s why we have a create an NPM library.\n\nBy defining the compo as it is here, it\u0027s not possible to extend it. Could you define that compo in a class instead",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
