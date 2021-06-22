@@ -36,6 +36,42 @@
     },
     {
       "key": {
+        "uuid": "62078666_5f766602",
+        "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-22T08:43:43Z",
+      "side": 1,
+      "message": "This has been discussed internally and is planned for the next review. Is this ok?",
+      "parentUuid": "4c23d0da_b8b2d564",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd453b30_d7d96cda",
+        "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-22T08:43:43Z",
+      "side": 1,
+      "message": "We will be defining these API calls as classes for the next review. Is that ok?",
+      "parentUuid": "15f9baf7_86530072",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "936af0b2_83b4a9a5",
         "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
         "patchSetId": 1
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2377c339_623ceee7",
+        "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-22T08:43:43Z",
+      "side": 1,
+      "message": "We have discussed this internally in our team already. This will be separated in the next review. Is this acceptable?",
+      "parentUuid": "936af0b2_83b4a9a5",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da45b110_b7bf9a14",
         "filename": "gui-clamp/ui-react/src/components/dialogs/GetLocalToscaFileForUpload.js",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2021-06-22T07:41:49Z",
       "side": 1,
       "message": "Could you move that compo to components/Tosca folder.\nAlso usually we create javascript classes so that people can take the lib and extend/change our react components.\nThat\u0027s why we have a create an NPM library.\n\nBy defining the compo as it is here, it\u0027s not possible to extend it. Could you define that compo in a class instead",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed7861a5_b0dc6f92",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/GetLocalToscaFileForUpload.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-06-22T08:43:43Z",
+      "side": 1,
+      "message": "Initially we chose to use functional components because that is the approach that is generally recommended with new versions of react. It greatly reduces the lines of code required to write components. It is also possible to include these components in libraries. We plan to use composition to reuse code between components.\n\nI can discuss this with the team and consider your suggestions for a future review. Is this acceptable?",
+      "parentUuid": "da45b110_b7bf9a14",
       "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
