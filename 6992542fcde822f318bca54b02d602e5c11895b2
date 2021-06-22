@@ -22,6 +22,40 @@
       "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c776a3d2_ff00b011",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-22T12:45:23Z",
+      "side": 1,
+      "message": "No Test ?",
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09a672ca_1850df3f",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-22T12:45:23Z",
+      "side": 1,
+      "message": "Thx I just learned this one 😊, the missing piece for functional component and lifecycle ...",
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
