@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "4c23d0da_b8b2d564",
+        "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-22T07:42:56Z",
+      "side": 1,
+      "message": "Also i think the Upload and Get can be located in the same class",
+      "revId": "587fb7a8b712a60def1e931e4a2480687a64f231",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "936af0b2_83b4a9a5",
         "filename": "gui-clamp/ui-react/src/api/UploadToscaFile.js",
         "patchSetId": 1
