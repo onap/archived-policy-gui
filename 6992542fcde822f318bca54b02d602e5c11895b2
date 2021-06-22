@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "63c6030c_116cee74",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ControlLoopElements.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-22T15:34:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d177693_bc3d64d7",
+      "range": {
+        "startLine": 27,
+        "startChar": 47,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c776a3d2_ff00b011",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
         "patchSetId": 4
