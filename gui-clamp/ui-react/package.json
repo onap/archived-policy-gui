@@ -51,6 +51,7 @@
 		"enzyme": "3.11.0",
 		"enzyme-adapter-react-17-updated": "1.0.2",
 		"enzyme-to-json": "3.6.1",
+		"history": "4.10.1",
 		"jest": "26.6.0",
 		"jest-canvas-mock": "2.3.1",
 		"jest-fetch-mock": "3.0.3"

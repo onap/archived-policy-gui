@@ -26,8 +26,8 @@ const UploadToscaFile = (props) => {
   const [windowLocationPathName, setWindowLocationPathname] = useState('');
 
   const postServiceTemplateHandler = async (event) => {
-
     event.preventDefault();
+    console.log('postServiceTemplateHandler called');
     setWindowLocationPathname(window.location.pathname);
 
     const response = await fetch(windowLocationPathName +

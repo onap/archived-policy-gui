@@ -45,16 +45,18 @@ const ReadAndConvertYaml = (props) => {
   const version = '1.0.0';
 
   const handleClose = () => {
+    console.log('handleClose called');
     setShow(false);
     props.history.push('/');
   }
 
-  const getToscaServiceTemplateHandler = (toscaServiceTemplate) => {
+  const getToscaServiceTemplateHandler = async (toscaServiceTemplate) => {
+    console.log('getToscaServiceTemplateHandler called');
     const toscaData = {
       ...toscaServiceTemplate,
       id: Math.random().toString()
     };
-    console.log(toscaData);
+    // console.log(toscaData);
     setToscaTemplateData(toscaData);
   }
 

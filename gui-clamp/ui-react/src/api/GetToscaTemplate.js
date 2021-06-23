@@ -25,7 +25,7 @@ const GetToscaTemplate = (props) => {
   const [windowLocationPathName, setWindowLocationPathname] = useState('');
 
   const getTemplateHandler = async () => {
-
+    console.log('getTemplateHandler called')
     setWindowLocationPathname(window.location.pathname);
 
     const params = {

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify GetToscaTemplate renders correctly 1`] = `
+<Fragment>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    type="submit"
+    variant="primary"
+  >
+    Get Tosca Service Template
+  </Button>
+</Fragment>
+`;
