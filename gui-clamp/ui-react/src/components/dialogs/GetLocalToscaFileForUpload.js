@@ -50,14 +50,17 @@ const GetLocalToscaFileForUpload = (props) => {
   const [alertMessages, setAlertMessages] = useState();
 
   const handleClose = () => {
+    console.log('handleClose called');
     setShow(false);
     props.history.push('/');
   }
 
   const fileChangeHandler = (event) => {
     event.preventDefault();
+    console.log('fileChangeHandler called');
 
     if (event.currentTarget.files[0] !== undefined) {
+      console.log('file defined');
       setSelectedFile(event.currentTarget.files[0]);
       setFileIsSelected(true);
 

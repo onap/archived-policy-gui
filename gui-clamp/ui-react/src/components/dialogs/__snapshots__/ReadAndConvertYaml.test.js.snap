@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
+<Styled(Modal)
+  backdrop="static"
+  keyboard={false}
+  onHide={[Function]}
+  show={true}
+  size="xl"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      View Tosca Template
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <GetToscaTemplate
+      onGetToscaServiceTemplate={[Function]}
+      templateName="ToscaServiceTemplateSimple"
+      templateVersion="1.0.0"
+    />
+    <styled.pre />
+  </ModalBody>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="null"
+      variant="secondary"
+    >
+      Cancel
+    </Button>
+  </ModalFooter>
+</Styled(Modal)>
+`;
