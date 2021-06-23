@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "b70ba6e9_54899337",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-23T12:19:58Z",
+      "side": 1,
+      "message": "Test are not complicated to implement with Jest, look at what we have done.\nYou could easily add the Snapshot test, it validates that the look and feel does not change too much when there are changes.",
+      "parentUuid": "97192e2d_a47a2c1f",
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09a672ca_1850df3f",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
         "patchSetId": 4
