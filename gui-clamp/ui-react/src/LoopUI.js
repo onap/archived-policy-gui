@@ -51,6 +51,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import { Link } from 'react-router-dom';
 import ReadAndConvertYaml from "./components/dialogs/ReadAndConvertYaml";
+import GetLocalToscaFileForUpload from "./components/dialogs/GetLocalToscaFileForUpload";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -296,6 +297,7 @@ export default class LoopUI extends React.Component {
     return (
       <React.Fragment>
         <Route path="/readToscaTemplate" render={ (routeProps) => (<ReadAndConvertYaml { ...routeProps } />) }/>
+        <Route path="/uploadToscaFile" render={ (routeProps) => (<GetLocalToscaFileForUpload { ...routeProps } />) }/>
         <Route path="/viewLoopTemplatesModal" render={ (routeProps) => (<ViewLoopTemplatesModal { ...routeProps } />) }/>
         <Route path="/manageDictionaries" render={ (routeProps) => (<ManageDictionaries { ...routeProps } />) }/>
         <Route path="/viewAllPolicies" render={ (routeProps) => (<ViewAllPolicies { ...routeProps } />) }/>
