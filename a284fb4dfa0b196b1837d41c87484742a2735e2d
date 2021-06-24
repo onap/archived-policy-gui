@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a3dd0d5_37ad855a",
+        "filename": "gui-clamp/ui-react-lib/libIndex.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2021-06-24T12:41:31Z",
+      "side": 1,
+      "message": "Update License.",
+      "revId": "a284fb4dfa0b196b1837d41c87484742a2735e2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
