@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "666d92af_e4cb296e",
+        "filename": "gui-clamp/ui-react/src/api/GetToscaTemplate.test.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-24T12:47:31Z",
+      "side": 1,
+      "message": "probably don\u0027t need this extra layer of \"*\" on each line\n\nsame comment for some of the other files",
+      "revId": "6543a1ad2d494053cfd1548aa471d2449739b29e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
