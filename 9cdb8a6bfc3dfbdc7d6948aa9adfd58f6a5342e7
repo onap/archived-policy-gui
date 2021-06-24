@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20d848eb_d433d330",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-06-24T08:55:59Z",
+      "side": 1,
+      "message": "As it\u0027s for the test only you can move that lib to devDependencies section instead",
+      "revId": "9cdb8a6bfc3dfbdc7d6948aa9adfd58f6a5342e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
