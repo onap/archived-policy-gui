@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -132,7 +132,7 @@ public class TaskHandler implements RestCommandHandler {
      * Create the content of the task.
      *
      * @param session    the Apex model editing session
-     * @param jsonString the JSON string to be parsed. See {@linkplain BeanTask}
+     * @param jsonbean the JSON string to be parsed. See {@linkplain BeanTask}
      * @return an ApexAPIResult object. If successful then
      *         {@link ApexApiResult#isOk()} will return true. Any messages/errors
      *         can be retrieved using {@link ApexApiResult#getMessages()}
