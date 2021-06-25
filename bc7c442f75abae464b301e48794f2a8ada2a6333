@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57876503_c3588830",
+        "filename": "gui-clamp/ui-react-lib/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-06-25T14:59:29Z",
+      "side": 1,
+      "message": "so this should match what\u0027s in ui-react/package.json now, right?",
+      "revId": "bc7c442f75abae464b301e48794f2a8ada2a6333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
