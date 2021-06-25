@@ -16,6 +16,24 @@
       "revId": "bc7c442f75abae464b301e48794f2a8ada2a6333",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff54f177_83bf8667",
+        "filename": "gui-clamp/ui-react-lib/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7662
+      },
+      "writtenOn": "2021-06-25T15:09:37Z",
+      "side": 1,
+      "message": "Yes, I left just rollup dependency as it is used by npm task. Rest of dependencies is just copy-paste. I haven\u0027t touch dev dependencies. I think there is no need for it to match.",
+      "parentUuid": "57876503_c3588830",
+      "revId": "bc7c442f75abae464b301e48794f2a8ada2a6333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
