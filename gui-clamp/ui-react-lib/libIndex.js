@@ -17,9 +17,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * ============LICENSE_END============================================
- * ===================================================================
  *
+ * SPDX-License-Identifier: Apache-2.0
+ * ============LICENSE_END=========================================================
  */
 
 export { default as CsvToJson } from '../ui-react/src/utils/CsvToJson';
@@ -55,6 +55,8 @@ export { default as ViewAllPolicies } from '../ui-react/src/components/dialogs/P
 export { default as PolicyDeploymentEditor } from '../ui-react/src/components/dialogs/Policy/PolicyDeploymentEditor';
 export { default as PoliciesTreeViewer } from '../ui-react/src/components/dialogs/Policy/PoliciesTreeViewer';
 export { default as PolicyToscaFileSelector } from '../ui-react/src/components/dialogs/Policy/PolicyToscaFileSelector';
+export { default as MonitoringControlLoopModal } from '../ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal';
+export { default as ControlLoopService } from '../ui-react/src/api/ControlLoopService';
 export { default as GetLocalToscaFileForUpload } from '../ui-react/src/components/dialogs/GetLocalToscaFileForUpload';
 export { default as ReadAndConvertYaml } from '../ui-react/src/components/dialogs/ReadAndConvertYaml';
 export { default as UploadToscaFile } from '../ui-react/src/api/UploadToscaFile';
