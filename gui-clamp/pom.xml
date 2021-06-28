@@ -32,6 +32,7 @@
     <properties>
         <ui.react.src>ui-react</ui.react.src>
         <ui.react.lib.src>ui-react-lib</ui.react.lib.src>
+        <npm.publish.url>https://nexus3.onap.org/repository/npm.snapshot/</npm.publish.url>
     </properties>
     <build>
         <plugins>
