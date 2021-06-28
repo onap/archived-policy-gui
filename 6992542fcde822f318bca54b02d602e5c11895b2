@@ -170,6 +170,24 @@
       "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8579b191_15890ad2",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-06-28T10:14:05Z",
+      "side": 1,
+      "message": "For the tests, I created a new ticket specifically for the Unit Tests.\n\nhttps://jira.onap.org/browse/POLICY-3437\nhttps://jira.onap.org/browse/POLICY-3440",
+      "parentUuid": "915651be_f30efcd3",
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
