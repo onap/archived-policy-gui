@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "57039f98_f0e26b7c",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2021-06-28T10:00:05Z",
+      "side": 1,
+      "message": "If the decision is to works on tests later, shall we merge this?",
+      "parentUuid": "b70ba6e9_54899337",
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09a672ca_1850df3f",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
         "patchSetId": 4
@@ -134,6 +152,24 @@
       "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "915651be_f30efcd3",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2021-06-28T10:00:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "24414464_ce887322",
+      "revId": "6992542fcde822f318bca54b02d602e5c11895b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
