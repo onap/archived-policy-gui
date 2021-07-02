@@ -37,7 +37,7 @@ exports[`Verify PolicyEditor Test the render method 1`] = `
 >
   <styled.div>
     <div
-      className="sc-dlfnbm eVKaeY"
+      className="sc-dlnjwi ksxnfR"
     >
       <Alert
         closeLabel="Close alert"
@@ -777,7 +777,7 @@ exports[`Verify PolicyEditor Test the render method 1`] = `
         title="Policy Properties"
       >
         <div
-          className="sc-gsTCUz hXXDCR"
+          className="sc-gtsrHT duRXVT"
           id="onap.policies.monitoring.tcagen2_1.0.0_org.onap.new_1.0.0"
           title="Policy Properties"
         />
