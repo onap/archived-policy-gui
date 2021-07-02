@@ -11,9 +11,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -48,7 +48,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -76,9 +76,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -113,7 +113,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -145,9 +145,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -182,7 +182,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -214,9 +214,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -251,7 +251,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -282,9 +282,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -319,7 +319,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -351,9 +351,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -388,7 +388,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -416,9 +416,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -453,7 +453,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -481,9 +481,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -518,7 +518,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -546,9 +546,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -583,7 +583,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -614,9 +614,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -651,7 +651,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -679,9 +679,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -716,7 +716,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -748,9 +748,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -785,7 +785,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -813,9 +813,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -850,7 +850,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -878,9 +878,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -915,7 +915,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -943,9 +943,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -980,7 +980,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -1011,9 +1011,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -1048,7 +1048,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -1076,9 +1076,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -1113,7 +1113,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -1145,9 +1145,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -1182,7 +1182,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
@@ -1225,9 +1225,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": e {
-            "baseHash": 1014106698,
+            "baseHash": -715527839,
             "baseStyle": undefined,
-            "componentId": "sc-bdfBwQ",
+            "componentId": "sc-bdnxRM",
             "isStatic": false,
             "rules": Array [
               "
@@ -1262,7 +1262,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
           "foldedComponentIds": Array [],
           "render": [Function],
           "shouldForwardProp": undefined,
-          "styledComponentId": "sc-bdfBwQ",
+          "styledComponentId": "sc-bdnxRM",
           "target": Object {
             "$$typeof": Symbol(react.forward_ref),
             "propTypes": Object {
