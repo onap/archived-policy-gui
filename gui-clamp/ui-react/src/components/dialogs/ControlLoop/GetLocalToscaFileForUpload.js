@@ -1,23 +1,20 @@
 /*
- * -
- *  * ============LICENSE_START=======================================================
- *  *  Copyright (C) 2021 Nordix Foundation.
- *  * ================================================================================
- *  * Licensed under the Apache License, Version 2.0 (the "License");
- *  * you may not use this file except in compliance with the License.
- *  * You may obtain a copy of the License at
- *  *
- *  *      http://www.apache.org/licenses/LICENSE-2.0
- *  *
- *  * Unless required by applicable law or agreed to in writing, software
- *  * distributed under the License is distributed on an "AS IS" BASIS,
- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  * See the License for the specific language governing permissions and
- *  * limitations under the License.
- *  *
- *  * SPDX-License-Identifier: Apache-2.0
- *  * ============LICENSE_END=========================================================
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2021 Nordix Foundation.
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
  */
 
 import React, { useState } from 'react';
@@ -28,7 +25,7 @@ import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
 import Alert from 'react-bootstrap/Alert';
 import * as yaml from "js-yaml";
-import UploadToscaFile from "../../api/UploadToscaFile";
+import UploadToscaFile from "./UploadToscaFile";
 
 const ModalStyled = styled(Modal)`
   background-color: transparent;
@@ -82,9 +79,9 @@ const GetLocalToscaFileForUpload = (props) => {
     }
   };
 
-  const receiveResponseFromUpload = (response, responseMessage) => {
+  const receiveResponseFromUpload = async (response) => {
 
-    if (response.ok) {
+    if (await response.ok) {
       setAlertMessages(<Alert variant="success">
         <Alert.Heading>Upload Success</Alert.Heading>
         <p>Tosca Service Template from { selectedFile.name } was Successfully Uploaded</p>
@@ -96,8 +93,8 @@ const GetLocalToscaFileForUpload = (props) => {
       setAlertMessages(<Alert variant="danger">
         <Alert.Heading>Upload Failure</Alert.Heading>
         <p>Tosca Service Template from { selectedFile.name } failed to upload</p>
-        <p>Status code: { response.status }: { response.statusText }</p>
-        <p>Response from CLAMP: { responseMessage }</p>
+        <p>Status code: { await response.status }: { response.statusText }</p>
+        <p>Response Text: { await response.text() }</p>
         <hr/>
         <p>Type: { selectedFile.type }</p><p>Size: { +selectedFile.size / 1000 }Kb</p>
       </Alert>);

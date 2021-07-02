@@ -44,4 +44,38 @@ export default class ControlLoopService {
       return undefined;
     });
   }
+
+  static async getToscaTemplate(name, version, windowLocationPathname) {
+    const params = {
+      name: name,
+      version: version
+    }
+
+    const response = await fetch(windowLocationPathname +
+      '/restservices/clds/v2/toscaControlLoop/getToscaTemplate' + '?' + (new URLSearchParams(params)));
+
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const data = await response;
+
+    return data;
+  }
+
+  static async uploadToscaFile(toscaObject, windowLocationPathName) {
+    const response = await fetch(windowLocationPathName +
+      '/restservices/clds/v2/toscaControlLoop/commissionToscaTemplate', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(toscaObject),
+    });
+
+    return response
+
+  }
 }

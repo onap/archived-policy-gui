@@ -87,10 +87,6 @@ export default class MenuBar extends React.Component {
   render() {
     return (
       <Navbar.Collapse>
-        <StyledNavDropdown title="Tosca">
-          <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">View Tosca Template</NavDropdown.Item>
-          <NavDropdown.Item as={ StyledLink } to="/uploadToscaFile">Upload Tosca to Commissioning</NavDropdown.Item>
-        </StyledNavDropdown>
         <StyledNavDropdown title="POLICY Framework">
           <NavDropdown.Item as={ StyledLink } to="/viewAllPolicies">View All Policies</NavDropdown.Item>
         </StyledNavDropdown>
@@ -119,6 +115,10 @@ export default class MenuBar extends React.Component {
         </StyledNavDropdown>
         <StyledNavDropdown title="TOSCA Control Loop">
           <NavDropdown.Item as={ StyledLink } to="/monitoring">Monitoring Control Loop</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Header>Commissioning</NavDropdown.Header>
+          <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">View Tosca Template</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/uploadToscaFile">Upload Tosca to Commissioning</NavDropdown.Item>
         </StyledNavDropdown>
         <StyledNavDropdown title="Help">
           <StyledNavLink href="https://wiki.onap.org/" target="_blank">Wiki</StyledNavLink>

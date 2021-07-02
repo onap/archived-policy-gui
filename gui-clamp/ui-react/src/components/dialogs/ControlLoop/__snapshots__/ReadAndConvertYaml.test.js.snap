@@ -22,7 +22,14 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       templateName="ToscaServiceTemplateSimple"
       templateVersion="1.0.0"
     />
-    <styled.pre />
+    <styled.pre>
+       
+       
+    </styled.pre>
+    <Styled(Alert)
+      show={false}
+      variant="danger"
+    />
   </ModalBody>
   <ModalFooter>
     <Button
