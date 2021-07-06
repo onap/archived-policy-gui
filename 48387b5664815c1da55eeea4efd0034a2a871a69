@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adb69554_ae5a20a4",
+        "filename": "gui-clamp/ui-react-lib/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-06T13:47:50Z",
+      "side": 1,
+      "message": "the standard is four spaces per tab\n\nsame comment for the next file",
+      "revId": "48387b5664815c1da55eeea4efd0034a2a871a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
