@@ -16,6 +16,24 @@
       "revId": "48387b5664815c1da55eeea4efd0034a2a871a69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28391caa_d11e228f",
+        "filename": "gui-clamp/ui-react-lib/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-07T08:45:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adb69554_ae5a20a4",
+      "revId": "48387b5664815c1da55eeea4efd0034a2a871a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
