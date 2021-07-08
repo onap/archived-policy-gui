@@ -18,24 +18,35 @@
  */
 
 import React, { useEffect, useState } from "react";
-import ControlLoopElementItem from "./ControlLoopElementItem";
+import Button from "react-bootstrap/Button";
+import ControlLoopService from "../../../api/ControlLoopService";
 
-const ControlLoopElements = (props) => {
-  const [clElements, setClElements] = useState([]);
+const UploadToscaInstantiationFile = (props) => {
+  const [windowLocationPathName, setWindowLocationPathname] = useState('');
 
-  useEffect(() => {
-    setClElements(Object.values(props.elements));
-  }, []);
+  const postToscaInstantiationHandler = async (event) => {
+    event.preventDefault();
+    console.log('postToscaInstantiationHandler called');
+
+    setWindowLocationPathname(window.location.pathname);
+
+    const response = await ControlLoopService.uploadToscaInstantiation(props.jsonObject, windowLocationPathName)
+      .catch(error => error.message);
+
+    props.onResponseReceived(response);
+  }
 
   return (
     <React.Fragment>
-      {
-        clElements.map((clEl, index) => (
-          <ControlLoopElementItem title={ clEl["definition"]["name"] } orderedState={ clEl["orderedState"] } key={ index } />
-        ))
-      }
+      <Button variant="primary"
+              block={ true }
+              type="submit"
+              onClick={ postToscaInstantiationHandler }>
+        Upload Tosca Instantiation
+      </Button>
     </React.Fragment>
   );
 }
 
-export default ControlLoopElements;
+export default UploadToscaInstantiationFile;
+

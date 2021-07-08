@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify MonitoringInstantiation renders correctly 1`] = `
+<Styled(Modal)
+  backdrop="static"
+  keyboard={false}
+  onHide={[Function]}
+  show={true}
+  size="xl"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Tosca Instantiation - Monitoring
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody />
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="null"
+      variant="secondary"
+    >
+      Close
+    </Button>
+  </ModalFooter>
+</Styled(Modal)>
+`;

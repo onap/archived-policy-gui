@@ -114,7 +114,9 @@ export default class MenuBar extends React.Component {
           <NavDropdown.Item as={ StyledLink } to="/undeploy" disabled={ this.state.disabled }>UnDeploy to DCAE (UNDEPLOY)</NavDropdown.Item>
         </StyledNavDropdown>
         <StyledNavDropdown title="TOSCA Control Loop">
-          <NavDropdown.Item as={ StyledLink } to="/monitoring">Monitoring Control Loop</NavDropdown.Item>
+          <NavDropdown.Header>Instantiation</NavDropdown.Header>
+          <NavDropdown.Item as={ StyledLink } to="/monitorInstantiation">Monitor Instantiation</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/uploadToscaInstantiation">Upload Tosca Instantiation</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Header>Commissioning</NavDropdown.Header>
           <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">View Tosca Template</NavDropdown.Item>

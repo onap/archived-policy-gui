@@ -19,7 +19,7 @@
 
 export default class ControlLoopService {
 
-  static async getControlLoopList(windowLocationPathname) {
+  static async fetchControlLoopInstantiation(windowLocationPathname) {
 
     return await fetch(windowLocationPathname + '/restservices/clds/v2/toscaControlLoop/getToscaInstantiation', {
       method: 'GET',
@@ -28,10 +28,10 @@ export default class ControlLoopService {
       },
       credentials: 'same-origin',
     }).then(response => {
-      console.log("getControlLoopList received " + response.status);
+      console.log("fetchControlLoopInstantiation received " + response.status);
 
       if (response.ok) {
-        console.info("getControlLoopList query successful");
+        console.info("fetchControlLoopInstantiation query successful");
         return response.json();
       } else {
         return response.text().then(responseBody => {
@@ -39,10 +39,24 @@ export default class ControlLoopService {
         });
       }
     }).catch(error => {
-      console.error("getControlLoopList error occurred ", error);
-      alert("getControlLoopList error occurred " + error);
+      console.error("fetchControlLoopInstantiation error occurred ", error);
+      alert("fetchControlLoopInstantiation error occurred " + error);
       return undefined;
     });
+  }
+
+  static async uploadToscaInstantiation(toscaObject, windowLocationPathname) {
+
+    const response =  await fetch(windowLocationPathname + '/restservices/clds/v2/toscaControlLoop/postToscaInstantiation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(toscaObject)
+    });
+
+    return response;
   }
 
   static async getToscaTemplate(name, version, windowLocationPathname) {

@@ -55,7 +55,11 @@ export { default as ViewAllPolicies } from '../ui-react/src/components/dialogs/P
 export { default as PolicyDeploymentEditor } from '../ui-react/src/components/dialogs/Policy/PolicyDeploymentEditor';
 export { default as PoliciesTreeViewer } from '../ui-react/src/components/dialogs/Policy/PoliciesTreeViewer';
 export { default as PolicyToscaFileSelector } from '../ui-react/src/components/dialogs/Policy/PolicyToscaFileSelector';
-export { default as MonitoringControlLoopModal } from '../ui-react/src/components/dialogs/ControlLoop/MonitoringControlLoopModal';
+export { default as MonitorInstantiation } from '../ui-react/src/components/dialogs/ControlLoop/MonitorInstantiation';
+export { default as InstantiationItem } from '../ui-react/src/components/dialogs/ControlLoop/InstantiationItem';
+export { default as InstantiationElements } from '../ui-react/src/components/dialogs/ControlLoop/InstantiationElements';
+export { default as InstantiationElementItem } from '../ui-react/src/components/dialogs/ControlLoop/InstantiationElementItem';
+export { default as UploadToscaInstantiation } from '../ui-react/src/components/dialogs/ControlLoop/UploadToscaInstantiation';
 export { default as ControlLoopService } from '../ui-react/src/api/ControlLoopService';
 export { default as GetLocalToscaFileForUpload } from '../ui-react/src/components/dialogs/ControlLoop/GetLocalToscaFileForUpload';
 export { default as ReadAndConvertYaml } from '../ui-react/src/components/dialogs/ControlLoop/ReadAndConvertYaml';

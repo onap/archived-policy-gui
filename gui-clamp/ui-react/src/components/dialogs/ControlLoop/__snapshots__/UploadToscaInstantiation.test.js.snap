@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify UploadToscaInstantiation renders correctly 1`] = `
+<Styled(Modal)
+  backdrop="static"
+  keyboard={false}
+  onHide={[Function]}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Tosca Control Loop - Create Instantiation
+    </ModalTitle>
+  </ModalHeader>
+  <div
+    style={
+      Object {
+        "padding": "5px 5px 0px 5px",
+      }
+    }
+  >
+    <ModalBody>
+      <Form
+        inline={false}
+        style={
+          Object {
+            "paddingTop": "20px",
+          }
+        }
+      >
+        <FormGroup
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "noGutters": false,
+              },
+              "render": [Function],
+            }
+          }
+        >
+          <FormFile
+            accept=".yaml,.yml,.json"
+            className="custom-file-label"
+            custom={true}
+            id="inputGroupFile01"
+            label="Please select a file"
+            onChange={[Function]}
+            type="file"
+          />
+          <UploadToscaInstantiationFile
+            jsonObject={Array []}
+            onResponseReceived={[Function]}
+          />
+          <FormText>
+            Only .yaml, .yml and .json files are supported
+          </FormText>
+        </FormGroup>
+        <FormGroup
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "noGutters": false,
+              },
+              "render": [Function],
+            }
+          }
+        >
+          <styled.div />
+        </FormGroup>
+      </Form>
+    </ModalBody>
+  </div>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="null"
+      variant="secondary"
+    >
+      Close
+    </Button>
+  </ModalFooter>
+</Styled(Modal)>
+`;
