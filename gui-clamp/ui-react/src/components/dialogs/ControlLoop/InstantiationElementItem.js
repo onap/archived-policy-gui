@@ -65,7 +65,7 @@ const ButtonStyle = styled(Button)`
   }
 `
 
-const ControlLoopElementItem = (props) => {
+const InstantiationElementItem = (props) => {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -121,4 +121,4 @@ const ControlLoopElementItem = (props) => {
   );
 }
 
-export default ControlLoopElementItem;
+export default InstantiationElementItem;

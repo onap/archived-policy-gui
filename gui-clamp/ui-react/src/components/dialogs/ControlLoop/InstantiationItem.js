@@ -71,7 +71,7 @@ const ToggleButton = styled(Button)`
   }
 `
 
-const ControlLoopItem = (props) => {
+const InstantiationItem = (props) => {
   const toggleState = () => {
     switch (props.orderedState) {
       case 'UNINITIALISED':
@@ -125,4 +125,4 @@ const ControlLoopItem = (props) => {
   );
 }
 
-export default ControlLoopItem;
+export default InstantiationItem;

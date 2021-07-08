@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify UploadToscaInstantiationFile renders correctly 1`] = `
+<Fragment>
+  <Button
+    active={false}
+    block={true}
+    disabled={false}
+    onClick={[Function]}
+    type="submit"
+    variant="primary"
+  >
+    Upload Tosca Instantiation
+  </Button>
+</Fragment>
+`;

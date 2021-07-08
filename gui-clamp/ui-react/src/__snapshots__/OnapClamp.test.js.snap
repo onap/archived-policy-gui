@@ -111,7 +111,11 @@ exports[`Verify OnapClamp Test the render method 1`] = `
       render={[Function]}
     />
     <Route
-      path="/monitoring"
+      path="/monitorInstantiation"
+      render={[Function]}
+    />
+    <Route
+      path="/uploadToscaInstantiation"
       render={[Function]}
     />
     <div />

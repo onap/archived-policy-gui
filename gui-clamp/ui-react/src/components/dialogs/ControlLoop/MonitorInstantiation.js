@@ -21,15 +21,15 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import ControlLoopItem from "./ControlLoopItem";
+import InstantiationItem from "./InstantiationItem";
 import ControlLoopService from "../../../api/ControlLoopService";
-import ControlLoopElements from "./ControlLoopElements";
+import InstantiationElements from "./InstantiationElements";
 
 const ModalStyled = styled(Modal)`
   background-color: transparent;
 `
 
-const MonitoringControlLoopModal = (props) => {
+const MonitorInstantiation = (props) => {
   const [show, setShow] = useState(true);
   const [controlLoopList, setControlLoopList] = useState([]);
   const [windowLocationPathname, setWindowLocationPathname] = useState('');
@@ -37,12 +37,13 @@ const MonitoringControlLoopModal = (props) => {
   useEffect(() => {
     setWindowLocationPathname(window.location.pathname);
 
-    ControlLoopService.getControlLoopList(windowLocationPathname).then(controlLoopList => {
+    ControlLoopService.fetchControlLoopInstantiation(windowLocationPathname).then(controlLoopList => {
       setControlLoopList(controlLoopList['controlLoopList']);
     });
   }, [])
 
   const handleClose = () => {
+    console.log('handleClose called');
     setShow(false);
     props.history.push('/');
   }
@@ -50,22 +51,22 @@ const MonitoringControlLoopModal = (props) => {
   return (
     <ModalStyled size="xl" show={ show } onHide={ handleClose } backdrop="static" keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Tosca Control Loop - Monitoring</Modal.Title>
+        <Modal.Title>Tosca Instantiation - Monitoring</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {
           controlLoopList.map((clList, index) => (
-            <ControlLoopItem title={ clList["name"] } orderedState={ clList["orderedState"] } index={ index } key={ index }>
-              <ControlLoopElements elements={ clList["elements"] } />
-            </ControlLoopItem>
+            <InstantiationItem title={ clList["name"] } orderedState={ clList["orderedState"] } index={ index } key={ index }>
+              <InstantiationElements elements={ clList["elements"] } />
+            </InstantiationItem>
           ))
         }
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" type="null" onClick={ handleClose }>Cancel</Button>
+        <Button variant="secondary" type="null" onClick={ handleClose }>Close</Button>
       </Modal.Footer>
     </ModalStyled>
   )
 }
 
-export default MonitoringControlLoopModal;
+export default MonitorInstantiation;

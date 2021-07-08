@@ -52,8 +52,9 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import { Link } from 'react-router-dom';
 import ReadAndConvertYaml from "./components/dialogs/ControlLoop/ReadAndConvertYaml";
-import MonitoringControlLoopModal from "./components/dialogs/ControlLoop/MonitoringControlLoopModal";
+import MonitorInstantiation from "./components/dialogs/ControlLoop/MonitorInstantiation";
 import GetLocalToscaFileForUpload from "./components/dialogs/ControlLoop/GetLocalToscaFileForUpload";
+import UploadToscaInstantiation from "./components/dialogs/ControlLoop/UploadToscaInstantiation";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -382,7 +383,8 @@ export default class LoopUI extends React.Component {
                                                                               showSucAlert={ this.showSucAlert }
                                                                               showFailAlert={ this.showFailAlert }/>) }
         />
-        <Route path="/monitoring" render={ (routeProps) => (<MonitoringControlLoopModal { ...routeProps } />) }/>
+        <Route path="/monitorInstantiation" render={ (routeProps) => (<MonitorInstantiation { ...routeProps } />) }/>
+        <Route path="/uploadToscaInstantiation" render={ (routeProps) => (<UploadToscaInstantiation { ...routeProps } />) }/>
       </React.Fragment>
     );
   }
