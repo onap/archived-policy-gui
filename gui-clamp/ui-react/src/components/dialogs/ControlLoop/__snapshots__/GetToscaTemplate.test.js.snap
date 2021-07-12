@@ -9,7 +9,7 @@ exports[`Verify GetToscaTemplate renders correctly 1`] = `
     type="submit"
     variant="primary"
   >
-    Get Tosca Service Template
+    Pull Tosca Service Template
   </Button>
 </Fragment>
 `;

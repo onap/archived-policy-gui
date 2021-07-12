@@ -68,10 +68,36 @@ export default class ControlLoopService {
     const response = await fetch(windowLocationPathname +
       '/restservices/clds/v2/toscaControlLoop/getToscaTemplate' + '?' + (new URLSearchParams(params)));
 
-    if (!response.ok) {
-      const message = `An error has occurred: ${response.status}`;
-      throw new Error(message);
+    const data = await response;
+
+    return data;
+  }
+
+  static async deleteToscaTemplate(name, version, windowLocationPathname) {
+    const params = {
+      name: name,
+      version: version
     }
+
+    const response = await fetch(windowLocationPathname +
+      '/restservices/clds/v2/toscaControlLoop/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
+      {
+        method: 'DELETE'
+      });
+
+    this.checkResponseForError(response);
+
+    const data = await response;
+
+    return data;
+  }
+
+  static async getToscaControlLoopDefinitions(windowLocationPathname) {
+
+    const response = await fetch(windowLocationPathname +
+      '/restservices/clds/v2/toscaControlLoop/getElementDefinitions');
+
+    this.checkResponseForError(response);
 
     const data = await response;
 
@@ -91,5 +117,26 @@ export default class ControlLoopService {
 
     return response
 
+  }
+
+  static async getToscaServiceTemplateSchema(section, windowLocationPathName) {
+
+    const params = {
+      section: section
+    }
+
+    const response = await fetch(windowLocationPathName +
+      '/restservices/clds/v2/toscaControlLoop/getJsonSchema' + '?' + (new URLSearchParams(params)));
+
+    this.checkResponseForError(response);
+
+    return response;
+  }
+
+  static checkResponseForError (response) {
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.status}`;
+      throw new Error(message);
+    }
   }
 }

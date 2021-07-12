@@ -30,6 +30,19 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       show={false}
       variant="danger"
     />
+    <Styled(Alert)
+      show={false}
+      variant="danger"
+    />
+    <Styled(Alert)
+      show={false}
+      variant="success"
+    >
+      <h2>
+        Delete Successful
+      </h2>
+      <styled.pre />
+    </Styled(Alert)>
   </ModalBody>
   <ModalFooter>
     <Button
@@ -39,7 +52,7 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       type="null"
       variant="secondary"
     >
-      Cancel
+      Close
     </Button>
   </ModalFooter>
 </Styled(Modal)>

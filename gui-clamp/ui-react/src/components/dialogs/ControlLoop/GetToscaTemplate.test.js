@@ -48,6 +48,6 @@ describe('Verify GetToscaTemplate', () => {
 
   it('should have a Button element with specified text', () => {
     const container = shallow(<GetToscaTemplate/>)
-    expect(container.find('Button').text()).toBe('Get Tosca Service Template');
+    expect(container.find('Button').text()).toBe('Pull Tosca Service Template');
   });
 });

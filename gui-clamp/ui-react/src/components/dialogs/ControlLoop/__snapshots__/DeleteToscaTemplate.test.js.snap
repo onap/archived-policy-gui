@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify DeleteToscaTemplate renders correctly 1`] = `
+<Fragment>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+    type="submit"
+    variant="danger"
+  >
+    Delete Tosca Service Template
+  </Button>
+</Fragment>
+`;
