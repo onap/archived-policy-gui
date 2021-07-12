@@ -54,6 +54,7 @@ import { Link } from 'react-router-dom';
 import ReadAndConvertYaml from "./components/dialogs/ControlLoop/ReadAndConvertYaml";
 import MonitorInstantiation from "./components/dialogs/ControlLoop/MonitorInstantiation";
 import GetLocalToscaFileForUpload from "./components/dialogs/ControlLoop/GetLocalToscaFileForUpload";
+import CommissioningModal from "./components/dialogs/ControlLoop/CommissioningModal";
 import UploadToscaInstantiation from "./components/dialogs/ControlLoop/UploadToscaInstantiation";
 
 const StyledMainDiv = styled.div`
@@ -301,6 +302,7 @@ export default class LoopUI extends React.Component {
       <React.Fragment>
         <Route path="/readToscaTemplate" render={ (routeProps) => (<ReadAndConvertYaml { ...routeProps } />) }/>
         <Route path="/uploadToscaFile" render={ (routeProps) => (<GetLocalToscaFileForUpload { ...routeProps } />) }/>
+        <Route path="/getJsonSchema" render={ (routeProps) => (<CommissioningModal { ...routeProps } />) }/>
         <Route path="/viewLoopTemplatesModal" render={ (routeProps) => (<ViewLoopTemplatesModal { ...routeProps } />) }/>
         <Route path="/manageDictionaries" render={ (routeProps) => (<ManageDictionaries { ...routeProps } />) }/>
         <Route path="/viewAllPolicies" render={ (routeProps) => (<ViewAllPolicies { ...routeProps } />) }/>
