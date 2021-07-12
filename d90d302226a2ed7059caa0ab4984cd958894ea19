@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "343e26b1_c2d98717",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-12T18:17:21Z",
+      "side": 1,
+      "message": "version downgrade?  I hope this doesn\u0027t break the \"merge\" build",
+      "range": {
+        "startLine": 50,
+        "startChar": 23,
+        "endLine": 50,
+        "endChar": 29
+      },
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64247877_e9814163",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitorInstantiation.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-12T18:17:21Z",
+      "side": 1,
+      "message": "missing newline at the end of the file",
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e5724f8_b45c1f44",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/UploadToscaInstantiation.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-12T18:17:21Z",
+      "side": 1,
+      "message": "missing newline at the end of the file",
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ec3fc57_e54629be",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/toscaInstantiationData.test.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-12T18:17:21Z",
+      "side": 1,
+      "message": "missing newline at the end of the file",
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
