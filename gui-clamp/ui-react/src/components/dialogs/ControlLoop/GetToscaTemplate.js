@@ -32,6 +32,8 @@ const GetToscaTemplate = (props) => {
     const response = await ControlLoopService.getToscaTemplate(props.templateName, props.templateVersion, windowLocationPathName)
       .catch(error => error.message);
 
+    console.log('Response is ok: ' + response.ok);
+
     props.onGetToscaServiceTemplate(response);
 
   }
@@ -40,7 +42,7 @@ const GetToscaTemplate = (props) => {
     <React.Fragment>
       <Button variant="primary"
               type="submit"
-              onClick={ getTemplateHandler }>Get Tosca Service Template</Button>
+              onClick={ getTemplateHandler }>Pull Tosca Service Template</Button>
     </React.Fragment>
   );
 

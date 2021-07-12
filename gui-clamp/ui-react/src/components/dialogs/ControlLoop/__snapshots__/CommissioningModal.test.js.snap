@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
+<Styled(Modal)
+  backdrop="static"
+  keyboard={false}
+  onHide={[Function]}
+  show={true}
+  size="xl"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Edit Control Loop Parameters
+    </ModalTitle>
+  </ModalHeader>
+  <br />
+  <div
+    style={
+      Object {
+        "padding": "5px 5px 0px 5px",
+      }
+    }
+  >
+    <ModalBody>
+      <div
+        id="editor"
+      />
+    </ModalBody>
+  </div>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      variant="primary"
+    >
+      Submit
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="secondary"
+    >
+      Close
+    </Button>
+  </ModalFooter>
+</Styled(Modal)>
+`;

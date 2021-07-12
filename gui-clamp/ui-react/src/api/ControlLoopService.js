@@ -78,6 +78,43 @@ export default class ControlLoopService {
     return data;
   }
 
+  static async deleteToscaTemplate(name, version, windowLocationPathname) {
+    const params = {
+      name: name,
+      version: version
+    }
+
+    const response = await fetch(windowLocationPathname +
+      '/restservices/clds/v2/toscaControlLoop/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
+      {
+        method: 'DELETE'
+      });
+
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const data = await response;
+
+    return data;
+  }
+
+  static async getToscaControlLoopDefinitions(windowLocationPathname) {
+
+    const response = await fetch(windowLocationPathname +
+      '/restservices/clds/v2/toscaControlLoop/getElementDefinitions');
+
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const data = await response;
+
+    return data;
+  }
+
   static async uploadToscaFile(toscaObject, windowLocationPathName) {
     const response = await fetch(windowLocationPathName +
       '/restservices/clds/v2/toscaControlLoop/commissionToscaTemplate', {
@@ -91,5 +128,22 @@ export default class ControlLoopService {
 
     return response
 
+  }
+
+  static async getToscaServiceTemplateSchema(section, windowLocationPathName) {
+
+    const params = {
+      section: section
+    }
+
+    const response = await fetch(windowLocationPathName +
+      '/restservices/clds/v2/toscaControlLoop/getJsonSchema' + '?' + (new URLSearchParams(params)));
+
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.status}`;
+      throw new Error(message);
+    }
+
+    return response;
   }
 }
