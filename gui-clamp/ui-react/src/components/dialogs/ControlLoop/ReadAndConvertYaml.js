@@ -24,6 +24,7 @@ import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
 
 import styled from 'styled-components';
+import DeleteToscaTemplate from "./DeleteToscaTemplate";
 
 const ModalStyled = styled(Modal)`
   background-color: transparent;
@@ -43,7 +44,9 @@ const PreStyled = styled.pre`
 const ReadAndConvertYaml = (props) => {
   const [show, setShow] = useState(true);
   const [toscaTemplateData, setToscaTemplateData] = useState();
-  const [responeOk, setResponseOk] = useState(true);
+  const [deleteToscaTemplateData, setDeleteToscaTemplateData] = useState();
+  const [responseOk, setResponseOk] = useState(true);
+  const [deleteResponseOk, setDeleteResponseOk] = useState(true);
   const name = 'ToscaServiceTemplateSimple';
   const version = '1.0.0';
 
@@ -57,13 +60,28 @@ const ReadAndConvertYaml = (props) => {
     // console.log('getToscaServiceTemplateHandler called: ' + toscaServiceTemplate);
 
     if (!toscaServiceTemplateResponse.ok) {
+      console.log('Response is not ok');
       setResponseOk(false);
-      const toscaData = await toscaServiceTemplateResponse;
+      const toscaData = await toscaServiceTemplateResponse.text();
       setToscaTemplateData(toscaData);
     } else {
       setResponseOk(true);
       const toscaData = await toscaServiceTemplateResponse.json();
       setToscaTemplateData(toscaData);
+    }
+  }
+
+  const deleteToscaServiceTemplateHandler = async (deleteToscaServiceTemplateResponse) => {
+
+    if (!deleteToscaServiceTemplateResponse.ok) {
+      console.log('Delete response not ok');
+      setDeleteResponseOk(false);
+      const deleteToscaData = await deleteToscaServiceTemplateResponse;
+      setDeleteToscaTemplateData(deleteToscaData);
+    } else {
+      setDeleteResponseOk(true);
+      const deleteToscaData = await deleteToscaServiceTemplateResponse.json();
+      setDeleteToscaTemplateData(deleteToscaData);
     }
   }
 
@@ -80,17 +98,28 @@ const ReadAndConvertYaml = (props) => {
         <GetToscaTemplate templateName={ name }
                           templateVersion={ version }
                           onGetToscaServiceTemplate={ getToscaServiceTemplateHandler }/>
-        { responeOk && <PreStyled> { JSON.stringify(toscaTemplateData, null, 2) } </PreStyled> }
-        <AlertStyled show={ !responeOk }
-               variant="danger">{ toscaTemplateData }</AlertStyled>
+        { responseOk && <PreStyled> { JSON.stringify(toscaTemplateData, null, 2) } </PreStyled> }
+        <AlertStyled show={ !responseOk }
+                     variant="danger">{ toscaTemplateData }</AlertStyled>
+        { deleteResponseOk && responseOk && toscaTemplateData != null &&
+        <DeleteToscaTemplate templateName={ name }
+                             templateVersion={ version }
+                             onDeleteToscaServiceTemplate={ deleteToscaServiceTemplateHandler }
+        />
+        }
+        <AlertStyled show={ !deleteResponseOk }
+                     variant="danger">{ deleteToscaTemplateData }</AlertStyled>
+        <AlertStyled show={ deleteResponseOk && deleteToscaTemplateData != null }
+                     variant="success"><h2>Delete Successful</h2><PreStyled>{ JSON.stringify(deleteToscaTemplateData, null, 2) }</PreStyled></AlertStyled>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary"
                 type="null"
-                onClick={ handleClose }>Cancel</Button>
+                onClick={ handleClose }>Close</Button>
       </Modal.Footer>
     </ModalStyled>
   );
-};
+}
+;
 
 export default ReadAndConvertYaml;
