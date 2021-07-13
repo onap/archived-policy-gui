@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c3457803_92c0c2d0",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-13T14:21:29Z",
+      "side": 1,
+      "message": "Hello Jim,\n\nSo the reason the downgrade is because when the user try to run with version 27.0.6 somehow it\u0027s incompatible so it suggests running the version 26.6.0 instead.  I figure we have to wait till a newer version so I can upgrade it.",
+      "parentUuid": "343e26b1_c2d98717",
+      "range": {
+        "startLine": 50,
+        "startChar": 23,
+        "endLine": 50,
+        "endChar": 29
+      },
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "64247877_e9814163",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitorInstantiation.test.js",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b6c05d0_c4656b4c",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/MonitorInstantiation.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-13T14:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64247877_e9814163",
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "6f59c8f4_1407fd22",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/UploadToscaInstantiation.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-13T14:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e5724f8_b45c1f44",
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec3fc57_e54629be",
         "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/toscaInstantiationData.test.json",
         "patchSetId": 1
@@ -73,6 +133,24 @@
       "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ab8f85c_c31dcaf2",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/toscaInstantiationData.test.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-13T14:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec3fc57_e54629be",
+      "revId": "d90d302226a2ed7059caa0ab4984cd958894ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
