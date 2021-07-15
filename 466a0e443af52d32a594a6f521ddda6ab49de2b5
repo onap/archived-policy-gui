@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "975d96f7_ccd473c2",
+        "filename": "gui-clamp/ui-react/src/api/ControlLoopService.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-15T16:38:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e23719bf_ae300dd1",
+      "range": {
+        "startLine": 93,
+        "startChar": 3,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "revId": "466a0e443af52d32a594a6f521ddda6ab49de2b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d2d3322_ec690a72",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
         "patchSetId": 1
