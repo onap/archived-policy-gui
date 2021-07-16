@@ -109,7 +109,7 @@ public class ContextAlbumHandler implements RestCommandHandler {
         final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanContextAlbum.class);
 
         ApexApiResult result = session.getApexModelEdited().createContextAlbum(jsonbean.getName(),
-            jsonbean.getVersion(), jsonbean.getScope(), Boolean.toString(jsonbean.getWriteable()),
+            jsonbean.getVersion(), jsonbean.getScope(), Boolean.toString(jsonbean.isWriteable()),
             jsonbean.getItemSchema().getName(), jsonbean.getItemSchema().getVersion(), jsonbean.getUuid(),
             jsonbean.getDescription());
 
@@ -137,7 +137,7 @@ public class ContextAlbumHandler implements RestCommandHandler {
         final var jsonbean = RestUtils.getJsonParameters(jsonString, BeanContextAlbum.class);
 
         ApexApiResult result = session.getApexModelEdited().updateContextAlbum(jsonbean.getName(),
-            jsonbean.getVersion(), jsonbean.getScope(), Boolean.toString(jsonbean.getWriteable()),
+            jsonbean.getVersion(), jsonbean.getScope(), Boolean.toString(jsonbean.isWriteable()),
             jsonbean.getItemSchema().getName(), jsonbean.getItemSchema().getVersion(), jsonbean.getUuid(),
             jsonbean.getDescription());
 

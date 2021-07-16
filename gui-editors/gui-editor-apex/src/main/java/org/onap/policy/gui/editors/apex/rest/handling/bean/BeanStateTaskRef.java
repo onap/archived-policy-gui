@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,49 +23,17 @@
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The State Task Reference Bean.
  */
 @XmlType
+@Getter
+@ToString
 public class BeanStateTaskRef extends BeanBase {
     private BeanKeyRef task = null;
     private String outputType = null;
     private String outputName = null;
-
-    /**
-     * Gets the task.
-     *
-     * @return the task
-     */
-    public BeanKeyRef getTask() {
-        return task;
-    }
-
-    /**
-     * Gets the output type.
-     *
-     * @return the output type
-     */
-    public String getOutputType() {
-        return outputType;
-    }
-
-    /**
-     * Gets the output name.
-     *
-     * @return the output name
-     */
-    public String getOutputName() {
-        return outputName;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        return "StateTaskRef [task=" + task + ", outputType=" + outputType + ", outputName=" + outputName + "]";
-    }
-
 }

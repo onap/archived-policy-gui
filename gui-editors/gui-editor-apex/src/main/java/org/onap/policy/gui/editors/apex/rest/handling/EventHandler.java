@@ -150,7 +150,7 @@ public class EventHandler implements RestCommandHandler {
 
             final ApexApiResult createParResult = session.getApexModelEdited().createEventPar(jsonbean.getName(),
                 jsonbean.getVersion(), parameterEntry.getKey(), parameterEntry.getValue().getName(),
-                parameterEntry.getValue().getVersion(), parameterEntry.getValue().getOptional());
+                parameterEntry.getValue().getVersion(), parameterEntry.getValue().isOptional());
             if (createParResult.isNok()) {
                 result.setResult(createParResult.getResult());
                 result.addMessage("Failed to add event parameter information for parameter \"" + parameterEntry.getKey()

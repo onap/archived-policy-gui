@@ -191,7 +191,7 @@ public class TaskHandler implements RestCommandHandler {
             } else {
                 ApexApiResult fieldCreationResult = session.getApexModelEdited().createTaskInputField(
                     jsonbean.getName(), jsonbean.getVersion(), fieldEntry.getKey(), fieldEntry.getValue().getName(),
-                    fieldEntry.getValue().getVersion(), fieldEntry.getValue().getOptional());
+                    fieldEntry.getValue().getVersion(), fieldEntry.getValue().isOptional());
 
                 if (fieldCreationResult.isNok()) {
                     result.setResult(fieldCreationResult.getResult());
@@ -240,7 +240,7 @@ public class TaskHandler implements RestCommandHandler {
             } else {
                 ApexApiResult fieldCreationResult = session.getApexModelEdited().createTaskOutputField(
                     jsonbean.getName(), jsonbean.getVersion(), fieldEntry.getKey(), fieldEntry.getValue().getName(),
-                    fieldEntry.getValue().getVersion(), fieldEntry.getValue().getOptional());
+                    fieldEntry.getValue().getVersion(), fieldEntry.getValue().isOptional());
                 if (fieldCreationResult.isNok()) {
                     result.setResult(fieldCreationResult.getResult());
                     result.addMessage("Failed to add task output field information for field \"" + fieldEntry.getKey()

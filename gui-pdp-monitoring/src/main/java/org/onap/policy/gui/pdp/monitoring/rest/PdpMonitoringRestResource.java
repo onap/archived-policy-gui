@@ -38,6 +38,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.onap.policy.common.endpoints.event.comm.bus.internal.BusTopicParams;
@@ -243,14 +244,11 @@ public class PdpMonitoringRestResource {
      * A list of values that uses a FIFO sliding window of a fixed size.
      */
     @EqualsAndHashCode(callSuper = true)
+    @AllArgsConstructor
     public class SlidingWindowList<V> extends LinkedList<V> {
         private static final long serialVersionUID = -7187277916025957447L;
 
         private final int maxEntries;
-
-        public SlidingWindowList(final int maxEntries) {
-            this.maxEntries = maxEntries;
-        }
 
         @Override
         public boolean add(final V elm) {
@@ -265,14 +263,10 @@ public class PdpMonitoringRestResource {
      * A class used to storing a single data entry for an engine.
      */
     @Getter
+    @AllArgsConstructor
     public class Counter {
         private final long timestamp;
         private final long value;
-
-        public Counter(final long timestamp, final long value) {
-            this.timestamp = timestamp;
-            this.value = value;
-        }
     }
 
 }

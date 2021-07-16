@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +24,15 @@ package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import java.util.Map;
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The Policy Bean.
  */
 @XmlType
+@Getter
+@ToString
 public class BeanPolicy extends BeanBase {
     private String name = null;
     private String version = null;
@@ -36,77 +41,4 @@ public class BeanPolicy extends BeanBase {
     private String firstState = null;
     private String template = null;
     private Map<String, BeanState> states = null;
-
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the version.
-     *
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Gets the uuid.
-     *
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets the first state.
-     *
-     * @return the first state
-     */
-    public String getFirstState() {
-        return firstState;
-    }
-
-    /**
-     * Gets the template.
-     *
-     * @return the template
-     */
-    public String getTemplate() {
-        return template;
-    }
-
-    /**
-     * Gets the states.
-     *
-     * @return the states
-     */
-    public Map<String, BeanState> getStates() {
-        return states;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        return "Policy [name=" + name + ", version=" + version + ", uuid=" + uuid + ", description=" + description
-            + ", firstState=" + firstState + ", template=" + template + ", states=" + states + "]";
-    }
-
 }

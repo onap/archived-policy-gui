@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
 
 /**
  * The Event Bean.
@@ -29,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 public class DummyBeanBase extends BeanBase {
     private String name = null;
+    @Getter
     private String version = null;
     private String field1 = null;
     private int field2 = 0;
@@ -37,10 +40,6 @@ public class DummyBeanBase extends BeanBase {
     public String getName() {
         field1 = name;
         return field1;
-    }
-
-    public String getVersion() {
-        return version;
     }
 
     public int getField2() {

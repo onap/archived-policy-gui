@@ -105,7 +105,7 @@ public class PdpMonitoringMain {
             pdpMonitoringServer = new PdpMonitoringServer(parameters);
 
             // Add a shutdown hook to shut down the servlet services when the process is exiting
-            Runtime.getRuntime().addShutdownHook(new Thread(new PdpServicesShutdownHook()));
+            Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 
             state = ServicesState.RUNNING;
 
@@ -157,19 +157,6 @@ public class PdpMonitoringMain {
         shutdownLatch.countDown();
         state = ServicesState.STOPPED;
         LOGGER.info(PDP_MONITORING_PREFIX + "{}) shutting down", this);
-    }
-
-    /**
-     * This class is a shutdown hook for the Pdp services command.
-     */
-    private class PdpServicesShutdownHook implements Runnable {
-        /**
-         * {@inheritDoc}.
-         */
-        @Override
-        public void run() {
-            shutdown();
-        }
     }
 
     /**

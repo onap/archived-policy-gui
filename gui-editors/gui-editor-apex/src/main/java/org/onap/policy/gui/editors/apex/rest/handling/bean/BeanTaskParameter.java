@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,40 +23,17 @@
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The Task Parameter Bean.
  */
 @XmlType
+@Getter
+@ToString
 public class BeanTaskParameter extends BeanBase {
 
     private String parameterName = null;
     private String defaultValue = null;
-
-    /**
-     * Gets the parameter name.
-     *
-     * @return the parameter name
-     */
-    public String getParameterName() {
-        return parameterName;
-    }
-
-    /**
-     * Gets the default value.
-     *
-     * @return the default value
-     */
-    public String getDefaultValue() {
-        return defaultValue;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        return "TaskParameter [parameterName=" + parameterName + ", defaultValue=" + defaultValue + "]";
-    }
-
 }

@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +24,15 @@ package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import java.util.Map;
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The Event Bean.
  */
 @XmlType
+@Getter
+@ToString
 public class BeanEvent extends BeanBase {
     private String name = null;
     private String version = null;
@@ -37,78 +42,6 @@ public class BeanEvent extends BeanBase {
     private String uuid = null;
     private String description = null;
     private Map<String, BeanField> parameters = null;
-
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the version.
-     *
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Gets the name space.
-     *
-     * @return the name space
-     */
-    public String getNameSpace() {
-        return nameSpace;
-    }
-
-    /**
-     * Gets the source.
-     *
-     * @return the source
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * Gets the target.
-     *
-     * @return the target
-     */
-    public String getTarget() {
-        return target;
-    }
-
-    /**
-     * Gets the uuid.
-     *
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets the parameters.
-     *
-     * @return the parameters
-     */
-    public Map<String, BeanField> getParameters() {
-        return parameters;
-    }
 
     /**
      * Gets the parameter.
@@ -122,15 +55,4 @@ public class BeanEvent extends BeanBase {
         }
         return null;
     }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        return "Event [name=" + name + ", version=" + version + ", nameSpace=" + nameSpace + ", source=" + source
-            + ", target=" + target + ", uuid=" + uuid + ", description=" + description + ", parameters="
-            + getParameters() + "]";
-    }
-
 }

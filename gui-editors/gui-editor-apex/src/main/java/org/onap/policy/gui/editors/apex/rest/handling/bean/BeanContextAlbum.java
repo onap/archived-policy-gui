@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +23,15 @@
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The ContextAlbum Bean.
  */
 @XmlType
+@Getter
+@ToString
 public class BeanContextAlbum extends BeanBase {
     private String name = null;
     private String version = null;
@@ -35,76 +40,4 @@ public class BeanContextAlbum extends BeanBase {
     private String description = null;
     private BeanKeyRef itemSchema = null;
     private boolean writeable;
-
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the version.
-     *
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Gets the scope.
-     *
-     * @return the scope
-     */
-    public String getScope() {
-        return scope;
-    }
-
-    /**
-     * Gets the uuid.
-     *
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets the item schema.
-     *
-     * @return the item schema
-     */
-    public BeanKeyRef getItemSchema() {
-        return itemSchema;
-    }
-
-    /**
-     * Gets the writeable.
-     *
-     * @return the writeable
-     */
-    public boolean getWriteable() {
-        return writeable;
-    }
-
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    public String toString() {
-        return "ContextAlbum [name=" + name + ", version=" + version + ", scope=" + scope + ", uuid=" + uuid
-            + ", description=" + description + ", itemSchema=" + itemSchema + ", writeable=" + writeable + "]";
-    }
 }

@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +25,13 @@ package org.onap.policy.gui.editors.apex.rest.handling.bean;
 import java.util.Arrays;
 import java.util.Map;
 import javax.xml.bind.annotation.XmlType;
+import lombok.Getter;
 
 /**
  * The Task Bean.
  */
 @XmlType
+@Getter
 public class BeanTask extends BeanBase {
     private String name = null;
     private String version = null;
@@ -39,87 +42,6 @@ public class BeanTask extends BeanBase {
     private Map<String, BeanField> outputFields = null;
     private Map<String, BeanTaskParameter> parameters = null;
     private BeanKeyRef[] contexts = null;
-
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the version.
-     *
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Gets the uuid.
-     *
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets the task logic.
-     *
-     * @return the task logic
-     */
-    public BeanLogic getTaskLogic() {
-        return taskLogic;
-    }
-
-    /**
-     * Gets the input fields.
-     *
-     * @return the input fields
-     */
-    public Map<String, BeanField> getInputFields() {
-        return inputFields;
-    }
-
-    /**
-     * Gets the output fields.
-     *
-     * @return the output fields
-     */
-    public Map<String, BeanField> getOutputFields() {
-        return outputFields;
-    }
-
-    /**
-     * Gets the parameters.
-     *
-     * @return the parameters
-     */
-    public Map<String, BeanTaskParameter> getParameters() {
-        return parameters;
-    }
-
-    /**
-     * Gets the contexts.
-     *
-     * @return the contexts
-     */
-    public BeanKeyRef[] getContexts() {
-        return contexts;
-    }
 
     /**
      * {@inheritDoc}.
