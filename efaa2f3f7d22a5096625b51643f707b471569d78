@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0195dbc4_eef4c64f",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/bean/BeanState.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-16T15:52:56Z",
+      "side": 1,
+      "message": "because of this, did not use ToString",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "efaa2f3f7d22a5096625b51643f707b471569d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd0c2c3d_0e6fd627",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/bean/BeanTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-16T15:52:56Z",
+      "side": 1,
+      "message": "because of this, did not use ToString",
+      "range": {
+        "startLine": 53,
+        "startChar": 61,
+        "endLine": 53,
+        "endChar": 86
+      },
+      "revId": "efaa2f3f7d22a5096625b51643f707b471569d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
