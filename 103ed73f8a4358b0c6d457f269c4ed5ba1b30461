@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df1e2646_7a861965",
+        "filename": "gui-clamp/ui-react/src/api/ControlLoopService.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-07-19T15:16:27Z",
+      "side": 1,
+      "message": "In this case, I do not want to throw an error. Instead, I want the error detail from the runtime-controlloop endpoint to be reported back to the screen. I feel it gives a better indication of what went wrong in that case.",
+      "parentUuid": "7fa32b90_3ec95a22",
+      "revId": "103ed73f8a4358b0c6d457f269c4ed5ba1b30461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8951e903_e5090ffb",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
         "patchSetId": 2

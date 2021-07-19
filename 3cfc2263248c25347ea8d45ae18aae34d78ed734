@@ -22,6 +22,30 @@
       "revId": "3cfc2263248c25347ea8d45ae18aae34d78ed734",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1917a9e5_f3c83079",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ReadAndConvertYaml.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-07-19T15:16:27Z",
+      "side": 1,
+      "message": "There was an issue with the rendering of the Json. It is fixed now.",
+      "parentUuid": "35368363_e72dbdcd",
+      "range": {
+        "startLine": 65,
+        "startChar": 59,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "3cfc2263248c25347ea8d45ae18aae34d78ed734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
