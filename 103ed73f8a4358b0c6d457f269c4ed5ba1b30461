@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8951e903_e5090ffb",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2021-07-19T12:56:55Z",
+      "side": 1,
+      "message": "There is a lot of commented out code here, perhaps remove to avoid sonar.",
+      "revId": "103ed73f8a4358b0c6d457f269c4ed5ba1b30461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
