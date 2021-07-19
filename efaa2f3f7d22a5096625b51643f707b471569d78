@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "328888ba_e445152d",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/bean/BeanState.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2021-07-19T11:32:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0195dbc4_eef4c64f",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "efaa2f3f7d22a5096625b51643f707b471569d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd0c2c3d_0e6fd627",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/bean/BeanTask.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "efaa2f3f7d22a5096625b51643f707b471569d78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd80cbd9_56d3c15e",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/bean/BeanTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2021-07-19T11:32:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dd0c2c3d_0e6fd627",
+      "range": {
+        "startLine": 53,
+        "startChar": 61,
+        "endLine": 53,
+        "endChar": 86
+      },
+      "revId": "efaa2f3f7d22a5096625b51643f707b471569d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
