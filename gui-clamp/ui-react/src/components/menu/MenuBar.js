@@ -119,8 +119,9 @@ export default class MenuBar extends React.Component {
           <NavDropdown.Item as={ StyledLink } to="/uploadToscaInstantiation">Upload Tosca Instantiation</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Header>Commissioning</NavDropdown.Header>
-          <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">View Tosca Template</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">Manage Commissioned Tosca Template</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/uploadToscaFile">Upload Tosca to Commissioning</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/getJsonSchema">Edit Control Loop Type Definitions</NavDropdown.Item>
         </StyledNavDropdown>
         <StyledNavDropdown title="Help">
           <StyledNavLink href="https://wiki.onap.org/" target="_blank">Wiki</StyledNavLink>

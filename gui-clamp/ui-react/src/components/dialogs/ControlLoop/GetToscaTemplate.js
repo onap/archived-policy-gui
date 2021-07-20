@@ -40,7 +40,7 @@ const GetToscaTemplate = (props) => {
     <React.Fragment>
       <Button variant="primary"
               type="submit"
-              onClick={ getTemplateHandler }>Get Tosca Service Template</Button>
+              onClick={ getTemplateHandler }>Pull Tosca Service Template</Button>
     </React.Fragment>
   );
 
