@@ -23,7 +23,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { JSONEditor } from "@json-editor/json-editor";
 import ControlLoopService from "../../../api/ControlLoopService";
-import OnapConstant from "../../../utils/OnapConstants";
+import { Alert } from "react-bootstrap";
 
 const ModalStyled = styled(Modal)`
   @media (min-width: 800px) {
@@ -44,10 +44,26 @@ const StyledMessagesDiv = styled.div`
 
 const CommissioningModal = (props) => {
   const [windowLocationPathName, setWindowLocationPathName] = useState('');
+  const [fullToscaTemplate, setFullToscaTemplate] = useState({});
   const [toscaInitialValues, setToscaInitialValues] = useState({});
+  const [commonProperties, setCommonProperties] = useState({})
   const [toscaJsonSchema, setToscaJsonSchema] = useState({});
-  const [jsonEditor, setJsonEditor] = useState({});
+  const [jsonEditor, setJsonEditor] = useState(null);
   const [show, setShow] = useState(true);
+  const [alertMessages, setAlertMessages] = useState();
+  const name = 'ToscaServiceTemplateSimple';
+  const version = '1.0.0';
+  let editorTemp = null
+
+  useEffect(async () => {
+    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version, windowLocationPathName)
+      .catch(error => error.message);
+    const toscaCommonProperties = await ControlLoopService.getCommonProperties(name, version, windowLocationPathName)
+      .catch(error => error.message);
+
+    await renderJsonEditor(toscaTemplateResponse, toscaCommonProperties)
+
+  }, []);
 
   const handleClose = () => {
     console.log('handleClose called');
@@ -55,43 +71,150 @@ const CommissioningModal = (props) => {
     props.history.push('/');
   }
 
-  const getToscaServiceTemplateHandler = async (toscaServiceTemplateResponse) => {
-
-    if (!toscaServiceTemplateResponse.ok) {
-      const toscaData = await toscaServiceTemplateResponse;
-      setToscaInitialValues(toscaData);
-    } else {
-      const toscaData = await toscaServiceTemplateResponse.json();
-      setToscaInitialValues(toscaData);
-    }
+  const handleSave = () => {
+    updateTemplate(jsonEditor.getValue())
   }
 
-  const getToscaSchemaHandler = async (toscaSchemaResponse) => {
 
-    if (!toscaSchemaResponse.ok) {
-      const toscaSchemaData = await toscaSchemaResponse;
-      setToscaJsonSchema(toscaSchemaData);
-    } else {
-      const toscaSchemaData = await toscaSchemaResponse.json();
-      setToscaJsonSchema(toscaSchemaData);
-    }
-  }
 
-  useEffect(async () => {
+  const handleCommission = async () => {
     setWindowLocationPathName(window.location.pathname);
 
-    const toscaTemplateResponse = await ControlLoopService.getToscaControlLoopDefinitions(windowLocationPathName)
-      .catch(error => error.message);
+    await ControlLoopService.deleteToscaTemplate('ToscaServiceTemplateSimple', "1.0.0", windowLocationPathName)
+      .catch(error => error.message)
 
-    const toscaSchemaResponse = await ControlLoopService.getToscaServiceTemplateSchema('node_templates', windowLocationPathName);
+    const recommissioningResponse = await ControlLoopService.uploadToscaFile(fullToscaTemplate, windowLocationPathName)
+      .catch(error => error.message)
 
-    createJsonEditor(await toscaSchemaResponse.json(), await toscaTemplateResponse.json());
+    await receiveResponseFromCommissioning(recommissioningResponse)
+  }
 
-    }, []);
+  const receiveResponseFromCommissioning = async (response) => {
 
-  // TODO Need to Hook this up to a new camel endpoint to get it working
+    if (await response.ok) {
+      setAlertMessages(<Alert variant="success">
+        <Alert.Heading>Commissioning Success</Alert.Heading>
+        <p>Altered Template was Successfully Uploaded</p>
+        <hr/>
+      </Alert>);
+    }
+    else {
+      setAlertMessages(<Alert variant="danger">
+        <Alert.Heading>Commissioning Failure</Alert.Heading>
+        <p>Updated Template Failed to Upload</p>
+        <p>Status code: { await response.status }: { response.statusText }</p>
+        <p>Response Text: { await response.text() }</p>
+        <hr/>
+      </Alert>);
+    }
+  };
+
+  const renderJsonEditor = async (template, commonProps) => {
+
+    const fullTemplate = await template.json()
+
+    setFullToscaTemplate(fullTemplate)
+    const allNodeTemplates = fullTemplate.topology_template.node_templates
+    const shortenedNodeTemplatesObjectStartValues = {}
+    // Get the common properties to construct a schema
+    // Get valid start values at the same time
+    const commonNodeTemplatesJson = await commonProps.json().then(data => {
+      const nodeTemplatesArray = Object.entries(data)
+      const shortenedNodeTemplatesObject = {}
+      nodeTemplatesArray.forEach(([key, temp]) => {
+        const currentNodeTemplate = allNodeTemplates[key]
+        const propertiesObject = {
+          properties: temp.properties
+        }
+
+        shortenedNodeTemplatesObject[key] = propertiesObject
+
+        const propertiesStartValues = {}
+
+        // Get all the existing start values to populate the properties in the schema
+        Object.entries(propertiesObject.properties).forEach(([propKey, prop]) => {
+          propertiesStartValues[propKey] = currentNodeTemplate.properties[propKey]
+        })
+
+        shortenedNodeTemplatesObjectStartValues[key] = propertiesStartValues
+
+      })
+
+      setToscaInitialValues(shortenedNodeTemplatesObjectStartValues)
+      return shortenedNodeTemplatesObject;
+    })
+
+    const propertySchema = makeSchemaForCommonProperties(commonNodeTemplatesJson)
+    setToscaJsonSchema(propertySchema)
+
+    editorTemp = createJsonEditor(propertySchema, shortenedNodeTemplatesObjectStartValues);
+    setJsonEditor(editorTemp)
+  }
+
+  const updateTemplate = (userAddedCommonPropValues) => {
+    const nodeTemplates = fullToscaTemplate.topology_template.node_templates
+    const commonPropertyDataEntries = Object.entries(userAddedCommonPropValues)
+
+    // This replaces the values for properties in the full tosca template
+    // that will be sent up to the api with the entries the user provided.
+    commonPropertyDataEntries.forEach(([templateKey, values]) => {
+      Object.entries(values).forEach(([propKey, propVal]) => {
+        nodeTemplates[templateKey].properties[propKey] = propVal
+      })
+    })
+
+    fullToscaTemplate.topology_template.node_templates = nodeTemplates
+
+    setFullToscaTemplate(fullToscaTemplate)
+    alert('Changes saved. Commission When Ready...')
+  }
+
+  const makeSchemaForCommonProperties = (commonProps) => {
+    const commonPropsArr = Object.entries(commonProps)
+
+    const newSchemaObject = {}
+
+    newSchemaObject.title = "CommonProperties"
+    newSchemaObject.type = "object"
+    newSchemaObject.properties = {}
+
+    commonPropsArr.forEach(([templateKey, template]) => {
+
+      const propertiesObject = {}
+      Object.entries(template.properties).forEach(([propKey, prop]) => {
+
+        propertiesObject[propKey] = {
+          type: getType(prop.type)
+        }
+
+      })
+      newSchemaObject.properties[templateKey] = {
+        properties: propertiesObject
+      }
+    })
+
+    return newSchemaObject
+
+  }
+
+  const getType = (propertyType) => {
+    switch (propertyType)
+    {
+      case "string":
+        return "string"
+      case "integer":
+        return "integer"
+      case "list":
+        return "array"
+      case "object":
+        return "object"
+      default:
+        return "string"
+    }
+  }
+
   const createJsonEditor = (toscaModel, editorData) => {
-    JSONEditor.defaults.options.collapse = true;
+    JSONEditor.defaults.options.collapse = false;
 
     return new JSONEditor(document.getElementById("editor"),
       {
@@ -101,13 +224,13 @@ const CommissioningModal = (props) => {
         iconlib: 'fontawesome5',
         object_layout: 'normal',
         disable_properties: false,
-        disable_edit_json: false,
+        disable_edit_json: true,
         disable_array_reorder: true,
         disable_array_delete_last_row: true,
         disable_array_delete_all_rows: false,
         array_controls_top: true,
         keep_oneof_values: false,
-        collapsed: true,
+        collapsed: false,
         show_errors: 'always',
         display_required_only: false,
         show_opt_in: false,
@@ -123,7 +246,7 @@ const CommissioningModal = (props) => {
                  backdrop="static"
                  keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Control Loop Parameters</Modal.Title>
+        <Modal.Title>Edit Common Properties</Modal.Title>
       </Modal.Header>
       <br/>
       <div style={ { padding: '5px 5px 0px 5px' } }>
@@ -131,9 +254,16 @@ const CommissioningModal = (props) => {
           <div id="editor"/>
         </Modal.Body>
       </div>
+      <StyledMessagesDiv>
+        { alertMessages }
+      </StyledMessagesDiv>
       <Modal.Footer>
-        <Button variant="primary"
-                >Submit</Button>
+        <Button
+          variant="primary"
+          onClick={ handleSave }
+        >Save</Button>
+        <Button variant="success"
+                onClick={ handleCommission }>Commission</Button>
         <Button variant="secondary"
                 onClick={ handleClose }>Close</Button>
       </Modal.Footer>

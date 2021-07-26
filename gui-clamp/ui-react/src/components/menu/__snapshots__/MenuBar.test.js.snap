@@ -1341,7 +1341,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
       disabled={false}
       to="/getJsonSchema"
     >
-      Edit Control Loop Type Definitions
+      Edit Control Loop Common Properties
     </DropdownItem>
   </Styled(NavDropdown)>
   <Styled(NavDropdown)
