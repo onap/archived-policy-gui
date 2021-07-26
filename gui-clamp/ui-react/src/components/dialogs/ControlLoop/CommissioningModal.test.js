@@ -37,9 +37,9 @@ describe('Verify ReadAndConvertYaml', () => {
     expect(toJson(tree)).toMatchSnapshot();
   });
 
-  it('should have two Button elements', () => {
+  it('should have three Button elements', () => {
     const container = shallow(<CommissioningModal/>)
-    expect(container.find('Button').length).toEqual(2);
+    expect(container.find('Button').length).toEqual(3);
   });
 
   it('handleClose called when bottom button clicked', () => {

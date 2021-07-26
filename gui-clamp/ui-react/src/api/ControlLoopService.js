@@ -119,6 +119,22 @@ export default class ControlLoopService {
 
   }
 
+  static async getCommonProperties(name, version, windowLocationPathName) {
+    const params = {
+      name: name,
+      version: version,
+      common: "true"
+    }
+
+    const response = await fetch(windowLocationPathName +
+      '/restservices/clds/v2/toscaControlLoop/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
+
+    this.checkResponseForError(response);
+
+    return response;
+
+  }
+
   static async getToscaServiceTemplateSchema(section, windowLocationPathName) {
 
     const params = {
