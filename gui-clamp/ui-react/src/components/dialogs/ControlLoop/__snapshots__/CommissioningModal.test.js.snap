@@ -13,7 +13,7 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
     closeLabel="Close"
   >
     <ModalTitle>
-      Edit Control Loop Parameters
+      Edit Common Properties
     </ModalTitle>
   </ModalHeader>
   <br />
@@ -30,13 +30,23 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       />
     </ModalBody>
   </div>
+  <styled.div />
   <ModalFooter>
     <Button
       active={false}
       disabled={false}
+      onClick={[Function]}
       variant="primary"
     >
-      Submit
+      Save
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="success"
+    >
+      Commission
     </Button>
     <Button
       active={false}
