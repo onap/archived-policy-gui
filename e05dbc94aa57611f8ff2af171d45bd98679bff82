@@ -39,6 +39,24 @@
       "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "658e96c9_ba3330ab",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-07-27T14:42:30Z",
+      "side": 1,
+      "message": "Hi Seb. Rendering seems to be fine. Icons are rendering as intended I think. I usually double check against: https://pmk65.github.io/jedemov2/dist/demo.html - to make sure.",
+      "parentUuid": "fe8db3f1_7e5e18a7",
+      "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
