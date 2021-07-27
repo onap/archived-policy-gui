@@ -59,7 +59,7 @@ export { default as MonitorInstantiation } from '../ui-react/src/components/dial
 export { default as InstantiationItem } from '../ui-react/src/components/dialogs/ControlLoop/InstantiationItem';
 export { default as InstantiationElements } from '../ui-react/src/components/dialogs/ControlLoop/InstantiationElements';
 export { default as InstantiationElementItem } from '../ui-react/src/components/dialogs/ControlLoop/InstantiationElementItem';
-export { default as UploadToscaInstantiation } from '../ui-react/src/components/dialogs/ControlLoop/UploadToscaInstantiation';
+export { default as InstanceModal } from '../ui-react/src/components/dialogs/ControlLoop/InstanceModal';
 export { default as ControlLoopService } from '../ui-react/src/api/ControlLoopService';
 export { default as GetLocalToscaFileForUpload } from '../ui-react/src/components/dialogs/ControlLoop/GetLocalToscaFileForUpload';
 export { default as ReadAndConvertYaml } from '../ui-react/src/components/dialogs/ControlLoop/ReadAndConvertYaml';

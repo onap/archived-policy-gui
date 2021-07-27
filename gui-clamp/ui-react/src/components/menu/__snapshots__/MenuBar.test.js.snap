@@ -1136,9 +1136,9 @@ exports[`Verify MenuBar Test the render method 1`] = `
         }
       }
       disabled={false}
-      to="/uploadToscaInstantiation"
+      to="/editControlLoopInstanceProperties"
     >
-      Upload Tosca Instantiation
+      Edit Control Loop Instance Properties
     </DropdownItem>
     <DropdownDivider
       role="separator"
