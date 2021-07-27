@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02096057_19787569",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-27T13:23:32Z",
+      "side": 1,
+      "message": "maybe cache this value in a local variable so the look-up doesn\u0027t have to be repeated for each property.\n\nfor that matter, isn\u0027t there a way to clone a set of properties so the \"foreach\" wouldn\u0027t be needed at all?  same question in the functions below",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 93
+      },
+      "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
