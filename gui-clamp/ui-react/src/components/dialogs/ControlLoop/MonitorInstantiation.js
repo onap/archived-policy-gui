@@ -37,7 +37,7 @@ const MonitorInstantiation = (props) => {
   useEffect(() => {
     setWindowLocationPathname(window.location.pathname);
 
-    ControlLoopService.fetchControlLoopInstantiation(windowLocationPathname).then(controlLoopList => {
+    ControlLoopService.getControlLoopInstantiation(windowLocationPathname).then(controlLoopList => {
       setControlLoopList(controlLoopList['controlLoopList']);
     });
   }, [])

@@ -55,7 +55,7 @@ import ReadAndConvertYaml from "./components/dialogs/ControlLoop/ReadAndConvertY
 import MonitorInstantiation from "./components/dialogs/ControlLoop/MonitorInstantiation";
 import GetLocalToscaFileForUpload from "./components/dialogs/ControlLoop/GetLocalToscaFileForUpload";
 import CommissioningModal from "./components/dialogs/ControlLoop/CommissioningModal";
-import UploadToscaInstantiation from "./components/dialogs/ControlLoop/UploadToscaInstantiation";
+import InstanceModal from "./components/dialogs/ControlLoop/InstanceModal";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -386,7 +386,7 @@ export default class LoopUI extends React.Component {
                                                                               showFailAlert={ this.showFailAlert }/>) }
         />
         <Route path="/monitorInstantiation" render={ (routeProps) => (<MonitorInstantiation { ...routeProps } />) }/>
-        <Route path="/uploadToscaInstantiation" render={ (routeProps) => (<UploadToscaInstantiation { ...routeProps } />) }/>
+        <Route path="/editControlLoopInstanceProperties" render={ (routeProps) => (<InstanceModal { ...routeProps } />) }/>
       </React.Fragment>
     );
   }
