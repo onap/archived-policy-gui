@@ -90,7 +90,7 @@ exports[`Verify LoopUI Test the render method 1`] = `
     render={[Function]}
   />
   <Route
-    path="/uploadToscaInstantiation"
+    path="/editControlLoopInstanceProperties"
     render={[Function]}
   />
   <div />
