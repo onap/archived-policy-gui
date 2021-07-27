@@ -22,6 +22,23 @@
       "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe8db3f1_7e5e18a7",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-07-27T13:28:00Z",
+      "side": 1,
+      "message": "You may want to look at that code to improve the rendering of the JsonEditor (If the iconlib is not rendered properly).\nLine 27, https://gerrit.onap.org/r/gitweb?p\u003dpolicy/clamp.git;a\u003dblob;f\u003druntime/ui-react/src/components/dialogs/Policy/PolicyEditor.js;h\u003dbe77f14e9858055e0cdda856ce83130fb592c903;hb\u003dHEAD",
+      "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
