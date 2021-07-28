@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0b9916d4_279aeb0d",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-07-28T14:33:53Z",
+      "side": 1,
+      "message": "I will add the local variable in the next patchset.\n\nWith the short foreach I am extracting the start values from the node templates. And then will use those start values to populate initial data in the json editor. But I am only taking those node templates that have common types associated with them. The backend common properties do not contain start values - so this is required.\n\nAs for the foreach loops used in other functions. I try to use them as little as I can. I will see if I can remove some of the foreach loops in other functions for the next patchset. They are sometimes needed here because I need to have the data in a particular format to be rendered nicely on the UI.",
+      "parentUuid": "9f047847_c197a9ff",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 93
+      },
+      "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fe8db3f1_7e5e18a7",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
         "patchSetId": 1
