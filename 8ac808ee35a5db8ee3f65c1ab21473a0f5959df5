@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7659ae42_9d27695d",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-07-28T19:00:39Z",
+      "side": 1,
+      "message": "this is what I was saying should be cached, to avoid repeated look-up by \"key\"",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 64
+      },
+      "revId": "8ac808ee35a5db8ee3f65c1ab21473a0f5959df5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
