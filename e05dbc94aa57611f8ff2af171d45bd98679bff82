@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "2439d41f_67e259d7",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-07-28T18:16:06Z",
+      "side": 1,
+      "message": "I have added the cached variable you suggested Jim.\n\nThe loops in the below functions - updateTemplate and makeSchemaForCommonProperties - \n\nThe former has to take the values entered by the user and \"fill them into\" the correct places in the full service template. I have to pick out particular items and place them in the correct places in the template. Foreach is just the most clean way to do this that I can see currently.\n\nIn the latter, I have to construct a schema locally in a very specific way so as to be understood by the json schema editor.\n\nCould we make the optimisations vis-a-vis loops and other elements in a future review?",
+      "parentUuid": "0b9916d4_279aeb0d",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 93
+      },
+      "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fe8db3f1_7e5e18a7",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
         "patchSetId": 1
