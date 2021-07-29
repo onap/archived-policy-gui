@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "f2c1e7ed_8ae0fa7d",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2021-07-29T08:57:32Z",
+      "side": 1,
+      "message": "Thanks Jim",
+      "parentUuid": "27216841_5ee252db",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 93
+      },
+      "revId": "e05dbc94aa57611f8ff2af171d45bd98679bff82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe8db3f1_7e5e18a7",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/CommissioningModal.js",
         "patchSetId": 1
