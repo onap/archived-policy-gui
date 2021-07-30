@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e881e4d_5a721334",
+        "filename": "gui-clamp/ui-react/src/api/ControlLoopService.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-30T15:35:57Z",
+      "side": 1,
+      "message": "I think it was my autoformat from my IDE, I\u0027ll remove the space between it.",
+      "parentUuid": "7470511c_bce4eb5d",
+      "range": {
+        "startLine": 87,
+        "startChar": 48,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "41d2bae78502be3d2df35af2188dd100a428ba79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "adba871f_dfac4b3a",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/InstanceModal.js",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c907e610_1ded0540",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/InstanceModal.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-30T15:35:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adba871f_dfac4b3a",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 89
+      },
+      "revId": "41d2bae78502be3d2df35af2188dd100a428ba79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1a661c7_ea284b5a",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/InstanceModal.js",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "41d2bae78502be3d2df35af2188dd100a428ba79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "462ce9e6_c3c08b06",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/InstanceModal.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-07-30T15:35:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1a661c7_ea284b5a",
+      "range": {
+        "startLine": 187,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 26
+      },
+      "revId": "41d2bae78502be3d2df35af2188dd100a428ba79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
