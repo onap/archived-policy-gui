@@ -42,6 +42,10 @@ const DivWhiteSpaceStyled = styled.div`
   text-align: center;
 `
 
+const AlertStyled = styled(Alert)`
+  margin-top: 10px;
+`
+
 const templateName = "ToscaServiceTemplateSimple";
 const templateVersion = "1.0.0";
 let tempJsonEditor = null;
@@ -54,13 +58,32 @@ const InstanceModal = (props) => {
   const [toscaJsonSchema, setToscaJsonSchema] = useState({});
   const [jsonEditor, setJsonEditor] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
+  const [instancePropertiesGlobal, setInstancePropertiesGlobal] = useState({});
+  const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
+  const [instancePropertiesResponseOk, setInstancePropertiesResponseOk] = useState(true);
 
   useEffect(async () => {
-    const toscaInstanceProperties = await ControlLoopService.getInstanceProperties(templateName, templateVersion, windowLocationPathname).catch(error => error.message);
+    const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, windowLocationPathname, false).catch(error => error.message);
 
-    const toscaSchemaResponse = await ControlLoopService.getToscaTemplate(templateName, templateVersion, windowLocationPathname).catch(error => error.message);
+    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(templateName, templateVersion, windowLocationPathname).catch(error => error.message);
 
-    await parseJsonSchema(toscaSchemaResponse, toscaInstanceProperties);
+    if (!toscaInstanceProperties.ok) {
+      const errorResponse = await toscaInstanceProperties.json()
+      console.log(errorResponse)
+      setInstancePropertiesGlobal(errorResponse);
+      setInstancePropertiesResponseOk(false);
+    }
+
+    if (!toscaTemplateResponse.ok) {
+      const errorResponse = await toscaTemplateResponse.json()
+      console.log(errorResponse)
+      setToscaFullTemplate(errorResponse)
+      setServiceTemplateResponseOk(false);
+    }
+
+    if (toscaTemplateResponse.ok && toscaInstanceProperties.ok) {
+      await parseJsonSchema(toscaTemplateResponse, toscaInstanceProperties);
+    }
 
   }, []);
 
@@ -113,9 +136,8 @@ const InstanceModal = (props) => {
     newSchemaObject.type = "object";
     newSchemaObject.properties = {};
 
-    const newSchemaObjectArray = [];
     instancePropsArray.forEach(([key, value]) => {
-      const templateObj = {};
+
       const propertiesObject = {};
 
       Object.entries(value.properties).forEach(([pKey, pValue]) => {
@@ -125,6 +147,9 @@ const InstanceModal = (props) => {
       });
 
       newSchemaObject.properties[key] = {
+        options: {
+          "collapsed": true
+        },
         properties: propertiesObject
       }
     });
@@ -143,7 +168,7 @@ const InstanceModal = (props) => {
       case "object":
         return "object";
       default:
-        return "string";
+        return "object";
 
     }
   }
@@ -186,8 +211,8 @@ const InstanceModal = (props) => {
 
     instanceDataProperties.forEach(([key, value]) => {
       const nodeTemplatesKey = nodeTemplates[key]
-      Object.entries(value).forEach((pKey, pValue) => {
-        nodeTemplatesKey.properties[pKey] = pValue;
+      Object.entries(value).forEach(([pKey, pValue]) => {
+        nodeTemplatesKey.properties[pKey] = pValue
       });
     });
 
@@ -245,6 +270,10 @@ const InstanceModal = (props) => {
       <div style={ { padding: '5px 5px 0 5px' } }>
         <Modal.Body>
           <div id="editor"/>
+          <AlertStyled show={ !serviceTemplateResponseOk }
+                       variant="danger">Can't get service template:<br/>{ JSON.stringify(toscaFullTemplate, null, 2) }</AlertStyled>
+          <AlertStyled show={ !instancePropertiesResponseOk }
+                       variant="danger">Can't get instance properties:<br/>{ JSON.stringify(instancePropertiesGlobal, null, 2) }</AlertStyled>
         </Modal.Body>
         <DivWhiteSpaceStyled>
           { alertMessage }

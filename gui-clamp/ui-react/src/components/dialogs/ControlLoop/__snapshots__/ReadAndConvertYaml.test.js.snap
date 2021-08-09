@@ -33,7 +33,9 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
     <Styled(Alert)
       show={false}
       variant="danger"
-    />
+    >
+      null
+    </Styled(Alert)>
     <Styled(Alert)
       show={false}
       variant="success"
@@ -41,7 +43,9 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       <h2>
         Delete Successful
       </h2>
-      <styled.pre />
+      <styled.pre>
+        null
+      </styled.pre>
     </Styled(Alert)>
   </ModalBody>
   <ModalFooter>

@@ -24,22 +24,36 @@ import Button from "react-bootstrap/Button";
 import InstantiationItem from "./InstantiationItem";
 import ControlLoopService from "../../../api/ControlLoopService";
 import InstantiationElements from "./InstantiationElements";
+import { Alert } from "react-bootstrap";
 
 const ModalStyled = styled(Modal)`
   background-color: transparent;
+`
+const AlertStyled = styled(Alert)`
+  margin-top: 10px;
 `
 
 const MonitorInstantiation = (props) => {
   const [show, setShow] = useState(true);
   const [controlLoopList, setControlLoopList] = useState([]);
   const [windowLocationPathname, setWindowLocationPathname] = useState('');
+  const [controlLoopInstantiationOk, setControlLoopInstantiationOk] = useState(true);
+  const [controlLoopInstantiationError, setControlLoopInstantiationError] = useState({});
 
-  useEffect(() => {
+  useEffect(async () => {
     setWindowLocationPathname(window.location.pathname);
 
-    ControlLoopService.getControlLoopInstantiation(windowLocationPathname).then(controlLoopList => {
-      setControlLoopList(controlLoopList['controlLoopList']);
-    });
+    const controlLoopInstantiation = await ControlLoopService.getControlLoopInstantiation(windowLocationPathname)
+      .catch(error => error.message);
+
+    const controlLoopInstantiationJson = await controlLoopInstantiation.json()
+    console.log(controlLoopInstantiationJson)
+    if (!controlLoopInstantiation.ok || controlLoopInstantiationJson['controlLoopList'].length === 0) {
+      setControlLoopInstantiationOk(false)
+      setControlLoopInstantiationError(controlLoopInstantiationJson)
+    } else {
+      setControlLoopList(controlLoopInstantiationJson[['controlLoopList']])
+    }
   }, [])
 
   const handleClose = () => {
@@ -61,6 +75,8 @@ const MonitorInstantiation = (props) => {
             </InstantiationItem>
           ))
         }
+        <AlertStyled show={ !controlLoopInstantiationOk }
+                     variant="danger">Can't get control loop instantiation info:<br/>{ JSON.stringify(controlLoopInstantiationError, null, 2) }</AlertStyled>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" type="null" onClick={ handleClose }>Close</Button>

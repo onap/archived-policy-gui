@@ -42,6 +42,10 @@ const StyledMessagesDiv = styled.div`
   text-align: center;
 `
 
+const AlertStyled = styled(Alert)`
+  margin-top: 10px;
+`
+
 const CommissioningModal = (props) => {
   const [windowLocationPathName, setWindowLocationPathName] = useState('');
   const [fullToscaTemplate, setFullToscaTemplate] = useState({});
@@ -51,6 +55,8 @@ const CommissioningModal = (props) => {
   const [jsonEditor, setJsonEditor] = useState(null);
   const [show, setShow] = useState(true);
   const [alertMessages, setAlertMessages] = useState();
+  const [commonPropertiesResponseOk, setCommonPropertiesResponseOk] = useState(true);
+  const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
   const name = 'ToscaServiceTemplateSimple';
   const version = '1.0.0';
   let editorTemp = null
@@ -58,10 +64,26 @@ const CommissioningModal = (props) => {
   useEffect(async () => {
     const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version, windowLocationPathName)
       .catch(error => error.message);
-    const toscaCommonProperties = await ControlLoopService.getCommonProperties(name, version, windowLocationPathName)
+    const toscaCommonProperties = await ControlLoopService.getCommonOrInstanceProperties(name, version, windowLocationPathName, true)
       .catch(error => error.message);
 
-    await renderJsonEditor(toscaTemplateResponse, toscaCommonProperties)
+    if (!toscaCommonProperties.ok) {
+      const errorResponse = await toscaCommonProperties.json()
+      console.log(errorResponse)
+      setCommonProperties(errorResponse)
+      setCommonPropertiesResponseOk(false);
+    }
+
+    if (!toscaTemplateResponse.ok) {
+      const errorResponse = await toscaTemplateResponse.json()
+      console.log(errorResponse)
+      setFullToscaTemplate(errorResponse)
+      setServiceTemplateResponseOk(false);
+    }
+
+    if (toscaTemplateResponse.ok && toscaCommonProperties.ok) {
+      await renderJsonEditor(toscaTemplateResponse, toscaCommonProperties)
+    }
 
   }, []);
 
@@ -189,6 +211,9 @@ const CommissioningModal = (props) => {
 
       })
       newSchemaObject.properties[templateKey] = {
+        options: {
+          "collapsed": true
+        },
         properties: propertiesObject
       }
     })
@@ -209,7 +234,7 @@ const CommissioningModal = (props) => {
       case "object":
         return "object"
       default:
-        return "string"
+        return "object"
     }
   }
 
@@ -246,12 +271,16 @@ const CommissioningModal = (props) => {
                  backdrop="static"
                  keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Common Properties</Modal.Title>
+        <Modal.Title>Change Control Loop Common Properties</Modal.Title>
       </Modal.Header>
       <br/>
       <div style={ { padding: '5px 5px 0px 5px' } }>
         <Modal.Body>
           <div id="editor"/>
+          <AlertStyled show={ !serviceTemplateResponseOk }
+                       variant="danger">Can't get service template:<br/>{ JSON.stringify(fullToscaTemplate, null, 2) }</AlertStyled>
+          <AlertStyled show={ !commonPropertiesResponseOk }
+                       variant="danger">Can't get common properties:<br/>{ JSON.stringify(commonProperties, null, 2) }</AlertStyled>
         </Modal.Body>
       </div>
       <StyledMessagesDiv>
@@ -262,7 +291,7 @@ const CommissioningModal = (props) => {
           variant="primary"
           onClick={ handleSave }
         >Save</Button>
-        <Button variant="success"
+        <Button variant="success mr-auto"
                 onClick={ handleCommission }>Commission</Button>
         <Button variant="secondary"
                 onClick={ handleClose }>Close</Button>

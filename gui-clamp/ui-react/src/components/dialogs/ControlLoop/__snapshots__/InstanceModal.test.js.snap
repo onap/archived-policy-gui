@@ -27,6 +27,22 @@ exports[`Verify MonitoringInstantiation renders correctly 1`] = `
       <div
         id="editor"
       />
+      <Styled(Alert)
+        show={false}
+        variant="danger"
+      >
+        Can't get service template:
+        <br />
+        {}
+      </Styled(Alert)>
+      <Styled(Alert)
+        show={false}
+        variant="danger"
+      >
+        Can't get instance properties:
+        <br />
+        {}
+      </Styled(Alert)>
     </ModalBody>
     <styled.div />
   </div>

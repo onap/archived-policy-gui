@@ -13,7 +13,7 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
     closeLabel="Close"
   >
     <ModalTitle>
-      Edit Common Properties
+      Change Control Loop Common Properties
     </ModalTitle>
   </ModalHeader>
   <br />
@@ -28,6 +28,22 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       <div
         id="editor"
       />
+      <Styled(Alert)
+        show={false}
+        variant="danger"
+      >
+        Can't get service template:
+        <br />
+        {}
+      </Styled(Alert)>
+      <Styled(Alert)
+        show={false}
+        variant="danger"
+      >
+        Can't get common properties:
+        <br />
+        {}
+      </Styled(Alert)>
     </ModalBody>
   </div>
   <styled.div />
@@ -44,7 +60,7 @@ exports[`Verify ReadAndConvertYaml renders correctly 1`] = `
       active={false}
       disabled={false}
       onClick={[Function]}
-      variant="success"
+      variant="success mr-auto"
     >
       Commission
     </Button>

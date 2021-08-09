@@ -16,7 +16,16 @@ exports[`Verify MonitoringInstantiation renders correctly 1`] = `
       Tosca Instantiation - Monitoring
     </ModalTitle>
   </ModalHeader>
-  <ModalBody />
+  <ModalBody>
+    <Styled(Alert)
+      show={false}
+      variant="danger"
+    >
+      Can't get control loop instantiation info:
+      <br />
+      {}
+    </Styled(Alert)>
+  </ModalBody>
   <ModalFooter>
     <Button
       active={false}
