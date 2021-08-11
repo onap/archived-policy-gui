@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7820fd62_ec946a80",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/__snapshots__/ReadAndConvertYaml.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2021-08-11T14:16:07Z",
+      "side": 1,
+      "message": "Some extra tabs here.",
+      "revId": "706b284cb8091ef00bc352bc5ee32f4fdca1162a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
