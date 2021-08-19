@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17796294_730a647f",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/InstantiationManagementModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-19T17:57:00Z",
+      "side": 1,
+      "message": "missing newline at end of file",
+      "revId": "92bc6d25efc3fe4b8e2f731a8e73f9f1a0a7f38a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
