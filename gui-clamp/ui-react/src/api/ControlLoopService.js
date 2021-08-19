@@ -41,6 +41,27 @@ export default class ControlLoopService {
     return response
   }
 
+  static async getInstanceOrderState(windowLocationPathName) {
+    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/getInstantiationOrderState');
+
+    const data = await response;
+
+    return data;
+  }
+
+  static async changeInstanceOrderState(toscaObject, windowLocationPathName) {
+    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/putToscaInstantiationStateChange', {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(toscaObject)
+    });
+
+    return response
+  }
+
   static async getToscaTemplate(name, version, windowLocationPathname) {
     const params = {
       name: name,

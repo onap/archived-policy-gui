@@ -90,6 +90,10 @@ exports[`Verify LoopUI Test the render method 1`] = `
     render={[Function]}
   />
   <Route
+    path="/manageInstantiation"
+    render={[Function]}
+  />
+  <Route
     path="/editControlLoopInstanceProperties"
     render={[Function]}
   />
