@@ -1136,6 +1136,71 @@ exports[`Verify MenuBar Test the render method 1`] = `
         }
       }
       disabled={false}
+      to="/manageInstantiation"
+    >
+      Manage Instantiation
+    </DropdownItem>
+    <DropdownItem
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": e {
+            "baseHash": -715527839,
+            "baseStyle": undefined,
+            "componentId": "sc-bdnxRM",
+            "isStatic": false,
+            "rules": Array [
+              "
+  color: ",
+              [Function],
+              ";
+  background-color: ",
+              [Function],
+              ";
+  font-weight: normal;
+  display: block;
+  width: 100%;
+  padding: .25rem 1.5rem;
+  clear: both;
+  text-align: inherit;
+  white-space: nowrap;
+  border: 0;
+
+  :hover {
+    text-decoration: none;
+    background-color: ",
+              [Function],
+              ";
+    color: ",
+              [Function],
+              ";
+  }
+",
+            ],
+            "staticRulesId": "",
+          },
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "shouldForwardProp": undefined,
+          "styledComponentId": "sc-bdnxRM",
+          "target": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          },
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      disabled={false}
       to="/editControlLoopInstanceProperties"
     >
       Edit Control Loop Instance Properties

@@ -56,6 +56,7 @@ import MonitorInstantiation from "./components/dialogs/ControlLoop/MonitorInstan
 import GetLocalToscaFileForUpload from "./components/dialogs/ControlLoop/GetLocalToscaFileForUpload";
 import CommissioningModal from "./components/dialogs/ControlLoop/CommissioningModal";
 import InstanceModal from "./components/dialogs/ControlLoop/InstanceModal";
+import InstantiationManagementModal from "./components/dialogs/ControlLoop/InstantiationManagementModal";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -386,6 +387,7 @@ export default class LoopUI extends React.Component {
                                                                               showFailAlert={ this.showFailAlert }/>) }
         />
         <Route path="/monitorInstantiation" render={ (routeProps) => (<MonitorInstantiation { ...routeProps } />) }/>
+        <Route path="/manageInstantiation" render={ (routeProps) => (<InstantiationManagementModal { ...routeProps } />) }/>
         <Route path="/editControlLoopInstanceProperties" render={ (routeProps) => (<InstanceModal { ...routeProps } />) }/>
       </React.Fragment>
     );
