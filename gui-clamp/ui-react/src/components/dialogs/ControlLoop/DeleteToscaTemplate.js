@@ -24,13 +24,10 @@ import ControlLoopService from "../../../api/ControlLoopService";
 
 const DeleteToscaTemplate = props => {
 
-  const [windowLocationPathName, setWindowLocationPathname] = useState('');
-
   const deleteTemplateHandler = async () => {
     console.log('deleteTemplateHandler called');
-    setWindowLocationPathname(window.location.pathname);
 
-    const response = await ControlLoopService.deleteToscaTemplate(props.templateName, props.templateVersion, windowLocationPathName)
+    const response = await ControlLoopService.deleteToscaTemplate(props.templateName, props.templateVersion)
       .catch(error => error.message);
 
     console.log('Response is ok: ' + response.ok);

@@ -52,7 +52,6 @@ let tempJsonEditor = null;
 
 const InstanceModal = (props) => {
   const [show, setShow] = useState(true);
-  const [windowLocationPathname, setWindowLocationPathname] = useState('');
   const [toscaFullTemplate, setToscaFullTemplate] = useState({});
   const [toscaFilteredInitialValues, setToscaFilteredInitialValues] = useState({});
   const [toscaJsonSchema, setToscaJsonSchema] = useState({});
@@ -63,9 +62,9 @@ const InstanceModal = (props) => {
   const [instancePropertiesResponseOk, setInstancePropertiesResponseOk] = useState(true);
 
   useEffect(async () => {
-    const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, windowLocationPathname, false).catch(error => error.message);
+    const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, false).catch(error => error.message);
 
-    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(templateName, templateVersion, windowLocationPathname).catch(error => error.message);
+    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(templateName, templateVersion).catch(error => error.message);
 
     if (!toscaInstanceProperties.ok) {
       const errorResponse = await toscaInstanceProperties.json()
@@ -225,11 +224,9 @@ const InstanceModal = (props) => {
   const handleSave = async () => {
     console.log("handleSave called")
 
-    setWindowLocationPathname(window.location.pathname);
-
     updateTemplate(jsonEditor.getValue());
 
-    const response = await ControlLoopService.createInstanceProperties(toscaFullTemplate, windowLocationPathname).catch(error => error.message);
+    const response = await ControlLoopService.createInstanceProperties(toscaFullTemplate).catch(error => error.message);
 
     if (response.ok) {
       successAlert();

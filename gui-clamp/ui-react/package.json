@@ -8,6 +8,7 @@
         "registry": "${npm.publish.url}"
     },
     "main": "index.js",
+    "homepage": ".",
     "proxy": "https://localhost:8443",
     "scripts": {
         "start": "HTTPS=true react-scripts start",

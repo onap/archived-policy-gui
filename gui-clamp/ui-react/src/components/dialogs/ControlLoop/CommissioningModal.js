@@ -47,7 +47,6 @@ const AlertStyled = styled(Alert)`
 `
 
 const CommissioningModal = (props) => {
-  const [windowLocationPathName, setWindowLocationPathName] = useState('');
   const [fullToscaTemplate, setFullToscaTemplate] = useState({});
   const [toscaInitialValues, setToscaInitialValues] = useState({});
   const [commonProperties, setCommonProperties] = useState({})
@@ -62,9 +61,9 @@ const CommissioningModal = (props) => {
   let editorTemp = null
 
   useEffect(async () => {
-    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version, windowLocationPathName)
+    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version)
       .catch(error => error.message);
-    const toscaCommonProperties = await ControlLoopService.getCommonOrInstanceProperties(name, version, windowLocationPathName, true)
+    const toscaCommonProperties = await ControlLoopService.getCommonOrInstanceProperties(name, version, true)
       .catch(error => error.message);
 
     if (!toscaCommonProperties.ok) {
@@ -100,12 +99,10 @@ const CommissioningModal = (props) => {
 
 
   const handleCommission = async () => {
-    setWindowLocationPathName(window.location.pathname);
-
-    await ControlLoopService.deleteToscaTemplate('ToscaServiceTemplateSimple', "1.0.0", windowLocationPathName)
+    await ControlLoopService.deleteToscaTemplate('ToscaServiceTemplateSimple', "1.0.0")
       .catch(error => error.message)
 
-    const recommissioningResponse = await ControlLoopService.uploadToscaFile(fullToscaTemplate, windowLocationPathName)
+    const recommissioningResponse = await ControlLoopService.uploadToscaFile(fullToscaTemplate)
       .catch(error => error.message)
 
     await receiveResponseFromCommissioning(recommissioningResponse)

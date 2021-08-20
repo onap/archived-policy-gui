@@ -19,17 +19,17 @@
 
 export default class ControlLoopService {
 
-  static async getControlLoopInstantiation(windowLocationPathname) {
+  static async getControlLoopInstantiation() {
 
-    const response = await fetch(windowLocationPathname + '/restservices/clds/v2/toscaControlLoop/getToscaInstantiation');
+    const response = await fetch(window.location.pathname + 'restservices/clds/v2/toscaControlLoop/getToscaInstantiation');
 
     return response
   }
 
-  static async createInstanceProperties(instancePropertiesTemplate, windowLocationPathname) {
+  static async createInstanceProperties(instancePropertiesTemplate) {
 
-    const response = await fetch(windowLocationPathname +
-      '/restservices/clds/v2/toscaControlLoop/postToscaInstanceProperties', {
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/postToscaInstanceProperties', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -41,16 +41,16 @@ export default class ControlLoopService {
     return response
   }
 
-  static async getInstanceOrderState(windowLocationPathName) {
-    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/getInstantiationOrderState');
+  static async getInstanceOrderState() {
+    const response = await fetch(window.location.pathname + 'restservices/clds/v2/toscaControlLoop/getInstantiationOrderState');
 
     const data = await response;
 
     return data;
   }
 
-  static async changeInstanceOrderState(toscaObject, windowLocationPathName) {
-    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/putToscaInstantiationStateChange', {
+  static async changeInstanceOrderState(toscaObject) {
+    const response = await fetch(window.location.pathname + 'restservices/clds/v2/toscaControlLoop/putToscaInstantiationStateChange', {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
@@ -62,23 +62,23 @@ export default class ControlLoopService {
     return response
   }
 
-  static async getToscaTemplate(name, version, windowLocationPathname) {
+  static async getToscaTemplate(name, version) {
     const params = {
       name: name,
       version: version
     }
 
-    const response = await fetch(windowLocationPathname +
-      '/restservices/clds/v2/toscaControlLoop/getToscaTemplate' + '?' + (new URLSearchParams(params)));
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/getToscaTemplate' + '?' + (new URLSearchParams(params)));
 
     const data = await response;
 
     return data;
   }
 
-  static async uploadToscaFile(toscaObject, windowLocationPathName) {
-    const response = await fetch(windowLocationPathName +
-      '/restservices/clds/v2/toscaControlLoop/commissionToscaTemplate', {
+  static async uploadToscaFile(toscaObject) {
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/commissionToscaTemplate', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -91,14 +91,14 @@ export default class ControlLoopService {
 
   }
 
-  static async deleteToscaTemplate(name, version, windowLocationPathname) {
+  static async deleteToscaTemplate(name, version) {
     const params = {
       name: name,
       version: version
     }
 
-    const response = await fetch(windowLocationPathname +
-      '/restservices/clds/v2/toscaControlLoop/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
       {
         method: 'DELETE'
       });
@@ -108,10 +108,10 @@ export default class ControlLoopService {
     return data;
   }
 
-  static async getToscaControlLoopDefinitions(windowLocationPathname) {
+  static async getToscaControlLoopDefinitions() {
 
-    const response = await fetch(windowLocationPathname +
-      '/restservices/clds/v2/toscaControlLoop/getElementDefinitions');
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/getElementDefinitions');
 
     this.checkResponseForError(response);
 
@@ -120,27 +120,27 @@ export default class ControlLoopService {
     return data;
   }
 
-  static async getCommonOrInstanceProperties(name, version, windowLocationPathName, isCommon) {
+  static async getCommonOrInstanceProperties(name, version, isCommon) {
     const params = {
       name: name,
       version: version,
       common: isCommon
     }
 
-    const response = await fetch(windowLocationPathName +
-      '/restservices/clds/v2/toscaControlLoop/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
 
     return response;
   }
 
-  static async getToscaServiceTemplateSchema(section, windowLocationPathName) {
+  static async getToscaServiceTemplateSchema(section) {
 
     const params = {
       section: section
     }
 
-    const response = await fetch(windowLocationPathName +
-      '/restservices/clds/v2/toscaControlLoop/getJsonSchema' + '?' + (new URLSearchParams(params)));
+    const response = await fetch(window.location.pathname +
+      'restservices/clds/v2/toscaControlLoop/getJsonSchema' + '?' + (new URLSearchParams(params)));
 
     this.checkResponseForError(response);
 

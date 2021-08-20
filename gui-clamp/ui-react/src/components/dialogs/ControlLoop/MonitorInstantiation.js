@@ -36,14 +36,11 @@ const AlertStyled = styled(Alert)`
 const MonitorInstantiation = (props) => {
   const [show, setShow] = useState(true);
   const [controlLoopList, setControlLoopList] = useState([]);
-  const [windowLocationPathname, setWindowLocationPathname] = useState('');
   const [controlLoopInstantiationOk, setControlLoopInstantiationOk] = useState(true);
   const [controlLoopInstantiationError, setControlLoopInstantiationError] = useState({});
 
   useEffect(async () => {
-    setWindowLocationPathname(window.location.pathname);
-
-    const controlLoopInstantiation = await ControlLoopService.getControlLoopInstantiation(windowLocationPathname)
+    const controlLoopInstantiation = await ControlLoopService.getControlLoopInstantiation()
       .catch(error => error.message);
 
     const controlLoopInstantiationJson = await controlLoopInstantiation.json()

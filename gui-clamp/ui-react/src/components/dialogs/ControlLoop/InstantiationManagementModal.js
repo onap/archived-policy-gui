@@ -48,8 +48,6 @@ const AlertStyled = styled(Alert)`
 
 const InstantiationManagementModal = (props) => {
   const [show, setShow] = useState(true);
-  const [windowLocationPathnameGet, setWindowLocationPathnameGet] = useState('');
-  const [windowLocationPathNameSave, setWindowLocationPathNameSave] = useState('');
   const [controlLoopIdentifierList, setControlLoopIdentifierList] = useState([]);
   const [orderedState, setOrderedState] = useState('');
   const [toscaOrderStateObject, setToscaOrderStateObject] = useState({});
@@ -58,9 +56,7 @@ const InstantiationManagementModal = (props) => {
   const [alertMessage, setAlertMessage] = useState(null);
 
   useEffect(async () => {
-    setWindowLocationPathnameGet(window.location.pathname);
-
-    const instantiationOrderState = await ControlLoopService.getInstanceOrderState(windowLocationPathnameGet)
+    const instantiationOrderState = await ControlLoopService.getInstanceOrderState()
       .catch(error => error.message);
 
     const orderStateJson = await instantiationOrderState.json();
@@ -87,9 +83,8 @@ const InstantiationManagementModal = (props) => {
 
   const handleSave = async () => {
     console.log("handleSave called");
-    setWindowLocationPathNameSave(window.location.pathname);
 
-    const response = await ControlLoopService.changeInstanceOrderState(toscaOrderStateObject, windowLocationPathNameSave).catch(error => error.message);
+    const response = await ControlLoopService.changeInstanceOrderState(toscaOrderStateObject).catch(error => error.message);
 
     if (response.ok) {
       successAlert();

@@ -22,14 +22,12 @@ import React, { useState } from "react";
 import ControlLoopService from "../../../api/ControlLoopService";
 
 const UploadToscaFile = (props) => {
-  const [windowLocationPathName, setWindowLocationPathname] = useState('');
 
   const postServiceTemplateHandler = async (event) => {
     event.preventDefault();
     console.log('postServiceTemplateHandler called');
-    setWindowLocationPathname(window.location.pathname);
 
-    const response = await ControlLoopService.uploadToscaFile(props.toscaObject, windowLocationPathName)
+    const response = await ControlLoopService.uploadToscaFile(props.toscaObject)
       .catch(error => error.message);
 
     // const responseMessage = await response.text();

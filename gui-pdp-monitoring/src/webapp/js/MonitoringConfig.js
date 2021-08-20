@@ -21,7 +21,6 @@
 // Configuration used for page layout and charts
 const config = {
     refresh: 5000,
-    restPort: 17999,
     engineService: {
         parent: "engineService",
         tableId: "engineServicesTable",

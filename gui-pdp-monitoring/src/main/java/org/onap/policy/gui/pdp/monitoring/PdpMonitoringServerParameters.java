@@ -43,10 +43,9 @@ public class PdpMonitoringServerParameters {
 
     // Base URI the HTTP server will listen on
     private static final String DEFAULT_SERVER_URI_ROOT = "http://0.0.0.0:";
-    private static final String DEFAULT_REST_PATH = "papservices/*";
+    private static final String DEFAULT_REST_PATH = "papservices/";
     private static final String DEFAULT_CONTEXT_PATH = "/";
     private static final String SERVER_HOST = "0.0.0.0";
-    private static final int DEFAULT_REST_PORT = 17999;
     // Package that will field REST requests
     private static final String DEFAULT_REST_PACKAGE = "org.onap.policy.gui.pdp.monitoring.rest";
 
@@ -87,9 +86,5 @@ public class PdpMonitoringServerParameters {
 
     public String getDefaultRestPath() {
         return "/" + DEFAULT_REST_PATH;
-    }
-
-    public int getDefaultRestPort() {
-        return DEFAULT_REST_PORT;
     }
 }
