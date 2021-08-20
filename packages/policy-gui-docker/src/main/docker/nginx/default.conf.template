@@ -1,0 +1,30 @@
+server {
+  listen 8080;
+
+  location / {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+    try_files $uri $uri/ =404;
+  }
+
+  location /clamp/restservices/clds/ {
+    proxy_pass ${CLAMP_REST_URL}/restservices/clds/;
+  }
+
+  location /apex-editor/ {
+    proxy_pass http://localhost:18989/;
+    proxy_set_header Host $host;
+    proxy_set_header If-Modified-Since $http_if_modified_since;
+  }
+
+  location /pdp-monitoring/ {
+    proxy_pass http://localhost:18999/;
+    proxy_set_header Host $host;
+    proxy_set_header If-Modified-Since $http_if_modified_since;
+  }
+
+  location = /50x.html {
+    root /var/lib/nginx/html;
+  }
+  error_page  500 502 503 504  /50x.html;
+}
