@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,8 +65,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (var i = 0; i < data2.messages.message.length; i++) {
-            var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+        for (let value of data2.messages.message) {
+            var contextSchema = JSON.parse(value).apexContextSchema;
             contextSchemas.push({
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -77,8 +78,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
         requestURL = window.restRootURL + "/Task/Get?name=&version=";
         var tasks = new Array();
         ajax_get(requestURL, function(data3) {
-            for (var j = 0; j < data3.messages.message.length; j++) {
-                var task = JSON.parse(data3.messages.message[j]).apexTask;
+            for (let value of data3.messages.message) {
+                var task = JSON.parse(value).apexTask;
                 tasks.push({
                     "name" : task.key.name,
                     "version" : task.key.version,
@@ -90,8 +91,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
             requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var albums = new Array();
             ajax_get(requestURL, function(data4) {
-                for (var k = 0; k < data4.messages.message.length; k++) {
-                    var album = JSON.parse(data4.messages.message[k]).apexContextAlbum;
+                for (let value of data4.messages.message) {
+                    var album = JSON.parse(value).apexContextAlbum;
                     albums.push({
                         "name" : album.key.name,
                         "version" : album.key.version,
@@ -103,8 +104,8 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
                 requestURL = window.restRootURL + "/Event/Get?name=&version=";
                 var events = new Array();
                 ajax_get(requestURL, function(data5) {
-                    for (var m = 0; m < data5.messages.message.length; m++) {
-                        var event = JSON.parse(data5.messages.message[m]).apexEvent;
+                    for (let value of data5.messages.message) {
+                        var event = JSON.parse(value).apexEvent;
                         events.push({
                             "name" : event.key.name,
                             "version" : event.key.version,
@@ -300,9 +301,9 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     var firststateoptions = new Array();
     var firststateselected = null;
     if (policy != null && policy.state != null) {
-        for (var i = 0; i < policy.state.entry.length; i++) {
-            if (policy.state.entry[i] != null && policy.state.entry[i].key != null) {
-                var statename = policy.state.entry[i].key;
+        for (let value of policy.state.entry) {
+            if (value != null && value.key != null) {
+                var statename = value.key;
                 firststateoptions.push({
                     "name" : statename,
                     "displaytext" : statename
@@ -559,8 +560,8 @@ function editPolicyForm_addNewState(statesUL, createEditOrView, policy, tasks, e
         document.getElementById("editEventFormNewStateInput").value = "";
     }
     if (policy && policy.state) {
-        for (var i = 0; i < policy.state.entry.length; i++) {
-            if (statename.toUpperCase() == policy.state.entry[i].key.toUpperCase()) {
+        for (let value of policy.state.entry) {
+            if (statename.toUpperCase() == value.key.toUpperCase()) {
                 alert("Policy " + policy.policyKey.name + ":" + policy.policyKey.version
                         + " already contains a state called \"" + statename + "\".");
                 document.getElementById("editEventFormNewStateInput").focus();
@@ -580,11 +581,11 @@ function editPolicyForm_getStateOptions() {
             "#editEventFormStates > li[stateName]"); // get li direct child
                                                         // elements with an
                                                         // attribute "stateName"
-    for (var i = 0; i < stateslis.length; i++) {
-        if (stateslis != null && stateslis[i] != null && stateslis[i].getAttribute("stateName") != null) {
+    for (let value of stateslis) {
+        if (stateslis != null && value != null && value.getAttribute("stateName") != null) {
             stateoptions.push({
-                "name" : stateslis[i].getAttribute("stateName"),
-                "displaytext" : stateslis[i].getAttribute("stateName")
+                "name" : value.getAttribute("stateName"),
+                "displaytext" : value.getAttribute("stateName")
             });
         }
     }
@@ -784,10 +785,10 @@ function editPolicyForm_getPolicyBean() {
             "#editEventFormStates > li[stateName]"); // get li direct child
                                                         // elements with an
                                                         // attribute "stateName"
-    for (var i = 0; i < stateslis.length; i++) { // ignore last li ... it has
+    for (let value of stateslis) { // ignore last li ... it has
                                                     // the new state button etc.
-        if (stateslis != null && stateslis[i] != null && stateslis[i].getAttribute("stateName") != null) {
-            var statename = stateslis[i].getAttribute("stateName");
+        if (stateslis != null && value != null && value.getAttribute("stateName") != null) {
+            var statename = value.getAttribute("stateName");
             var state = editPolicyForm_State_getStateBean(statename);
             if (state == null) {
                 return null;
@@ -796,7 +797,7 @@ function editPolicyForm_getPolicyBean() {
         }
     }
 
-    var policybean = {
+    return policybean = {
         "name" : name,
         "version" : version,
         "uuid" : uuid,
@@ -805,7 +806,6 @@ function editPolicyForm_getPolicyBean() {
         "firstState" : firststateselectedoption.name,
         "states" : states
     };
-    return policybean;
 }
 
 export {

@@ -51,8 +51,8 @@ function editEventForm_createEvent(formParent) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (var i = 0; i < data2.messages.message.length; i++) {
-            var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+        for (let value of data2.messages.message) {
+            var contextSchema = JSON.parse(value).apexContextSchema;
             var dt = {
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -72,8 +72,8 @@ function editEventForm_editEvent_inner(formParent, name, version, viewOrEdit) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (var i = 0; i < data2.messages.message.length; i++) {
-                var contextSchema = JSON.parse(data2.messages.message[i]).apexContextSchema;
+            for (let value of data2.messages.message) {
+                var contextSchema = JSON.parse(value).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,
@@ -325,8 +325,7 @@ function editEventForm_activate(parent, operation, event, contextSchemas) {
     paramstable.appendChild(paramstable_body);
     // Add the parameters
     if (event && event.parameter && event.parameter.entry) {
-        for (var p = 0; p < event.parameter.entry.length; p++) {
-            var fieldEntry = event.parameter.entry[p];
+        for (let fieldEntry of event.parameter.entry) {
             var contextSchema = fieldEntry.value.fieldSchemaKey;
             var optional = fieldEntry.value.optional;
             contextSchema["displaytext"] = contextSchema.name + ":" + contextSchema.version;
@@ -470,7 +469,7 @@ function editEventForm_addEventParam(parentTBody, disabled, name, optional, cont
     if (name == null && contextSchema == null && !disabled) {
         paramOptionalInput.setAttribute("class", "field-eventparam-optional.new");
     }
-    if (optional == true) {
+    if (optional) {
         paramOptionalInput.checked = true;
     } else {
         paramOptionalInput.checked = false;

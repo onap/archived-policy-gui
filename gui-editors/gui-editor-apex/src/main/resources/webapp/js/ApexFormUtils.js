@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,9 +43,8 @@ function formUtils_generateDescription(name, version, uuid) {
         uuid = "null";
     }
 
-    var description = "Generated description for a concept called \"" + name + "\" with version \"" + version
+    return description = "Generated description for a concept called \"" + name + "\" with version \"" + version
             + "\" and UUID \"" + uuid + "\"";
-    return description;
 }
 
 export {formUtils_generateDescription, formUtils_generateUUID};
