@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -209,8 +210,8 @@ function pageControl_successStatus(data) {
     } else {
         $('#statusString').css("color", "red");
         $('#ebInlineMessage-iconHolder-icon').attr("class", "ebIcon ebIcon_big ebIcon_error");
-        for (var i = 0; i < data.messages.message.length; i++) {
-            $("#statusMessageTable").append("<tr><td>" + data.messages.message[i] + "</td></tr>");
+        for (let value of data.messages.message) {
+            $("#statusMessageTable").append("<tr><td>" + value + "</td></tr>");
         }
         // A session with session ID "0" does not exist
         var sessionDoesNotExistStringStart = "A session with session ID ";
@@ -257,8 +258,8 @@ function pageControl_recursiveDisable(el, disableValue, visibleValue) {
     }
 
     if (el.childNodes && el.childNodes.length > 0) {
-        for (var i = 0; i < el.childNodes.length; i++) {
-            recursiveDisable(el.childNodes[i], disableValue, visibleValue);
+        for (let value of el.childNodes) {
+            recursiveDisable(value, disableValue, visibleValue);
         }
     }
 }

@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,8 +46,8 @@ function ajax_getWithKeyInfo(requestURL, objectType, callback, keyNam) {
     ajax_get(keyInfoURL, function(dataKeyInfos) {
         ajax_get(requestURL, function(data) {
             var keyInfos = [];
-            for ( var i = 0; i < dataKeyInfos.messages.message.length; i++) {
-                var ki = JSON.parse(dataKeyInfos.messages.message[i]).apexKeyInfo;
+            for ( let value of dataKeyInfos.messages.message) {
+                var ki = JSON.parse(value).apexKeyInfo;
                 keyInfos.push(ki);
             }
             var object = JSON.parse(data.messages.message[0])[objectType];

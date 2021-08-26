@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,8 +40,8 @@ function eventTab_activate() {
         $("#eventTableBody").find("tr:gt(0)").remove();
 
 
-        for (var i = 0; i < data.messages.message.length; i++) {
-            var event = JSON.parse(data.messages.message[i]).apexEvent;
+        for (let value of data.messages.message) {
+            var event = JSON.parse(value).apexEvent;
 
             var eventTableRow_tr = document.createElement("tr");
             var eventid = event.key.name + ":"  + event.key.version;
@@ -61,8 +62,7 @@ function eventTab_activate() {
 
             eventTableRow += "<td><table class='ebTable'><thead><tr><th>Parameter</th><th>Parameter Type/Schema</th><th>Optional</th></tr></thead><tbody>";
 
-            for (var p = 0; p < event.parameter.entry.length; p++) {
-                var fieldEntry = event.parameter.entry[p];
+            for (let fieldEntry of event.parameter.entry) {
 
                 eventTableRow +=
                     "<tr><td>"                        +
