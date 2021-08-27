@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4891a90f_e18b700a",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/dropdownList.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-27T20:25:54Z",
+      "side": 1,
+      "message": "tabs \u003d\u003e spaces\n\nsame comment below",
+      "revId": "3c96cf93a40b774a8ef019208f4e32444490e232",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
