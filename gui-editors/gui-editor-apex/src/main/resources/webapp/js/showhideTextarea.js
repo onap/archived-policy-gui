@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@ function showHideTextarea_display_hide(showHideDivprefix) {
     var ta = document.getElementById(showHideDivprefix + "_textarea");
     var sh = document.getElementById(showHideDivprefix + "_showhide");
     _showHideTextarea_display_hide(ta, sh)
-    if (sh["_clickable"] == true) {
+    if (sh["_clickable"]) {
         sh.onclick = function(event) {
             showHideTextarea_display_show(showHideDivprefix);
         };
@@ -33,7 +34,7 @@ function showHideTextarea_display_show(showHideDivprefix) {
     var ta = document.getElementById(showHideDivprefix + "_textarea");
     var sh = document.getElementById(showHideDivprefix + "_showhide");
     _showHideTextarea_display_show(ta, sh)
-    if (sh["_clickable"] == true) {
+    if (sh["_clickable"]) {
         sh.onclick = function(event) {
             showHideTextarea_display_hide(showHideDivprefix);
         };

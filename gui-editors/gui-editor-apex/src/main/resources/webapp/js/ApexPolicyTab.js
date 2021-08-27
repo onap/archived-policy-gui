@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,8 +38,8 @@ function policyTab_activate() {
     ajax_get(requestURL, function(data) {
         $("#policyTableBody").find("tr:gt(0)").remove();
 
-        for (var i = 0; i < data.messages.message.length; i++) {
-            var policy = JSON.parse(data.messages.message[i]).apexPolicy;
+        for (let value of data.messages.message) {
+            var policy = JSON.parse(value).apexPolicy;
 
             var policyRow_tr = document.createElement("tr");
             var policyid = policy.policyKey.name + ":"  + policy.policyKey.version;
@@ -67,9 +68,9 @@ function policyTab_activate() {
                 }
             }
 
-            for (var p = 0; p < policy.state.entry.length; p++) {
-                var stateName = policy.state.entry[p].key;
-                state     = policy.state.entry[p].value;
+            for (let entry of policy.state.entry) {
+                var stateName = entry.key;
+                state     = entry.value;
 
                 policyTableRow +=
                     "<tr><td>"                                            +
@@ -80,9 +81,9 @@ function policyTab_activate() {
                     "</td>";
 
                 policyTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Task Reference</th><th>Output Type</th><th>Output</th></thead><tbody>";
-                for (var t = 0; t < state.taskReferences.entry.length; t++) {
-                    var taskKey = state.taskReferences.entry[t].key;
-                    var taskRef = state.taskReferences.entry[t].value;
+                for (let entry of state.taskReferences.entry) {
+                    var taskKey = entry.key;
+                    var taskRef = entry.value;
 
                     policyTableRow +=
                         "<tr><td>"                +
@@ -106,8 +107,7 @@ function policyTab_activate() {
                     "</td>";
 
                 policyTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Name</th><th>Next State</th><th>Event</th></thead><tbody>";
-                for (var o = 0; o < state.stateOutputs.entry.length; o++) {
-                    var outputEntry = state.stateOutputs.entry[o];
+                for (let outputEntry of state.stateOutputs.entry) {
 
                     policyTableRow +=
                         "<tr><td>"                             +
@@ -123,8 +123,7 @@ function policyTab_activate() {
                 policyTableRow += "</tbody></table></td>";
 
                 policyTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Name</th><th>Type</th></thead><tbody>";
-                for (var sf = 0; sf < state.stateFinalizerLogicMap.entry.length; sf++) {
-                    var sflEntry = state.stateFinalizerLogicMap.entry[sf];
+                for (let sflEntry of state.stateFinalizerLogicMap.entry) {
 
                     policyTableRow +=
                         "<tr><td>"                  +
@@ -138,8 +137,7 @@ function policyTab_activate() {
 
 
                 policyTableRow += "<td><table class='ebTable'><tbody>";
-                for (var c = 0; c < state.contextAlbumReference.length; c++) {
-                    var contextAlbumReference = state.contextAlbumReference[c];
+                for (let contextAlbumReference of state.contextAlbumReference) {
 
                     policyTableRow +=
                         "<tr><td>"  +
