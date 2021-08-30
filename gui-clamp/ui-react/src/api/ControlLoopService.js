@@ -26,7 +26,7 @@ export default class ControlLoopService {
     return response
   }
 
-  static async createInstanceProperties(instancePropertiesTemplate, windowLocationPathname) {
+  static async createInstanceProperties(instanceName, instancePropertiesTemplate, windowLocationPathname) {
 
     const response = await fetch(windowLocationPathname +
       '/restservices/clds/v2/toscaControlLoop/postToscaInstanceProperties', {
@@ -41,8 +41,29 @@ export default class ControlLoopService {
     return response
   }
 
-  static async getInstanceOrderState(windowLocationPathName) {
-    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/getInstantiationOrderState');
+  static async deleteInstantiation(name, version, windowLocationPathName) {
+    console.log(windowLocationPathName);
+    const params = {
+      name: name,
+      version: version
+    }
+
+    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/deleteToscaInstanceProperties?' + (new URLSearchParams(params)), {
+      method: 'DELETE',
+      credentials: 'same-origin',
+    });
+
+    const data = await response;
+
+    return data;
+  }
+
+  static async getInstanceOrderState(name, version, windowLocationPathName) {
+    const params = {
+      name: name,
+      version: version
+    }
+    const response = await fetch(windowLocationPathName + '/restservices/clds/v2/toscaControlLoop/getInstantiationOrderState'+ '?' + (new URLSearchParams(params)));
 
     const data = await response;
 
