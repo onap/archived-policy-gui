@@ -22,7 +22,6 @@
 package org.onap.policy.gui.pdp.monitoring;
 
 import lombok.NonNull;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.onap.policy.common.endpoints.http.server.HttpServletServer;
 import org.onap.policy.common.endpoints.http.server.HttpServletServerFactoryInstance;
 import org.slf4j.Logger;
@@ -41,9 +40,6 @@ public class PdpMonitoringServer {
     // The HTTP server exposing JAX-RS resources defined in this application.
     private HttpServletServer jerseyServer;
 
-    // The HTTP server exposing static resources defined in this application.
-    private HttpServletServer staticResourceServer;
-
     /**
      * Starts the HTTP server for the Pdp statistics monitoring on the default base URI and with the
      * default REST packages.
@@ -58,21 +54,12 @@ public class PdpMonitoringServer {
      * @param parameters The Pdp parameters to use to start the server.
      */
     public PdpMonitoringServer(@NonNull final PdpMonitoringServerParameters parameters) {
-
         LOGGER.debug("Pdp Monitoring starting . . .");
 
         jerseyServer = HttpServletServerFactoryInstance.getServerFactory().build("PDP Monitoring Rest Server", false,
-                parameters.getServerHost(), parameters.getDefaultRestPort(), parameters.getContextPath(), false, true);
+                parameters.getServerHost(), parameters.getPort(), parameters.getContextPath(), false, true);
         jerseyServer.addServletPackage(parameters.getDefaultRestPath(), parameters.getRestPackage());
-        jerseyServer.addFilterClass(parameters.getDefaultRestPath(), CrossOriginFilter.class.getName());
         jerseyServer.start();
-
-        staticResourceServer = HttpServletServerFactoryInstance.getServerFactory().buildStaticResourceServer(
-                "PDP Monitoring Html Server", false, parameters.getServerHost(), parameters.getPort(),
-                parameters.getContextPath(), true);
-        staticResourceServer.addServletResource(null,
-                PdpMonitoringServer.class.getClassLoader().getResource("webapp").toExternalForm());
-        staticResourceServer.start();
 
         LOGGER.debug("Pdp Monitoring started");
     }
@@ -80,12 +67,10 @@ public class PdpMonitoringServer {
     /**
      * Shut down the web server.
      *
-     * @param htmlPort port number of static resource server
      * @param restPort port number of jersey server
      */
-    public void shutdown(int htmlPort, int restPort) {
+    public void shutdown(int restPort) {
         LOGGER.debug("Pdp Monitoring . . .");
-        HttpServletServerFactoryInstance.getServerFactory().destroy(htmlPort);
         HttpServletServerFactoryInstance.getServerFactory().destroy(restPort);
         LOGGER.debug("Pdp Monitoring shut down");
     }

@@ -11,14 +11,12 @@ server {
     proxy_pass ${CLAMP_REST_URL}/restservices/clds/;
   }
 
-  location /apex-editor/ {
-    proxy_pass http://localhost:18989/;
-    proxy_set_header Host $host;
-    proxy_set_header If-Modified-Since $http_if_modified_since;
+  location /pdp-monitoring/papservices/monitoring/ {
+    proxy_pass http://localhost:17999/papservices/monitoring/;
   }
 
-  location /pdp-monitoring/ {
-    proxy_pass http://localhost:18999/;
+  location /apex-editor/ {
+    proxy_pass http://localhost:18989/;
     proxy_set_header Host $host;
     proxy_set_header If-Modified-Since $http_if_modified_since;
   }

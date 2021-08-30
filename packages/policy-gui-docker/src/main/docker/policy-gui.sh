@@ -27,7 +27,7 @@ echo "Starting gui-editor-apex"
 $JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-editor-apex-uber.jar" -p 18989 &
 
 echo "Starting gui-pdp-monitoring"
-$JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-pdp-monitoring-uber.jar" -p 18999 &
+$JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-pdp-monitoring-uber.jar" -p 17999 &
 
 echo "Starting nginx"
 envsubst '${CLAMP_REST_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf

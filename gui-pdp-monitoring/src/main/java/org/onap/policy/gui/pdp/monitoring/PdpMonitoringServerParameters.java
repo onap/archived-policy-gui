@@ -38,7 +38,6 @@ import org.onap.policy.common.parameters.annotations.Min;
 @Getter
 @Setter
 public class PdpMonitoringServerParameters {
-    public static final int DEFAULT_PORT = 18999;
     public static final int INFINITY_TIME_TO_LIVE = -1;
 
     // Base URI the HTTP server will listen on
@@ -55,7 +54,7 @@ public class PdpMonitoringServerParameters {
 
     @Min(1024)
     @Max(65534)
-    private int port = DEFAULT_PORT;
+    private int port = DEFAULT_REST_PORT;
 
     @Min(-1)
     private long timeToLive = INFINITY_TIME_TO_LIVE;
@@ -87,9 +86,5 @@ public class PdpMonitoringServerParameters {
 
     public String getDefaultRestPath() {
         return "/" + DEFAULT_REST_PATH;
-    }
-
-    public int getDefaultRestPort() {
-        return DEFAULT_REST_PORT;
     }
 }

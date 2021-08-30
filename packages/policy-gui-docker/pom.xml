@@ -94,7 +94,13 @@
                                                 <includes>
                                                     <include>org.onap.policy.gui:gui-clamp:tar.gz:clamp-build:${project.version}</include>
                                                 </includes>
-                                                <outputFileNameMapping>gui-clamp.tar.gz</outputFileNameMapping>
+                                                <outputFileNameMapping>gui-clamp-html.tar.gz</outputFileNameMapping>
+                                            </dependencySet>
+                                            <dependencySet>
+                                                <includes>
+                                                    <include>org.onap.policy.gui:gui-pdp-monitoring:tar.gz:frontend:${project.version}</include>
+                                                </includes>
+                                                <outputFileNameMapping>gui-pdp-monitoring-html.tar.gz</outputFileNameMapping>
                                             </dependencySet>
                                             <dependencySet>
                                                 <includes>
@@ -166,6 +172,13 @@
             <artifactId>gui-clamp</artifactId>
             <version>${project.version}</version>
             <classifier>clamp-build</classifier>
+            <type>tar.gz</type>
+        </dependency>
+        <dependency>
+            <groupId>org.onap.policy.gui</groupId>
+            <artifactId>gui-pdp-monitoring</artifactId>
+            <version>${project.version}</version>
+            <classifier>frontend</classifier>
             <type>tar.gz</type>
         </dependency>
         <dependency>

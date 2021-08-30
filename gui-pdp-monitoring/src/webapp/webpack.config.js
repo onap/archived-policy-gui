@@ -10,6 +10,9 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    proxy: {
+      "/papservices/monitoring": "http://localhost:17999",
+    }
   }
 };

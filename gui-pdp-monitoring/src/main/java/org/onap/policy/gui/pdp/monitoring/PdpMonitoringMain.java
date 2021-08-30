@@ -152,7 +152,7 @@ public class PdpMonitoringMain {
     public void shutdown() {
         if (pdpMonitoringServer != null) {
             LOGGER.info(PDP_MONITORING_PREFIX + "{}) shutting down", this);
-            pdpMonitoringServer.shutdown(parameters.getPort(), parameters.getDefaultRestPort());
+            pdpMonitoringServer.shutdown(parameters.getPort());
         }
         shutdownLatch.countDown();
         state = ServicesState.STOPPED;

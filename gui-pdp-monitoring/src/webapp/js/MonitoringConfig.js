@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 // Configuration used for page layout and charts
 const config = {
     refresh: 5000,
-    restPort: 17999,
     engineService: {
         parent: "engineService",
         tableId: "engineServicesTable",

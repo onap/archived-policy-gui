@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,8 +68,8 @@ function readyCallback() {
     window.restRootURL = location.protocol
         + "//"
         + window.location.hostname
-        + ':' + config.restPort
-        + (location.pathname.endsWith("/monitoring/") ? location.pathname.substring(0, location.pathname.indexOf("monitoring/")) : location.pathname)
+        + ':' + window.location.port
+        + window.location.pathname
         + "papservices/monitoring/";
     // Initialize tooltip for the charts
     initTooltip();

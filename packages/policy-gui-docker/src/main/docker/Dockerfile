@@ -40,7 +40,8 @@ COPY /maven/gui-pdp-monitoring-uber.jar ./lib/
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
 COPY nginx/index.html /usr/share/nginx/html/
-ADD /maven/gui-clamp.tar.gz /usr/share/nginx/html/
+ADD /maven/gui-clamp-html.tar.gz /usr/share/nginx/html/
+ADD /maven/gui-pdp-monitoring-html.tar.gz /usr/share/nginx/html/
 RUN rm /etc/nginx/conf.d/default.conf && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
