@@ -16,6 +16,24 @@
       "revId": "3c96cf93a40b774a8ef019208f4e32444490e232",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc2e97a1_dbffd69e",
+        "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/js/dropdownList.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2021-08-30T13:13:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4891a90f_e18b700a",
+      "revId": "3c96cf93a40b774a8ef019208f4e32444490e232",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
