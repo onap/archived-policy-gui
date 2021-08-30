@@ -22,9 +22,10 @@
 package org.onap.policy.gui.pdp.monitoring;
 
 import lombok.NonNull;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.onap.policy.common.endpoints.http.server.HttpServletServer;
-import org.onap.policy.common.endpoints.http.server.HttpServletServerFactoryInstance;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,10 +40,7 @@ public class PdpMonitoringServer {
     private static final Logger LOGGER = LoggerFactory.getLogger(PdpMonitoringServer.class);
 
     // The HTTP server exposing JAX-RS resources defined in this application.
-    private HttpServletServer jerseyServer;
-
-    // The HTTP server exposing static resources defined in this application.
-    private HttpServletServer staticResourceServer;
+    private final HttpServer server;
 
     /**
      * Starts the HTTP server for the Pdp statistics monitoring on the default base URI and with the
@@ -61,32 +59,27 @@ public class PdpMonitoringServer {
 
         LOGGER.debug("Pdp Monitoring starting . . .");
 
-        jerseyServer = HttpServletServerFactoryInstance.getServerFactory().build("PDP Monitoring Rest Server", false,
-                parameters.getServerHost(), parameters.getDefaultRestPort(), parameters.getContextPath(), false, true);
-        jerseyServer.addServletPackage(parameters.getDefaultRestPath(), parameters.getRestPackage());
-        jerseyServer.addFilterClass(parameters.getDefaultRestPath(), CrossOriginFilter.class.getName());
-        jerseyServer.start();
+        // Create a resource configuration that scans for JAX-RS resources and providers
+        final ResourceConfig rc = new ResourceConfig().packages(parameters.getRestPackage());
+        rc.register(MultiPartFeature.class);
 
-        staticResourceServer = HttpServletServerFactoryInstance.getServerFactory().buildStaticResourceServer(
-                "PDP Monitoring Html Server", false, parameters.getServerHost(), parameters.getPort(),
-                parameters.getContextPath(), true);
-        staticResourceServer.addServletResource(null,
-                PdpMonitoringServer.class.getClassLoader().getResource("webapp").toExternalForm());
-        staticResourceServer.start();
+        // create and start a new instance of grizzly http server
+        // exposing the Jersey application at BASE_URI
+        server = GrizzlyHttpServerFactory.createHttpServer(parameters.getBaseUri(), rc);
+
+        // Add static content
+        server.getServerConfiguration().addHttpHandler(new org.glassfish.grizzly.http.server.CLStaticHttpHandler(
+            PdpMonitoringMain.class.getClassLoader(), "/webapp/"), parameters.getContextPath());
 
         LOGGER.debug("Pdp Monitoring started");
     }
 
     /**
      * Shut down the web server.
-     *
-     * @param htmlPort port number of static resource server
-     * @param restPort port number of jersey server
      */
-    public void shutdown(int htmlPort, int restPort) {
+    public void shutdown() {
         LOGGER.debug("Pdp Monitoring . . .");
-        HttpServletServerFactoryInstance.getServerFactory().destroy(htmlPort);
-        HttpServletServerFactoryInstance.getServerFactory().destroy(restPort);
+        server.shutdown();
         LOGGER.debug("Pdp Monitoring shut down");
     }
 }

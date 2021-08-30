@@ -68,7 +68,7 @@ function readyCallback() {
     window.restRootURL = location.protocol
         + "//"
         + window.location.hostname
-        + ':' + config.restPort
+        + ':' + window.location.port
         + (location.pathname.endsWith("/monitoring/") ? location.pathname.substring(0, location.pathname.indexOf("monitoring/")) : location.pathname)
         + "papservices/monitoring/";
     // Initialize tooltip for the charts
