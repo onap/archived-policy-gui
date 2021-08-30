@@ -24,6 +24,9 @@ import Button from "react-bootstrap/Button";
 import ControlLoopService from "../../../api/ControlLoopService";
 import { JSONEditor } from "@json-editor/json-editor";
 import Alert from "react-bootstrap/Alert";
+import * as PropTypes from "prop-types";
+import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
 
 const ModalStyled = styled(Modal)`
   @media (min-width: 800px) {
@@ -50,17 +53,22 @@ const templateName = "ToscaServiceTemplateSimple";
 const templateVersion = "1.0.0";
 let tempJsonEditor = null;
 
-const InstanceModal = (props) => {
+function Fragment(props) {
+  return null;
+}
+
+Fragment.propTypes = { children: PropTypes.node };
+const InstancePropertiesModal = (props) => {
   const [show, setShow] = useState(true);
   const [windowLocationPathname, setWindowLocationPathname] = useState('');
   const [toscaFullTemplate, setToscaFullTemplate] = useState({});
-  const [toscaFilteredInitialValues, setToscaFilteredInitialValues] = useState({});
-  const [toscaJsonSchema, setToscaJsonSchema] = useState({});
   const [jsonEditor, setJsonEditor] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
   const [instancePropertiesGlobal, setInstancePropertiesGlobal] = useState({});
   const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
   const [instancePropertiesResponseOk, setInstancePropertiesResponseOk] = useState(true);
+  const [instanceName, setInstanceName] = useState('')
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
     const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, windowLocationPathname, false).catch(error => error.message);
@@ -92,6 +100,8 @@ const InstanceModal = (props) => {
     const fullJsonSchemaTemplate = await fullTemplate.json();
     setToscaFullTemplate(fullJsonSchemaTemplate);
 
+    console.log(fullJsonSchemaTemplate);
+
     const filteredInitialStartValues = {};
 
     const instanceProperties = await initialProperties.json().then(properties => {
@@ -115,13 +125,10 @@ const InstanceModal = (props) => {
         filteredInitialStartValues[key] = propValues;
       });
 
-      setToscaFilteredInitialValues(filteredInitialStartValues);
-
       return filteredTemplateObj;
     });
 
     const propertySchema = makeSchemaForInstanceProperties(instanceProperties);
-    setToscaJsonSchema(propertySchema);
 
     tempJsonEditor = createJsonEditor(propertySchema, filteredInitialStartValues);
     setJsonEditor(tempJsonEditor);
@@ -159,6 +166,8 @@ const InstanceModal = (props) => {
 
   const getType = (pType) => {
     switch (pType) {
+      case "map":
+        return "string";
       case "string":
         return "string";
       case "integer":
@@ -174,6 +183,8 @@ const InstanceModal = (props) => {
   }
 
   const createJsonEditor = (fullSchema, instanceProperties) => {
+    console.log(props.location.instanceName)
+    setIsLoading(false)
     JSONEditor.defaults.options.collapse = true;
 
     return new JSONEditor(document.getElementById("editor"),
@@ -225,17 +236,23 @@ const InstanceModal = (props) => {
   const handleSave = async () => {
     console.log("handleSave called")
 
+    console.log("instanceName to be saved is: " + instanceName)
+
     setWindowLocationPathname(window.location.pathname);
 
     updateTemplate(jsonEditor.getValue());
 
-    const response = await ControlLoopService.createInstanceProperties(toscaFullTemplate, windowLocationPathname).catch(error => error.message);
+    const response = await ControlLoopService.createInstanceProperties(instanceName, toscaFullTemplate, windowLocationPathname).catch(error => error.message);
 
     if (response.ok) {
       successAlert();
     } else {
       await errorAlert(response);
     }
+  }
+
+  const handleNameChange = (e) => {
+    setInstanceName(e.target.value)
   }
 
   const successAlert = () => {
@@ -265,7 +282,7 @@ const InstanceModal = (props) => {
                  backdrop="static"
                  keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Change Tosca Instance Properties</Modal.Title>
+        <Modal.Title>Create Tosca Instance Properties</Modal.Title>
       </Modal.Header>
       <div style={ { padding: '5px 5px 0 5px' } }>
         <Modal.Body>
@@ -287,4 +304,4 @@ const InstanceModal = (props) => {
   );
 }
 
-export default InstanceModal;
+export default InstancePropertiesModal;

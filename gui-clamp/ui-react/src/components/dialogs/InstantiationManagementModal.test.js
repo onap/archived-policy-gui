@@ -22,27 +22,27 @@ import React from "react";
 import toJson from "enzyme-to-json";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
-import InstantiationManagementModal from "./ControlLoop/InstantiationManagementModal";
+import ChangeOrderStateModal from "./ControlLoop/ChangeOrderStateModal";
 
 describe('Verify InstantiationManagementModal', () => {
 
   it("renders without crashing", () => {
-    shallow(<InstantiationManagementModal />);
+    shallow(<ChangeOrderStateModal />);
   });
 
   it("renders correctly", () => {
-    const tree = shallow(<InstantiationManagementModal />);
+    const tree = shallow(<ChangeOrderStateModal />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('should have save button element', () => {
-    const container = shallow(<InstantiationManagementModal/>)
+    const container = shallow(<ChangeOrderStateModal/>)
     expect(container.find('[variant="primary"]').length).toEqual(1);
   });
 
   it('handleSave called when save button clicked', () => {
     const history = createMemoryHistory();
-    const component = mount(<InstantiationManagementModal history={ history }/>)
+    const component = mount(<ChangeOrderStateModal history={ history }/>)
     const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
@@ -52,13 +52,13 @@ describe('Verify InstantiationManagementModal', () => {
   });
 
   it('should have close button element', () => {
-    const container = shallow(<InstantiationManagementModal/>)
+    const container = shallow(<ChangeOrderStateModal/>)
     expect(container.find('[variant="secondary"]').length).toEqual(1);
   });
 
   it('handleClose called when close button clicked', () => {
     const history = createMemoryHistory();
-    const component = mount(<InstantiationManagementModal history={ history }/>)
+    const component = mount(<ChangeOrderStateModal history={ history }/>)
     const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
