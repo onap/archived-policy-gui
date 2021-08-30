@@ -55,7 +55,8 @@ import ReadAndConvertYaml from "./components/dialogs/ControlLoop/ReadAndConvertY
 import MonitorInstantiation from "./components/dialogs/ControlLoop/MonitorInstantiation";
 import GetLocalToscaFileForUpload from "./components/dialogs/ControlLoop/GetLocalToscaFileForUpload";
 import CommissioningModal from "./components/dialogs/ControlLoop/CommissioningModal";
-import InstanceModal from "./components/dialogs/ControlLoop/InstanceModal";
+import InstancePropertiesModal from "./components/dialogs/ControlLoop/InstancePropertiesModal";
+import ChangeOrderStateModal from "./components/dialogs/ControlLoop/ChangeOrderStateModal";
 import InstantiationManagementModal from "./components/dialogs/ControlLoop/InstantiationManagementModal";
 
 const StyledMainDiv = styled.div`
@@ -387,8 +388,9 @@ export default class LoopUI extends React.Component {
                                                                               showFailAlert={ this.showFailAlert }/>) }
         />
         <Route path="/monitorInstantiation" render={ (routeProps) => (<MonitorInstantiation { ...routeProps } />) }/>
-        <Route path="/manageInstantiation" render={ (routeProps) => (<InstantiationManagementModal { ...routeProps } />) }/>
-        <Route path="/editControlLoopInstanceProperties" render={ (routeProps) => (<InstanceModal { ...routeProps } />) }/>
+        <Route path="/instantiationManagement" render={ (routeProps) => (<InstantiationManagementModal { ...routeProps } />) }/>
+        <Route path="/editControlLoopInstanceProperties" render={ (routeProps) => (<InstancePropertiesModal { ...routeProps } />) }/>
+        <Route path="/changeOrderState" render={ (routeProps) => (<ChangeOrderStateModal { ...routeProps } />) }/>
       </React.Fragment>
     );
   }
