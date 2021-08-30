@@ -119,11 +119,15 @@ exports[`Verify OnapClamp Test the render method 1`] = `
       render={[Function]}
     />
     <Route
-      path="/manageInstantiation"
+      path="/instantiationManagement"
       render={[Function]}
     />
     <Route
       path="/editControlLoopInstanceProperties"
+      render={[Function]}
+    />
+    <Route
+      path="/changeOrderState"
       render={[Function]}
     />
     <div />
