@@ -15,24 +15,27 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ *
+ *
  */
 
-import styled from "styled-components";
 import Modal from "react-bootstrap/Modal";
+import { Alert, Container, Dropdown, Table } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import InstantiationOrderStateChangeItem from "./InstantiationOrderStateChangeItem";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import ControlLoopService from "../../../api/ControlLoopService";
-import { Alert, Container, Dropdown } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
 
 const ModalStyled = styled(Modal)`
-  @media (min-width: 800px) {
-    .modal-xl {
-      max-width: 96%;
-    }
-  }
   background-color: transparent;
 `
+
+const HorizontalSpace = styled.div`
+  padding-right: 2px;
+  padding-left: 2px;
+`;
 
 const DivWhiteSpaceStyled = styled.div`
   overflow: auto;
@@ -41,55 +44,55 @@ const DivWhiteSpaceStyled = styled.div`
   padding: 5px 5px 0px 5px;
   text-align: center;
 `
-
-const AlertStyled = styled(Alert)`
-  margin-top: 10px;
-`
-
 const InstantiationManagementModal = (props) => {
   const [show, setShow] = useState(true);
-  const [windowLocationPathnameGet, setWindowLocationPathnameGet] = useState('');
-  const [windowLocationPathNameSave, setWindowLocationPathNameSave] = useState('');
-  const [controlLoopIdentifierList, setControlLoopIdentifierList] = useState([]);
-  const [orderedState, setOrderedState] = useState('');
-  const [toscaOrderStateObject, setToscaOrderStateObject] = useState({});
-  const [instantiationOrderStateOk, setInstantiationOrderStateOk] = useState(true);
-  const [instantiationOrderStateError, setInstantiationOrderStateError] = useState({});
+  const [windowLocationPathName, setWindowLocationPathName] = useState('');
+  const [windowLocationPathNameDelete, setWindowLocationPathNameDelete] = useState('');
+
+  const [instantiationList, setInstantiationList] = useState([]);
   const [alertMessage, setAlertMessage] = useState(null);
 
   useEffect(async () => {
-    setWindowLocationPathnameGet(window.location.pathname);
+    setWindowLocationPathName(window.location.pathname);
 
-    const instantiationOrderState = await ControlLoopService.getInstanceOrderState(windowLocationPathnameGet)
-      .catch(error => error.message);
+    const response = await ControlLoopService.getControlLoopInstantiation(windowLocationPathName);
 
-    const orderStateJson = await instantiationOrderState.json();
+    const instantiationListJson = await response.json();
 
-    if (!instantiationOrderState.ok || orderStateJson['controlLoopIdentifierList'].length === 0) {
-      setInstantiationOrderStateOk(true);
-      setInstantiationOrderStateError(orderStateJson);
-    } else {
-      setControlLoopIdentifierList(orderStateJson['controlLoopIdentifierList']);
-      setOrderedState(orderStateJson['orderedState']);
-    }
+    const parsedInstantiationList = instantiationListJson['controlLoopList'].map((instance, index) => {
+      return {
+        index: index,
+        name: instance['name'],
+        version: instance['version'],
+        orderedState: instance['orderedState'],
+        currentState: instance['state'],
+        disableDelete: instance['state'] !== 'UNINITIALISED'
+      }
+    });
+
+    setInstantiationList(parsedInstantiationList);
   }, []);
 
-  const handleDropSelect = (event) => {
-    console.log("handleDropDownChange called");
-
-    const stateChangeObject = {
-      orderedState: event,
-      controlLoopIdentifierList: controlLoopIdentifierList
+  const getBackgroundColor = (index) => {
+    if (index % 2 === 0) {
+      return 'Silver';
     }
-    setToscaOrderStateObject(stateChangeObject);
-    orderStateContext.orderState = stateChangeObject;
+
+    return 'White';
   }
 
-  const handleSave = async () => {
-    console.log("handleSave called");
-    setWindowLocationPathNameSave(window.location.pathname);
+  const deleteInstantiationHandler = async (instantiation, index) => {
+    console.log("deleteInstantiationHandler called");
+    setWindowLocationPathNameDelete(window.location.pathname);
 
-    const response = await ControlLoopService.changeInstanceOrderState(toscaOrderStateObject, windowLocationPathNameSave).catch(error => error.message);
+    const name = instantiation.name;
+    const version = instantiation.version;
+
+    console.log(window.location.pathname);
+
+    const response = await ControlLoopService.deleteInstantiation(name, version, windowLocationPathNameDelete);
+
+    updateList(index);
 
     if (response.ok) {
       successAlert();
@@ -98,8 +101,34 @@ const InstantiationManagementModal = (props) => {
     }
   }
 
+  const updateList = (index) => {
+    console.log("updateList called")
+    console.log(instantiationList)
+
+    const updatedList = [...instantiationList];
+    updatedList.splice(index, 1);
+
+    setInstantiationList(updatedList);
+  }
+
+  const renderDeleteButton = (instantiation, index) => {
+    if (instantiation.disableDelete) {
+      return (
+        <Button variant="outline-danger" type="null"
+                disabled={ true }
+                style={ { cursor: "not-allowed" } }>Delete</Button>
+      );
+
+    } else {
+      return (
+        <Button variant="danger" type="null"
+                onClick={ async () => deleteInstantiationHandler(instantiation, index) }>Delete</Button>
+      );
+    }
+  }
+
   const handleClose = () => {
-    console.log('handleClose called');
+    console.log("handleClose called");
     setShow(false);
     props.history.push('/');
   }
@@ -107,8 +136,8 @@ const InstantiationManagementModal = (props) => {
   const successAlert = () => {
     console.log("successAlert called");
     setAlertMessage(<Alert variant="success">
-      <Alert.Heading>Order State Changed Success</Alert.Heading>
-      <p>Order State Changed was successfully changed</p>
+      <Alert.Heading>Deletion of Instantiation Success</Alert.Heading>
+      <p>Deletion of Instantiation was successful!</p>
       <hr/>
     </Alert>);
   }
@@ -116,52 +145,93 @@ const InstantiationManagementModal = (props) => {
   const errorAlert = async (response) => {
     console.log("errorAlert called");
     setAlertMessage(<Alert variant="danger">
-      <Alert.Heading>Order State Changed Failure</Alert.Heading>
-      <p>An error occurred while trying to change order state</p>
+      <Alert.Heading>Deletion of Instantiation Failure</Alert.Heading>
+      <p>An error occurred while trying to delete instantiation</p>
       <p>Status code: { await response.status } : { response.statusText }</p>
       <p>Status Text: { await response.text() }</p>
       <hr/>
     </Alert>);
   }
 
+  const clearErrors = () => {
+    console.log("clearErrors called");
+    setAlertMessage(null);
+  }
+
   return (
-    <ModalStyled size="sm"
+    <ModalStyled size="xl"
                  show={ show }
                  onHide={ handleClose }
                  backdrop="static"
                  keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Manage Instantiation</Modal.Title>
+        <Modal.Title>Manage Instances</Modal.Title>
       </Modal.Header>
-      <div style={ { padding: '5px 5px 0 5px' } }>
-        <Modal.Body>
-          <Container>
-            <Dropdown onSelect={ handleDropSelect }>
-              <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                Select Order State
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item eventKey="UNINITIALISED">UNINITIALISED</Dropdown.Item>
-                <Dropdown.Item eventKey="PASSIVE">PASSIVE</Dropdown.Item>
-                <Dropdown.Item eventKey="RUNNING">RUNNING</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            {
-              controlLoopIdentifierList.map((clIdList, index) => (
-                <InstantiationOrderStateChangeItem title={ clIdList.name } index={ index } key={ index } />
-              ))
-            }
-          </Container>
-          <AlertStyled show={ !instantiationOrderStateOk }
-                       variant="danger">Can't get instantiation ordered state:<br/>{ JSON.stringify(instantiationOrderStateError, null, 2) }</AlertStyled>
-        </Modal.Body>
+      <Modal.Body>
+        <Container>
+          <Row>
+            <Link to={ { pathname: "/editControlLoopInstanceProperties" } }>
+              <Button variant="primary" type="null">Create Instance</Button>
+            </Link>
+            <HorizontalSpace/>
+            <Link to={ { pathname: "/monitorInstantiation" } }>
+              <Button variant="secondary" type="null">Monitor Instantiations</Button>
+            </Link>
+          </Row>
+        </Container>
+        <Table bordered style={ { marginTop: '10px' } }>
+          <thead>
+          <tr>
+            <th>#</th>
+            <th style={ { textAlign: "center" } }>Instantiation Name</th>
+            <th style={ { textAlign: "center" } }>Edit Instantiation</th>
+            <th style={ { textAlign: "center" } }>Delete Instantiation</th>
+            <th style={ { textAlign: "center" } }>Change Order State</th>
+            <th style={ { textAlign: "center" } }>Instantiation Order State</th>
+            <th style={ { textAlign: "center" } }>Instantiation Current State</th>
+          </tr>
+          </thead>
+          <tbody>
+          { instantiationList.map((instantiation, index) => {
+            return (
+              <tr style={ { backgroundColor: getBackgroundColor(index) } } key={ index } className="instantiationList">
+                <td>{ index + 1 }</td>
+                <td>{ instantiation.name }</td>
+                <td style={ { textAlign: "center" } }>
+                  <Link to={ {
+                    pathname: "editControlLoopInstanceProperties",
+                  } } state={ instantiation.name }>
+                    <Button variant="outline-success" type="null"
+                            disabled={ true }
+                            style={ { cursor: "not-allowed" } }>Edit</Button>
+                  </Link>
+                </td>
+                <td style={ { textAlign: "center" } }>
+                  { renderDeleteButton(instantiation, index) }
+                </td>
+                <td style={ { textAlign: "center" } }>
+                  <Link to={ {
+                    pathname: "changeOrderState",
+                    instantiationName: instantiation.name,
+                    instantiationVersion: instantiation.version
+                  } }>
+                    <Button variant="secondary" type="null">Change</Button>
+                  </Link>
+                </td>
+                <td>{ instantiation.orderedState }</td>
+                <td>{ instantiation.currentState }</td>
+              </tr>
+            )
+          }) }
+          </tbody>
+        </Table>
         <DivWhiteSpaceStyled>
           { alertMessage }
         </DivWhiteSpaceStyled>
-      </div>
+      </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={ handleSave }>Save</Button>
-        <Button variant="secondary" onClick={ handleClose }>Close</Button>
+        <Button variant="secondary" type="null" onClick={ clearErrors }>Clear Error Message</Button>
+        <Button variant="secondary" type="null" onClick={ handleClose }>Close</Button>
       </Modal.Footer>
     </ModalStyled>
   );

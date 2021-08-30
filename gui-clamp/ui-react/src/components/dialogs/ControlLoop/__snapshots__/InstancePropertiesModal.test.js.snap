@@ -13,7 +13,7 @@ exports[`Verify MonitoringInstantiation renders correctly 1`] = `
     closeLabel="Close"
   >
     <ModalTitle>
-      Change Tosca Instance Properties
+      Create Tosca Instance Properties
     </ModalTitle>
   </ModalHeader>
   <div

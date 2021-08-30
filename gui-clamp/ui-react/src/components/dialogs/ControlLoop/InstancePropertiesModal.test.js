@@ -19,36 +19,35 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
-import InstanceModal from "./InstanceModal";
+import InstancePropertiesModal from "./InstancePropertiesModal";
 import toJson from "enzyme-to-json";
 import { createMemoryHistory } from "history";
-import MonitorInstantiation from "./MonitorInstantiation";
 import { act } from "react-dom/test-utils";
 
 describe('Verify MonitoringInstantiation', () => {
 
   it("renders without crashing", () => {
-    shallow(<InstanceModal />);
+    shallow(<InstancePropertiesModal />);
   });
 
   it("renders correctly", () => {
-    const tree = shallow(<InstanceModal />);
+    const tree = shallow(<InstancePropertiesModal />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('should have submit button element', () => {
-    const container = shallow(<InstanceModal/>)
+    const container = shallow(<InstancePropertiesModal/>)
     expect(container.find('[variant="primary"]').length).toEqual(1);
   });
 
   it('should have close button element', () => {
-    const container = shallow(<InstanceModal/>)
+    const container = shallow(<InstancePropertiesModal/>)
     expect(container.find('[variant="secondary"]').length).toEqual(1);
   });
 
   it('handleCreateUpdateToscaInstanceProperties called when submit button clicked', () => {
     const history = createMemoryHistory();
-    const component = mount(<InstanceModal />)
+    const component = mount(<InstancePropertiesModal />)
     const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
@@ -59,7 +58,7 @@ describe('Verify MonitoringInstantiation', () => {
 
   it('handleClose called when close button clicked', () => {
     const history = createMemoryHistory();
-    const component = mount(<InstanceModal history={ history }/>)
+    const component = mount(<InstancePropertiesModal history={ history }/>)
     const logSpy = jest.spyOn(console, 'log');
 
     act(() => {

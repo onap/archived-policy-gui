@@ -115,9 +115,7 @@ export default class MenuBar extends React.Component {
         </StyledNavDropdown>
         <StyledNavDropdown title="TOSCA Control Loop">
           <NavDropdown.Header>Instantiation</NavDropdown.Header>
-          <NavDropdown.Item as={ StyledLink } to="/monitorInstantiation">Monitor Instantiation</NavDropdown.Item>
-          <NavDropdown.Item as={ StyledLink } to="/manageInstantiation">Manage Instantiation</NavDropdown.Item>
-          <NavDropdown.Item as={ StyledLink } to="/editControlLoopInstanceProperties">Edit Control Loop Instance Properties</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/instantiationManagement">Instantiation Management</NavDropdown.Item>
           <NavDropdown.Divider/>
           <NavDropdown.Header>Commissioning</NavDropdown.Header>
           <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">Manage Commissioned Tosca Template</NavDropdown.Item>
