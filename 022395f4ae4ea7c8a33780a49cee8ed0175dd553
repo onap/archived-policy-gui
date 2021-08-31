@@ -1,0 +1,175 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "791940fd_42a19532",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "maybe wrap this line\n\nsame comment below",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d417a3b_838b73d2",
+        "filename": "packages/policy-gui-docker/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "we\u0027re no longer in-lining this code; use this instead:\n\n  \u003csource\u003ehttps://github.com/onap/policy-docker/raw/master/utils/groovy/docker-tag.groovy\u003c/source\u003e",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87ed1242_55057eef",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "combine with lines 31-32 to avoid additional layers",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b44aa527_7cfa8fa7",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "combine with line 46 to avoid additional layers",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2937e4e4_9b6b1859",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "should this be \"localhost\"?\n\nsame comment on line 21",
+      "range": {
+        "startLine": 15,
+        "startChar": 22,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "946da120_363d34b5",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "missing newline at end of file",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc3c5b30_2b4bc2bf",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/index.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "missing newline at end of file",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c49a8258_7e8ee962",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/nginx.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "missing newline at end of file",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b970a22f_1f35eff7",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T15:30:28Z",
+      "side": 1,
+      "message": "might as well sleep for a long time - maybe 360000.  In fact, maybe just change the whole line to:\n\n  wait\n\nthat will cause it to wait for the two background jobs to complete (or sigterm).  (Or do we want the ability to login to the image and kill and restart the jobs without the image exiting?  If so, then just make it a long sleep.)",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
