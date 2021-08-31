@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51154977_2ccf64e1",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-08-31T17:14:20Z",
+      "side": 1,
+      "message": "sorry, I should have thought of this sooner:  should we also do \"apk update\"?",
+      "revId": "017c1d4ef2b62fbe148d4fbe5a3540cf16c4279d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
