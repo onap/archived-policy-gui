@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "42f28826_f83c0219",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791940fd_42a19532",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d417a3b_838b73d2",
         "filename": "packages/policy-gui-docker/pom.xml",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "3359d755_72e7c9e8",
+        "filename": "packages/policy-gui-docker/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d417a3b_838b73d2",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87ed1242_55057eef",
         "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
         "patchSetId": 2
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "0bb894a8_040f5428",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87ed1242_55057eef",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b44aa527_7cfa8fa7",
         "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
         "patchSetId": 2
@@ -73,6 +133,24 @@
       "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b244b3e1_2d006bc7",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b44aa527_7cfa8fa7",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "e84cb316_1c0d995d",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2937e4e4_9b6b1859",
+      "range": {
+        "startLine": 15,
+        "startChar": 22,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "946da120_363d34b5",
         "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
         "patchSetId": 2
@@ -113,6 +215,24 @@
       "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c635da_daf19995",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "946da120_363d34b5",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "a9b177be_6d74c9df",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/index.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc3c5b30_2b4bc2bf",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c49a8258_7e8ee962",
         "filename": "packages/policy-gui-docker/src/main/docker/nginx/nginx.conf",
         "patchSetId": 2
@@ -147,6 +285,24 @@
       "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3e24e49_ce7f81d7",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/nginx.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c49a8258_7e8ee962",
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -170,6 +326,30 @@
       "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cda9aeab_c42b7b45",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-08-31T17:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b970a22f_1f35eff7",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "022395f4ae4ea7c8a33780a49cee8ed0175dd553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
