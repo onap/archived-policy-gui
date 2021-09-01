@@ -81,9 +81,9 @@ function policyTab_activate() {
                     "</td>";
 
                 policyTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Task Reference</th><th>Output Type</th><th>Output</th></thead><tbody>";
-                for (let entry of state.taskReferences.entry) {
-                    var taskKey = entry.key;
-                    var taskRef = entry.value;
+                for (let taskEntry of state.taskReferences.entry) {
+                    var taskKey = taskEntry.key;
+                    var taskRef = taskEntry.value;
 
                     policyTableRow +=
                         "<tr><td>"                +

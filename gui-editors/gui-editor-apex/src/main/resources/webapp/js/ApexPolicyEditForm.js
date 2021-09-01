@@ -334,10 +334,10 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
     triggerLabel.innerHTML = "Policy Trigger Event: ";
     var triggerevent = null;
     if (policy != null && policy.firstState != null && policy.firstState != "" && policy.state != null) {
-        for (i = 0; i < policy.state.entry.length; i++) {
-            if (policy.state.entry[i] != null && policy.state.entry[i].key != null) {
-                statename = policy.state.entry[i].key;
-                var state = policy.state.entry[i].value;
+        for (let entry of policy.state.entry) {
+            if (entry != null && entry.key != null) {
+                statename = entry.key;
+                var state = entry.value;
                 if (statename != null && statename == policy.firstState) {
                     triggerevent = {
                         "name" : state.trigger.name,
