@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,20 +27,20 @@ function RenderPdpList(treeArr, className) {
         var isNode=false
     function insertChildren(parentNode, traverseArr, subGroup) {
 
-        for(let i = 0; i < traverseArr.length; i++) {
+        for(let value of traverseArr) {
             if(parentNode === root) {
                 childLevel = 0
             }
             var currentLi = document.createElement('li')
             currentLi.setAttribute('level', childLevel)
-            if(traverseArr[i].children && traverseArr[i].children.length > 0) {
+            if(value.children && value.children.length > 0) {
                 var title = document.createElement('div')
                 var triangle = document.createElement('i')
                 var text = document.createElement('p')
                 currentLi.classList.add('parentNode')
                 title.classList.add('title')
                 triangle.classList.add('triangle')
-                text.innerText = traverseArr[i].title
+                text.innerText = value.title
                 title.appendChild(triangle)
                 title.appendChild(text)
                 currentLi.appendChild(title)
@@ -48,12 +49,12 @@ function RenderPdpList(treeArr, className) {
                 if(subGroup !== null){
                     index+= subGroup+"/"
                 }
-                insertChildren(currentLi, traverseArr[i].children, traverseArr[i].title)
+                insertChildren(currentLi, value.children, value.title)
             }else {
                 var a = document.createElement('a')
-                a.setAttribute('href',"#"+index+subGroup+"/"+traverseArr[i].title)
+                a.setAttribute('href',"#"+index+subGroup+"/"+value.title)
                 a.classList.add('pdps__link')
-                a.textContent= traverseArr[i].title
+                a.textContent= value.title
                 currentLi.appendChild(a)
                 isNode=true
             }
