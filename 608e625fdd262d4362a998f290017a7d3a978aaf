@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d89d630a_c404ab00",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-09-01T13:26:49Z",
+      "side": 1,
+      "message": "The config for the certificate has been removed, so it means the Certificate login will probably not work anymore with AAF.\n\nis that wanted ? Did you test the images with AAF already ?",
+      "revId": "608e625fdd262d4362a998f290017a7d3a978aaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
