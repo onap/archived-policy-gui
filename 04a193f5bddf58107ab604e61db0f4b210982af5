@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "513af641_2ce1bd71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-09-01T13:49:55Z",
+      "side": 1,
+      "message": "keep lines ~72 characters",
+      "revId": "04a193f5bddf58107ab604e61db0f4b210982af5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f1463296_cdebbab2",
         "filename": "gui-editors/gui-editor-apex/src/main/resources/webapp/dist/css/interfaceAssets.css",
         "patchSetId": 1
