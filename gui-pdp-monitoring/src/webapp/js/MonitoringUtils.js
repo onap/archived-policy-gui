@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -309,11 +310,11 @@ function clearEngineURL(clearPdps) {
 
 function getPdpList(data) {
     const pdpArray = [];
-    for (let i = 0; i < data.groups.length; i++) {
+    for (let value of data.groups) {
         var map = {};
-        map.title = data.groups[i].name;
+        map.title = value.name;
         map.children = [];
-        (data.groups[i].pdpSubgroups).forEach((pdpSubgroup, index) => {
+        (value.pdpSubgroups).forEach((pdpSubgroup, index) => {
             map.children[index] = {};
             map.children[index].title = pdpSubgroup.pdpType;
             const instanceId = [];
