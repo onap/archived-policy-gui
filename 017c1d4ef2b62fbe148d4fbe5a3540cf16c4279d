@@ -16,6 +16,24 @@
       "revId": "017c1d4ef2b62fbe148d4fbe5a3540cf16c4279d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d87774_f0c70e8f",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-09-01T09:34:35Z",
+      "side": 1,
+      "message": "Done; also added --no-cache to minimize image size, and removed redundant dos2unix command.",
+      "parentUuid": "51154977_2ccf64e1",
+      "revId": "017c1d4ef2b62fbe148d4fbe5a3540cf16c4279d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
