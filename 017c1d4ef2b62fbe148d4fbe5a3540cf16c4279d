@@ -34,6 +34,24 @@
       "revId": "017c1d4ef2b62fbe148d4fbe5a3540cf16c4279d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30900a6f_0c9064ae",
+        "filename": "packages/policy-gui-docker/src/main/docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 811
+      },
+      "writtenOn": "2021-09-01T12:29:41Z",
+      "side": 1,
+      "message": "thanks, Daniel!",
+      "parentUuid": "30d87774_f0c70e8f",
+      "revId": "017c1d4ef2b62fbe148d4fbe5a3540cf16c4279d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
