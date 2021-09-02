@@ -22,7 +22,7 @@
 const {ajax_get} = require("./ApexAjax");
 const {createTable} = require('./ApexTable');
 const {rightClickMenu_scopePreserver} = require('./contextMenu');
-const {apexUtils_removeElement} = require('./ApexUtils');
+const {apexUtils_escapeHtml, apexUtils_removeElement} = require('./ApexUtils');
 
 function contextSchemaTab_reset() {
     contextSchemaTab_deactivate();
