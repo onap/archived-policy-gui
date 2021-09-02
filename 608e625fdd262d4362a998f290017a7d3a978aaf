@@ -16,6 +16,24 @@
       "revId": "608e625fdd262d4362a998f290017a7d3a978aaf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d31a98cc_ffa95359",
+        "filename": "packages/policy-gui-docker/src/main/docker/nginx/default.conf.template",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-09-02T07:18:48Z",
+      "side": 1,
+      "message": "Is it OK to check this and fix itin a subsequent review? I have opened a bug JIRA on this:\nhttps://jira.onap.org/browse/POLICY-3615",
+      "parentUuid": "d89d630a_c404ab00",
+      "revId": "608e625fdd262d4362a998f290017a7d3a978aaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
