@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "39b6283b_caa6be65",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ChangeOrderStateModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-09-07T13:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ff44ef5_cf843729",
+      "revId": "7b52b7445ee76599d72803930a79f2dcc43cd27d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46e526ef_62e6fa2a",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ChangeOrderStateModal.js",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "b64f64b0_00aadbe9",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ChangeOrderStateModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-09-07T13:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e526ef_62e6fa2a",
+      "range": {
+        "startLine": 71,
+        "startChar": 35,
+        "endLine": 71,
+        "endChar": 39
+      },
+      "revId": "7b52b7445ee76599d72803930a79f2dcc43cd27d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee2033c8_87953af3",
         "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ChangeOrderStateModal.js",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "7b52b7445ee76599d72803930a79f2dcc43cd27d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3bfa95b_6f613fc0",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/ChangeOrderStateModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2021-09-07T13:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee2033c8_87953af3",
+      "revId": "7b52b7445ee76599d72803930a79f2dcc43cd27d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
