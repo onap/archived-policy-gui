@@ -34,6 +34,24 @@
       "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f859010_b203d73f",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-09-08T10:05:25Z",
+      "side": 1,
+      "message": "Ok it\u0027s not that great ... the recommended way is one process -\u003e one docker\nProbably something to change in the future.",
+      "parentUuid": "669b0a0c_e529979e",
+      "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
