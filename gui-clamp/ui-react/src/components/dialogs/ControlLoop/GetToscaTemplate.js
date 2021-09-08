@@ -23,13 +23,10 @@ import ControlLoopService from "../../../api/ControlLoopService";
 
 const GetToscaTemplate = (props) => {
 
-  const [windowLocationPathName, setWindowLocationPathname] = useState('');
-
   const getTemplateHandler = async () => {
     console.log('getTemplateHandler called')
-    setWindowLocationPathname(window.location.pathname);
 
-    const response = await ControlLoopService.getToscaTemplate(props.templateName, props.templateVersion, windowLocationPathName)
+    const response = await ControlLoopService.getToscaTemplate(props.templateName, props.templateVersion)
       .catch(error => error.message);
 
     props.onGetToscaServiceTemplate(response);

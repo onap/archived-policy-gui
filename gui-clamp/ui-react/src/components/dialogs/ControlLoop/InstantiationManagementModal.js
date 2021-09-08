@@ -46,16 +46,12 @@ const DivWhiteSpaceStyled = styled.div`
 `
 const InstantiationManagementModal = (props) => {
   const [show, setShow] = useState(true);
-  const [windowLocationPathName, setWindowLocationPathName] = useState('');
-  const [windowLocationPathNameDelete, setWindowLocationPathNameDelete] = useState('');
-
   const [instantiationList, setInstantiationList] = useState([]);
   const [alertMessage, setAlertMessage] = useState(null);
 
   useEffect(async () => {
-    setWindowLocationPathName(window.location.pathname);
 
-    const response = await ControlLoopService.getControlLoopInstantiation(windowLocationPathName);
+    const response = await ControlLoopService.getControlLoopInstantiation();
 
     const instantiationListJson = await response.json();
 
@@ -83,14 +79,11 @@ const InstantiationManagementModal = (props) => {
 
   const deleteInstantiationHandler = async (instantiation, index) => {
     console.log("deleteInstantiationHandler called");
-    setWindowLocationPathNameDelete(window.location.pathname);
 
     const name = instantiation.name;
     const version = instantiation.version;
 
-    console.log(window.location.pathname);
-
-    const response = await ControlLoopService.deleteInstantiation(name, version, windowLocationPathNameDelete);
+    const response = await ControlLoopService.deleteInstantiation(name, version);
 
     updateList(index);
 
