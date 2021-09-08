@@ -440,8 +440,7 @@ function editPolicyForm_activate(parent, operation, policy, tasks, events, conte
                 break;
             }
         }
-        for (i = 0; i < policy.state.entry.length; i++) {
-            var stateEntry = policy.state.entry[i];
+        for (let stateEntry of policy.state.entry) {
             statename = stateEntry.key;
             state = stateEntry.value;
             var stateLI = editPolicyForm_addState(statename, state, createEditOrView, policy, tasks, events,
