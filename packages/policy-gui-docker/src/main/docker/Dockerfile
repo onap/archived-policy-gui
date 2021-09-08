@@ -37,6 +37,8 @@ WORKDIR $POLICY_HOME
 COPY policy-gui.sh ./bin/
 COPY /maven/gui-editor-apex-uber.jar ./lib/
 COPY /maven/gui-pdp-monitoring-uber.jar ./lib/
+COPY etc/ssl/clamp.key /etc/ssl/clamp.key
+COPY etc/ssl/clamp.pem /etc/ssl/clamp.pem
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
 COPY nginx/index.html /usr/share/nginx/html/
@@ -51,4 +53,4 @@ RUN rm /etc/nginx/conf.d/default.conf && \
 USER policy
 WORKDIR $POLICY_HOME/bin
 ENTRYPOINT [ "./policy-gui.sh" ]
-EXPOSE 8080
+EXPOSE 2443
