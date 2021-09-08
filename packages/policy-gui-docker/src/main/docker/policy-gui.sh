@@ -30,7 +30,6 @@ echo "Starting gui-pdp-monitoring"
 $JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-pdp-monitoring-uber.jar" -p 17999 &
 
 echo "Starting nginx"
-envsubst '${CLAMP_REST_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf
 nginx -g "daemon on;"
 
 wait
