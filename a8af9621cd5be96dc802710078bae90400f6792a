@@ -52,6 +52,24 @@
       "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12e6f9db_2d7deb50",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-09-08T13:29:53Z",
+      "side": 1,
+      "message": "Yes, It would be better to have all GUIs in the same JAR. Let\u0027s fix in Jakarta. see JIRA\nhttps://jira.onap.org/browse/POLICY-3638",
+      "parentUuid": "0f859010_b203d73f",
+      "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
