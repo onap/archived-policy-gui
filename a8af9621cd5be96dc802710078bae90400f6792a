@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18fed730_ace9bab7",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 23
+      },
+      "writtenOn": "2021-09-08T07:41:46Z",
+      "side": 1,
+      "message": "I missed that last time, we start 3 processes in the same container ?",
+      "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
