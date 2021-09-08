@@ -16,6 +16,24 @@
       "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669b0a0c_e529979e",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-09-08T08:37:07Z",
+      "side": 1,
+      "message": "Correct, the story (POLICY-3574) is to deploy the 3 GUIs from policy/gui in the same docker image on the same port. Clamp is just web frontend served with nginx (Rest requests are proxied to the backend from \u0027clamp\u0027 repo). But Apex and PDP GUIs have Java components that also run in the docker image.",
+      "parentUuid": "18fed730_ace9bab7",
+      "revId": "a8af9621cd5be96dc802710078bae90400f6792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
