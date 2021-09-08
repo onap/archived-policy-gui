@@ -13,10 +13,10 @@ To build it using Maven 3, run: mvn clean install -P docker
 # Docker image
 
 Maven produces a single docker image containing the policy GUIs. These are exposed on
-the same port (8080) using different URLs:
-- Apex Policy Editor: http://localhost:8080/apex-editor
-- PDP Monitoring UI: http://localhost:8080/pdp-monitoring
-- CLAMP Designer UI: http://localhost:8080/clamp
+the same port (2443) using different URLs:
+- Apex Policy Editor: http://localhost:2443/apex-editor
+- PDP Monitoring UI: http://localhost:2443/pdp-monitoring
+- CLAMP Designer UI: http://localhost:2443/clamp
 
 ## Building
 You can use the following command to build the policy-gui docker image:
@@ -38,8 +38,16 @@ backend, then CLAMP_REST_URL should be set to `https://policy-clamp-backend:8443
 If running clamp backend on localhost port 8443, the policy-gui docker image would be
 started like this:
 ```
-docker run -p 8080:8080 \
+docker run -p 2443:2443 \
     --add-host host.docker.internal:host-gateway \
     --env CLAMP_REST_URL=https://host.docker.internal:8443 \
     onap/policy-gui
 ```
+
+## Client Credentials
+A certificate must be added in the browser and is required to log in properly:
+
+[org.onap.clamp.p12 (from clamp master)](URL "https://gerrit.onap.org/r/gitweb?p=clamp.git;a=blob_plain;f=src/main/resources/clds/aaf/org.onap.clamp.p12;hb=refs/heads/master")
+(Password: "China in the Spring")
+
+See onap/clamp repo README for details.
