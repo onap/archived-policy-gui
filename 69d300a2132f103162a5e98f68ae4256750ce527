@@ -52,6 +52,24 @@
       "revId": "69d300a2132f103162a5e98f68ae4256750ce527",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21158c0a_8e69fca3",
+        "filename": "packages/policy-gui-docker/src/main/docker/etc/nginx/http.d/default.conf",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-09-10T23:17:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "48c3cdf1_8117e9f5",
+      "revId": "69d300a2132f103162a5e98f68ae4256750ce527",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
