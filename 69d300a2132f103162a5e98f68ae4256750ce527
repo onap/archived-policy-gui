@@ -16,6 +16,24 @@
       "revId": "69d300a2132f103162a5e98f68ae4256750ce527",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36c7f547_b963862e",
+        "filename": "packages/policy-gui-docker/src/main/docker/etc/nginx/http.d/default.conf",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-09-10T17:19:30Z",
+      "side": 1,
+      "message": "This is how it\u0027s done in the clamp repo for frontend image e.g. for OOM deployment, the whole config file is overridden via volume.\n\nYou think it\u0027s better to keep the environment variable?",
+      "parentUuid": "61eb08c8_238be182",
+      "revId": "69d300a2132f103162a5e98f68ae4256750ce527",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
