@@ -26,30 +26,21 @@ ARG POLICY_LOGS=/var/log/onap/policy/gui
 
 ENV POLICY_LOGS=$POLICY_LOGS
 ENV POLICY_HOME=$POLICY_HOME/gui
-ENV CLAMP_REST_URL=http://0.0.0.0
 
 RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/lib && \
     chown -R policy:policy $POLICY_HOME $POLICY_LOGS && \
     apk update && \
-    apk add --no-cache gettext nginx
+    apk add --no-cache nginx
 
-WORKDIR $POLICY_HOME
-COPY policy-gui.sh ./bin/
-COPY /maven/gui-editor-apex-uber.jar ./lib/
-COPY /maven/gui-pdp-monitoring-uber.jar ./lib/
-COPY etc/ssl/clamp.key /etc/ssl/clamp.key
-COPY etc/ssl/clamp.pem /etc/ssl/clamp.pem
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
-COPY nginx/index.html /usr/share/nginx/html/
-ADD /maven/gui-clamp-html.tar.gz /usr/share/nginx/html/
-ADD /maven/gui-pdp-monitoring-html.tar.gz /usr/share/nginx/html/
-RUN rm /etc/nginx/conf.d/default.conf && \
-    ln -sf /dev/stdout /var/log/nginx/access.log && \
+COPY --chown=policy:policy etc/ /etc/
+COPY --chown=policy:policy policy-gui.sh $POLICY_HOME/bin/
+COPY --chown=policy:policy /maven/*.jar $POLICY_HOME/lib/
+ADD --chown=policy:policy index.html /maven/*-html.tar.gz /usr/share/nginx/html/
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
     touch /var/run/nginx.pid && \
-    chown -R policy:policy . /etc/nginx /usr/share/nginx /var/lib/nginx /var/log/nginx /var/run/nginx.pid && \
-    chmod 755 bin/*.sh
+    chown -R policy:policy /etc/nginx /usr/share/nginx /var/lib/nginx /var/log/nginx /var/run/nginx.pid && \
+    chmod 755 $POLICY_HOME/bin/*.sh
 
 USER policy
 WORKDIR $POLICY_HOME/bin
