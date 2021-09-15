@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78ef7ff0_27838660",
+        "filename": "releases/2.1.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4903
+      },
+      "writtenOn": "2021-09-15T10:29:52Z",
+      "side": 1,
+      "message": "tag_release: false ?",
+      "revId": "75bbf8f693020f75c6afd32232ed6e8d135c0ba8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
