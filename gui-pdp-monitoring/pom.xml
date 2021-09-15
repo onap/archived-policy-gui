@@ -148,8 +148,11 @@
                             <directory>${webapp.dir}/node_modules</directory>
                         </fileset>
                         <fileset>
-                            <directory>${webapp.dir}/dist/</directory>
-                            <includes>bundle.js</includes>
+                            <directory>${webapp.dir}</directory>
+                            <includes>
+                                <include>package-lock.json</include>
+                                <include>dist/bundle.js</include>
+                            </includes>
                         </fileset>
                     </filesets>
                 </configuration>
