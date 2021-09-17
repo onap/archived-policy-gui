@@ -27,7 +27,7 @@ ARG POLICY_LOGS=/var/log/onap/policy/gui
 ENV POLICY_LOGS=$POLICY_LOGS
 ENV POLICY_HOME=$POLICY_HOME/gui
 
-RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/lib && \
+RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/lib $POLICY_HOME/etc/ssl && \
     chown -R policy:policy $POLICY_HOME $POLICY_LOGS && \
     apk update && \
     apk add --no-cache nginx
@@ -35,6 +35,7 @@ RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/lib && \
 COPY --chown=policy:policy etc/ /etc/
 COPY --chown=policy:policy policy-gui.sh $POLICY_HOME/bin/
 COPY --chown=policy:policy /maven/*.jar $POLICY_HOME/lib/
+COPY --chown=policy:policy policy-truststore $POLICY_HOME/etc/ssl/
 ADD --chown=policy:policy index.html /maven/*-html.tar.gz /usr/share/nginx/html/
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \

@@ -22,12 +22,25 @@
 trap 'exit 0' SIGTERM
 
 JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
+TRUSTSTORE="${TRUSTSTORE:-$POLICY_HOME/etc/ssl/policy-truststore}"
+TRUSTSTORE_PASSWD="${TRUSTSTORE_PASSWD:-Pol1cy_0nap}"
+
+if [ -f "${POLICY_HOME}/etc/mounted/policy-truststore" ]; then
+    echo "overriding policy-truststore"
+    cp -f "${POLICY_HOME}"/etc/mounted/policy-truststore "${TRUSTSTORE}"
+fi
 
 echo "Starting gui-editor-apex"
-$JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-editor-apex-uber.jar" -p 18989 &
+$JAVA_HOME/bin/java \
+    -Djavax.net.ssl.trustStore="${TRUSTSTORE}" \
+    -Djavax.net.ssl.trustStorePassword="${TRUSTSTORE_PASSWD}" \
+    -jar "$POLICY_HOME/lib/gui-editor-apex-uber.jar" -p 18989 &
 
 echo "Starting gui-pdp-monitoring"
-$JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-pdp-monitoring-uber.jar" -p 17999 &
+$JAVA_HOME/bin/java \
+    -Djavax.net.ssl.trustStore="${TRUSTSTORE}" \
+    -Djavax.net.ssl.trustStorePassword="${TRUSTSTORE_PASSWD}" \
+    -jar "$POLICY_HOME/lib/gui-pdp-monitoring-uber.jar" -p 17999 &
 
 echo "Starting nginx"
 nginx -g "daemon on;"
