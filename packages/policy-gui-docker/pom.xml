@@ -96,24 +96,6 @@
                                                 </includes>
                                                 <outputFileNameMapping>gui-clamp-html.tar.gz</outputFileNameMapping>
                                             </dependencySet>
-                                            <dependencySet>
-                                                <includes>
-                                                    <include>org.onap.policy.gui:gui-pdp-monitoring:tar.gz:frontend:${project.version}</include>
-                                                </includes>
-                                                <outputFileNameMapping>gui-pdp-monitoring-html.tar.gz</outputFileNameMapping>
-                                            </dependencySet>
-                                            <dependencySet>
-                                                <includes>
-                                                    <include>org.onap.policy.gui:gui-pdp-monitoring:uber.jar:${project.version}</include>
-                                                </includes>
-                                                <outputFileNameMapping>gui-pdp-monitoring-uber.jar</outputFileNameMapping>
-                                            </dependencySet>
-                                            <dependencySet>
-                                                <includes>
-                                                    <include>org.onap.policy.gui.editors:gui-editor-apex:uber.jar:${project.version}</include>
-                                                </includes>
-                                                <outputFileNameMapping>gui-editor-apex-uber.jar</outputFileNameMapping>
-                                            </dependencySet>
                                         </dependencySets>
                                     </inline>
                                 </assembly>
@@ -173,25 +155,6 @@
             <version>${project.version}</version>
             <classifier>clamp-build</classifier>
             <type>tar.gz</type>
-        </dependency>
-        <dependency>
-            <groupId>org.onap.policy.gui</groupId>
-            <artifactId>gui-pdp-monitoring</artifactId>
-            <version>${project.version}</version>
-            <classifier>frontend</classifier>
-            <type>tar.gz</type>
-        </dependency>
-        <dependency>
-            <groupId>org.onap.policy.gui</groupId>
-            <artifactId>gui-pdp-monitoring</artifactId>
-            <version>${project.version}</version>
-            <type>uber.jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.onap.policy.gui.editors</groupId>
-            <artifactId>gui-editor-apex</artifactId>
-            <version>${project.version}</version>
-            <type>uber.jar</type>
         </dependency>
     </dependencies>
 </project>

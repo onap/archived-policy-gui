@@ -19,17 +19,4 @@
 # ============LICENSE_END=========================================================
 #
 
-trap 'exit 0' SIGTERM
-
-JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
-
-echo "Starting gui-editor-apex"
-$JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-editor-apex-uber.jar" -p 18989 &
-
-echo "Starting gui-pdp-monitoring"
-$JAVA_HOME/bin/java -jar "$POLICY_HOME/lib/gui-pdp-monitoring-uber.jar" -p 17999 &
-
-echo "Starting nginx"
-nginx -g "daemon on;"
-
-wait
+nginx -g "daemon off;"
