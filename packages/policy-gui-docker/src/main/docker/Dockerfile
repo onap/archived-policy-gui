@@ -35,7 +35,7 @@ RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/lib && \
 COPY --chown=policy:policy etc/ /etc/
 COPY --chown=policy:policy policy-gui.sh $POLICY_HOME/bin/
 COPY --chown=policy:policy /maven/*.jar $POLICY_HOME/lib/
-ADD --chown=policy:policy index.html /maven/*-html.tar.gz /usr/share/nginx/html/
+ADD --chown=policy:policy index.html /maven/gui-clamp-html.tar.gz /usr/share/nginx/html/
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
     touch /var/run/nginx.pid && \
