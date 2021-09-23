@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1135444_9f4de4cf",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 477
+      },
+      "writtenOn": "2021-09-23T21:07:07Z",
+      "side": 1,
+      "message": "I think this is an issue in general running 2 application processes + ngnix in the same container in the background and losing stdout.   We went through an exercise of removing this type of arrangements in containers a couple release back based on onap requirements and follow best practices.  I am afraid that allowing this, we will not be compliant with those requirements anymore.",
+      "revId": "c28400b46ef7b5a80ac5ff6db2b37d6563fcbb6f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
