@@ -16,6 +16,24 @@
       "revId": "c28400b46ef7b5a80ac5ff6db2b37d6563fcbb6f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2518501_cee531c7",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2021-09-24T08:37:00Z",
+      "side": 1,
+      "message": "Understood - POLICY-3638 has been created to address this issue separately.",
+      "parentUuid": "b1135444_9f4de4cf",
+      "revId": "c28400b46ef7b5a80ac5ff6db2b37d6563fcbb6f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
