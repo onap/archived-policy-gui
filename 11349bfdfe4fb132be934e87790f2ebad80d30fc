@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2de57520_ca41b27d",
+        "filename": "gui-pdp-monitoring/src/main/java/org/onap/policy/gui/pdp/monitoring/rest/PdpMonitoringRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 477
+      },
+      "writtenOn": "2021-09-24T23:34:58Z",
+      "side": 1,
+      "message": "Is there a reason not to use the StandardCoder from policy/commons as the other repos do? specially since I think is used to decode json returned by the pap (provided standardcoder is used there throughout and would deal with the datatypes needed already).",
+      "revId": "11349bfdfe4fb132be934e87790f2ebad80d30fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
