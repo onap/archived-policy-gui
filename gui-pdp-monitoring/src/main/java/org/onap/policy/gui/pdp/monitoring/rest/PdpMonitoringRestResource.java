@@ -23,7 +23,10 @@
 package org.onap.policy.gui.pdp.monitoring.rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -76,7 +79,10 @@ public class PdpMonitoringRestResource {
     // Set the maximum number of stored data entries to be stored for each engine
     private static final int MAX_CACHED_ENTITIES = 50;
 
-    private static Gson gson = new Gson();
+    private static Gson gson = new GsonBuilder()
+        .registerTypeAdapter(Instant.class, (JsonDeserializer<Instant>) (jsonElement, type, jsonDeserializationContext)
+            -> Instant.parse(jsonElement.getAsJsonPrimitive().getAsString()))
+        .create();
 
     /**
      * Query Pdps.
