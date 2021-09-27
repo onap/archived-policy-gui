@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5434dcc3_f0765f4e",
+        "filename": "packages/policy-gui-docker/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2021-09-27T11:29:49Z",
+      "side": 1,
+      "message": "I think it\u0027s OK to package the GUIs in the image, just not to start them.",
+      "revId": "d13bc421cc49479e25f77a23436892711abca3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
