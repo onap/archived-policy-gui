@@ -26,6 +26,7 @@ import { ajax_delete, ajax_getWithKeyInfo, ajax_post, ajax_put, ajax_get } from 
 import { formUtils_generateDescription, formUtils_generateUUID } from "./ApexFormUtils";
 import { apexUtils_removeElement, apexUtils_emptyElement, apexUtils_areYouSure, createAddFormButton, scrollToTop } from "./ApexUtils";
 import { showHideTextarea } from "./showhideTextarea";
+import {keyInformationTab_reset} from "./ApexKeyInformationTab";
 
 function editTaskForm_createTask(formParent) {
     // Get all contextSchemas too for task input/outputfields
