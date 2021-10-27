@@ -102,7 +102,7 @@ public class ApexEditorParameterParser {
                 .longOpt("upload-url")
                 .desc("the URL to use for uploads. Default value is null")
                 .hasArg()
-                .argName("USERID")
+                .argName("UPLOAD_URL")
                 .required(false)
                 .type(String.class)
                 .build()
