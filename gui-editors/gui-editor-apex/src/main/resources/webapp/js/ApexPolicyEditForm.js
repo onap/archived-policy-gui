@@ -27,6 +27,7 @@ import {policyTab_reset} from "./ApexPolicyTab";
 import { editPolicyForm_State_generateStateDiv, editPolicyForm_State_getStateBean } from "./ApexPolicyEditForm_State";
 import { formUtils_generateDescription, formUtils_generateUUID } from "./ApexFormUtils";
 import {keyInformationTab_reset} from "./ApexKeyInformationTab";
+import {showHideElement} from "./showhideElement"
 
 function editPolicyForm_createPolicy(formParent) {
     editPolicyForm_editPolicy_inner(formParent, null, "CREATE");

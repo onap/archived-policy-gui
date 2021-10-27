@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@
  */
 
 const mod = require('../ApexTaskEditForm');
+const apexUtils = require('../ApexUtils');
+const apexTaskTab = require('../ApexTaskTab');
+const keyInformationTab_reset = require('../ApexKeyInformationTab');
 
 const contextSchema = {
    name: 'testName',
@@ -37,6 +40,17 @@ const task = {
    uuid: 'testUUID'
 };
 
+let data = {
+   messages: {
+      message: [
+         '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"}},' +
+         '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
+         '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+      ]
+   },
+   ok: true
+};
+
 test('Test editTaskForm_activate CREATE', () => {
    const mock_activate = jest.fn(mod.editTaskForm_activate);
    mock_activate('test', 'CREATE', 'task', contextSchema, 'album');
@@ -48,3 +62,42 @@ test('Test editTaskForm_activate EDIT', () => {
    mock_activate('test', 'EDIT', task, contextSchema, 'album');
    expect(mock_activate).toBeCalled();
 });
+
+test('Test Create Task', () => {
+   const jqXHR = { status: 200, responseText: "" };
+   $.ajax = jest.fn().mockImplementation((args) => {
+      args.success(data, null, jqXHR);
+   });
+   const mock_activate = jest.fn(mod.editTaskForm_createTask);
+   mock_activate('test');
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test Delete Task', () => {
+   global.confirm = () => true
+   global.window.restRootURL = () => 'http://localhost'
+   const jqXHR = { status: 200, responseText: "" };
+   $.ajax = jest.fn().mockImplementation((args) => {
+      args.success(data, null, jqXHR);
+   });
+   jest.spyOn(apexTaskTab, 'taskTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+   const mock_activate = jest.fn(mod.editTaskForm_deleteTask);
+   mock_activate('test');
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test Edit Task Inner', () => {
+   const jqXHR = { status: 200, responseText: "" };
+   $.ajax = jest.fn().mockImplementation((args) => {
+      args.success(data, null, jqXHR);
+   });
+   const mock_activate = jest.fn(mod.editTaskForm_editTask_inner);
+   mock_activate('test', 'name', 'version', 'Edit');
+   expect(mock_activate).toBeCalled();
+});
+
+
+
+

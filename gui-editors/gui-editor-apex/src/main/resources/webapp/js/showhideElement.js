@@ -59,3 +59,8 @@ function showHideElement(id_prefix, element, _initialhide, _showText, _hideText,
     return retdiv;
 }
 
+export {
+    showHideElement_display,
+    showHideElement
+}
+
