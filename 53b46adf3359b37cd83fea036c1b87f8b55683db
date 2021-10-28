@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "558a2ac2_1232dbfd",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ControlLoop/InstancePropertiesModal.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2021-10-28T17:26:10Z",
+      "side": 1,
+      "message": "This has resulted in stackoverflow exception in apex-pdp. I think it will be okay here considering the fact that all this is done using npm and run directly in browser. Whereas in apex-pdp, the js code is interpreted by Rhino executor and runs in jvm.",
+      "range": {
+        "startLine": 242,
+        "startChar": 16,
+        "endLine": 242,
+        "endChar": 30
+      },
+      "revId": "53b46adf3359b37cd83fea036c1b87f8b55683db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
