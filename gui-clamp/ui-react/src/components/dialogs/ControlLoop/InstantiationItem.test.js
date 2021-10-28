@@ -15,42 +15,39 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ *
+ *
  */
 
+import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import { createMemoryHistory } from "history";
-import React from "react";
-import MonitorInstantiation from "./MonitorInstantiation";
-import { act } from "react-dom/test-utils";
 
-describe('Verify MonitoringInstantiation', () => {
-  const container = shallow(<MonitorInstantiation />);
-  const containerWithHistory = shallow(<MonitorInstantiation history={ createMemoryHistory() }/>);
+import InstantiationItem from "./InstantiationItem";
+
+describe('Verify InstantiationItem', () => {
+
+  const index = 0;
+  const title = "PMSH Instance";
+  const orderState = "UNINITIALISED";
+  const container = shallow(<InstantiationItem title={ { title } } orderState={ { orderState } } index={ { index } } key={ { index } }/>);
+
+  it("renders without crashing", () => {
+    shallow(<InstantiationItem title={ { title } } orderState={ { orderState } } index={ { index } } key={ { index } }/>);
+  });
 
   it("renders correctly", () => {
     expect(toJson(container)).toMatchSnapshot();
   });
 
-  it('should have a Button element', () => {
-    expect(container.find('Button').length).toEqual(1);
+  it("should contain an Accordion", () => {
+    const accordion = container.find('Accordion');
+    expect(accordion).toHaveLength(1);
   });
 
-  it('handleClose called when bottom button clicked', () => {
-    const logSpy = jest.spyOn(console, 'log');
-
-    act(() => {
-      containerWithHistory.find('[variant="secondary"]').simulate('click');
-      expect(logSpy).toHaveBeenCalledWith('handleClose called');
-    });
+  it("should contain an AccordionHeader", () => {
+    const accordion = container.find('AccordionHeader');
+    expect(accordion).toHaveLength(1);
   });
 
-  it('handleClose called when top-right button clicked', () => {
-    const logSpy = jest.spyOn(console, 'log');
-
-    act(() => {
-      containerWithHistory.find('[size="xl"]').get(0).props.onHide();
-      expect(logSpy).toHaveBeenCalledWith('handleClose called');
-    });
-  });
 });

@@ -43,13 +43,13 @@ const MonitorInstantiation = (props) => {
     const controlLoopInstantiation = await ControlLoopService.getControlLoopInstantiation()
       .catch(error => error.message);
 
-    const controlLoopInstantiationJson = await controlLoopInstantiation.json()
-    console.log(controlLoopInstantiationJson)
+    const controlLoopInstantiationJson = await controlLoopInstantiation.json();
+
     if (!controlLoopInstantiation.ok || controlLoopInstantiationJson['controlLoopList'].length === 0) {
       setControlLoopInstantiationOk(false)
       setControlLoopInstantiationError(controlLoopInstantiationJson)
     } else {
-      setControlLoopList(controlLoopInstantiationJson[['controlLoopList']])
+      setControlLoopList(controlLoopInstantiationJson['controlLoopList']);
     }
   }, [])
 
@@ -67,7 +67,7 @@ const MonitorInstantiation = (props) => {
       <Modal.Body>
         {
           controlLoopList.map((clList, index) => (
-            <InstantiationItem title={ clList["name"] } orderedState={ clList["orderedState"] } index={ index } key={ index }>
+            <InstantiationItem title={ clList["name"] } orderedState={ clList["orderedState"] } index={ index } key={ index } >
               <InstantiationElements elements={ clList["elements"] } />
             </InstantiationItem>
           ))
