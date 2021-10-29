@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify InstantiationOrderStateChangeItem renders correctly 1`] = `<Fragment />`;
+
+exports[`Verify InstantiationOrderStateChangeItem renders correctly when orderState is passive 1`] = `
+<Fragment>
+  <styled.div>
+    PASSIVE_TEST
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Verify InstantiationOrderStateChangeItem renders correctly when orderState is running 1`] = `
+<Fragment>
+  <styled.div>
+    RUNNING_TEST
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Verify InstantiationOrderStateChangeItem renders correctly when orderState is uninitialized 1`] = `
+<Fragment>
+  <styled.div>
+    UNINITIALISED_TEST
+  </styled.div>
+</Fragment>
+`;

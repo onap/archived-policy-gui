@@ -132,18 +132,6 @@ export default class ControlLoopService {
     return data;
   }
 
-  static async getToscaControlLoopDefinitions() {
-
-    const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/getElementDefinitions');
-
-    this.checkResponseForError(response);
-
-    const data = await response;
-
-    return data;
-  }
-
   static async getCommonOrInstanceProperties(name, version, isCommon) {
     const params = {
       name: name,
@@ -155,27 +143,6 @@ export default class ControlLoopService {
       'restservices/clds/v2/toscaControlLoop/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
 
     return response;
-  }
-
-  static async getToscaServiceTemplateSchema(section) {
-
-    const params = {
-      section: section
-    }
-
-    const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/getJsonSchema' + '?' + (new URLSearchParams(params)));
-
-    this.checkResponseForError(response);
-
-    return response;
-  }
-
-  static checkResponseForError(response) {
-    if (!response.ok) {
-      const message = `An error has occurred: ${ response.status }`;
-      throw new Error(message);
-    }
   }
 
 }

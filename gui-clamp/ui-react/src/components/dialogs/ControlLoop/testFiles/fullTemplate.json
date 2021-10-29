@@ -1,0 +1,2194 @@
+{
+  "policy_types": {
+    "onap.policies.Monitoring": {
+      "name": "onap.policies.Monitoring",
+      "version": "1.0.0",
+      "derived_from": "tosca.policies.Root",
+      "metadata": {},
+      "description": "a base policy type for all policies that govern monitoring provisioning",
+      "properties": {},
+      "key": {
+        "name": "onap.policies.Monitoring",
+        "version": "1.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.policies.Monitoring",
+      "defined_version": "1.0.0"
+    },
+    "onap.policies.Sirisha": {
+      "name": "onap.policies.Sirisha",
+      "version": "1.0.0",
+      "derived_from": "tosca.policies.Root",
+      "metadata": {},
+      "description": "a base policy type for all policies that govern monitoring provisioning",
+      "properties": {},
+      "key": {
+        "name": "onap.policies.Sirisha",
+        "version": "1.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.policies.Sirisha",
+      "defined_version": "1.0.0"
+    },
+    "onap.policies.controlloop.operational.Common": {
+      "name": "onap.policies.controlloop.operational.Common",
+      "version": "1.0.0",
+      "derived_from": "tosca.policies.Root",
+      "metadata": {},
+      "description": "Operational Policy for Control Loop execution. Originated in Frankfurt to support TOSCA Compliant\nPolicy Types. This does NOT support the legacy Policy YAML policy type.\n",
+      "properties": {
+        "abatement": {
+          "name": "abatement",
+          "type": "boolean",
+          "type_version": "0.0.0",
+          "description": "Whether an abatement event message will be expected for the control loop from DCAE.",
+          "default_value": false,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "operations": {
+          "name": "operations",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of operations to be performed when Control Loop is triggered.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatype.controlloop.Operation",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": null
+          },
+          "metadata": null
+        },
+        "trigger": {
+          "name": "trigger",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Initial operation to execute upon receiving an Onset event message for the Control Loop.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "timeout": {
+          "name": "timeout",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "Overall timeout for executing all the operations. This timeout should equal or exceed the total\ntimeout for each operation listed.\n",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The unique control loop id.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "key": {
+        "name": "onap.policies.controlloop.operational.Common",
+        "version": "1.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.policies.controlloop.operational.Common",
+      "defined_version": "1.0.0"
+    },
+    "onap.policies.controlloop.operational.common.Apex": {
+      "name": "onap.policies.controlloop.operational.common.Apex",
+      "version": "1.0.0",
+      "derived_from": "onap.policies.controlloop.operational.Common",
+      "metadata": {},
+      "description": "Operational policies for Apex PDP",
+      "properties": {
+        "engineServiceParameters": {
+          "name": "engineServiceParameters",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The engine parameters like name, instanceCount, policy implementation, parameters etc.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "eventOutputParameters": {
+          "name": "eventOutputParameters",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The event output parameters.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "javaProperties": {
+          "name": "javaProperties",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Name/value pairs of properties to be set for APEX if needed.",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "eventInputParameters": {
+          "name": "eventInputParameters",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The event input parameters.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "key": {
+        "name": "onap.policies.controlloop.operational.common.Apex",
+        "version": "1.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.policies.controlloop.operational.common.Apex",
+      "defined_version": "1.0.0"
+    },
+    "onap.policies.monitoring.dcae-pm-subscription-handler": {
+      "name": "onap.policies.monitoring.dcae-pm-subscription-handler",
+      "version": "1.0.0",
+      "derived_from": "onap.policies.Monitoring",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "pmsh_policy": {
+          "name": "pmsh_policy",
+          "type": "onap.datatypes.monitoring.subscription",
+          "type_version": "0.0.0",
+          "description": "PMSH Policy JSON",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        }
+      },
+      "key": {
+        "name": "onap.policies.monitoring.dcae-pm-subscription-handler",
+        "version": "1.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.policies.monitoring.dcae-pm-subscription-handler",
+      "defined_version": "1.0.0"
+    }
+  },
+  "node_types": {
+    "org.onap.policy.clamp.controlloop.CDSControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.CDSControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "cds_blueprint_id": {
+          "name": "cds_blueprint_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.CDSControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.CDSControlLoopElement",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.ControlLoop": {
+      "name": "org.onap.policy.clamp.controlloop.ControlLoop",
+      "version": "1.0.1",
+      "derived_from": "tosca.nodetypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "elements": {
+          "name": "elements",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "Specifies a list of control loop element definitions that make up this control loop definition",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.ToscaConceptIdentifier",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": null
+          },
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "provider": {
+          "name": "provider",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Specifies the organization that provides the control loop element",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.ControlLoop",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.ControlLoop",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.ControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "tosca.nodetypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "runningToPassiveTimeout": {
+          "name": "runningToPassiveTimeout",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "The maximum time in seconds to wait for a state chage from running to passive",
+          "default_value": 60.0,
+          "required": false,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": null,
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": "0",
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "participantType": {
+          "name": "participantType",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": "The identity of the participant type that hosts this type of Control Loop Element",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "provider": {
+          "name": "provider",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Specifies the organization that provides the control loop element",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "startPhase": {
+          "name": "startPhase",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": null,
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": "0",
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "passiveToUninitializedTimeout": {
+          "name": "passiveToUninitializedTimeout",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+          "default_value": 60.0,
+          "required": false,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": null,
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": "0",
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "uninitializedToPassiveTimeout": {
+          "name": "uninitializedToPassiveTimeout",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+          "default_value": 60.0,
+          "required": false,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": null,
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": "0",
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "participant_id": {
+          "name": "participant_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        },
+        "passiveToRunningTimeout": {
+          "name": "passiveToRunningTimeout",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "The maximum time in seconds to wait for a state chage from passive to running",
+          "default_value": 60.0,
+          "required": false,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": null,
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": "0",
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "common": "true"
+          }
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "policy_id": {
+          "name": "policy_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "policy_type_id": {
+          "name": "policy_type_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "policy_id": {
+          "name": "policy_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "policy_type_id": {
+          "name": "policy_type_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.HttpControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "httpHeaders": {
+          "name": "httpHeaders",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "HTTP headers to send on REST requests",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": null
+          },
+          "metadata": null
+        },
+        "baseUrl": {
+          "name": "baseUrl",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The base URL to be prepended to each path, identifies the host for the REST endpoints.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "configurationEntities": {
+          "name": "configurationEntities",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "The connfiguration entities the Control Loop Element is managing and their associated REST requests",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "org.onap.datatypes.policy.clamp.controlloop.httpControlLoopElement.ConfigurationEntity",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": null
+          },
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "values": {
+          "name": "values",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "templates": {
+          "name": "templates",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "chart": {
+          "name": "chart",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "requirements": {
+          "name": "requirements",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "configs": {
+          "name": "configs",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.Participant": {
+      "name": "org.onap.policy.clamp.controlloop.Participant",
+      "version": "1.0.1",
+      "derived_from": "tosca.nodetypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "provider": {
+          "name": "provider",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.Participant",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.Participant",
+      "defined_version": "1.0.1"
+    },
+    "org.onap.policy.clamp.controlloop.PolicyControlLoopElement": {
+      "name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+      "version": "1.0.1",
+      "derived_from": "org.onap.policy.clamp.controlloop.ControlLoopElement",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "policy_id": {
+          "name": "policy_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "policy_type_id": {
+          "name": "policy_type_id",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "requirements": null,
+      "key": {
+        "name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+        "version": "1.0.1"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+      "defined_version": "1.0.1"
+    }
+  },
+  "topology_template": {
+    "description": null,
+    "inputs": {
+      "pmsh_operational_policy": {
+        "name": "pmsh_operational_policy",
+        "type": "onap.datatypes.ToscaConceptIdentifier",
+        "type_version": "0.0.0",
+        "value": null
+      },
+      "pmsh_monitoring_policy": {
+        "name": "pmsh_monitoring_policy",
+        "type": "onap.datatypes.ToscaConceptIdentifier",
+        "type_version": "0.0.0",
+        "value": null
+      }
+    },
+    "node_templates": {
+      "org.onap.controlloop.HttpControlLoopParticipant": {
+        "name": "org.onap.controlloop.HttpControlLoopParticipant",
+        "version": "2.3.4",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Participant for Http requests",
+        "type": "org.onap.policy.clamp.controlloop.Participant",
+        "type_version": "1.0.1",
+        "properties": {
+          "provider": "ONAP"
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.controlloop.HttpControlLoopParticipant",
+          "version": "2.3.4"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.Participant",
+          "version": "1.0.1"
+        },
+        "key": {
+          "name": "org.onap.controlloop.HttpControlLoopParticipant",
+          "version": "2.3.4"
+        },
+        "defined_name": "org.onap.controlloop.HttpControlLoopParticipant",
+        "defined_version": "2.3.4"
+      },
+      "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement": {
+        "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop element for the http requests of PMSH microservice",
+        "type": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+        "type_version": "1.0.1",
+        "properties": {
+          "participantType": {
+            "name": "org.onap.k8s.controlloop.HttpControlLoopParticipant",
+            "version": "2.3.4"
+          },
+          "configurationEntities": [
+            {
+              "configurationEntityId": {
+                "name": "entity1",
+                "version": "1.0.1"
+              },
+              "restSequence": [
+                {
+                  "restRequestId": {
+                    "name": "request1",
+                    "version": "1.0.1"
+                  },
+                  "httpMethod": "PUT",
+                  "path": "v1/kv/dcae-pmsh2",
+                  "body": "{ \"control_loop_name\":\"pmsh-control-loop\", \"operational_policy_name\":\"pmsh-operational-policy\", \"aaf_password\":\"demo123456!\", \"aaf_identity\":\"dcae@dcae.onap.org\", \"cert_path\":\"/opt/app/pmsh/etc/certs/cert.pem\", \"key_path\":\"/opt/app/pmsh/etc/certs/key.pem\", \"ca_cert_path\":\"/opt/app/pmsh/etc/certs/cacert.pem\", \"enable_tls\":\"true\", \"pmsh_policy\":{ \"subscription\":{ \"subscriptionName\":\"ExtraPM-All-gNB-R2B\", \"administrativeState\":\"UNLOCKED\", \"fileBasedGP\":15, \"fileLocation\":\"\/pm\/pm.xml\", \"nfFilter\":{ \"nfNames\":[ \"^pnf.*\", \"^vnf.*\" ], \"modelInvariantIDs\":[ ], \"modelVersionIDs\":[ ], \"modelNames\":[ ] }, \"measurementGroups\":[ { \"measurementGroup\":{ \"measurementTypes\":[ { \"measurementType\":\"countera\" }, { \"measurementType\":\"counterb\" } ], \"managedObjectDNsBasic\":[ { \"DN\":\"dna\" }, { \"DN\":\"dnb\" } ] } }, { \"measurementGroup\":{ \"measurementTypes\":[ { \"measurementType\":\"counterc\" }, { \"measurementType\":\"counterd\" } ], \"managedObjectDNsBasic\":[ { \"DN\":\"dnc\" }, { \"DN\":\"dnd\" } ] } } ] } }, \"streams_subscribes\":{ \"aai_subscriber\":{ \"type\":\"message_router\", \"dmaap_info\":{ \"topic_url\":\"https://10.152.183.151:3905/events/AAI_EVENT\", \"client_role\":\"org.onap.dcae.aaiSub\", \"location\":\"san-francisco\", \"client_id\":\"1575976809466\" } }, \"policy_pm_subscriber\":{ \"type\":\"message_router\", \"dmaap_info\":{ \"topic_url\":\"https://10.152.183.151:3905/events/org.onap.dmaap.mr.PM_SUBSCRIPTIONS\", \"client_role\":\"org.onap.dcae.pmSubscriber\", \"location\":\"san-francisco\", \"client_id\":\"1575876809456\" } } }, \"streams_publishes\":{ \"policy_pm_publisher\":{ \"type\":\"message_router\", \"dmaap_info\":{ \"topic_url\":\"https://10.152.183.151:3905/events/org.onap.dmaap.mr.PM_SUBSCRIPTIONS\", \"client_role\":\"org.onap.dcae.pmPublisher\", \"location\":\"san-francisco\", \"client_id\":\"1475976809466\" } }, \"other_publisher\":{ \"type\":\"message_router\", \"dmaap_info\":{ \"topic_url\":\"https://10.152.183.151:3905/events/org.onap.dmaap.mr.SOME_OTHER_TOPIC\", \"client_role\":\"org.onap.dcae.pmControlPub\", \"location\":\"san-francisco\", \"client_id\":\"1875976809466\" } } } }",
+                  "expectedResponse": 200
+                }
+              ]
+            }
+          ],
+          "provider": "ONAP",
+          "startPhase": 1,
+          "uninitializedToPassiveTimeout": 180,
+          "httpHeaders": {
+            "Content-Type": "application/json"
+          },
+          "participant_id": {
+            "name": "HttpParticipant0",
+            "version": "1.0.0"
+          },
+          "baseUrl": "http://10.152.183.51:8500"
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+          "version": "1.0.1"
+        },
+        "key": {
+          "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop element for the operational policy for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+        "type_version": "1.0.0",
+        "properties": {
+          "participant_id": {
+            "name": "org.onap.PM_Policy",
+            "version": "1.0.0"
+          },
+          "policy_type_id": {
+            "name": "onap.policies.operational.pm-subscription-handler",
+            "version": "1.0.0"
+          },
+          "participantType": {
+            "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+            "version": "2.3.1"
+          },
+          "provider": "Ericsson",
+          "policy_id": {
+            "get_input": "pmsh_operational_policy"
+          }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement": {
+        "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop element for the K8S microservice for local chart",
+        "type": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+        "type_version": "1.0.0",
+        "properties": {
+          "participant_id": {
+            "name": "K8sParticipant0",
+            "version": "1.0.0"
+          },
+          "provider": "ONAP",
+          "chart": {
+            "chartId": {
+              "name": "nginx-ingress",
+              "version": "0.9.1"
+            },
+            "releaseName": "nginxms",
+            "namespace": "test"
+          },
+          "participantType": {
+            "name": "org.onap.k8s.controlloop.K8SControlLoopParticipant",
+            "version": "2.3.4"
+          }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop element for the monitoring policy for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+        "type_version": "1.0.0",
+        "properties": {
+          "participant_id": {
+            "name": "org.onap.PM_Policy",
+            "version": "1.0.0"
+          },
+          "policy_type_id": {
+            "name": "onap.policies.monitoring.pm-subscription-handler",
+            "version": "1.0.0"
+          },
+          "participantType": {
+            "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+            "version": "2.3.1"
+          },
+          "provider": "Ericsson",
+          "policy_id": {
+            "get_input": "pmsh_monitoring_policy"
+          }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.k8s.controlloop.K8SControlLoopParticipant": {
+        "name": "org.onap.k8s.controlloop.K8SControlLoopParticipant",
+        "version": "2.3.4",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Participant for K8S",
+        "type": "org.onap.policy.clamp.controlloop.Participant",
+        "type_version": "1.0.1",
+        "properties": {
+          "provider": "ONAP"
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.k8s.controlloop.K8SControlLoopParticipant",
+          "version": "2.3.4"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.Participant",
+          "version": "1.0.1"
+        },
+        "key": {
+          "name": "org.onap.k8s.controlloop.K8SControlLoopParticipant",
+          "version": "2.3.4"
+        },
+        "defined_name": "org.onap.k8s.controlloop.K8SControlLoopParticipant",
+        "defined_version": "2.3.4"
+      },
+      "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+        "type_version": "1.0.0",
+        "properties": {
+          "participant_id": {
+            "name": "org.onap.PM_Policy",
+            "version": "1.0.0"
+          },
+          "provider": "Ericsson",
+          "participantType": {
+            "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+            "version": "2.3.1"
+          }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.domain.sample.GenericK8s_ControlLoopDefinition": {
+        "name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop for Hello World",
+        "type": "org.onap.policy.clamp.controlloop.ControlLoop",
+        "type_version": "1.0.0",
+        "properties": {
+          "elements": [
+            {
+              "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+              "version": "1.2.3"
+            },
+            {
+              "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+              "version": "1.2.3"
+            },
+            {
+              "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+              "version": "1.2.3"
+            },
+            {
+              "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+              "version": "1.2.3"
+            },
+            {
+              "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+              "version": "1.2.3"
+            },
+            {
+              "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+              "version": "1.2.3"
+            },
+            {
+              "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+              "version": "1.2.3"
+            }
+          ],
+          "provider": "ONAP"
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.ControlLoop",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.policy.controlloop.PolicyControlLoopParticipant": {
+        "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+        "version": "2.3.1",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Participant for DCAE microservices",
+        "type": "org.onap.policy.clamp.controlloop.Participant",
+        "type_version": "1.0.1",
+        "properties": {
+          "provider": "ONAP"
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+          "version": "2.3.1"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.Participant",
+          "version": "1.0.1"
+        },
+        "key": {
+          "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+          "version": "2.3.1"
+        },
+        "defined_name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+        "defined_version": "2.3.1"
+      },
+      "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement": {
+        "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop element for the K8S microservice for PMSH",
+        "type": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+        "type_version": "1.0.0",
+        "properties": {
+          "participant_id": {
+            "name": "K8sParticipant0",
+            "version": "1.0.0"
+          },
+          "provider": "ONAP",
+          "chart": {
+            "chartId": {
+              "name": "dcae-pmsh",
+              "version": "8.0.0"
+            },
+            "namespace": "onap",
+            "releaseName": "pmshms",
+            "repository": {
+              "repoName": "chartmuseum",
+              "protocol": "http",
+              "address": "10.152.183.120",
+              "port": 80,
+              "userName": "onapinitializer",
+              "password": "demo123456!"
+            },
+            "overrideParams": {
+              "global.masterPassword": "test"
+            }
+          },
+          "participantType": {
+            "name": "org.onap.k8s.controlloop.K8SControlLoopParticipant",
+            "version": "2.3.4"
+          }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+        "defined_version": "1.2.3"
+      },
+      "org.onap.domain.pmsh.DerivedPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derived_from": null,
+        "metadata": {},
+        "description": "Control loop for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+        "type_version": "1.0.0",
+        "properties": {
+          "participant_id": {
+            "name": "org.onap.PM_Policy",
+            "version": "1.0.0"
+          },
+          "provider": "Ericsson",
+          "participantType": {
+            "name": "org.onap.policy.controlloop.PolicyControlLoopParticipant",
+            "version": "2.3.1"
+          }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+          "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "type_identifier": {
+          "name": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+          "version": "1.0.0"
+        },
+        "key": {
+          "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+          "version": "1.2.3"
+        },
+        "defined_name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+        "defined_version": "1.2.3"
+      }
+    },
+    "policies": null,
+    "policies_as_map": {}
+  },
+  "tosca_definitions_version": "tosca_simple_yaml_1_3",
+  "data_types": {
+    "onap.datatype.controlloop.Actor": {
+      "name": "onap.datatype.controlloop.Actor",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": "An actor/operation/target definition",
+      "properties": {
+        "payload": {
+          "name": "payload",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "Name/value pairs of payload information passed by Policy to the actor",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": null
+          },
+          "metadata": {
+            "clamp_possible_values": "ClampExecution:CDS/payload"
+          }
+        },
+        "target": {
+          "name": "target",
+          "type": "onap.datatype.controlloop.Target",
+          "type_version": "0.0.0",
+          "description": "The resource the operation should be performed on.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "actor": {
+          "name": "actor",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The actor performing the operation.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "clamp_possible_values": "Dictionary:DefaultActors,ClampExecution:CDS/actor"
+          }
+        },
+        "operation": {
+          "name": "operation",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The operation the actor is performing.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {
+            "clamp_possible_values": "Dictionary:DefaultOperations,ClampExecution:CDS/operation"
+          }
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatype.controlloop.Actor",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatype.controlloop.Actor",
+      "defined_version": null
+    },
+    "onap.datatype.controlloop.Operation": {
+      "name": "onap.datatype.controlloop.Operation",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": "An operation supported by an actor",
+      "properties": {
+        "failure_retries": {
+          "name": "failure_retries",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Points to the operation to invoke when the current operation has exceeded its max retries.",
+          "default_value": "final_failure_retries",
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Unique identifier for the operation",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "failure_timeout": {
+          "name": "failure_timeout",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Points to the operation to invoke when the time out for the operation occurs.",
+          "default_value": "final_failure_timeout",
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "failure": {
+          "name": "failure",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Points to the operation to invoke on Actor operation failure.",
+          "default_value": "final_failure",
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "operation": {
+          "name": "operation",
+          "type": "onap.datatype.controlloop.Actor",
+          "type_version": "0.0.0",
+          "description": "The definition of the operation to be performed.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "failure_guard": {
+          "name": "failure_guard",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Points to the operation to invoke when the current operation is blocked due to guard policy enforcement.",
+          "default_value": "final_failure_guard",
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "retries": {
+          "name": "retries",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "The number of retries the actor should attempt to perform the operation.",
+          "default_value": 0.0,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "timeout": {
+          "name": "timeout",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "The amount of time for the actor to perform the operation.",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "failure_exception": {
+          "name": "failure_exception",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Points to the operation to invoke when the current operation causes an exception.",
+          "default_value": "final_failure_exception",
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "A user-friendly description of the intent for the operation",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "success": {
+          "name": "success",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Points to the operation to invoke on success. A value of \"final_success\" indicates and end to the operation.",
+          "default_value": "final_success",
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatype.controlloop.Operation",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatype.controlloop.Operation",
+      "defined_version": null
+    },
+    "onap.datatype.controlloop.Target": {
+      "name": "onap.datatype.controlloop.Target",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": "Definition for a entity in A&AI to perform a control loop operation on",
+      "properties": {
+        "entityIds": {
+          "name": "entityIds",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "Map of values that identify the resource. If none are provided, it is assumed that the\nentity that generated the ONSET event will be the target.\n",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": null
+          },
+          "metadata": {
+            "clamp_possible_values": "ClampExecution:CSAR_RESOURCES"
+          }
+        },
+        "targetType": {
+          "name": "targetType",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Category for the target type",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": [
+                "VNF",
+                "VM",
+                "VFMODULE",
+                "PNF"
+              ],
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": null,
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatype.controlloop.Target",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatype.controlloop.Target",
+      "defined_version": null
+    },
+    "onap.datatypes.ToscaConceptIdentifier": {
+      "name": "onap.datatypes.ToscaConceptIdentifier",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "version": {
+          "name": "version",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": null,
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.ToscaConceptIdentifier",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.ToscaConceptIdentifier",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.managedObjectDNsBasic": {
+      "name": "onap.datatypes.monitoring.managedObjectDNsBasic",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "DN": {
+          "name": "DN",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Managed object distinguished name",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.managedObjectDNsBasic",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.managedObjectDNsBasic",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.managedObjectDNsBasics": {
+      "name": "onap.datatypes.monitoring.managedObjectDNsBasics",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "managedObjectDNsBasic": {
+          "name": "managedObjectDNsBasic",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "Managed object distinguished name object",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.managedObjectDNsBasic",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.managedObjectDNsBasics",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.managedObjectDNsBasics",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.measurementGroup": {
+      "name": "onap.datatypes.monitoring.measurementGroup",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "measurementTypes": {
+          "name": "measurementTypes",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of measurement types",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.measurementTypes",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        },
+        "managedObjectDNsBasic": {
+          "name": "managedObjectDNsBasic",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of managed object distinguished names",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.managedObjectDNsBasics",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.measurementGroup",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.measurementGroup",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.measurementGroups": {
+      "name": "onap.datatypes.monitoring.measurementGroups",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "measurementGroup": {
+          "name": "measurementGroup",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "Measurement Group",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.measurementGroup",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.measurementGroups",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.measurementGroups",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.measurementType": {
+      "name": "onap.datatypes.monitoring.measurementType",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "measurementType": {
+          "name": "measurementType",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Measurement type",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.measurementType",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.measurementType",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.measurementTypes": {
+      "name": "onap.datatypes.monitoring.measurementTypes",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "measurementType": {
+          "name": "measurementType",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "Measurement type object",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.measurementType",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.measurementTypes",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.measurementTypes",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.nfFilter": {
+      "name": "onap.datatypes.monitoring.nfFilter",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "modelVersionIDs": {
+          "name": "modelVersionIDs",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of model version IDs",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        },
+        "modelInvariantIDs": {
+          "name": "modelInvariantIDs",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of model invariant IDs",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        },
+        "modelNames": {
+          "name": "modelNames",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of model names",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        },
+        "nfNames": {
+          "name": "nfNames",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "List of network functions",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "string",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.nfFilter",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.nfFilter",
+      "defined_version": null
+    },
+    "onap.datatypes.monitoring.subscription": {
+      "name": "onap.datatypes.monitoring.subscription",
+      "version": "0.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "measurementGroups": {
+          "name": "measurementGroups",
+          "type": "list",
+          "type_version": "0.0.0",
+          "description": "Measurement Groups",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.measurementGroups",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        },
+        "fileBasedGP": {
+          "name": "fileBasedGP",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "File based granularity period",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        },
+        "fileLocation": {
+          "name": "fileLocation",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "ROP file location",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        },
+        "subscriptionName": {
+          "name": "subscriptionName",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "Name of the subscription",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        },
+        "administrativeState": {
+          "name": "administrativeState",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "State of the subscription",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": [
+                "LOCKED",
+                "UNLOCKED"
+              ],
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": null,
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": {}
+        },
+        "nfFilter": {
+          "name": "nfFilter",
+          "type": "map",
+          "type_version": "0.0.0",
+          "description": "Network function filter",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": {
+            "name": null,
+            "type": "onap.datatypes.monitoring.nfFilter",
+            "type_version": "0.0.0",
+            "description": null,
+            "constraints": []
+          },
+          "metadata": {}
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "onap.datatypes.monitoring.subscription",
+        "version": "0.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "onap.datatypes.monitoring.subscription",
+      "defined_version": null
+    },
+    "org.onap.datatypes.policy.clamp.controlloop.httpControlLoopElement.RestRequest": {
+      "name": "org.onap.datatypes.policy.clamp.controlloop.httpControlLoopElement.RestRequest",
+      "version": "1.0.0",
+      "derived_from": "tosca.datatypes.Root",
+      "metadata": {},
+      "description": null,
+      "properties": {
+        "body": {
+          "name": "body",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The body of the REST request for PUT and POST requests",
+          "default_value": null,
+          "required": false,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "expectedResponse": {
+          "name": "expectedResponse",
+          "type": "integer",
+          "type_version": "0.0.0",
+          "description": "THe expected HTTP status code for the REST request",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "httpMethod": {
+          "name": "httpMethod",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The REST method to use",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": [
+            {
+              "valid_values": [
+                "POST",
+                "PUT",
+                "GET",
+                "DELETE"
+              ],
+              "equal": null,
+              "greater_than": null,
+              "greater_or_equal": null,
+              "less_than": null,
+              "less_or_equal": null,
+              "range_values": null
+            }
+          ],
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "restRequestId": {
+          "name": "restRequestId",
+          "type": "onap.datatypes.ToscaConceptIdentifier",
+          "type_version": "0.0.0",
+          "description": "The name and version of a REST request to be sent to a REST endpoint",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "type_version": "0.0.0",
+          "description": "The path of the REST request relative to the base URL",
+          "default_value": null,
+          "required": true,
+          "status": null,
+          "constraints": null,
+          "key_schema": null,
+          "entry_schema": null,
+          "metadata": null
+        }
+      },
+      "constraints": [],
+      "key": {
+        "name": "org.onap.datatypes.policy.clamp.controlloop.httpControlLoopElement.RestRequest",
+        "version": "1.0.0"
+      },
+      "type": null,
+      "type_version": null,
+      "defined_name": "org.onap.datatypes.policy.clamp.controlloop.httpControlLoopElement.RestRequest",
+      "defined_version": "1.0.0"
+    }
+  }
+}

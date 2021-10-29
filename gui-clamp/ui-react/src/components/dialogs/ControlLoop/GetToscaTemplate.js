@@ -24,10 +24,17 @@ import ControlLoopService from "../../../api/ControlLoopService";
 const GetToscaTemplate = (props) => {
 
   const getTemplateHandler = async () => {
-    console.log('getTemplateHandler called')
 
     const response = await ControlLoopService.getToscaTemplate(props.templateName, props.templateVersion)
       .catch(error => error.message);
+
+    if(!response.ok) {
+      console.log('getToscaServiceTemplateHandler called with error')
+
+    } else
+    {
+      console.log('getToscaServiceTemplateHandler called')
+    }
 
     props.onGetToscaServiceTemplate(response);
 

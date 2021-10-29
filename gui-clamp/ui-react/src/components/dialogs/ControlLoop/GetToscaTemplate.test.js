@@ -21,8 +21,11 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import GetToscaTemplate from './GetToscaTemplate';
 import toJson from "enzyme-to-json";
+import { act } from "react-dom/test-utils";
 
 describe('Verify GetToscaTemplate', () => {
+
+  const flushPromises = () => new Promise(setImmediate);
 
   it("renders without crashing", () => {
     shallow(<GetToscaTemplate/>);
@@ -38,12 +41,41 @@ describe('Verify GetToscaTemplate', () => {
     expect(container.find('Button').length).toEqual(1);
   });
 
-  it('button should call getTemplateHandler when clicked', async () => {
-    const component = mount(<GetToscaTemplate/>)
+  it('button should call getTemplateHandler when clicked when response is error', async () => {
+
+    const onGetToscaServiceTemplate = jest.fn()
+    jest
+      .spyOn(global, 'fetch')
+      .mockImplementationOnce(async () =>
+        Promise.resolve({
+            ok: false,
+            status: 200,
+            json: () => {
+              return Promise.resolve({
+                "tosca_definitions_version": "tosca_simple_yaml_1_1_0",
+                "data_types": {},
+                "policy_types": {},
+                "topology_template": {},
+                "name": "ToscaServiceTemplateSimple",
+                "version": "1.0.0",
+                "metadata": {},
+                "id": "0.19518677404255147"
+              })
+            }
+          }
+        )
+      )
+
+    const component = mount(<GetToscaTemplate onGetToscaServiceTemplate={onGetToscaServiceTemplate}/>)
     const logSpy = jest.spyOn(console, 'log');
 
-    component.find('[variant="primary"]').simulate('click');
-    expect(logSpy).toHaveBeenCalledWith('getTemplateHandler called');
+    await act(async () => {
+      component.find('[variant="primary"]').simulate('click');
+      await flushPromises()
+      component.update()
+      expect(logSpy).toHaveBeenCalledWith('getToscaServiceTemplateHandler called with error');
+    });
+    component.unmount();
   });
 
   it('should have a Button element with specified text', () => {
