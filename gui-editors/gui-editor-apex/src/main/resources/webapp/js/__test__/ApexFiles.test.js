@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2021 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,18 @@
  */
 
 const mod = require('../ApexFiles');
+const resultForm_activate = require('../ApexResultForm');
+
+let data = {
+    messages: {
+       message: [
+          '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"}},' +
+          '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"},"itemSchema":{}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
+          '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+       ]
+    },
+    ok: true
+ };
 
 test('test files_open', () => {
     const open = jest.fn(mod.files_fileOpen);
@@ -33,6 +45,12 @@ test('test files_download', () => {
 });
 
 test('Test files_upload', () => {
+    global.window.restRootURL = () => 'http://localhost'
+    const jqXHR = { status: 200, responseText: "" };
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
+    jest.spyOn(resultForm_activate, 'resultForm_activate').mockReturnValueOnce(null);
     const upload = jest.fn(mod.files_fileUpload);
     upload();
     expect(upload).toBeCalled();

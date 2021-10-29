@@ -26,6 +26,7 @@ import {
     formUtils_generateUUID
 } from "./ApexFormUtils";
 import {contextSchemaTab_reset} from "./ApexContextSchemaTab";
+import {keyInformationTab_reset} from "./ApexKeyInformationTab";
 
 function editContextSchemaForm_createContextSchema(formParent) {
     return editContextSchemaForm_activate(formParent, "CREATE", null);
