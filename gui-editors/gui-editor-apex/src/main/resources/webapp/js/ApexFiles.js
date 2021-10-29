@@ -58,10 +58,13 @@ function files_fileDownload() {
 }
 
 function files_fileUpload() {
-    var requestURL = window.restRootURL + "/Model/Upload?userId=" + new URLSearchParams(window.location.search).get('userId');
-
+    let requestURL = window.restRootURL + "/Model/Upload";
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+        requestURL = requestURL + "?userId=" + userId;
+    }
     ajax_getOKOrFail(requestURL, function(data) {
-        var uploadResultString = "";
+        let uploadResultString = "";
         for (let value of data.messages.message) {
             uploadResultString += (value + "\n");
         }
