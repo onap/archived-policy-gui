@@ -20,7 +20,6 @@
 
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import GetToscaTemplate from './GetToscaTemplate';
 import toJson from "enzyme-to-json";
 import DeleteToscaTemplate from "./DeleteToscaTemplate";
 

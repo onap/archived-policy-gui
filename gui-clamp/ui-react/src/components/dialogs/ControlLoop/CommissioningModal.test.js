@@ -17,16 +17,38 @@
  * SPDX-License-Identifier: Apache-2.0
  * ============LICENSE_END=========================================================
  */
-
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import ReadAndConvertYaml from './ReadAndConvertYaml';
 import toJson from "enzyme-to-json";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
 import CommissioningModal from "./CommissioningModal";
+import commonProps from "./testFiles/commonProps.json";
+import fullTemp from "./testFiles/fullTemplate.json";
+import ControlLoopService from "../../../api/ControlLoopService";
 
-describe('Verify ReadAndConvertYaml', () => {
+let logSpy = jest.spyOn(console, 'log')
+const commonProperties = JSON.parse(JSON.stringify(commonProps))
+const fullTemplate = JSON.parse(JSON.stringify(fullTemp))
+describe('Verify CommissioningModal', () => {
+
+  const unmockedFetch = global.fetch
+  beforeAll(() => {
+    global.fetch = () =>
+      Promise.resolve({
+        status: 200,
+        text: () => "OK",
+        json: () => "{GlobalFetch}"
+      })
+  })
+
+  afterAll(() => {
+    global.fetch = unmockedFetch
+  })
+
+  beforeEach(() => {
+    logSpy.mockClear()
+  })
 
   it("renders without crashing", () => {
     shallow(<CommissioningModal/>);
@@ -45,25 +67,164 @@ describe('Verify ReadAndConvertYaml', () => {
   it('handleClose called when bottom button clicked', () => {
     const history = createMemoryHistory();
     const component = mount(<CommissioningModal history={ history }/>)
-    const logSpy = jest.spyOn(console, 'log');
+    // const logSpy = jest.spyOn(console, 'log');
 
 
     act(() => {
       component.find('[variant="secondary"]').simulate('click');
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
     });
+
+    component.unmount();
   });
 
   it('handleClose called when top-right button clicked', () => {
     const history = createMemoryHistory();
     const component = mount(<CommissioningModal history={ history }/>)
-    const logSpy = jest.spyOn(console, 'log');
-
 
     act(() => {
       component.find('[size="xl"]').get(0).props.onHide();
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
     });
+
+    component.unmount();
   });
 
+  it('handleSave called when save button clicked', () => {
+    const component = shallow(<CommissioningModal/>)
+    act(() => {
+      component.find('[variant="primary"]').simulate('click');
+      expect(logSpy).toHaveBeenCalledWith("handleSave called");
+    });
+  });
+
+  it('getToscaTemplate gets called in useEffect with error',  async() => {
+    const fetchMock = jest.spyOn(ControlLoopService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
+      ok: false,
+      status: 200,
+      text: () => "OK",
+      json: () => fullTemplate
+    }))
+
+    mount(<CommissioningModal/>)
+    await act(async () => {
+      expect(fetchMock).toHaveBeenCalled();
+    });
+  });
+
+  it('getCommonProperties gets called in useEffect with error',  async() => {
+    const fetchMock = jest.spyOn(ControlLoopService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
+      ok: false,
+      status: 200,
+      text: () => "OK",
+      json: () => commonProperties
+    }))
+
+    mount(<CommissioningModal/>)
+    await act(async () => {
+      expect(fetchMock).toHaveBeenCalled();
+    });
+  });
+
+  it('useState gets called in useEffect with error',  async() => {
+    const useStateSpy = jest.spyOn(React, 'useState')
+    jest
+      .spyOn(global, 'fetch')
+      .mockImplementation(() =>
+        Promise.resolve({
+          ok: false,
+          status: 200,
+          text: () => "OK",
+          json: () => "{useState}"
+        })
+      )
+
+    mount(<CommissioningModal/>)
+    await act(async () => {
+      expect(useStateSpy).toHaveBeenCalledTimes(6);
+    });
+  });
+
+  it('set state gets called for setFullToscaTemplate',  () => {
+    const setFullToscaTemplate = jest.fn();
+    const history = createMemoryHistory();
+    jest
+      .spyOn(global, 'fetch')
+      .mockImplementation(() =>
+        Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => "OK",
+          json: () => fullTemplate
+        })
+      )
+
+    mount(<CommissioningModal history={ history }/>)
+    act(async () => {
+      // expect(renderJsonEditor).toHaveBeenCalled();
+      expect(setFullToscaTemplate).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('set state gets called for setToscaJsonSchema useEffect on success',  () => {
+    const setToscaJsonEditor = jest.fn();
+    const history = createMemoryHistory();
+    jest
+      .spyOn(global, 'fetch')
+      .mockImplementation(() =>
+        Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => "OK",
+          json: () => fullTemplate
+        })
+      )
+
+    mount(<CommissioningModal history={ history }/>)
+    act(async () => {
+      // expect(renderJsonEditor).toHaveBeenCalled();
+      expect(setToscaJsonEditor).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('Check useEffect is being called', async () => {
+    const useEffect = jest.spyOn(React, "useEffect");
+    mount(<CommissioningModal/>)
+    await act(async () => {
+      expect(useEffect).toHaveBeenCalled();
+    })
+  });
+
+  it('test handleCommission called on click', async () => {
+    const deleteToscaTemplateSpy = jest.spyOn(ControlLoopService, 'deleteToscaTemplate').mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        status: 200,
+        text: () => "OK",
+        json: () => "{handleCommissioning}"
+      })
+    })
+    const uploadToscaTemplateSpy = jest.spyOn(ControlLoopService, 'uploadToscaFile').mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        status: 200,
+        text: () => "OK",
+        json: () => "{uploadToscaFile}"
+      })
+    })
+
+
+    const useStateSpy = jest.spyOn(React, 'useState')
+
+    const component = shallow(<CommissioningModal/>)
+    component.find('[variant="success mr-auto"]').simulate('click');
+
+    await act( async () => {
+      expect(logSpy).toHaveBeenCalledWith("handleCommission called")
+      expect(await deleteToscaTemplateSpy).toHaveBeenCalled()
+      expect(await uploadToscaTemplateSpy).toHaveBeenCalled()
+      expect(logSpy).toHaveBeenCalledWith("receiveResponseFromCommissioning called")
+      expect(useStateSpy).toHaveBeenCalled()
+    })
+  })
 });
