@@ -111,21 +111,21 @@ $("#menu li").not(".emptyMessage").click(function() {
 });
 
 function main_getRestRootURL() {
-    var href = location.protocol
+    const href = location.protocol
             + "//"
             + window.location.hostname
             + (location.port ? ':' + location.port : '')
             + (location.pathname.endsWith("/editor/") ? location.pathname.substring(0, location.pathname
                     .indexOf("editor/")) : location.pathname);
-    var restContext = "apexservices/editor/";
+    const restContext = "apexservices/editor/";
     if (localStorage.getItem("apex_session")) {
         restRootURL = href + restContext + localStorage.getItem("apex_session");
-        window.restRootURL = href + restContext + localStorage.getItem("apex_session");
-        var requestURL = restRootURL + "/Model/GetKey";
+        window.restRootURL = restRootURL;
+        const requestURL = restRootURL + "/Model/GetKey";
         ajax_get(requestURL, function(data) {
             $("#statusMessageTable").append("<tr><td> REST root URL set to: " + restRootURL + "</td></tr>");
             if (localStorage.getItem("apex_model_loaded")) {
-                var modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
+                const modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
                 pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
                 if (localStorage.getItem("apex_tab_index")) {
                     $("#mainTabs").tabs({
@@ -135,11 +135,12 @@ function main_getRestRootURL() {
             }
         });
     } else {
-        var createSessionURL = href + restContext + "-1/Session/Create";
+        const createSessionURL = href + restContext + "-1/Session/Create";
 
         ajax_get(createSessionURL, function(data) {
             localStorage.setItem("apex_session", data.messages.message[0]);
             restRootURL = href + restContext + localStorage.getItem("apex_session");
+            window.restRootURL = restRootURL;
             $("#statusMessageTable").append("<tr><td> REST root URL set to: " + restRootURL + "</td></tr>");
         });
     }
