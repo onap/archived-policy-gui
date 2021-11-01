@@ -33,6 +33,9 @@
         <ui.react.src>ui-react</ui.react.src>
         <ui.react.lib.src>ui-react-lib</ui.react.lib.src>
         <npm.publish.url>https://nexus3.onap.org/repository/npm.snapshot/</npm.publish.url>
+        <sonar.nodejs.executable>${project.build.directory}/ui-react/node/node</sonar.nodejs.executable>
+        <sonar.sources>${project.basedir}/ui-react/src</sonar.sources>
+        <sonar.exclusions>**/*.test.js</sonar.exclusions>
     </properties>
     <build>
         <plugins>
