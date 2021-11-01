@@ -235,9 +235,11 @@ const InstancePropertiesModal = (props) => {
   }
 
   const handleSave = async () => {
-    console.log("handleSave called")
+    console.log("handleSave called");
 
-    console.log("instanceName to be saved is: " + instanceName)
+    console.log("instanceName to be saved is: " + instanceName);
+
+    console.log(JSON.stringify(toscaFullTemplate));
 
     updateTemplate(jsonEditor.getValue());
 

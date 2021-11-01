@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify InstantiationItem renders correctly 1`] = `
+<Accordion>
+  <styled.div>
+    <AccordionHeader
+      index={
+        Object {
+          "index": 0,
+        }
+      }
+      key="[object Object]"
+      title={
+        Object {
+          "title": "PMSH Instance",
+        }
+      }
+    />
+    <AccordionCollapse
+      eventKey="[object Object]"
+    >
+      <Styled(CardBody) />
+    </AccordionCollapse>
+  </styled.div>
+</Accordion>
+`;

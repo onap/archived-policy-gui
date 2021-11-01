@@ -15,38 +15,19 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ *
+ *
  */
 
+import toJson from "enzyme-to-json";
+import { shallow } from "enzyme";
 import React from "react";
-import styled from 'styled-components';
+import InstantiationElements from "./InstantiationElements";
 
-import { Accordion, Button, Card } from "react-bootstrap";
-import AccordionHeader from "./AccordionHeader";
+describe('Verify InstantiationElements', () => {
+  const container = shallow(<InstantiationElements />);
 
-const AccordionBody = styled.div`
-  margin: 0;
-  padding: 0;
-  border: 1px solid #7f7f7f;
-  border-radius: 0;
-`
-
-const CardBody = styled(Card.Body)`
-  padding: 0;
-  margin: 0;
-`
-
-const InstantiationItem = (props) => {
-
-  return (
-    <Accordion>
-      <AccordionBody>
-        <AccordionHeader title={ props.title } orderedState={ props.orderedState } index={ props.index } key={ props.index } />
-        <Accordion.Collapse eventKey={ props.index.toString() }>
-          <CardBody>{ props.children }</CardBody>
-        </Accordion.Collapse>
-      </AccordionBody>
-    </Accordion>
-  );
-}
-
-export default InstantiationItem;
+  it("renders correctly", () => {
+    expect(toJson(container)).toMatchSnapshot();
+  });
+});

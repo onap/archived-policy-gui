@@ -15,38 +15,24 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ *
+ *
  */
 
+import { shallow } from "enzyme";
 import React from "react";
-import styled from 'styled-components';
-
-import { Accordion, Button, Card } from "react-bootstrap";
 import AccordionHeader from "./AccordionHeader";
+import toJson from "enzyme-to-json";
 
-const AccordionBody = styled.div`
-  margin: 0;
-  padding: 0;
-  border: 1px solid #7f7f7f;
-  border-radius: 0;
-`
+describe('Verify AccordionHeader', () => {
 
-const CardBody = styled(Card.Body)`
-  padding: 0;
-  margin: 0;
-`
+  const index = 0;
+  const title = "PMSH Instance";
+  const orderState = "UNINITIALISED";
+  const container = shallow(<AccordionHeader title={ { title } } orderState={ { orderState } } index={ { index } } key={ { index } }/>);
 
-const InstantiationItem = (props) => {
+  it("renders correctly", () => {
+    expect(toJson(container)).toMatchSnapshot();
+  });
 
-  return (
-    <Accordion>
-      <AccordionBody>
-        <AccordionHeader title={ props.title } orderedState={ props.orderedState } index={ props.index } key={ props.index } />
-        <Accordion.Collapse eventKey={ props.index.toString() }>
-          <CardBody>{ props.children }</CardBody>
-        </Accordion.Collapse>
-      </AccordionBody>
-    </Accordion>
-  );
-}
-
-export default InstantiationItem;
+});
