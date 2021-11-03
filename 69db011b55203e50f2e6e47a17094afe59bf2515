@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4661afcb_1181a09c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2021-11-03T14:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7fcf518_33309add",
+      "revId": "69db011b55203e50f2e6e47a17094afe59bf2515",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "039ee52c_adab2b93",
         "filename": "gui-clamp/README.md",
         "patchSetId": 1
@@ -39,6 +57,30 @@
       "revId": "69db011b55203e50f2e6e47a17094afe59bf2515",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2031635f_f4af95fc",
+        "filename": "gui-clamp/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2021-11-03T14:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "039ee52c_adab2b93",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 2
+      },
+      "revId": "69db011b55203e50f2e6e47a17094afe59bf2515",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
