@@ -17,40 +17,77 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { shallow } from "enzyme";
-import toJson from "enzyme-to-json";
-import { createMemoryHistory } from "history";
 import React from "react";
-import MonitorInstantiation from "./MonitorInstantiation";
+import { mount, shallow } from "enzyme";
+import toJson from "enzyme-to-json";
 import { act } from "react-dom/test-utils";
+import { createMemoryHistory } from "history";
+import MonitorInstantiation from "./MonitorInstantiation";
+import ControlLoopService from "../../../api/ControlLoopService";
+import clLoopList from "./testFiles/monitoringControlLoopList.json";
 
-describe('Verify MonitoringInstantiation', () => {
-  const container = shallow(<MonitorInstantiation />);
-  const containerWithHistory = shallow(<MonitorInstantiation history={ createMemoryHistory() }/>);
+const logSpy = jest.spyOn(console, 'error')
+const history = createMemoryHistory();
+
+describe('Verify MonitorInstantiation', () => {
+  const flushPromises = () => new Promise(setImmediate);
+
+  beforeEach(() => {
+    logSpy.mockClear();
+  });
 
   it("renders correctly", () => {
+    const container = shallow(<MonitorInstantiation />);
     expect(toJson(container)).toMatchSnapshot();
   });
 
   it('should have a Button element', () => {
+    const container = shallow(<MonitorInstantiation />);
     expect(container.find('Button').length).toEqual(1);
   });
 
   it('handleClose called when bottom button clicked', () => {
+    const container = shallow(<MonitorInstantiation history={ history } />);
     const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
-      containerWithHistory.find('[variant="secondary"]').simulate('click');
+      container.find('[variant="secondary"]').simulate('click');
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
     });
   });
 
   it('handleClose called when top-right button clicked', () => {
+    const container = shallow(<MonitorInstantiation history={ history } />);
     const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
-      containerWithHistory.find('[size="xl"]').get(0).props.onHide();
+      container.find('[size="xl"]').get(0).props.onHide();
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
     });
+  });
+
+  it('Check useEffect is being called', async () => {
+    jest.resetAllMocks();
+    jest.spyOn(ControlLoopService, 'getControlLoopInstantiation')
+      .mockImplementationOnce(async () => {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => "OK",
+          json: () => {
+            return Promise.resolve(clLoopList);
+          }
+        });
+      });
+
+    const component = mount(<MonitorInstantiation />);
+    const useEffect = jest.spyOn(React, "useEffect");
+
+    await act(async () => {
+      await flushPromises()
+      component.update();
+      await expect(useEffect).toHaveBeenCalled();
+    });
+    component.unmount();
   });
 });

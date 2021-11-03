@@ -27,12 +27,24 @@ import toJson from "enzyme-to-json";
 describe('Verify AccordionHeader', () => {
 
   const index = 0;
-  const title = "PMSH Instance";
-  const orderState = "UNINITIALISED";
-  const container = shallow(<AccordionHeader title={ { title } } orderState={ { orderState } } index={ { index } } key={ { index } }/>);
 
   it("renders correctly", () => {
+    const container = shallow(<AccordionHeader index={ index }/>);
     expect(toJson(container)).toMatchSnapshot();
   });
 
+  it("renders correctly when orderState is uninitialized", () => {
+    const container = shallow(<AccordionHeader title={ "UNINITIALISED_TEST" } orderState={ "UNINITIALISED" } index={ index } key={ index }/>);
+    expect(toJson(container)).toMatchSnapshot();
+  });
+
+  it("renders correctly when orderState is passive", () => {
+    const container = shallow(<AccordionHeader title={ "PASSIVE_TEST" } orderState={ "PASSIVE" } index={ index } key={ index }/>);
+    expect(toJson(container)).toMatchSnapshot();
+  });
+
+  it("renders correctly when orderState is running", () => {
+    const container = shallow(<AccordionHeader title={ "RUNNING_TEST" } orderState={ "RUNNING" } index={ index } key={ index }/>);
+    expect(toJson(container)).toMatchSnapshot();
+  });
 });

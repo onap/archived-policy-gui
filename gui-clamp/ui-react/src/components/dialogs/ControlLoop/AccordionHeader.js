@@ -19,9 +19,9 @@
  *
  */
 
+import React from "react";
 import styled from "styled-components";
 import { Accordion, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
 
 const UninitialisedHeader = styled.div`
   margin: 0;
@@ -62,6 +62,12 @@ const ToggleButton = styled(Button)`
 
 const AccordionHeader = (props) => {
 
+  const index = props.index;
+
+  console.log("----------------");
+  console.log(index);
+  console.log("----------------");
+
   const toggleState = () => {
     switch (props.orderedState) {
       case 'UNINITIALISED':
@@ -70,6 +76,8 @@ const AccordionHeader = (props) => {
         return renderPassiveOrderedState();
       case 'RUNNING':
         return renderRunningOrderedState();
+      default:
+        return renderUninitialisedOrderedState();
     }
   }
 
@@ -77,7 +85,7 @@ const AccordionHeader = (props) => {
 
     return (
       <UninitialisedHeader className="panel-header">
-        <Accordion.Toggle as={ToggleButton} variant="link" eventKey={ props.index.toString() }>
+        <Accordion.Toggle as={ToggleButton} variant="link" eventKey={ index.toString() }>
           { props.title }
         </Accordion.Toggle>
       </UninitialisedHeader>
@@ -85,11 +93,9 @@ const AccordionHeader = (props) => {
   }
 
   const renderPassiveOrderedState = () => {
-    console.log("renderPassiveOrderedState called");
-
     return (
       <PassiveHeader className="panel-header">
-        <Accordion.Toggle as={ToggleButton} variant="link" eventKey={ props.index.toString() }>
+        <Accordion.Toggle as={ToggleButton} variant="link" eventKey={ index.toString() }>
           { props.title }
         </Accordion.Toggle>
       </PassiveHeader>
@@ -97,11 +103,9 @@ const AccordionHeader = (props) => {
   }
 
   const renderRunningOrderedState = () => {
-    console.log("renderRunningOrderedState called");
-
     return (
       <RunningHeader className="panel-header">
-        <Accordion.Toggle as={ToggleButton} variant="link" eventKey={ props.index.toString() }>
+        <Accordion.Toggle as={ToggleButton} variant="link" eventKey={ index.toString() }>
           { props.title }
         </Accordion.Toggle>
       </RunningHeader>
@@ -109,7 +113,7 @@ const AccordionHeader = (props) => {
   }
 
   return (
-    toggleState()
+     toggleState()
   );
 }
 
