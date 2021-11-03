@@ -30,7 +30,12 @@ const DeleteToscaTemplate = props => {
     const response = await ControlLoopService.deleteToscaTemplate(props.templateName, props.templateVersion)
       .catch(error => error.message);
 
-    console.log('Response is ok: ' + response.ok);
+    if(!response.ok) {
+      console.log('deleteTemplateHandler called with error');
+    } else {
+      console.log('deleteTemplateHandler called');
+    }
+    // console.log('Response is ok: ' + response.ok);
 
     props.onDeleteToscaServiceTemplate(response);
 

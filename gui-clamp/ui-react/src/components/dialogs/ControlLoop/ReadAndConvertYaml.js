@@ -66,6 +66,7 @@ const ReadAndConvertYaml = (props) => {
       setToscaTemplateData(toscaData);
     } else {
       setResponseOk(true);
+      console.log('Response is ok');
       const toscaData = await toscaServiceTemplateResponse.json();
       setToscaTemplateData(toscaData);
       setShowDeleteButton(true)

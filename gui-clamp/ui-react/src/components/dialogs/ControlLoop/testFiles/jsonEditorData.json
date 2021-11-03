@@ -1,0 +1,50 @@
+{
+  "__data": [
+    "Object"
+  ],
+  "copyClipboard": null,
+  "editors": [
+    "Object"
+  ],
+  "element": "<div … />",
+  "expandRefs": [
+    "Function anonymous"
+  ],
+  "expandSchema": [
+    "Function anonymous"
+  ],
+  "iconlib": [
+    "n"
+  ],
+  "options": [
+    "Object"
+  ],
+  "ready": true,
+  "refs": [
+    "Object"
+  ],
+  "root": [
+    "o"
+  ],
+  "root_container": "<div … />",
+  "schema": [
+    "Object"
+  ],
+  "template": "undefined",
+  "theme": [
+    "o"
+  ],
+  "translate": [
+    "Function translate"
+  ],
+  "translateProperty": [
+    "Function translateProperty"
+  ],
+  "uuid": 0,
+  "validation_results": [
+    "Array"
+  ],
+  "validator": [
+    "t"
+  ]
+}

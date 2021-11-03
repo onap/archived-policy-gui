@@ -1,0 +1,9 @@
+{
+  "orderedState": "PASSIVE",
+  "controlLoopIdentifierList": [
+    {
+      "name": "PMSH_Instance1",
+      "version": "2.3.1"
+    }
+  ]
+}

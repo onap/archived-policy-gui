@@ -21,9 +21,9 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { JSONEditor } from "@json-editor/json-editor";
 import ControlLoopService from "../../../api/ControlLoopService";
 import { Alert } from "react-bootstrap";
+import CommissioningUtils from "./utils/CommissioningUtils";
 
 const ModalStyled = styled(Modal)`
   @media (min-width: 800px) {
@@ -81,7 +81,12 @@ const CommissioningModal = (props) => {
     }
 
     if (toscaTemplateResponse.ok && toscaCommonProperties.ok) {
-      await renderJsonEditor(toscaTemplateResponse, toscaCommonProperties)
+      const renderedEditorObjects = CommissioningUtils.renderJsonEditor(toscaTemplateResponse, toscaCommonProperties)
+      setFullToscaTemplate((await renderedEditorObjects).fullTemplate)
+      setToscaJsonSchema((await renderedEditorObjects).propertySchema)
+      setJsonEditor((await renderedEditorObjects).editorTemp)
+      setToscaInitialValues((await renderedEditorObjects).toscaInitialValues)
+
     }
 
   }, []);
@@ -92,175 +97,30 @@ const CommissioningModal = (props) => {
     props.history.push('/');
   }
 
-  const handleSave = () => {
-    updateTemplate(jsonEditor.getValue())
+  const handleSave = async () => {
+    console.log("handleSave called")
+    if (jsonEditor != null) {
+      setFullToscaTemplate(await CommissioningUtils.updateTemplate(jsonEditor.getValue(), fullToscaTemplate))
+    }
   }
 
 
 
   const handleCommission = async () => {
 
+    console.log("handleCommission called")
+
     await ControlLoopService.deleteToscaTemplate('ToscaServiceTemplateSimple', "1.0.0")
-      .catch(error => error.message)
 
     const recommissioningResponse = await ControlLoopService.uploadToscaFile(fullToscaTemplate)
-      .catch(error => error.message)
 
     await receiveResponseFromCommissioning(recommissioningResponse)
   }
 
   const receiveResponseFromCommissioning = async (response) => {
-
-    if (await response.ok) {
-      setAlertMessages(<Alert variant="success">
-        <Alert.Heading>Commissioning Success</Alert.Heading>
-        <p>Altered Template was Successfully Uploaded</p>
-        <hr/>
-      </Alert>);
-    }
-    else {
-      setAlertMessages(<Alert variant="danger">
-        <Alert.Heading>Commissioning Failure</Alert.Heading>
-        <p>Updated Template Failed to Upload</p>
-        <p>Status code: { await response.status }: { response.statusText }</p>
-        <p>Response Text: { await response.text() }</p>
-        <hr/>
-      </Alert>);
-    }
+    console.log("receiveResponseFromCommissioning called")
+    setAlertMessages(await CommissioningUtils.getAlertMessages(response));
   };
-
-  const renderJsonEditor = async (template, commonProps) => {
-
-    const fullTemplate = await template.json()
-
-    setFullToscaTemplate(fullTemplate)
-    const allNodeTemplates = fullTemplate.topology_template.node_templates
-    const shortenedNodeTemplatesObjectStartValues = {}
-    // Get the common properties to construct a schema
-    // Get valid start values at the same time
-    const commonNodeTemplatesJson = await commonProps.json().then(data => {
-      const nodeTemplatesArray = Object.entries(data)
-      const shortenedNodeTemplatesObject = {}
-      nodeTemplatesArray.forEach(([key, temp]) => {
-        const currentNodeTemplate = allNodeTemplates[key]
-        const propertiesObject = {
-          properties: temp.properties
-        }
-
-        shortenedNodeTemplatesObject[key] = propertiesObject
-
-        const propertiesStartValues = {}
-
-        // Get all the existing start values to populate the properties in the schema
-        Object.entries(propertiesObject.properties).forEach(([propKey, prop]) => {
-          propertiesStartValues[propKey] = currentNodeTemplate.properties[propKey]
-        })
-
-        shortenedNodeTemplatesObjectStartValues[key] = propertiesStartValues
-
-      })
-
-      setToscaInitialValues(shortenedNodeTemplatesObjectStartValues)
-      return shortenedNodeTemplatesObject;
-    })
-
-    const propertySchema = makeSchemaForCommonProperties(commonNodeTemplatesJson)
-    setToscaJsonSchema(propertySchema)
-
-    editorTemp = createJsonEditor(propertySchema, shortenedNodeTemplatesObjectStartValues);
-    setJsonEditor(editorTemp)
-  }
-
-  const updateTemplate = (userAddedCommonPropValues) => {
-    const nodeTemplates = fullToscaTemplate.topology_template.node_templates
-    const commonPropertyDataEntries = Object.entries(userAddedCommonPropValues)
-
-    // This replaces the values for properties in the full tosca template
-    // that will be sent up to the api with the entries the user provided.
-    commonPropertyDataEntries.forEach(([templateKey, values]) => {
-      Object.entries(values).forEach(([propKey, propVal]) => {
-        nodeTemplates[templateKey].properties[propKey] = propVal
-      })
-    })
-
-    fullToscaTemplate.topology_template.node_templates = nodeTemplates
-
-    setFullToscaTemplate(fullToscaTemplate)
-    alert('Changes saved. Commission When Ready...')
-  }
-
-  const makeSchemaForCommonProperties = (commonProps) => {
-    const commonPropsArr = Object.entries(commonProps)
-
-    const newSchemaObject = {}
-
-    newSchemaObject.title = "CommonProperties"
-    newSchemaObject.type = "object"
-    newSchemaObject.properties = {}
-
-    commonPropsArr.forEach(([templateKey, template]) => {
-
-      const propertiesObject = {}
-      Object.entries(template.properties).forEach(([propKey, prop]) => {
-
-        propertiesObject[propKey] = {
-          type: getType(prop.type)
-        }
-
-      })
-      newSchemaObject.properties[templateKey] = {
-        options: {
-          "collapsed": true
-        },
-        properties: propertiesObject
-      }
-    })
-
-    return newSchemaObject
-
-  }
-
-  const getType = (propertyType) => {
-    switch (propertyType)
-    {
-      case "string":
-        return "string"
-      case "integer":
-        return "integer"
-      case "list":
-        return "array"
-      case "object":
-        return "object"
-      default:
-        return "object"
-    }
-  }
-
-  const createJsonEditor = (toscaModel, editorData) => {
-    JSONEditor.defaults.options.collapse = false;
-
-    return new JSONEditor(document.getElementById("editor"),
-      {
-        schema: toscaModel,
-        startval: editorData,
-        theme: 'bootstrap4',
-        iconlib: 'fontawesome5',
-        object_layout: 'normal',
-        disable_properties: false,
-        disable_edit_json: true,
-        disable_array_reorder: true,
-        disable_array_delete_last_row: true,
-        disable_array_delete_all_rows: false,
-        array_controls_top: true,
-        keep_oneof_values: false,
-        collapsed: false,
-        show_errors: 'always',
-        display_required_only: false,
-        show_opt_in: false,
-        prompt_before_delete: true,
-        required_by_default: false,
-      })
-  }
 
   return (
     <ModalStyled size="xl"
