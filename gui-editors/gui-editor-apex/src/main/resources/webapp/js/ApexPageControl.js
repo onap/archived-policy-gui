@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,17 +63,23 @@ function pageControl_modelMode(name, version, fileName) {
         direction : "left"
     }, 200);
 
-    $("#mainTabs").tabs({
-        classes : {
-            "ui-tabs-tab" : "ui-tabs-tab-custom",
-            "ui-tabs-active" : "ui-tabs-active-custom",
-            "ui-tabs-anchor" : "ui-tabs-anchor-custom"
-        },
-        disabled : false,
-        activate : function(event, ui) {
-            localStorage.setItem("apex_tab_index", ui.newTab.index());
-        }
-    });
+    try{
+        $("#mainTabs").tabs({
+            classes : {
+                "ui-tabs-tab" : "ui-tabs-tab-custom",
+                "ui-tabs-active" : "ui-tabs-active-custom",
+                "ui-tabs-anchor" : "ui-tabs-anchor-custom"
+            },
+            disabled : false,
+            activate : function(event, ui) {
+                localStorage.setItem("apex_tab_index", ui.newTab.index());
+            }
+        });
+    }
+    catch(err){
+        console.error('TypeError! Failed to get tabs function');
+    }
+    
 
     contextSchemaTab_activate();
     eventTab_activate();
@@ -116,15 +122,19 @@ function pageControl_noModelMode() {
     taskTab_deactivate();
     policyTab_deactivate();
     keyInformationTab_deactivate();
-
-    $("#mainTabs").tabs({
-        classes : {
-            "ui-tabs-tab" : "ui-tabs-tab-custom",
-            "ui-tabs-active" : "ui-tabs-active-custom",
-            "ui-tabs-anchor" : "ui-tabs-anchor-custom"
-        },
-        disabled : [ 0, 1, 2, 3, 4, 5 ]
-    });
+    try{
+        $("#mainTabs").tabs({
+            classes : {
+                "ui-tabs-tab" : "ui-tabs-tab-custom",
+                "ui-tabs-active" : "ui-tabs-active-custom",
+                "ui-tabs-anchor" : "ui-tabs-anchor-custom"
+            },
+            disabled : [ 0, 1, 2, 3, 4, 5 ]
+        });
+    }
+    catch(err){
+        console.error('TypeError! Failed to get tabs function');
+    }
     showPlaceholder(true);
 }
 
@@ -145,16 +155,19 @@ function pageControl_busyMode() {
     $("#menuConceptsTasks").addClass("disabled");
     $("#menuConceptsPolicies").addClass("disabled");
     $("#menuConceptsKeyInformation").addClass("disabled");
-
-    $("#mainTabs").tabs({
-        classes : {
-            "ui-tabs-tab" : "ui-tabs-tab-custom",
-            "ui-tabs-active" : "ui-tabs-active-custom",
-            "ui-tabs-anchor" : "ui-tabs-anchor-custom"
-        },
-        disabled : false
-    });
-
+    try{
+        $("#mainTabs").tabs({
+            classes : {
+                "ui-tabs-tab" : "ui-tabs-tab-custom",
+                "ui-tabs-active" : "ui-tabs-active-custom",
+                "ui-tabs-anchor" : "ui-tabs-anchor-custom"
+            },
+            disabled : false
+        });
+    }
+    catch(err){
+        console.error('TypeError! Failed to get tabs function');
+    }
     contextSchemaTab_activate();
     eventTab_activate();
     contextAlbumTab_activate();
@@ -188,15 +201,19 @@ function pageControl_readyMode() {
     taskTab_deactivate();
     policyTab_deactivate();
     keyInformationTab_deactivate();
-
-    $("#mainTabs").tabs({
-        classes : {
-            "ui-tabs-tab" : "ui-tabs-tab-custom",
-            "ui-tabs-active" : "ui-tabs-active-custom",
-            "ui-tabs-anchor" : "ui-tabs-anchor-custom"
-        },
-        disabled : [ 0, 1, 2, 3, 4, 5 ]
-    });
+    try{
+        $("#mainTabs").tabs({
+            classes : {
+                "ui-tabs-tab" : "ui-tabs-tab-custom",
+                "ui-tabs-active" : "ui-tabs-active-custom",
+                "ui-tabs-anchor" : "ui-tabs-anchor-custom"
+            },
+            disabled : [ 0, 1, 2, 3, 4, 5 ]
+        });
+    }
+    catch(err){
+        console.error('TypeError! Failed to get tabs function');
+    }
     showPlaceholder(true);
 }
 

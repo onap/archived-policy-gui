@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -117,6 +117,37 @@ test('Test editPolicyForm_State_addPolicyTask', () => {
 
 });
 
-test.todo('Test editPolicyForm_State_getDirectOutputMappingOptions');
-test.todo('Test editPolicyForm_State_getStateBean');
-test.todo('Test editPolicyForm_State_getLogicOutputMappingOptions');
+test('Test editPolicyForm_State_getDirectOutputMappingOptions', () => {
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editPolicyFormDirOutputsTable_stateName");
+    elementMock.rows = '1'
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getDirectOutputMappingOptions);
+    mock_activate('stateName');
+    expect(mock_activate).toBeCalled();
+
+});
+
+test('Test editPolicyForm_State_getStateBean', () => {
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editPolicyFormDirOutputsTable_stateName");
+    elementMock.rows = '1'
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getStateBean);
+    mock_activate('stateName');
+    expect(mock_activate).toBeCalled();
+
+});
+
+test('Test editPolicyForm_State_getStateBean StateName is Null', () => {
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getStateBean);
+    mock_activate(null);
+    expect(mock_activate).toBeCalled();
+
+});
+
+test('Test editPolicyForm_State_getLogicOutputMappingOptions', () => {
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getLogicOutputMappingOptions);
+    mock_activate(null);
+    expect(mock_activate).toBeCalled();
+});

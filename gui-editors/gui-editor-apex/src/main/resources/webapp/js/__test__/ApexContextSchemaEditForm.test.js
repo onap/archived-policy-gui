@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,18 +19,92 @@
  */
 
 const mod = require('../ApexContextSchemaEditForm');
+const apexUtils = require('../ApexUtils');
+const apexContextSchemaTab = require('../ApexContextSchemaTab');
+const keyInformationTab_reset = require('../ApexKeyInformationTab');
+const apexAjax = require('../ApexAjax');
+const formUtils_generateDescription = require('../ApexFormUtils');
+
+let data = {
+    messages: {
+        message: []
+    },
+    ok: true
+};
+const contextSchema = {
+    name: 'testName',
+    version: '0.0.1',
+    schemaFlavour: 'testFlav',
+    schemaDefinition: 'testDef',
+    uuid: 'testUUID',
+    description: 'testDesc'
+}
 
 test('Test editContextSchemaForm_createContextSchema', () => {
-    const contextSchema = {
-        name: 'testName',
-        version: '0.0.1',
-        schemaFlavour: 'testFlav',
-        schemaDefinition: 'testDef',
-        uuid: 'testUUID',
-        description: 'testDesc'
-    }
-
     const mock_editContextSchemaForm_createContextSchema = jest.fn(mod.editContextSchemaForm_createContextSchema);
     mock_editContextSchemaForm_createContextSchema('parentTest', 'CREATE', contextSchema);
     expect(mock_editContextSchemaForm_createContextSchema).toBeCalled();
+});
+
+test('Test Delete Context Schema', () => {
+    global.confirm = () => true
+    const jqXHR = { status: 200, responseText: "" };
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
+    jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+    jest.spyOn(apexContextSchemaTab, 'contextSchemaTab_reset').mockReturnValueOnce(null);
+    const mock_activate = jest.fn(mod.editContextSchemaForm_deleteContextSchema);
+    mock_activate('parent', 'name', 'version');
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test View Context Schema', () => {
+    jest.spyOn(apexAjax, 'ajax_getWithKeyInfo').mockReturnValueOnce(null);
+    const mock_activate = jest.fn(mod.editContextSchemaForm_viewContextSchema);
+    mock_activate('parent', 'name', 'version');
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test Activate Context Schema', () => {
+    const mock_activate = jest.fn(mod.editContextSchemaForm_activate);
+    mock_activate('parent', 'operation', contextSchema);
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test Generate UUID Pressed', () => {
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editContextSchemaFormUuidInput");
+    elementMock.value = 'one'
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editContextSchemaForm_generateUUIDPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test Generate Description Pressed', () => {
+    jest.spyOn(formUtils_generateDescription, 'formUtils_generateDescription').mockReturnValueOnce(null);
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editContextSchemaFormDescriptionTextArea");
+    elementMock.value = 'one'
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editContextSchemaForm_generateDescriptionPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test Cancel Pressed', () => {
+    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+    jest.spyOn(apexContextSchemaTab, 'contextSchemaTab_reset').mockReturnValueOnce(null);
+    const mock_activate = jest.fn(mod.editContextSchemaForm_cancelPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test Submit Pressed', () => {
+    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+    jest.spyOn(apexContextSchemaTab, 'contextSchemaTab_reset').mockReturnValueOnce(null);
+    const mock_activate = jest.fn(mod.editContextSchemaForm_submitPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
 });

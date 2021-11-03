@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2021 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,35 @@
 
 const mod = require('../ApexContextSchemaTab');
 
+let data = {
+    messages: {
+        message: [
+            '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"}},' +
+            '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
+            '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+        ]
+    },
+    ok: true
+};
+
 test('Test activateContextSchema', () => {
+    const jqXHR = { status: 200, responseText: "" };
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
     const mock_activate = jest.fn(mod.contextSchemaTab_activate);
     mock_activate();
     expect(mock_activate).toBeCalled();
 });
 
 test('Test deactivate', () => {
-   const mock_deactivate = jest.fn(mod.contextSchemaTab_deactivate);
-   mock_deactivate();
-   expect(mock_deactivate).toBeCalledWith();
+    const mock_deactivate = jest.fn(mod.contextSchemaTab_deactivate);
+    mock_deactivate();
+    expect(mock_deactivate).toBeCalledWith();
+});
+
+test('Test reset', () => {
+    const mock_deactivate = jest.fn(mod.contextSchemaTab_reset);
+    mock_deactivate();
+    expect(mock_deactivate).toBeCalledWith();
 });

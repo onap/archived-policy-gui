@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * ============LICENSE_END=========================================================
  */
-
+import {keyInformationTab_reset} from "./ApexKeyInformationTab";
 const {ajax_delete, ajax_getWithKeyInfo, ajax_get} = require("./ApexAjax");
 const {contextAlbumTab_reset} = require("./ApexContextAlbumTab");
 const {apexUtils_removeElement, apexUtils_emptyElement, scrollToTop, apexUtils_areYouSure} = require("./ApexUtils");
