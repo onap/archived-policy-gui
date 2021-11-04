@@ -1,3 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Verify AccordionHeader renders correctly 1`] = `""`;
+exports[`Verify AccordionHeader renders correctly 1`] = `
+<styled.div
+  className="panel-header"
+>
+  <ForwardRef
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": e {
+          "baseHash": -417256348,
+          "baseStyle": undefined,
+          "componentId": "sc-hKFxyN",
+          "isStatic": false,
+          "rules": Array [
+            "
+  color: #000000;
+  text-decoration: none;
+
+  :hover, :active {
+    color: #000000;
+    text-decoration: none !important;
+  }
+",
+          ],
+          "staticRulesId": "",
+        },
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "shouldForwardProp": undefined,
+        "styledComponentId": "sc-hKFxyN",
+        "target": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "active": false,
+            "disabled": false,
+            "variant": "primary",
+          },
+          "render": [Function],
+        },
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    eventKey="0"
+    variant="link"
+  />
+</styled.div>
+`;
+
+exports[`Verify AccordionHeader renders correctly when orderState is passive 1`] = `
+<styled.div
+  className="panel-header"
+>
+  <ForwardRef
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": e {
+          "baseHash": -417256348,
+          "baseStyle": undefined,
+          "componentId": "sc-hKFxyN",
+          "isStatic": false,
+          "rules": Array [
+            "
+  color: #000000;
+  text-decoration: none;
+
+  :hover, :active {
+    color: #000000;
+    text-decoration: none !important;
+  }
+",
+          ],
+          "staticRulesId": "",
+        },
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "shouldForwardProp": undefined,
+        "styledComponentId": "sc-hKFxyN",
+        "target": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "active": false,
+            "disabled": false,
+            "variant": "primary",
+          },
+          "render": [Function],
+        },
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    eventKey="0"
+    variant="link"
+  >
+    PASSIVE_TEST
+  </ForwardRef>
+</styled.div>
+`;
+
+exports[`Verify AccordionHeader renders correctly when orderState is running 1`] = `
+<styled.div
+  className="panel-header"
+>
+  <ForwardRef
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": e {
+          "baseHash": -417256348,
+          "baseStyle": undefined,
+          "componentId": "sc-hKFxyN",
+          "isStatic": false,
+          "rules": Array [
+            "
+  color: #000000;
+  text-decoration: none;
+
+  :hover, :active {
+    color: #000000;
+    text-decoration: none !important;
+  }
+",
+          ],
+          "staticRulesId": "",
+        },
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "shouldForwardProp": undefined,
+        "styledComponentId": "sc-hKFxyN",
+        "target": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "active": false,
+            "disabled": false,
+            "variant": "primary",
+          },
+          "render": [Function],
+        },
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    eventKey="0"
+    variant="link"
+  >
+    RUNNING_TEST
+  </ForwardRef>
+</styled.div>
+`;
+
+exports[`Verify AccordionHeader renders correctly when orderState is uninitialized 1`] = `
+<styled.div
+  className="panel-header"
+>
+  <ForwardRef
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": e {
+          "baseHash": -417256348,
+          "baseStyle": undefined,
+          "componentId": "sc-hKFxyN",
+          "isStatic": false,
+          "rules": Array [
+            "
+  color: #000000;
+  text-decoration: none;
+
+  :hover, :active {
+    color: #000000;
+    text-decoration: none !important;
+  }
+",
+          ],
+          "staticRulesId": "",
+        },
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "shouldForwardProp": undefined,
+        "styledComponentId": "sc-hKFxyN",
+        "target": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "active": false,
+            "disabled": false,
+            "variant": "primary",
+          },
+          "render": [Function],
+        },
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    eventKey="0"
+    variant="link"
+  >
+    UNINITIALISED_TEST
+  </ForwardRef>
+</styled.div>
+`;
