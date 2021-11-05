@@ -12,7 +12,6 @@ target
 # Node, NPM and Yarn files
 node
 node_modules
-package-lock.json
 yarn.lock
 
 # React
