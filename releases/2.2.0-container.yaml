@@ -1,0 +1,8 @@
+distribution_type: 'container'
+container_release_tag: '2.2.0'
+project: 'policy-gui'
+log_dir: 'policy-gui-maven-docker-stage-master/654'
+ref: e9c5f32a32dfa28653f50cb5a79d73d14eb581a7
+containers:
+    - name: 'policy-gui'
+      version: '2.2.0-20211126T0912'
