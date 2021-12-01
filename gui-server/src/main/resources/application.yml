@@ -1,0 +1,24 @@
+server:
+  port: 2443
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: classpath:demo-clamp-keystore.p12
+    key-store-password: "changeit"
+    key-store-type: PKCS12
+    trust-store: classpath:demo-clamp-truststore.jks
+    trust-store-password: "changeit"
+    trust-store-type: JKS
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: clamp_route
+          uri: https://localhost:8443
+          predicates:
+            - Path=/clamp/restservices/**
+          filters:
+            - StripPrefix=1
+      httpclient:
+        ssl:
+          useInsecureTrustManager: true
