@@ -226,10 +226,6 @@
                         <fileset>
                             <directory>${ui.react.lib.src}/node_modules</directory>
                         </fileset>
-                        <fileset>
-                            <directory>${basedir}</directory>
-                            <includes>**/package-lock.json</includes>
-                        </fileset>
                     </filesets>
                 </configuration>
             </plugin>
