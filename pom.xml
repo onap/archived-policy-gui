@@ -52,6 +52,7 @@
         <module>gui-editors</module>
         <module>gui-clamp</module>
         <module>packages</module>
+        <module>gui-server</module>
     </modules>
 
     <dependencies>

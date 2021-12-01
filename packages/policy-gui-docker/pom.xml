@@ -92,9 +92,9 @@
                                         <dependencySets>
                                             <dependencySet>
                                                 <includes>
-                                                    <include>org.onap.policy.gui:gui-clamp:tar.gz:clamp-build:${project.version}</include>
+                                                    <include>org.onap.policy.gui:gui-server:jar:${project.version}</include>
                                                 </includes>
-                                                <outputFileNameMapping>gui-clamp-html.tar.gz</outputFileNameMapping>
+                                                <outputFileNameMapping>app.jar</outputFileNameMapping>
                                             </dependencySet>
                                         </dependencySets>
                                     </inline>
@@ -151,10 +151,8 @@
     <dependencies>
         <dependency>
             <groupId>org.onap.policy.gui</groupId>
-            <artifactId>gui-clamp</artifactId>
+            <artifactId>gui-server</artifactId>
             <version>${project.version}</version>
-            <classifier>clamp-build</classifier>
-            <type>tar.gz</type>
         </dependency>
     </dependencies>
 </project>
