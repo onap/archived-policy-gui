@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 #
 # ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation.
+#  Copyright (C) 2021-2022 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,4 +19,8 @@
 # ============LICENSE_END=========================================================
 #
 
-nginx -g "daemon off;"
+JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
+
+$JAVA_HOME/bin/java \
+  -jar /app/app.jar \
+  --spring.config.location="${POLICY_HOME}/config/application.yml"
