@@ -47,7 +47,7 @@ describe('Verify UploadToscaFile', () => {
       }
     };
 
-    act(async () => {
+    await act(() => {
       component.find('[variant="primary"]').get(0).props.onClick(event);
       expect(logSpy).toHaveBeenCalledWith('postServiceTemplateHandler called');
     })

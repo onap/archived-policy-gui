@@ -27,6 +27,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ControlLoopService from "../../../api/ControlLoopService";
 import Row from "react-bootstrap/Row";
+import InstantiationUtils from "./utils/InstantiationUtils";
 
 const ModalStyled = styled(Modal)`
   background-color: transparent;
@@ -47,6 +48,7 @@ const DivWhiteSpaceStyled = styled.div`
 const InstantiationManagementModal = (props) => {
   const [show, setShow] = useState(true);
   const [instantiationList, setInstantiationList] = useState([]);
+  const [deleteInstantiation, setDeleteInstantiation] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
 
   useEffect(async () => {
@@ -55,16 +57,7 @@ const InstantiationManagementModal = (props) => {
 
     const instantiationListJson = await response.json();
 
-    const parsedInstantiationList = instantiationListJson['controlLoopList'].map((instance, index) => {
-      return {
-        index: index,
-        name: instance['name'],
-        version: instance['version'],
-        orderedState: instance['orderedState'],
-        currentState: instance['state'],
-        disableDelete: instance['state'] !== 'UNINITIALISED'
-      }
-    });
+    const parsedInstantiationList = InstantiationUtils.parseInstantiationList(instantiationListJson['controlLoopList']);
 
     setInstantiationList(parsedInstantiationList);
   }, []);
@@ -77,18 +70,26 @@ const InstantiationManagementModal = (props) => {
     return 'White';
   }
 
-  const deleteInstantiationHandler = async (instantiation, index) => {
+  const deleteInstantiationHandler = async (index, instantiation) => {
     console.log("deleteInstantiationHandler called");
+    setDeleteInstantiation(true);
+
+    if (instantiation.disableDelete) {
+      return;
+    }
 
     const name = instantiation.name;
     const version = instantiation.version;
 
     const response = await ControlLoopService.deleteInstantiation(name, version);
 
+    console.log(response);
+
     updateList(index);
 
     if (response.ok) {
       successAlert();
+      setDeleteInstantiation(false);
     } else {
       await errorAlert(response);
     }
@@ -96,28 +97,11 @@ const InstantiationManagementModal = (props) => {
 
   const updateList = (index) => {
     console.log("updateList called")
-    console.log(instantiationList)
 
     const updatedList = [...instantiationList];
     updatedList.splice(index, 1);
 
     setInstantiationList(updatedList);
-  }
-
-  const renderDeleteButton = (instantiation, index) => {
-    if (instantiation.disableDelete) {
-      return (
-        <Button variant="outline-danger" type="null"
-                disabled={ true }
-                style={ { cursor: "not-allowed" } }>Delete</Button>
-      );
-
-    } else {
-      return (
-        <Button variant="danger" type="null"
-                onClick={ async () => deleteInstantiationHandler(instantiation, index) }>Delete</Button>
-      );
-    }
   }
 
   const handleClose = () => {
@@ -200,7 +184,10 @@ const InstantiationManagementModal = (props) => {
                   </Link>
                 </td>
                 <td style={ { textAlign: "center" } }>
-                  { renderDeleteButton(instantiation, index) }
+                  <Button variant={ instantiation.disabled ? "outline-danger" : "danger" } type="null"
+                          disabled={ instantiation.disableDelete }
+                          style={ instantiation.disableDelete ? { cursor: "not-allowed" } : {} }
+                          onClick={(e) => deleteInstantiationHandler(index, instantiation)}>Delete</Button>
                 </td>
                 <td style={ { textAlign: "center" } }>
                   <Link to={ {

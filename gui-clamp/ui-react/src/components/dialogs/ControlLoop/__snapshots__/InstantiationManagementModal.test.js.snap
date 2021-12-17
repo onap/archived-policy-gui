@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify MonitoringInstantiation renders correctly 1`] = `
+<Styled(Modal)
+  backdrop="static"
+  keyboard={false}
+  onHide={[Function]}
+  show={true}
+  size="xl"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Manage Instances
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <Container
+      fluid={false}
+    >
+      <Row
+        noGutters={false}
+      >
+        <Link
+          to={
+            Object {
+              "pathname": "/editControlLoopInstanceProperties",
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            type="null"
+            variant="primary"
+          >
+            Create Instance
+          </Button>
+        </Link>
+        <styled.div />
+        <Link
+          to={
+            Object {
+              "pathname": "/monitorInstantiation",
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            type="null"
+            variant="secondary"
+          >
+            Monitor Instantiations
+          </Button>
+        </Link>
+      </Row>
+    </Container>
+    <ForwardRef
+      bordered={true}
+      style={
+        Object {
+          "marginTop": "10px",
+        }
+      }
+    >
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Instantiation Name
+          </th>
+          <th
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Edit Instantiation
+          </th>
+          <th
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Delete Instantiation
+          </th>
+          <th
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Change Order State
+          </th>
+          <th
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Instantiation Order State
+          </th>
+          <th
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Instantiation Current State
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </ForwardRef>
+    <styled.div />
+  </ModalBody>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="null"
+      variant="secondary"
+    >
+      Clear Error Message
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="null"
+      variant="secondary"
+    >
+      Close
+    </Button>
+  </ModalFooter>
+</Styled(Modal)>
+`;

@@ -15,54 +15,85 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ *
+ *
  */
 
-import React from "react";
 import { mount, shallow } from "enzyme";
+import React from "react";
 import toJson from "enzyme-to-json";
+import InstantiationManagementModal from "./InstantiationManagementModal";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
-import MonitorInstantiation from "./MonitorInstantiation";
 import ControlLoopService from "../../../api/ControlLoopService";
 import clLoopList from "./testFiles/controlLoopList.json";
+import { BrowserRouter } from "react-router-dom";
 
 const logSpy = jest.spyOn(console, 'log')
 const history = createMemoryHistory();
 
-describe('Verify MonitorInstantiation', () => {
+describe('Verify MonitoringInstantiation', () => {
   const flushPromises = () => new Promise(setImmediate);
 
   beforeEach(() => {
     logSpy.mockClear();
   });
 
+  it("renders without crashing", () => {
+    shallow(<InstantiationManagementModal/>);
+  });
   it("renders correctly", () => {
-    const container = shallow(<MonitorInstantiation />);
-    expect(toJson(container)).toMatchSnapshot();
+    const tree = shallow(<InstantiationManagementModal />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
-  it('should have a Button element', () => {
-    const container = shallow(<MonitorInstantiation />);
-    expect(container.find('Button').length).toEqual(1);
+  it('should have a close Button element', () => {
+    const container = shallow(<InstantiationManagementModal />);
+    const button = container.find('[variant="secondary"]').at(2);
+
+    expect(button.text()).toEqual("Close");
+  });
+
+  it('should have a Create Instance Button element', () => {
+    const container = shallow(<InstantiationManagementModal />);
+    const button = container.find('[variant="primary"]').at(0);
+
+    expect(button.text()).toEqual("Create Instance");
+  });
+
+  it('should have a Monitor Instantiations Button element', () => {
+    const container = shallow(<InstantiationManagementModal />);
+    const button = container.find('[variant="secondary"]').at(0);
+
+    expect(button.text()).toEqual("Monitor Instantiations");
   });
 
   it('handleClose called when bottom button clicked', () => {
-    const container = shallow(<MonitorInstantiation history={ history } />);
-    const logSpy = jest.spyOn(console, 'log');
+    const container = shallow(<InstantiationManagementModal history={ history } />);
+    const button = container.find('[variant="secondary"]').at(2);
 
     act(() => {
-      container.find('[variant="secondary"]').simulate('click');
+      button.simulate('click');
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
     });
   });
 
   it('handleClose called when top-right button clicked', () => {
-    const container = shallow(<MonitorInstantiation history={ history } />);
-    const logSpy = jest.spyOn(console, 'log');
+    const container = shallow(<InstantiationManagementModal history={ history } />);
 
     act(() => {
       container.find('[size="xl"]').get(0).props.onHide();
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
+    });
+  });
+
+  it('clearErrors called when clear error message button clicked', () => {
+    const container = shallow(<InstantiationManagementModal history={ history } />);
+    const button = container.find('[variant="secondary"]').at(1);
+
+    act(() => {
+      button.simulate('click');
+      expect(logSpy).toHaveBeenCalledWith('clearErrors called');
     });
   });
 
@@ -80,13 +111,18 @@ describe('Verify MonitorInstantiation', () => {
         });
       });
 
-    const component = mount(<MonitorInstantiation />);
+    const component = mount(
+      <BrowserRouter>
+        <InstantiationManagementModal />
+      </BrowserRouter>
+    );
     const useEffect = jest.spyOn(React, "useEffect");
 
     await act(async () => {
       await flushPromises()
       component.update();
       await expect(useEffect).toHaveBeenCalled();
+
     });
     component.unmount();
   });

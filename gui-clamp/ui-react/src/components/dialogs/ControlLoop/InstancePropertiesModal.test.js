@@ -23,8 +23,16 @@ import InstancePropertiesModal from "./InstancePropertiesModal";
 import toJson from "enzyme-to-json";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
+import ControlLoopService from "../../../api/ControlLoopService";
+import instanceProps from "./testFiles/instanceProps.json";
+import fullTemp from "./testFiles/fullTemplate.json";
 
-describe('Verify MonitoringInstantiation', () => {
+
+let logSpy = jest.spyOn(console, 'log')
+const instanceProperties = JSON.parse(JSON.stringify(instanceProps))
+const fullTemplate = JSON.parse(JSON.stringify(fullTemp))
+
+describe('Verify InstancePropertiesModal', () => {
 
   it("renders without crashing", () => {
     shallow(<InstancePropertiesModal />);
@@ -35,7 +43,7 @@ describe('Verify MonitoringInstantiation', () => {
     expect(toJson(tree)).toMatchSnapshot();
   });
 
-  it('should have submit button element', () => {
+  it('should have save button element', () => {
     const container = shallow(<InstancePropertiesModal/>)
     expect(container.find('[variant="primary"]').length).toEqual(1);
   });
@@ -45,10 +53,8 @@ describe('Verify MonitoringInstantiation', () => {
     expect(container.find('[variant="secondary"]').length).toEqual(1);
   });
 
-  it('handleCreateUpdateToscaInstanceProperties called when submit button clicked', () => {
-    const history = createMemoryHistory();
+  it('handleCreateUpdateToscaInstanceProperties called when save button clicked', () => {
     const component = mount(<InstancePropertiesModal />)
-    const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
       component.find('[variant="primary"]').simulate('click');
@@ -59,11 +65,19 @@ describe('Verify MonitoringInstantiation', () => {
   it('handleClose called when close button clicked', () => {
     const history = createMemoryHistory();
     const component = mount(<InstancePropertiesModal history={ history }/>)
-    const logSpy = jest.spyOn(console, 'log');
 
     act(() => {
       component.find('[variant="secondary"]').simulate('click');
       expect(logSpy).toHaveBeenCalledWith('handleClose called');
+    });
+  });
+
+  it('handleSave called when save button clicked', () => {
+    const component = mount(<InstancePropertiesModal />)
+
+    act(() => {
+      component.find('[variant="primary"]').simulate('click');
+      expect(logSpy).toHaveBeenCalledWith('handleSave called');
     });
   });
 });

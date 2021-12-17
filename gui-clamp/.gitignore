@@ -4,6 +4,7 @@
 
 target
 /bin/
+ui-react/code-coverage
 
 # IntelliJ files
 *.iml

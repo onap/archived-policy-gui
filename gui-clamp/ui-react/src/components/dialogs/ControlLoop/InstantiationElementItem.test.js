@@ -25,9 +25,25 @@ import React from "react";
 import InstantiationElementItem from "./InstantiationElementItem";
 
 describe('Verify InstantiationElementItem', () => {
-  const container = shallow(<InstantiationElementItem />);
+  const index = 0;
 
   it("renders correctly", () => {
+    const container = shallow(<InstantiationElementItem />);
+    expect(toJson(container)).toMatchSnapshot();
+  });
+
+  it("renders correctly when orderState is uninitialized", () => {
+    const container = shallow(<InstantiationElementItem title={ "UNINITIALISED_TEST" } orderState={ "UNINITIALISED" } index={ index } key={ index }/>);
+    expect(toJson(container)).toMatchSnapshot();
+  });
+
+  it("renders correctly when orderState is passive", () => {
+    const container = shallow(<InstantiationElementItem title={ "PASSIVE_TEST" } orderState={ "PASSIVE" } index={ index } key={ index }/>);
+    expect(toJson(container)).toMatchSnapshot();
+  });
+
+  it("renders correctly when orderState is running", () => {
+    const container = shallow(<InstantiationElementItem title={ "RUNNING_TEST" } orderState={ "RUNNING" } index={ index } key={ index }/>);
     expect(toJson(container)).toMatchSnapshot();
   });
 });

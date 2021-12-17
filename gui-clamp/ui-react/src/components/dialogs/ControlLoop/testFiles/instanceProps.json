@@ -1,0 +1,1444 @@
+{
+    "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement": {
+        "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop element for the http requests of PMSH microservice",
+        "type": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+        "typeVersion": "1.0.1",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.HttpControlLoopElement",
+            "version": "1.0.1"
+        },
+        "key": {
+            "name": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.database.Http_PMSHMicroserviceControlLoopElement",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop element for the operational policy for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.pmsh.PMSH_OperationalPolicyControlLoopElement",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement": {
+        "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop element for the K8S microservice for local chart",
+        "type": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.database.Local_K8SMicroserviceControlLoopElement",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop element for the monitoring policy for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.PolicyControlLoopElement",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.pmsh.PMSH_MonitoringPolicyControlLoopElement",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.DerivedDerivedPolicyControlLoopElement",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.pmsh.DerivedDerivedPolicyControlLoopElement",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.sample.GenericK8s_ControlLoopDefinition": {
+        "name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop for Hello World",
+        "type": "org.onap.policy.clamp.controlloop.ControlLoop",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "elements": {
+                "name": "elements",
+                "type": "list",
+                "typeVersion": "0.0.0",
+                "description": "Specifies a list of control loop element definitions that make up this control loop definition",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": {
+                    "name": null,
+                    "type": "onap.datatypes.ToscaConceptIdentifier",
+                    "typeVersion": "0.0.0",
+                    "description": null,
+                    "constraints": null
+                },
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.ControlLoop",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.sample.GenericK8s_ControlLoopDefinition",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement": {
+        "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop element for the K8S microservice for PMSH",
+        "type": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.K8SMicroserviceControlLoopElement",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.database.PMSH_K8SMicroserviceControlLoopElement",
+        "definedVersion": "1.2.3"
+    },
+    "org.onap.domain.pmsh.DerivedPolicyControlLoopElement": {
+        "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+        "version": "1.2.3",
+        "derivedFrom": null,
+        "metadata": {},
+        "description": "Control loop for Performance Management Subscription Handling",
+        "type": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+        "typeVersion": "1.0.0",
+        "properties": {
+            "provider": {
+                "name": "provider",
+                "type": "string",
+                "typeVersion": "0.0.0",
+                "description": "Specifies the organization that provides the control loop element",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToUninitializedTimeout": {
+                "name": "passiveToUninitializedTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to uninitialized",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participant_id": {
+                "name": "participant_id",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": null,
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "participantType": {
+                "name": "participantType",
+                "type": "onap.datatypes.ToscaConceptIdentifier",
+                "typeVersion": "0.0.0",
+                "description": "The identity of the participant type that hosts this type of Control Loop Element",
+                "defaultValue": null,
+                "required": true,
+                "status": null,
+                "constraints": null,
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "uninitializedToPassiveTimeout": {
+                "name": "uninitializedToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from uninitialized to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "startPhase": {
+                "name": "startPhase",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "A value indicating the start phase in which this control loop element will be started, the first start phase is zero. Control Loop Elements are started in their start_phase order and stopped in reverse start phase order. Control Loop Elements with the same start phase are started and stopped simultaneously",
+                "defaultValue": null,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "runningToPassiveTimeout": {
+                "name": "runningToPassiveTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from running to passive",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            },
+            "passiveToRunningTimeout": {
+                "name": "passiveToRunningTimeout",
+                "type": "integer",
+                "typeVersion": "0.0.0",
+                "description": "The maximum time in seconds to wait for a state chage from passive to running",
+                "defaultValue": 60.0,
+                "required": false,
+                "status": null,
+                "constraints": [
+                    {
+                        "validValues": null,
+                        "equal": null,
+                        "greaterThan": null,
+                        "greaterOrEqual": "0",
+                        "lessThan": null,
+                        "lessOrEqual": null,
+                        "rangeValues": null
+                    }
+                ],
+                "keySchema": null,
+                "entrySchema": null,
+                "metadata": {
+                    "common": "false"
+                }
+            }
+        },
+        "requirements": null,
+        "capabilities": null,
+        "identifier": {
+            "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "typeIdentifier": {
+            "name": "org.onap.policy.clamp.controlloop.DerivedPolicyControlLoopElement",
+            "version": "1.0.0"
+        },
+        "key": {
+            "name": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+            "version": "1.2.3"
+        },
+        "definedName": "org.onap.domain.pmsh.DerivedPolicyControlLoopElement",
+        "definedVersion": "1.2.3"
+    }
+}

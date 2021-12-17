@@ -178,7 +178,6 @@ describe('Verify ChangeOrderStateModal', () => {
       await expect(changeInstanceOrderStateSpy).toHaveBeenCalled()
       expect(logSpy).toHaveBeenNthCalledWith(1,"handleSave called");
       expect(logSpy).toHaveBeenNthCalledWith(2,"successAlert called");
-      // await expect(logSpy).toHaveBeenCalledTimes(2);
     });
   });
 
@@ -218,7 +217,6 @@ describe('Verify ChangeOrderStateModal', () => {
       await expect(changeInstanceOrderStateSpy).toHaveBeenCalled()
       expect(logSpy).toHaveBeenNthCalledWith(1,"handleSave called");
       expect(logSpy).toHaveBeenNthCalledWith(2,"errorAlert called");
-      // await expect(logSpy).toHaveBeenCalledTimes(2);
     });
   });
 
