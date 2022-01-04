@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,13 @@ test('Test editTaskForm_activate CREATE', () => {
    const mock_activate = jest.fn(mod.showHideElement_display);
    let documentSpy = jest.spyOn(document, 'getElementById');
    mock_activate(documentSpy, 'element', 'style', 'hidestyle', 'buttonshowStyle','buttonhideStyle');
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test editTaskForm_activate NO CHECKBOX', () => {
+   const mock_activate = jest.fn(mod.showHideElement_display);
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   mock_activate(documentSpy, null, null, 'hidestyle', 'buttonshowStyle','buttonhideStyle');
    expect(mock_activate).toBeCalled();
 });
 

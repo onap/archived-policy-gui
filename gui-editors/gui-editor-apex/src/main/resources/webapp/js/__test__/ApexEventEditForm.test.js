@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 const mod = require('../ApexEventEditForm');
 const eventTab_reset = require('../ApexEventTab');
 const apexUtils = require('../ApexUtils');
+const formUtils_generateDescription = require('../ApexFormUtils');
 const keyInformationTab_reset = require('../ApexKeyInformationTab');
 
 let data = {
@@ -134,5 +135,24 @@ test('Test Create Event', () => {
    });
    const mock_activate = jest.fn(mod.editEventForm_createEvent);
    mock_activate('parentTest');
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test Edit Event Generate UUID Pressed', () => {
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let elementMock = document.createElement("editContextSchemaFormDescriptionTextArea");
+   documentSpy.mockReturnValue(elementMock);
+   const mock_activate = jest.fn(mod.editEventForm_generateUUIDPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test Edit Event Generate Description Pressed', () => {
+   jest.spyOn(formUtils_generateDescription, 'formUtils_generateDescription').mockReturnValueOnce(null);
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let elementMock = document.createElement("editContextSchemaFormDescriptionTextArea");
+   documentSpy.mockReturnValue(elementMock);
+   const mock_activate = jest.fn(mod.editEventForm_generateDescriptionPressed);
+   mock_activate();
    expect(mock_activate).toBeCalled();
 });

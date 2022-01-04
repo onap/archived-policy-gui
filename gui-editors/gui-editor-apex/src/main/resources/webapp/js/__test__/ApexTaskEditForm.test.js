@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +51,13 @@ let data = {
    ok: true
 };
 
+ let contextAlbumReference = {
+   "name" : "TestAlbum",
+   "version" : "0.0.1"
+};
+
+const parentTBody = document.createElement('table');
+
 test('Test editTaskForm_activate CREATE', () => {
    const mock_activate = jest.fn(mod.editTaskForm_activate);
    mock_activate('test', 'CREATE', 'task', contextSchema, 'album');
@@ -98,6 +105,59 @@ test('Test Edit Task Inner', () => {
    expect(mock_activate).toBeCalled();
 });
 
+test('Test editTaskForm_addTaskInputField', () => {
+   const mock_activate = jest.fn(mod.editTaskForm_addTaskInputField);
+   let contextSchemas = new Array();
+   contextSchemas.push(contextSchema);
+   mock_activate(parentTBody, true, 'name', null, contextSchema, contextSchemas);
+   expect(mock_activate).toBeCalled();
+});
 
+test('Test editTaskForm_addTaskOutputField', () => {
+   const mock_activate = jest.fn(mod.editTaskForm_addTaskOutputField);
+   let contextSchemas = new Array();
+   contextSchemas.push(contextSchema);
+   mock_activate(parentTBody, true, 'name', null, contextSchema, contextSchemas);
+   expect(mock_activate).toBeCalled();
+});
 
+test('Test editTaskForm_addTaskParameter', () => {
+   const mock_activate = jest.fn(mod.editTaskForm_addTaskParameter);
+   mock_activate(parentTBody, true, 'name', null);
+   expect(mock_activate).toBeCalled();
+});
 
+test('Test editTaskForm_addTaskContext', () => {
+   const mock_activate = jest.fn(mod.editTaskForm_addTaskContext);
+   let contextAlbums = new Array();
+   contextAlbums.push(contextAlbumReference);
+   mock_activate(parentTBody, true, 'name', null, contextAlbumReference, contextAlbums);
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test editTaskForm_generateUUIDPressed', () => {
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let editTaskFormUuidInput = document.createElement("editTaskFormUuidInput");
+   documentSpy.mockReturnValue(editTaskFormUuidInput);
+   const mock_activate = jest.fn(mod.editTaskForm_generateUUIDPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test editTaskForm_generateDescriptionPressed', () => {
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let editTaskFormDescriptionTextArea = document.createElement("editTaskFormDescriptionTextArea");
+   documentSpy.mockReturnValue(editTaskFormDescriptionTextArea);
+   const mock_activate = jest.fn(mod.editTaskForm_generateDescriptionPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test editTaskForm_cancelPressed', () => {
+   jest.spyOn(apexTaskTab, 'taskTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+   const mock_activate = jest.fn(mod.editTaskForm_cancelPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
