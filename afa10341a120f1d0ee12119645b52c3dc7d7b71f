@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "688cc2d8_4760e695",
+        "filename": "gui-server/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2022-01-04T20:44:48Z",
+      "side": 1,
+      "message": "may be you want to keep them \"INFO\" by default ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "afa10341a120f1d0ee12119645b52c3dc7d7b71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
