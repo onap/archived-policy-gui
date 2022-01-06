@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a21473c_f88fe509",
+        "filename": "packages/policy-gui-docker/src/main/docker/policy-gui.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 57
+      },
+      "writtenOn": "2022-01-06T15:11:07Z",
+      "side": 1,
+      "message": "I think the other docker images have a way for an external logback to be specified via ENV variable. That functionality could be the next improvement for this. No need to address now.",
+      "revId": "353355be20b326d57445da05db67d96c5fc8a40a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
