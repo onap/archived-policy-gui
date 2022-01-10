@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,111 +19,138 @@
  *
  */
 
-import { mount, shallow } from "enzyme";
+import {mount, shallow} from "enzyme";
 import React from "react";
 import toJson from "enzyme-to-json";
 import InstantiationManagementModal from "./InstantiationManagementModal";
-import { act } from "react-dom/test-utils";
-import { createMemoryHistory } from "history";
+import {act} from "react-dom/test-utils";
+import {createMemoryHistory} from "history";
 import ControlLoopService from "../../../api/ControlLoopService";
 import clLoopList from "./testFiles/controlLoopList.json";
-import { BrowserRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 const logSpy = jest.spyOn(console, 'log')
 const history = createMemoryHistory();
 
-describe('Verify MonitoringInstantiation', () => {
-  const flushPromises = () => new Promise(setImmediate);
+describe('Verify Instantiation Management', () => {
+    const flushPromises = () => new Promise(setImmediate);
 
-  beforeEach(() => {
-    logSpy.mockClear();
-  });
-
-  it("renders without crashing", () => {
-    shallow(<InstantiationManagementModal/>);
-  });
-  it("renders correctly", () => {
-    const tree = shallow(<InstantiationManagementModal />);
-    expect(toJson(tree)).toMatchSnapshot();
-  });
-
-  it('should have a close Button element', () => {
-    const container = shallow(<InstantiationManagementModal />);
-    const button = container.find('[variant="secondary"]').at(2);
-
-    expect(button.text()).toEqual("Close");
-  });
-
-  it('should have a Create Instance Button element', () => {
-    const container = shallow(<InstantiationManagementModal />);
-    const button = container.find('[variant="primary"]').at(0);
-
-    expect(button.text()).toEqual("Create Instance");
-  });
-
-  it('should have a Monitor Instantiations Button element', () => {
-    const container = shallow(<InstantiationManagementModal />);
-    const button = container.find('[variant="secondary"]').at(0);
-
-    expect(button.text()).toEqual("Monitor Instantiations");
-  });
-
-  it('handleClose called when bottom button clicked', () => {
-    const container = shallow(<InstantiationManagementModal history={ history } />);
-    const button = container.find('[variant="secondary"]').at(2);
-
-    act(() => {
-      button.simulate('click');
-      expect(logSpy).toHaveBeenCalledWith('handleClose called');
+    beforeEach(() => {
+        logSpy.mockClear();
     });
-  });
 
-  it('handleClose called when top-right button clicked', () => {
-    const container = shallow(<InstantiationManagementModal history={ history } />);
-
-    act(() => {
-      container.find('[size="xl"]').get(0).props.onHide();
-      expect(logSpy).toHaveBeenCalledWith('handleClose called');
+    it("renders without crashing", () => {
+        shallow(<InstantiationManagementModal/>);
     });
-  });
-
-  it('clearErrors called when clear error message button clicked', () => {
-    const container = shallow(<InstantiationManagementModal history={ history } />);
-    const button = container.find('[variant="secondary"]').at(1);
-
-    act(() => {
-      button.simulate('click');
-      expect(logSpy).toHaveBeenCalledWith('clearErrors called');
+    it("renders correctly", () => {
+        const tree = shallow(<InstantiationManagementModal/>);
+        expect(toJson(tree)).toMatchSnapshot();
     });
-  });
 
-  it('Check useEffect is being called', async () => {
-    jest.resetAllMocks();
-    jest.spyOn(ControlLoopService, 'getControlLoopInstantiation')
-      .mockImplementationOnce(async () => {
-        return Promise.resolve({
-          ok: true,
-          status: 200,
-          text: () => "OK",
-          json: () => {
-            return Promise.resolve(clLoopList);
-          }
+    it('should have a close Button element', () => {
+        const container = shallow(<InstantiationManagementModal/>);
+        const button = container.find('[variant="secondary"]').at(2);
+
+        expect(button.text()).toEqual("Close");
+    });
+
+    it('should have a Create Instance Button element', () => {
+        const container = shallow(<InstantiationManagementModal/>);
+        const button = container.find('[variant="primary"]').at(0);
+
+        expect(button.text()).toEqual("Create Instance");
+    });
+
+    it('should have a Monitor Instantiations Button element', () => {
+        const container = shallow(<InstantiationManagementModal/>);
+        const button = container.find('[variant="secondary"]').at(0);
+
+        expect(button.text()).toEqual("Monitor Instantiations");
+    });
+
+    it('handleClose called when bottom button clicked', () => {
+        const container = shallow(<InstantiationManagementModal history={history}/>);
+        const button = container.find('[variant="secondary"]').at(2);
+
+        act(() => {
+            button.simulate('click');
+            expect(logSpy).toHaveBeenCalledWith('handleClose called');
         });
-      });
-
-    const component = mount(
-      <BrowserRouter>
-        <InstantiationManagementModal />
-      </BrowserRouter>
-    );
-    const useEffect = jest.spyOn(React, "useEffect");
-
-    await act(async () => {
-      await flushPromises()
-      component.update();
-      await expect(useEffect).toHaveBeenCalled();
-
     });
-    component.unmount();
-  });
+
+    it('handleClose called when top-right button clicked', () => {
+        const container = shallow(<InstantiationManagementModal history={history}/>);
+
+        act(() => {
+            container.find('[size="xl"]').get(0).props.onHide();
+            expect(logSpy).toHaveBeenCalledWith('handleClose called');
+        });
+    });
+
+    it('clearErrors called when clear error message button clicked', () => {
+        const container = shallow(<InstantiationManagementModal history={history}/>);
+        const button = container.find('[variant="secondary"]').at(1);
+
+        act(() => {
+            button.simulate('click');
+            expect(logSpy).toHaveBeenCalledWith('clearErrors called');
+        });
+    });
+
+    it('Check useEffect is being called', async () => {
+        jest.resetAllMocks();
+        jest.spyOn(ControlLoopService, 'getControlLoopInstantiation')
+            .mockImplementationOnce(async () => {
+                return Promise.resolve({
+                    ok: true,
+                    status: 200,
+                    text: () => "OK",
+                    json: () => {
+                        return Promise.resolve(clLoopList);
+                    }
+                });
+            });
+
+        const component = mount(
+            <BrowserRouter>
+                <InstantiationManagementModal/>
+            </BrowserRouter>
+        );
+        const useEffect = jest.spyOn(React, "useEffect");
+
+        await act(async () => {
+            await flushPromises()
+            component.update();
+            await expect(useEffect).toHaveBeenCalled();
+
+        });
+        component.unmount();
+    });
+
+    it('set state gets called for setInstantiationList useEffect on success', async () => {
+        const setInstantiationList = jest.fn();
+        const setDeleteInstantiation = true;
+        const history = createMemoryHistory();
+        jest
+            .spyOn(global, 'fetch')
+            .mockImplementation(() =>
+                Promise.resolve({
+                    ok: true,
+                    status: 200,
+                    text: () => "OK",
+                    json: () => clLoopList
+                })
+            )
+
+        mount(
+            <BrowserRouter>
+                <InstantiationManagementModal history={history}/>
+            </BrowserRouter>
+        );
+        act(async () => {
+            expect(setInstantiationList).toHaveBeenCalledTimes(1);
+            expect(setDeleteInstantiation).toHaveBeenCalledTimes(1);
+        });
+    });
+
 });

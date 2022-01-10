@@ -58,7 +58,6 @@ const CommissioningModal = (props) => {
   const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
   const name = 'ToscaServiceTemplateSimple';
   const version = '1.0.0';
-  let editorTemp = null
 
   useEffect(async () => {
     const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version)

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,16 +23,28 @@ import InstancePropertiesModal from "./InstancePropertiesModal";
 import toJson from "enzyme-to-json";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
-import ControlLoopService from "../../../api/ControlLoopService";
-import instanceProps from "./testFiles/instanceProps.json";
-import fullTemp from "./testFiles/fullTemplate.json";
-
 
 let logSpy = jest.spyOn(console, 'log')
-const instanceProperties = JSON.parse(JSON.stringify(instanceProps))
-const fullTemplate = JSON.parse(JSON.stringify(fullTemp))
 
 describe('Verify InstancePropertiesModal', () => {
+
+  const unmockedFetch = global.fetch
+    beforeAll(() => {
+      global.fetch = () =>
+          Promise.resolve({
+            status: 200,
+            text: () => "OK",
+            json: () => "{GlobalFetch}"
+          });
+    });
+
+  afterAll(() => {
+    global.fetch = unmockedFetch
+  });
+
+  beforeEach(() => {
+    logSpy.mockClear()
+  });
 
   it("renders without crashing", () => {
     shallow(<InstancePropertiesModal />);
@@ -78,6 +90,14 @@ describe('Verify InstancePropertiesModal', () => {
     act(() => {
       component.find('[variant="primary"]').simulate('click');
       expect(logSpy).toHaveBeenCalledWith('handleSave called');
+    });
+  });
+
+  it('Check useEffect is being called', async () => {
+    const useEffect = jest.spyOn(React, "useEffect");
+    mount(<InstancePropertiesModal />)
+    await act(async () => {
+      expect(useEffect).toHaveBeenCalled();
     });
   });
 });

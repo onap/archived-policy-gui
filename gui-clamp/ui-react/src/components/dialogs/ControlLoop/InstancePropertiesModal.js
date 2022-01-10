@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -66,10 +66,10 @@ const InstancePropertiesModal = (props) => {
   const [instanceName, setInstanceName] = useState('')
 
   useEffect(async () => {
-    const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, false)
-      .catch(error => error.message);
-
     const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(templateName, templateVersion)
+        .catch(error => error.message);
+
+    const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, false)
       .catch(error => error.message);
 
     if (!toscaInstanceProperties.ok) {
@@ -107,9 +107,9 @@ const InstancePropertiesModal = (props) => {
 
     console.log("instanceName to be saved is: " + instanceName);
 
-    console.log(jsonEditor);
-
-    //setToscaFullTemplate(InstantiationUtils.updateTemplate(jsonEditor.getValue(), toscaFullTemplate));
+    if (jsonEditor != null) {
+      setToscaFullTemplate(InstantiationUtils.updateTemplate(jsonEditor.getValue(), toscaFullTemplate));
+    }
 
     const response = await ControlLoopService.createInstanceProperties(instanceName, toscaFullTemplate)
       .catch(error => error.message);
