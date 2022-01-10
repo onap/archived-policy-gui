@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021 Nordix Foundation.
+ * Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,8 +67,6 @@ describe('Verify CommissioningModal', () => {
   it('handleClose called when bottom button clicked', () => {
     const history = createMemoryHistory();
     const component = mount(<CommissioningModal history={ history }/>)
-    // const logSpy = jest.spyOn(console, 'log');
-
 
     act(() => {
       component.find('[variant="secondary"]').simulate('click');
@@ -182,7 +180,6 @@ describe('Verify CommissioningModal', () => {
 
     mount(<CommissioningModal history={ history }/>)
     act(async () => {
-      // expect(renderJsonEditor).toHaveBeenCalled();
       expect(setToscaJsonEditor).toHaveBeenCalledTimes(1);
     });
   });

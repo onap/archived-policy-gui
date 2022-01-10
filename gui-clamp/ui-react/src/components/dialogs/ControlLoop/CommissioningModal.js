@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021 Nordix Foundation.
+ * Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,6 @@ const CommissioningModal = (props) => {
   const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
   const name = 'ToscaServiceTemplateSimple';
   const version = '1.0.0';
-  let editorTemp = null
 
   useEffect(async () => {
     const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version)

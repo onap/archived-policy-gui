@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Verify MonitoringInstantiation renders correctly 1`] = `
+exports[`Verify Instantiation Management renders correctly 1`] = `
 <Styled(Modal)
   backdrop="static"
   keyboard={false}
