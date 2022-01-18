@@ -44,6 +44,8 @@ const contextSchema = {
    description: 'testDesc'
 }
 
+const parentTBody = document.createElement('table');
+
 test('Test Activate', () => {
    const mock_activate = jest.fn(mod.editEventForm_activate);
    mock_activate(null, 'CREATE', null, contextSchema);
@@ -138,6 +140,14 @@ test('Test Create Event', () => {
    expect(mock_activate).toBeCalled();
 });
 
+test('Test editEventForm_addEventParam', () => {
+   let contextSchemas = new Array();
+   contextSchemas.push(contextSchema);
+   const mock_activate = jest.fn(mod.editEventForm_addEventParam);
+   mock_activate(parentTBody, false, 'name', null, contextSchema, contextSchemas);
+   expect(mock_activate).toBeCalled();
+});
+
 test('Test Edit Event Generate UUID Pressed', () => {
    let documentSpy = jest.spyOn(document, 'getElementById');
    let elementMock = document.createElement("editContextSchemaFormDescriptionTextArea");
@@ -153,6 +163,31 @@ test('Test Edit Event Generate Description Pressed', () => {
    let elementMock = document.createElement("editContextSchemaFormDescriptionTextArea");
    documentSpy.mockReturnValue(elementMock);
    const mock_activate = jest.fn(mod.editEventForm_generateDescriptionPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
+test('Test editEventForm_cancelPressed', () => {
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+   jest.spyOn(eventTab_reset, 'eventTab_reset').mockReturnValueOnce(null);
+   const mock_activate = jest.fn(mod.editEventForm_cancelPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test editTaskForm_submitPressed', () => {
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+   jest.spyOn(eventTab_reset, 'eventTab_reset').mockReturnValueOnce(null);
+
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let elementMock = document.createElement("editEventForm");
+   elementMock.setAttribute("createEditOrView", "CREATE");
+   elementMock.value = 'name_version'
+   elementMock.rows = 2
+   documentSpy.mockReturnValue(elementMock);
+
+   const mock_activate = jest.fn(mod.editEventForm_submitPressed);
    mock_activate();
    expect(mock_activate).toBeCalled();
 });

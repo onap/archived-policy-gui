@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -130,6 +130,15 @@ test('Test Generate Description Pressed', () => {
    elementMock.value = 'one'
    documentSpy.mockReturnValue(elementMock);
    const mock_activate = jest.fn(mod.editContextAlbumForm_generateDescriptionPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
+
+test('Test editContextAlbumForm_cancelPressed', () => {
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValue(null);
+   jest.spyOn(document, 'getElementById').mockReturnValue(null);
+   jest.spyOn(contextAlbumTab_reset, 'contextAlbumTab_reset').mockReturnValue(null);
+   const mock_activate = jest.fn(mod.editContextAlbumForm_cancelPressed);
    mock_activate();
    expect(mock_activate).toBeCalled();
 });

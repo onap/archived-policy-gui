@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -95,4 +95,22 @@ test('createAddFormButton with text', () => {
     expected.innerHTML = '<i class="form-add-icon ebIcon ebIcon_add"></i><span class="form-add-text">My_text</span>';
     const actual = ApexUtils.createAddFormButton('My_text');
     expect(actual).toEqual(expected);
+});
+
+test('test EMPTY createEditArea', () => {
+    const mock_activate = jest.fn(ApexUtils.createEditArea);
+    mock_activate('id', null, '');
+    expect(mock_activate).toBeCalled();
+});
+
+test('test getHomepageURL', () => {
+    const mock_activate = jest.fn(ApexUtils.getHomepageURL);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('test isFirefox', () => {
+    const mock_activate = jest.fn(ApexUtils.isFirefox);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
 });

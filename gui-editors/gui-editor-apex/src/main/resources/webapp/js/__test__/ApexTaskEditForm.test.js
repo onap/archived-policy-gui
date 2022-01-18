@@ -161,3 +161,19 @@ test('Test editTaskForm_cancelPressed', () => {
    mock_activate();
    expect(mock_activate).toBeCalled();
 });
+
+test('Test editTaskForm_submitPressed', () => {
+   jest.spyOn(apexTaskTab, 'taskTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let elementMock = document.createElement("editTaskForm");
+   elementMock.setAttribute("createEditOrView", "CREATE");
+   elementMock.value = 'logictype'
+   documentSpy.mockReturnValue(elementMock);
+
+   const mock_activate = jest.fn(mod.editTaskForm_submitPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+});
