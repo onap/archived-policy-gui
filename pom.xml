@@ -48,7 +48,6 @@
 
     <modules>
         <module>gui-common</module>
-        <module>gui-pdp-monitoring</module>
         <module>gui-editors</module>
         <module>gui-clamp</module>
         <module>packages</module>
