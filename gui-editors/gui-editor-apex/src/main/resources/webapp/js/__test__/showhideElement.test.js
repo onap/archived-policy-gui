@@ -34,6 +34,13 @@ test('Test editTaskForm_activate NO CHECKBOX', () => {
    expect(mock_activate).toBeCalled();
 });
 
+test('Test editTaskForm', () => {
+   const mock_activate = jest.fn(mod.showHideElement);
+   var element = document.createElement("div");
+   mock_activate("id_prefix", element, true, "showText", "hideText", "style", "hidestyle", "buttonshowStyle", "buttonhideStyle");
+   expect(mock_activate).toBeCalled();
+});
+
 
 
 

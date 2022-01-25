@@ -99,7 +99,7 @@ test('createAddFormButton with text', () => {
 
 test('test EMPTY createEditArea', () => {
     const mock_activate = jest.fn(ApexUtils.createEditArea);
-    mock_activate('id', null, '');
+    mock_activate('id', 'options', '');
     expect(mock_activate).toBeCalled();
 });
 
