@@ -29,8 +29,11 @@ test('Test editTaskForm_activate CREATE', () => {
 
 test('Test editTaskForm_activate NO CHECKBOX', () => {
    const mock_activate = jest.fn(mod.showHideElement_display);
-   let documentSpy = jest.spyOn(document, 'getElementById');
-   mock_activate(documentSpy, null, null, 'hidestyle', 'buttonshowStyle','buttonhideStyle');
+   spyOn($.fn, "find").and.returnValue(false);
+   const mockedElementDOM = { classList: { contains: jest.fn(), remove: jest.fn(), add: jest.fn() } };
+   mockedElementDOM.classList.contains.mockReturnValueOnce(true);
+   mockedElementDOM.classList.remove.mockReturnValueOnce(true);
+   mock_activate(mockedElementDOM, 'element', 'style', 'hidestyle', 'buttonshowStyle','buttonhideStyle');
    expect(mock_activate).toBeCalled();
 });
 
