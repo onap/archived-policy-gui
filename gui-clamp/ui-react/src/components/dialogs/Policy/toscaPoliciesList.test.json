@@ -1,0 +1,94 @@
+{
+  "policies": [
+    {
+      "type": "onap.policies.monitoring.tcagen2",
+      "type_version": "1.0.0",
+      "properties": {
+        "tca.policy": {
+          "domain": "measurementsForVfScaling",
+          "metricsPerEventName": [
+            {
+              "policyScope": "DCAE",
+              "thresholds": [
+                {
+                  "version": "1.0.2",
+                  "severity": "MAJOR",
+                  "thresholdValue": 200,
+                  "closedLoopEventStatus": "ONSET",
+                  "closedLoopControlName": "LOOP_test",
+                  "direction": "LESS_OR_EQUAL",
+                  "fieldPath": "$.event.measurementsForVfScalingFields.vNicPerformanceArray[*].receivedTotalPacketsDelta"
+                }
+              ],
+              "eventName": "vLoadBalancer",
+              "policyVersion": "v0.0.1",
+              "controlLoopSchemaType": "VM",
+              "policyName": "DCAE.Config_tca-hi-lo"
+            }
+          ]
+        }
+      },
+      "name": "MICROSERVICE_vLoadBalancerMS_v1_0_tcagen2_1_0_0_AV0",
+      "version": "1.0.0",
+      "metadata": {
+        "policy-id": "MICROSERVICE_vLoadBalancerMS_v1_0_tcagen2_1_0_0_AV0",
+        "policy-version": "1.0.0"
+      },
+      "pdpGroupInfo": [
+        {
+          "monitoring": {
+            "name": "monitoring",
+            "description": "This group should be used for managing all monitoring related policies and pdps",
+            "pdpGroupState": "ACTIVE",
+            "properties": {},
+            "pdpSubgroups": [
+              {
+                "pdpType": "xacml",
+                "supportedPolicyTypes": [
+                  {
+                    "name": "onap.policies.monitoring.*",
+                    "version": "1.0.0"
+                  },
+                  {
+                    "name": "onap.policies.Naming",
+                    "version": "1.0.0"
+                  }
+                ],
+                "policies": [
+                  {
+                    "name": "MICROSERVICE_vLoadBalancerMS_v1_0_tcagen2_1_0_0_AV0",
+                    "version": "1.0.0"
+                  }
+                ],
+                "currentInstanceCount": 0,
+                "desiredInstanceCount": 1,
+                "properties": {},
+                "pdpInstances": [
+                  {
+                    "instanceId": "monitoring-f8287777-5f3e-4f0f-b21b-d8829c93f57b",
+                    "pdpState": "ACTIVE",
+                    "healthy": "HEALTHY",
+                    "message": "Pdp Heartbeat",
+                    "lastUpdate": "2021-09-29T02:51:21Z"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "supportedPdpGroups": [
+        {
+          "monitoring": [
+            "xacml"
+          ]
+        }
+      ],
+      "supportedPdpGroupsString": "monitoring/xacml\r\n",
+      "pdpGroupInfoString": "monitoring/xacml (ACTIVE)\r\n",
+      "tableData": {
+        "id": 0
+      }
+    }
+  ]
+}

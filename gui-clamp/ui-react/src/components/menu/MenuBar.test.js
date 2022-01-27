@@ -2,8 +2,8 @@
  * ============LICENSE_START=======================================================
  * ONAP CLAMP
  * ================================================================================
- * Copyright (C) 2019 AT&T Intellectual Property. All rights
- *                             reserved.
+ * Copyright (C) 2019 AT&T Intellectual Property. All rights reserved.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MenuBar from './MenuBar';
+import DropdownItem from "react-bootstrap/DropdownItem";
 
 describe('Verify MenuBar', () => {
 
@@ -42,5 +43,46 @@ describe('Verify MenuBar', () => {
     const component = shallow(<MenuBar/>)
     component.setProps({ loopName: "Empty (NO loop loaded yet)" });
     expect(component.state('disabled')).toBe(true);
+  });
+
+  it('Find 20 DropdownItem', () => {
+    const component = shallow(<MenuBar />)
+    expect(component.find('DropdownItem').length).toEqual(20);
+  });
+
+  it('Finds POLICY Framework Menu', () => {
+    const component = shallow(<MenuBar />).childAt(0).dive();
+    expect(component.find({ tile: 'POLICY Framework' }));
+  });
+
+  it('Finds POLICY Framework Menu', () => {
+    const component = shallow(<MenuBar />).childAt(1).dive();
+    expect(component.find({ tile: 'CLAMP Options' }));
+  });
+
+  it('Finds POLICY Framework Menu', () => {
+    const component = shallow(<MenuBar />).childAt(2).dive();
+    expect(component.find({ tile: 'LOOP Instance' }));
+  });
+
+  it('Finds POLICY Framework Menu', () => {
+    const component = shallow(<MenuBar />).childAt(3).dive();
+    expect(component.find({ tile: 'LOOP Operations' }));
+  });
+
+  it('Finds POLICY Framework Menu', () => {
+    const component = shallow(<MenuBar />).childAt(4).dive();
+    expect(component.find({ tile: 'TOSCA Control Loop' }));
+  });
+
+  it('Finds POLICY Framework Menu', () => {
+    const component = shallow(<MenuBar />).childAt(5).dive();
+    expect(component.find({ tile: 'Help' }));
+  });
+
+  it('Finds StyledNavLink', () => {
+    const component = shallow(<MenuBar />);
+    console.log(component.debug());
+    expect(component.find('Styled(NavLink)').length).toEqual(2);
   });
 });

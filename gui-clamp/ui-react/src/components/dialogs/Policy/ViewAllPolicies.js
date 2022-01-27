@@ -2,8 +2,8 @@
  * ============LICENSE_START=======================================================
  * ONAP POLICY-CLAMP
  * ================================================================================
- * Copyright (C) 2021 AT&T Intellectual Property. All rights
- *                             reserved.
+ * Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,11 +44,9 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import AddIcon from '@material-ui/icons/Add';
 import PublishIcon from '@material-ui/icons/Publish';
-import Switch from '@material-ui/core/Switch';
 import MaterialTable from "material-table";
 import PolicyService from '../../../api/PolicyService';
 import PolicyToscaService from '../../../api/PolicyToscaService';
-import Select from '@material-ui/core/Select';
 import Alert from 'react-bootstrap/Alert';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -251,6 +249,7 @@ export default class ViewAllPolicies extends React.Component {
   }
 
   handleClose() {
+    console.log("handleClose called");
     this.setState({ show: false });
     this.props.history.push('/')
   }
