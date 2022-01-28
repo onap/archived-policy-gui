@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,11 +32,9 @@ test('Test modelHandling_analyse', (done) => {
       port: 'port',
       username: 'username',
       password: 'password',
-      messages: {
-         message: [
-            '{"apexKeyInfo": null}'
-         ]
-      },
+      messages: [
+         '{"apexKeyInfo": null}'
+      ],
       content: ['01'],
       result: 'ok',
       ok: true
@@ -65,13 +63,11 @@ test('Test modelHandling_validate', (done) => {
       port: 'port',
       username: 'username',
       password: 'password',
-      messages: {
-         message: [
-            '{"apexKeyInfo": null}',
-            '{"apexPolicy": null}',
-            '{"apexEvent": null}'
-         ]
-      },
+      messages: [
+         '{"apexKeyInfo": null}',
+         '{"apexPolicy": null}',
+         '{"apexEvent": null}'
+      ],
       content: ['01'],
       result: 'ok',
       ok: true

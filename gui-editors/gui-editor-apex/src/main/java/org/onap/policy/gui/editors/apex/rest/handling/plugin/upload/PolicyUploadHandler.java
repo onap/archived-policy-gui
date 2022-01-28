@@ -23,24 +23,39 @@ package org.onap.policy.gui.editors.apex.rest.handling.plugin.upload;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.policy.apex.model.basicmodel.concepts.AxArtifactKey;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
-import org.onap.policy.gui.editors.apex.rest.ApexEditorMain;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Handles the Policy Model upload.
  */
+@Service
 public class PolicyUploadHandler {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(PolicyUploadHandler.class);
 
+    @Value("${apex-editor.upload-url:}")
+    private String uploadUrl;
+
+    @Value("${apex-editor.upload-userid:}")
+    private String defaultUserId;
+
+    @Autowired
+    private RestTemplate policyUploadRestTemplate;
+
     // Recurring string constants
+    private static final String MODEL_UPLOAD_OK = "Model/Upload: OK";
     private static final String MODEL_UPLOAD_NOT_OK = "Model/Upload: NOT OK";
 
     /**
@@ -49,15 +64,14 @@ public class PolicyUploadHandler {
      * @param toscaServiceTemplate the TOSCA service template
      * @param policyModelKey       the key of the policy model
      * @param policyModelUuid      the UUID of the policy model
-     * @param uploadUserId         the userId to use for upload. If blank, the commandline
-     *                             parameter "upload-userid" is used.
+     * @param uploadUserId         the userId to use for upload. If blank, the Spring
+     *                             config parameter "apex-editor.upload-userid" is used.
      * @return the result of the upload process
      */
     public ApexApiResult doUpload(final String toscaServiceTemplate, final AxArtifactKey policyModelKey,
-        final String policyModelUuid, String uploadUserId) {
+                                  final String policyModelUuid, String uploadUserId) {
         LOGGER.entry();
 
-        final String uploadUrl = ApexEditorMain.getParameters().getUploadUrl();
         if (StringUtils.isBlank(uploadUrl)) {
             final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult.addMessage("Model upload is disabled, parameter upload-url is not set on server");
@@ -66,7 +80,7 @@ public class PolicyUploadHandler {
         }
 
         if (StringUtils.isBlank(uploadUserId)) {
-            uploadUserId = ApexEditorMain.getParameters().getUploadUserid();
+            uploadUserId = defaultUserId;
         }
 
         final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
@@ -77,29 +91,30 @@ public class PolicyUploadHandler {
             String.format("%s.%s.%s", policyModelUuid, policyModelKey.getName(), policyModelKey.getVersion()));
 
         try {
-            final var response = ClientBuilder.newClient().target(uploadUrl)
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(uploadPolicyRequestDto, MediaType.APPLICATION_JSON));
+            var headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            var request = new HttpEntity<>(uploadPolicyRequestDto, headers);
+            policyUploadRestTemplate.postForObject(uploadUrl, request, String.class);
 
-            if (response.getStatus() == 201) {
-                final var apexApiResult = new ApexApiResult(Result.SUCCESS);
-                apexApiResult.addMessage(
-                    String.format("uploading Policy '%s' to URL '%s' with userId '%s' was successful",
-                        policyModelKey.getId(), uploadUrl, uploadUserId));
-                LOGGER.exit("Model/Upload: OK");
-                return apexApiResult;
-            } else {
-                final var apexApiResult = new ApexApiResult(Result.FAILED);
-                apexApiResult.addMessage(
-                    String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with status %s",
-                        policyModelKey.getId(), uploadUrl, uploadUserId, response.getStatus()));
-                LOGGER.exit(MODEL_UPLOAD_NOT_OK);
-                return apexApiResult;
-            }
+            final var apexApiResult = new ApexApiResult(Result.SUCCESS);
+            apexApiResult.addMessage(
+                String.format("uploading Policy '%s' to URL '%s' with userId '%s' was successful",
+                    policyModelKey.getId(), uploadUrl, uploadUserId));
+            LOGGER.exit(MODEL_UPLOAD_OK);
+            return apexApiResult;
+
+        } catch (HttpStatusCodeException e) {
+            final var apexApiResult = new ApexApiResult(Result.FAILED);
+            apexApiResult.addMessage(
+                String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with status %d",
+                    policyModelKey.getId(), uploadUrl, uploadUserId, e.getRawStatusCode()));
+            LOGGER.exit(MODEL_UPLOAD_NOT_OK);
+            return apexApiResult;
+
         } catch (Exception e) {
             final var apexApiResult = new ApexApiResult(Result.FAILED);
-            apexApiResult
-                .addMessage(String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with error %s",
+            apexApiResult.addMessage(
+                String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with error %s",
                     policyModelKey.getId(), uploadUrl, uploadUserId, e.getMessage()));
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;

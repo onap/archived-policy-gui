@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,9 +29,7 @@ beforeEach(() => {
         port: 'port',
         username: 'username',
         password: 'password',
-        messages: {
-            message: ''
-        },
+        messages: [''],
         content: ['01', '02'],
         result: 'ok',
         ok: true
@@ -72,12 +70,10 @@ test('Test ajax_getWithKeyInfo success', (done) => {
         });
         done();
     });
-    data.messages = {
-        message: [
-            '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
-            ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
-        ]
-    };
+    data.messages = [
+        '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
+        ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
+    ];
     const jqXHR = {status: 200, responseText: ""};
 
     $.ajax = jest.fn().mockImplementation((args) => {
@@ -98,12 +94,10 @@ test('Test ajax_getWithKeyInfo with custom key success', (done) => {
         });
         done();
     });
-    data.messages = {
-        message: [
-            '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1",' +
-            ' "version": "version1"}}, "objectType": {"customKey": {"name": "name1", "version": "version1"}}}'
-        ]
-    };
+    data.messages = [
+        '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1",' +
+        ' "version": "version1"}}, "objectType": {"customKey": {"name": "name1", "version": "version1"}}}'
+    ];
     const jqXHR = {status: 200, responseText: ""};
 
     $.ajax = jest.fn().mockImplementation((args) => {

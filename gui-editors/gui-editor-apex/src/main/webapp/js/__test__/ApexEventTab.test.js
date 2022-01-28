@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,14 +34,12 @@ test('Test activate', () => {
         port: 'port',
         username: 'username',
         password: 'password',
-        messages: {
-            message: [
-                '{"apexEvent" : {"key": {"name": "name1", "version":"version1"}, "nameSpace":"nameSpace1",' +
-                ' "source":"source1", "target":"target1", "parameter": ' +
-                '{"entry": [{"key": "key1", "value": {"optional":"optional", "fieldSchemaKey": ' +
-                '{"name": "name2", "version":"version2"}}}]}}}'
-            ]
-        },
+        messages: [
+            '{"apexEvent" : {"key": {"name": "name1", "version":"version1"}, "nameSpace":"nameSpace1",' +
+            ' "source":"source1", "target":"target1", "parameter": ' +
+            '{"entry": [{"key": "key1", "value": {"optional":"optional", "fieldSchemaKey": ' +
+            '{"name": "name2", "version":"version2"}}}]}}}'
+        ],
         content: ['01', '02'],
         result: 'ok',
         ok: true

@@ -21,84 +21,77 @@
 package org.onap.policy.gui.editors.apex.rest.handling.plugin.upload;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.ResponseProcessingException;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
-import org.mockito.MockedStatic;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.onap.policy.apex.model.basicmodel.concepts.AxArtifactKey;
-import org.onap.policy.gui.editors.apex.rest.ApexEditorMain;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
-public class PolicyUploadHandlerTest {
+@ExtendWith(MockitoExtension.class)
+class PolicyUploadHandlerTest {
 
-    private static final String CMDLINE_UPLOAD_USERID = "MyUser";
+    private static final String DEFAULT_UPLOAD_USER_ID = "MyUser";
+    private static final String UPLOAD_URL = "http://127.0.0.1";
+
+    @Mock
+    private RestTemplate policyUploadRestTemplate;
+
+    @InjectMocks
     private PolicyUploadHandler uploadHandler;
+
+    @Captor
+    ArgumentCaptor<HttpEntity<UploadPolicyRequestDto>> dtoEntityCaptor;
+
     private AxArtifactKey axArtifactKey;
     private String toscaServiceTemplate;
-    private MockedStatic<ClientBuilder> clientBuilderMockedStatic;
-    private ArgumentCaptor<Entity<UploadPolicyRequestDto>> dtoEntityCaptor;
 
     /**
      * Prepares test environment.
      *
      * @throws IOException where there is problem with reading the file.
      */
-    @Before
-    public void setUp() throws IOException {
-        uploadHandler = new PolicyUploadHandler();
+    @BeforeEach
+    void setUp() throws IOException {
         final var name = "a" + RandomStringUtils.randomAlphabetic(5);
         final var version = "0.0.1";
         axArtifactKey = new AxArtifactKey(name, version);
         final var path = Path.of("src/test/resources/models/", "PolicyModel.json");
         toscaServiceTemplate = Files.readString(path);
-    }
-
-    /**
-     * Cleaning up after the test.
-     */
-    @After
-    public void tearDown() {
-        if (clientBuilderMockedStatic != null) {
-            clientBuilderMockedStatic.close();
-        }
+        ReflectionTestUtils.setField(uploadHandler, "uploadUrl", UPLOAD_URL);
+        ReflectionTestUtils.setField(uploadHandler, "defaultUserId", DEFAULT_UPLOAD_USER_ID);
     }
 
     @Test
-    public void testDoUploadNoUrl() {
-        final String[] args = {"--upload-userid", CMDLINE_UPLOAD_USERID};
-        final var outBaStream = new ByteArrayOutputStream();
-        final var outStream = new PrintStream(outBaStream);
-        new ApexEditorMain(args, outStream);
-
+    void testDoUploadNoUrl() {
+        ReflectionTestUtils.setField(uploadHandler, "uploadUrl", null);
         final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
         assertThat(result.isNok()).isTrue();
-        assertThat(result.getMessage()).contains("Model upload is disable");
+        assertThat(result.getMessage()).contains("Model upload is disabled");
     }
 
     @Test
-    public void testDoUploadConnectionError() {
-        final var response = Mockito.mock(Response.class);
-        mockRsHttpClient(response);
-        Mockito.doThrow(ResponseProcessingException.class).when(response).getStatus();
-
-        prepareApexEditorMain();
+    void testDoUploadConnectionError() {
+        when(policyUploadRestTemplate.postForObject(eq(UPLOAD_URL), any(HttpEntity.class), eq(String.class)))
+            .thenThrow(new RestClientException("connection error"));
 
         final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
 
@@ -107,27 +100,16 @@ public class PolicyUploadHandlerTest {
     }
 
     @Test
-    public void testDoResponse() {
-        final var response = Mockito.mock(Response.class);
-        mockRsHttpClient(response);
-
-        Mockito.doReturn(201).when(response).getStatus();
-
-        prepareApexEditorMain();
-
+    void testDoResponse() {
         final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
 
         assertThat(result.isOk()).isTrue();
     }
 
     @Test
-    public void testDoResponseErrorCode500() {
-        final var response = Mockito.mock(Response.class);
-        mockRsHttpClient(response);
-
-        Mockito.doReturn(500).when(response).getStatus();
-
-        prepareApexEditorMain();
+    void testDoResponseErrorCode500() {
+        when(policyUploadRestTemplate.postForObject(eq(UPLOAD_URL), any(HttpEntity.class), eq(String.class)))
+            .thenThrow(new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR));
 
         final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
 
@@ -136,55 +118,32 @@ public class PolicyUploadHandlerTest {
     }
 
     @Test
-    public void testDoUploadUserId() {
-        final var response = Mockito.mock(Response.class);
-        mockRsHttpClient(response);
-
-        Mockito.doReturn(201).when(response).getStatus();
-
-        prepareApexEditorMain();
-
+    void testDoUploadUserId() {
         // If uploadUserId is specified, that value should be in DTO.
         var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "",
             "OverrideUser");
         assertThat(result.isOk()).isTrue();
-        var dto = dtoEntityCaptor.getValue().getEntity();
+        Mockito.verify(policyUploadRestTemplate)
+            .postForObject(eq(UPLOAD_URL), dtoEntityCaptor.capture(), eq(String.class));
+        var dto = dtoEntityCaptor.getValue().getBody();
         assertThat(dto.getUserId()).isEqualTo("OverrideUser");
+        Mockito.reset(policyUploadRestTemplate);
 
-        // If uploadUserId is blank, the value from command line parameter 'upload-userid' is used.
+        // If uploadUserId is blank, the value from Spring config parameter 'apex-editor.upload-userid' is used.
         result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
         assertThat(result.isOk()).isTrue();
-        dto = dtoEntityCaptor.getValue().getEntity();
-        assertThat(dto.getUserId()).isEqualTo(CMDLINE_UPLOAD_USERID);
+        Mockito.verify(policyUploadRestTemplate)
+            .postForObject(eq(UPLOAD_URL), dtoEntityCaptor.capture(), eq(String.class));
+        dto = dtoEntityCaptor.getValue().getBody();
+        assertThat(dto.getUserId()).isEqualTo(DEFAULT_UPLOAD_USER_ID);
+        Mockito.reset(policyUploadRestTemplate);
 
-        // If uploadUserId is null, the value from command line parameter 'upload-userid' is used.
+        // If uploadUserId is null, the value from Spring config parameter 'apex-editor.upload-userid' is used.
         result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", null);
         assertThat(result.isOk()).isTrue();
-        dto = dtoEntityCaptor.getValue().getEntity();
-        assertThat(dto.getUserId()).isEqualTo(CMDLINE_UPLOAD_USERID);
-    }
-
-    private void mockRsHttpClient(Response response) {
-        final var webTarget = Mockito.mock(WebTarget.class);
-        final var client = Mockito.mock(Client.class);
-        final var invocationBuilder = Mockito.mock(Invocation.Builder.class);
-
-
-        clientBuilderMockedStatic = Mockito.mockStatic(ClientBuilder.class);
-
-        dtoEntityCaptor = ArgumentCaptor.forClass(Entity.class);
-
-        Mockito.when(ClientBuilder.newClient()).thenReturn(client);
-        Mockito.when(client.target(ArgumentMatchers.anyString())).thenReturn(webTarget);
-        Mockito.when(webTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
-        Mockito.when(webTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
-        Mockito.when(invocationBuilder.post(dtoEntityCaptor.capture())).thenReturn(response);
-    }
-
-    private void prepareApexEditorMain() {
-        final String[] args = {"--upload-userid", CMDLINE_UPLOAD_USERID, "--upload-url", "http://127.0.0.1"};
-        final var outBaStream = new ByteArrayOutputStream();
-        final var outStream = new PrintStream(outBaStream);
-        new ApexEditorMain(args, outStream);
+        Mockito.verify(policyUploadRestTemplate)
+            .postForObject(eq(UPLOAD_URL), dtoEntityCaptor.capture(), eq(String.class));
+        dto = dtoEntityCaptor.getValue().getBody();
+        assertThat(dto.getUserId()).isEqualTo(DEFAULT_UPLOAD_USER_ID);
     }
 }

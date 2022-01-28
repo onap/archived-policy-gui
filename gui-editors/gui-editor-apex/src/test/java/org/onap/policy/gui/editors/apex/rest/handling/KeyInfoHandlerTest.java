@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,23 +23,23 @@ package org.onap.policy.gui.editors.apex.rest.handling;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexModel;
 
-public class KeyInfoHandlerTest {
+class KeyInfoHandlerTest {
     private final Random random = new Random();
     private KeyInfoHandler handler;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         handler = new KeyInfoHandler();
     }
 
     @Test
-    public void testExecuteRestCommand() {
+    void testExecuteRestCommand() {
         final var sessionId = random.nextInt();
         final var session = new RestSession(sessionId);
         final var commandType = RestCommandType.EVENT;
@@ -54,7 +54,7 @@ public class KeyInfoHandlerTest {
     }
 
     @Test
-    public void testExecuteRestCommandWithJsonString() {
+    void testExecuteRestCommandWithJsonString() {
         final var sessionId = random.nextInt();
         final var session = new RestSession(sessionId);
         final var commandType = RestCommandType.EVENT;
@@ -70,7 +70,7 @@ public class KeyInfoHandlerTest {
     }
 
     @Test
-    public void testExecuteRestCommandWithNameAndVersion() {
+    void testExecuteRestCommandWithNameAndVersion() {
         final var sessionId = random.nextInt();
         final var session = new RestSession(sessionId);
         final var commandType = RestCommandType.EVENT;
@@ -87,7 +87,7 @@ public class KeyInfoHandlerTest {
     }
 
     @Test
-    public void testExecuteRestCommandWithNameAndVersion2() {
+    void testExecuteRestCommandWithNameAndVersion2() {
         final var session = Mockito.mock(RestSession.class);
         final var commandType = RestCommandType.KEY_INFO;
         final var command = RestCommand.LIST;
