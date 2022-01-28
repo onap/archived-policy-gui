@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------
 # ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation.
+#  Copyright (C) 2021-2022 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,19 +27,14 @@ ARG POLICY_LOGS=/var/log/onap/policy/gui
 ENV POLICY_LOGS=$POLICY_LOGS
 ENV POLICY_HOME=$POLICY_HOME/gui
 
-RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/lib && \
-    chown -R policy:policy $POLICY_HOME $POLICY_LOGS && \
-    apk update && \
-    apk add --no-cache nginx
+RUN mkdir -p $POLICY_HOME $POLICY_LOGS $POLICY_HOME/bin $POLICY_HOME/etc/ssl && \
+    chown -R policy:policy $POLICY_HOME $POLICY_LOGS
 
-COPY --chown=policy:policy etc/ /etc/
+COPY --chown=policy:policy /maven/app.jar /app/
 COPY --chown=policy:policy policy-gui.sh $POLICY_HOME/bin/
-ADD --chown=policy:policy index.html /maven/gui-clamp-html.tar.gz /usr/share/nginx/html/
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log && \
-    touch /var/run/nginx.pid && \
-    chown -R policy:policy /etc/nginx /usr/share/nginx /var/lib/nginx /var/log/nginx /var/run/nginx.pid && \
-    chmod 755 $POLICY_HOME/bin/*.sh
+COPY --chown=policy:policy config/application.yml $POLICY_HOME/etc/
+COPY --chown=policy:policy config/logback.xml $POLICY_HOME/etc/
+RUN chmod 755 $POLICY_HOME/bin/*.sh
 
 USER policy
 WORKDIR $POLICY_HOME/bin
