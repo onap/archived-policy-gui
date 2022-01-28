@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ function eventTab_activate() {
         $("#eventTableBody").find("tr:gt(0)").remove();
 
 
-        for (let value of data.messages.message) {
+        for (let value of data.messages) {
             var event = JSON.parse(value).apexEvent;
 
             var eventTableRow_tr = document.createElement("tr");

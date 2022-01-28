@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ function editContextAlbumForm_createContextAlbum(formParent) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (let value of data2.messages.message) {
+        for (let value of data2.messages) {
             var contextSchema = JSON.parse(value).apexContextSchema;
             contextSchemas.push({
                 "name" : contextSchema.key.name,
@@ -63,7 +63,7 @@ function editContextAlbumForm_viewContextAlbum(parent, name, version) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (let value of data2.messages.message) {
+            for (let value of data2.messages) {
                 var contextSchema = JSON.parse(value).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
@@ -84,7 +84,7 @@ function editContextAlbumForm_editContextAlbum(formParent, name, version) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (let value of data2.messages.message) {
+            for (let value of data2.messages) {
                 var contextSchema = JSON.parse(value).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,

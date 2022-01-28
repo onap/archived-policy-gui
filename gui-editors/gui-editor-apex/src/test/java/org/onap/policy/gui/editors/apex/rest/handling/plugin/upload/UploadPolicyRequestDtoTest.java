@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class UploadPolicyRequestDtoTest {
+class UploadPolicyRequestDtoTest {
     private final Random random = new Random();
 
     @Test
-    public void testId() {
+    void testId() {
         final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
         final var id = random.nextLong();
         uploadPolicyRequestDto.setId(id);
@@ -38,7 +38,7 @@ public class UploadPolicyRequestDtoTest {
     }
 
     @Test
-    public void testUserId() {
+    void testUserId() {
         final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
         final var id = RandomStringUtils.randomAlphanumeric(5);
         uploadPolicyRequestDto.setUserId(id);
@@ -46,7 +46,7 @@ public class UploadPolicyRequestDtoTest {
     }
 
     @Test
-    public void testFileName() {
+    void testFileName() {
         final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
         final var filename = RandomStringUtils.randomAlphabetic(6);
         uploadPolicyRequestDto.setFilename(filename);
@@ -54,7 +54,7 @@ public class UploadPolicyRequestDtoTest {
     }
 
     @Test
-    public void testFileData() {
+    void testFileData() {
         final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
         final var fileData = RandomStringUtils.randomAlphabetic(6);
         uploadPolicyRequestDto.setFileData(fileData);

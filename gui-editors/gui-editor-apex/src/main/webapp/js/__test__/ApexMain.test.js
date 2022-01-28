@@ -30,18 +30,16 @@ const keyInformationTab = require('../ApexKeyInformationTab');
 require('../../dist/js/jquery-ui-1.12.1/jquery-ui.js');
 
 const data = {
-    messages: {
-        message: [
-            '{' +
-            '    "apexArtifactKey": {' +
-            '        "key": {' +
-            '            "name": "name1",' +
-            '            "version": "version1"' +
-            '        }' +
-            '    }' +
-            '}'
-        ]
-    },
+    messages: [
+        '{' +
+        '    "apexArtifactKey": {' +
+        '        "key": {' +
+        '            "name": "name1",' +
+        '            "version": "version1"' +
+        '        }' +
+        '    }' +
+        '}'
+    ],
     content: ['01', '02'],
     result: 'ok',
     ok: true
