@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,312 +21,364 @@
 
 package org.onap.policy.gui.editors.apex.rest.handling;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-import java.io.IOException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
+import org.onap.policy.common.utils.coder.StandardCoder;
 import org.onap.policy.common.utils.resources.TextFileUtils;
+import org.onap.policy.gui.editors.apex.ApexEditor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 /**
  * Test Apex Editor Rest Resource.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
-public class ApexEditorRestResourceTest extends JerseyTest {
-    @Override
-    protected Application configure() {
-        return new ResourceConfig(ApexEditorRestResource.class).register(MultiPartFeature.class);
-    }
+@SpringBootTest(classes = ApexEditor.class)
+@AutoConfigureMockMvc
+class ApexEditorRestResourceTest {
+
+    private static final String BASE_URL = "/policy/gui/v1/apex/editor/{sessionId}";
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Autowired
+    private RestSessionHandler sessionHandler;
 
     @Test
-    public void testSessionCreate() {
-        ApexApiResult result = target("editor/-2/Session/Create").request().get(ApexApiResult.class);
+    void testSessionCreate() throws Exception {
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -2));
         assertEquals(Result.FAILED, result.getResult());
 
-        result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
-        result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
 
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+        final int corruptSessionId = createCorruptSession();
 
-        target("editor/" + corruptSessionId + "/Model/Analyse").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Model/Analyse", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Model/Analyse").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Analyse", sessionId));
         assertEquals(Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Model/Analyse").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Analyse", -12345));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/12345/Model/Analyse").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Analyse", 12345));
         assertEquals(Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Model/Validate").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Model/Validate", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Model/Validate").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Validate", sessionId));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/-12345/Model/Validate").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Validate", -12345));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/12345/Model/Validate").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Validate", 12345));
         assertEquals(Result.FAILED, result.getResult());
 
         final String modelString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002699\","
             + "\"description\"      : \"A description of the model\"" + "}";
-        final Entity<String> csEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Model/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Model/Create", -12345)
+                .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/-12345/Model/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Model/Create", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Model/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Model/Create", 1234545)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Model/Create", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Model/Create").request().post(csEntity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Model/Create", corruptSessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
 
-        result = target("editor/-12345/Model/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Update", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/-12345/Model/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Update", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Model/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Update", 1234545)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Update", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Model/Update").request().put(csEntity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Update", corruptSessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
 
-        target("editor/" + corruptSessionId + "/Model/GetKey").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Model/GetKey", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Model/GetKey").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/GetKey", sessionId));
         assertEquals(Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Model/GetKey").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/GetKey", -12345));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/12345/Model/GetKey").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/GetKey", 12345));
         assertEquals(Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Model/Get").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Model/Get", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Model/Get").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Get", sessionId));
         assertEquals(Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Model/Get").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Get", -12345));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/12345/Model/Get").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Get", 12345));
         assertEquals(Result.FAILED, result.getResult());
 
-        String resultString = target("editor/" + corruptSessionId + "/Model/Download").request().get(String.class);
+        String resultString = requestString(get(BASE_URL + "/Model/Download", corruptSessionId));
         assertEquals("", resultString);
 
-        resultString = target("editor/" + sessionId + "/Model/Download").request().get(String.class);
+        resultString = requestString(get(BASE_URL + "/Model/Download", sessionId));
         assertNotNull(resultString);
     }
 
     @Test
-    public void testSessionCreateExt() {
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+    void testSessionCreateExt() throws Exception {
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
 
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
-        target("editor/-1/Session/Create").request().get(ApexApiResult.class);
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+        apexRequest(get(BASE_URL + "/Session/Create", -1));
+        final int corruptSessionId = createCorruptSession();
 
-        String resultString = target("editor/-12345/Model/Download").request().get(String.class);
+        String resultString = requestString(get(BASE_URL + "/Model/Download", -12345));
         assertEquals("", resultString);
 
-        resultString = target("editor/12345/Model/Download").request().get(String.class);
+        resultString = requestString(get(BASE_URL + "/Model/Download", 12345));
         assertEquals("", resultString);
 
-        target("editor/" + corruptSessionId + "/KeyInformation/Get").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/KeyInformation/Get", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/KeyInformation/Get").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/KeyInformation/Get", sessionId));
         assertEquals(Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/KeyInformation/Get").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/KeyInformation/Get", -12345));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/12345/KeyInformation/Get").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/KeyInformation/Get", 12345));
         assertEquals(Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Model/Delete").request().delete(ApexApiResult.class);
+        apexRequest(delete(BASE_URL + "/Model/Delete", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Model/Delete").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Model/Delete", sessionId));
         assertEquals(Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Model/Delete").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Model/Delete", -12345));
         assertEquals(Result.FAILED, result.getResult());
-        result = target("editor/12345/Model/Delete").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Model/Delete", 12345));
         assertEquals(Result.FAILED, result.getResult());
     }
 
     @Test
-    public void testContextSchema() throws IOException {
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+    void testContextSchema() throws Exception {
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+        final int corruptSessionId = createCorruptSession();
 
-        result = target("editor/-12345/Validate/ContextSchema").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextSchema", -12345));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Validate/ContextSchema").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Validate/ContextSchema", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Validate/ContextSchema").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextSchema", sessionId));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/ContextSchema").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextSchema", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/ContextSchema").queryParam("name", "%%%$£")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextSchema", sessionId)
+            .queryParam("name", "%%%$£")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
-
-        Entity<String> modelEntity = Entity.entity("Somewhere over the rainbow", MediaType.APPLICATION_JSON);
-        result = target("editor/" + -12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        String modelString = "Somewhere over the rainbow";
+        result = apexRequest(put(BASE_URL + "/Model/Load", -12345)
+            .content(modelString)
+            .contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + 12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", 12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity("", MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = "";
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/ContextSchema/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextSchema/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextSchema/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/ContextSchema/Get", corruptSessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
         String csString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"schemaFlavour\"    : \"Java\"," + "\"schemaDefinition\" : \"java.lang.String\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> csEntity = Entity.entity(csString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/ContextSchema/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/ContextSchema/Create", -12345)
+            .content(csString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/ContextSchema/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/ContextSchema/Create", 1234545)
+            .content(csString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/ContextSchema/Create").request().post(csEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/ContextSchema/Create", sessionId)
+            .content(csString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextSchema/Create").request().post(csEntity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/ContextSchema/Create", corruptSessionId)
+            .content(csString).contentType(APPLICATION_JSON));
 
         csString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"schemaFlavour\"    : \"Java\"," + "\"schemaDefinition\" : \"my.perfect.String\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        csEntity = Entity.entity(csString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/ContextSchema/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/ContextSchema/Update", -12345)
+            .content(csString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/ContextSchema/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/ContextSchema/Update", 1234545)
+            .content(csString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/ContextSchema/Update").request().put(csEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/ContextSchema/Update", sessionId)
+            .content(csString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextSchema/Update").request().put(csEntity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/ContextSchema/Update", corruptSessionId)
+            .content(csString).contentType(APPLICATION_JSON));
 
-        result = target("editor/" + sessionId + "/ContextSchema/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextSchema/Get", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/ContextSchema/Get").queryParam("name", "NonExistant")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextSchema/Get", sessionId)
+            .queryParam("name", "NonExistant")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
-        result = target("editor/-123345/ContextSchema/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextSchema/Get", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/ContextSchema/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextSchema/Get", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextSchema/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/ContextSchema/Get", corruptSessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
 
-        result = target("editor/" + sessionId + "/Validate/ContextSchema").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextSchema", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextSchema/Delete").queryParam("name", "Hello")
-            .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
+        apexRequest(delete(BASE_URL + "/ContextSchema/Delete", corruptSessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", "0.0.2"));
 
-        result = target("editor/-123345/ContextSchema/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextSchema/Delete", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/ContextSchema/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextSchema/Delete", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/ContextSchema/Delete").queryParam("name", "Hello")
-            .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextSchema/Delete", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", "0.0.2"));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testContextSchemaExt() throws IOException {
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+    void testContextSchemaExt() throws Exception {
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
         final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
 
-        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
-        target("editor/" + sessionId + "/ContextSchema/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
+        apexRequest(get(BASE_URL + "/ContextSchema/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
-        result = target("editor/" + sessionId + "/ContextSchema/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextSchema/Delete", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testContextAlbum() throws IOException {
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+    void testContextAlbum() throws Exception {
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+        final int corruptSessionId = createCorruptSession();
 
-        result = target("editor/-12345/Validate/ContextAlbum").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextAlbum", -12345));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Validate/ContextAlbum").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Validate/ContextAlbum", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Validate/ContextAlbum").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextAlbum", sessionId));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/ContextAlbum").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextAlbum", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/ContextAlbum").queryParam("name", "%%%$£")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextAlbum", sessionId)
+            .queryParam("name", "%%%$£")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
-
-        Entity<String> modelEntity = Entity.entity("Somewhere over the rainbow", MediaType.APPLICATION_JSON);
-        result = target("editor/" + -12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        String modelString = "Somewhere over the rainbow";
+        result = apexRequest(put(BASE_URL + "/Model/Load", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + 12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", 12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity("", MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = "";
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/ContextAlbum/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextAlbum/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         String caString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
@@ -334,146 +386,173 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"itemSchema\"       : {\"name\" : \"StringType\", \"version\" : \"0.0.1\"},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> caEntity = Entity.entity(caString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/ContextAlbum/Create").request().post(caEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/ContextAlbum/Create", -12345)
+            .content(caString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/ContextAlbum/Create").request().post(caEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/ContextAlbum/Create", 1234545)
+            .content(caString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/ContextAlbum/Create").request().post(caEntity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/ContextAlbum/Create", sessionId)
+            .content(caString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextAlbum/Create").request().post(caEntity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/ContextAlbum/Create", corruptSessionId)
+            .content(caString).contentType(APPLICATION_JSON));
 
         caString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"scope\"            : \"Global\"," + "\"writeable\"        : false,"
             + "\"itemSchema\"       : {\"name\" : \"StringType\", \"version\" : \"0.0.1\"},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        caEntity = Entity.entity(caString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/ContextAlbum/Update").request().put(caEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/ContextAlbum/Update", -12345)
+            .content(caString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/ContextAlbum/Update").request().put(caEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/ContextAlbum/Update", 1234545)
+            .content(caString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/ContextAlbum/Update").request().put(caEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/ContextAlbum/Update", sessionId)
+            .content(caString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextAlbum/Update").request().put(caEntity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/ContextAlbum/Update", corruptSessionId)
+            .content(caString).contentType(APPLICATION_JSON));
 
-        target("editor/" + corruptSessionId + "/ContextAlbum/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/ContextAlbum/Get", corruptSessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
 
-        result = target("editor/" + sessionId + "/ContextAlbum/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextAlbum/Get", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/ContextAlbum/Get").queryParam("name", "IDontExist")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextAlbum/Get", sessionId)
+            .queryParam("name", "IDontExist")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
-        result = target("editor/-123345/ContextAlbum/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextAlbum/Get", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/ContextAlbum/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/ContextAlbum/Get", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/ContextAlbum").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/ContextAlbum", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/ContextAlbum/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        apexRequest(delete(BASE_URL + "/ContextAlbum/Delete", corruptSessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
-        result = target("editor/-123345/ContextAlbum/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextAlbum/Delete", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/ContextAlbum/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextAlbum/Delete", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/ContextAlbum/Delete").queryParam("name", "Hello")
-            .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/ContextAlbum/Delete", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", "0.0.2"));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testContextAlbumExt() throws IOException {
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+    void testContextAlbumExt() throws Exception {
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
 
-        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
-        target("editor/" + sessionId + "/ContextAlbum/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
+        apexRequest(get(BASE_URL + "/ContextAlbum/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testEvent() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testEvent() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
-        result = target("editor/-12345/Validate/Event").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", -12345));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/Event").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", sessionId));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Validate/Event").request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Validate/Event", corruptSessionId));
 
-        result = target("editor/" + sessionId + "/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/Event").queryParam("name", "%%%$£")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", sessionId)
+            .queryParam("name", "%%%$£")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.yaml");
-
-        Entity<String> modelEntity = Entity.entity("Somewhere over the rainbow", MediaType.APPLICATION_JSON);
-        result = target("editor/" + -12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        String modelString = "Somewhere over the rainbow";
+        result = apexRequest(put(BASE_URL + "/Model/Load", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + 12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", 12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity("", MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = "";
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.yaml");
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.the.rainbow\"," + "\"source\"           : \"beginning\","
             + "\"target\"           : \"end\"," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", -12345)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_EXISTS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Event/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"Hiya\"," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.the.rainbow\"," + "\"source\"           : \"beginning\","
             + "\"target\"           : \"end\"," + "\"parameters\"       : {},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HowsItGoing\"," + "\"version\"          : \"0.0.2\","
@@ -483,8 +562,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"Par0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hi\"," + "\"version\"          : \"0.0.2\","
@@ -492,8 +571,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"target\"           : \"end\"," + "\"parameters\"       : {\"Par0\" : null},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"GoodDay\"," + "\"version\"          : \"0.0.2\","
@@ -503,176 +582,204 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"Par0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.someone.elses.rainbow\"," + "\"source\"           : \"start\","
             + "\"target\"           : \"finish\"," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Event/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Event/Update", -12345)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Event/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Event/Update", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Event/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Event/Update").request().put(entity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Event/Update", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : null," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.someone.elses.rainbow\"," + "\"source\"           : \"start\","
             + "\"target\"           : \"finish\"," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Event/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Event/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"NonExistantEvent\"," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.someone.elses.rainbow\"," + "\"source\"           : \"start\","
             + "\"target\"           : \"finish\"," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Event/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Event/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Event/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testEventExt() {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testEventExt() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.the.rainbow\"," + "\"source\"           : \"beginning\","
             + "\"target\"           : \"end\"," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"Hiya\"," + "\"version\"          : \"0.0.2\","
             + "\"namespace\"        : \"somewhere.over.the.rainbow\"," + "\"source\"           : \"beginning\","
             + "\"target\"           : \"end\"," + "\"parameters\"       : {},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity  = Entity.entity(entityString, MediaType.APPLICATION_JSON);
 
-        target("editor/" + sessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + corruptSessionId + "/Event/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + sessionId + "/Event/Update").request().put(entity, ApexApiResult.class);
-        result = target("editor/" + sessionId + "/Event/Get").queryParam("name", "IDontExist")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Event/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(post(BASE_URL + "/Event/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(put(BASE_URL + "/Event/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        result = apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", "IDontExist")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
-        result = target("editor/-123345/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Event/Get", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Event/Get", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Event/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Event/Get", corruptSessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
 
-        result = target("editor/" + sessionId + "/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", -12345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/12345/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", 12345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Event/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        apexRequest(delete(BASE_URL + "/Event/Delete", corruptSessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
-        result = target("editor/-123345/Event/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Event/Delete", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/Event/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Event/Delete", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Delete").queryParam("name", "Hello")
-            .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Event/Delete", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", "0.0.2"));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Event/Delete", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testTask() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testTask() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
-        result = target("editor/-12345/Validate/Task").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Task", -12345));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/Task").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Task", sessionId));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         try {
-            target("editor/" + corruptSessionId + "/Validate/Task").request().get(ApexApiResult.class);
+            apexRequest(get(BASE_URL + "/Validate/Task", corruptSessionId));
         } catch (final Exception e) {
             assertEquals("HTTP 500 Request failed.", e.getMessage());
         }
 
-        result = target("editor/" + sessionId + "/Validate/Task").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Task", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Validate/Task").queryParam("name", "%%%$£")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Task", sessionId)
+            .queryParam("name", "%%%$£")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
-
-        Entity<String> modelEntity = Entity.entity("Somewhere over the rainbow", MediaType.APPLICATION_JSON);
-        result = target("editor/" + -12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        String modelString = "Somewhere over the rainbow";
+        result = apexRequest(put(BASE_URL + "/Model/Load", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + 12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", 12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity("", MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = "";
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", -12345)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_EXISTS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Task/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"Hiya\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HowsItGoing\"," + "\"version\"          : \"0.0.2\","
@@ -680,16 +787,16 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"IField0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hi\"," + "\"version\"          : \"0.0.2\","
             + "\"inputFields\"      : {\"IField0\" : null},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"GoodDay\"," + "\"version\"          : \"0.0.2\","
@@ -697,8 +804,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"IField0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Howdy\"," + "\"version\"          : \"0.0.2\","
@@ -706,8 +813,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"NotIField0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HowsItGoing2\"," + "\"version\"          : \"0.0.2\","
@@ -715,16 +822,16 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"OField0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hi2\"," + "\"version\"          : \"0.0.2\","
             + "\"outputFields\"     : {\"OField0\" : null},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"GoodDay2\"," + "\"version\"          : \"0.0.2\","
@@ -732,8 +839,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + " \"localName\" : \"OField0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Howdy2\"," + "\"version\"          : \"0.0.2\","
@@ -741,45 +848,47 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"localName\" : \"NotOField0\", \"optional\" : false}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
     }
 
     @Test
-    public void testTaskExt() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testTaskExt() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
 
-        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
-        target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
+        apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + corruptSessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(post(BASE_URL + "/Task/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+
         entityString = "{" + "\"name\"             : \"HowsItGoing3\"," + "\"version\"          : \"0.0.2\","
             + "\"taskLogic\"        : {\"logicFlavour\" : \"LemonAndLime\", \"logic\" : \"lots of lemons,"
             + " lots of lime\"}," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hi3\"," + "\"version\"          : \"0.0.2\","
             + "\"taskLogic\"        : null," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"GoodDay3\"," + "\"version\"          : \"0.0.2\","
@@ -788,16 +897,16 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"taskLogic\"        : {\"logicFlavour\" : \"UNDEFINED\", \"logic\" : \"lots of lemons,"
             + " lots of lime\"}," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Howdy3\"," + "\"version\"          : \"0.0.2\","
             + "\"taskLogic\"        : {\"logicFlavour\" : \"LemonAndLime\", \"logic\" : null},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HowsItGoing4\"," + "\"version\"          : \"0.0.2\","
@@ -805,199 +914,224 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"defaultValue\" : \"Parameter Defaultvalue\"}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hi4\"," + "\"version\"          : \"0.0.2\","
             + "\"parameters\"       : {\"Par0\" : null},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"GoodDay4\"," + "\"version\"          : \"0.0.2\","
             + "\"parameters\"       : {\"Par0\" : {\"parameterName\" : \"NotPar0\", \"defaultValue\" : "
             + "\"Parameter Defaultvalue\"}}," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Howdy4\"," + "\"version\"          : \"0.0.2\","
             + "\"parameters\"       : {\"Par0\" : {\"parameterName\" : \"MyParameter\", \"defaultValue\" : null}},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HowsItGoing5\"," + "\"version\"          : \"0.0.2\","
             + "\"contexts\"         : [{\"name\" : \"contextAlbum0\", \"version\" : \"0.0.1\"}],"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hi5\"," + "\"version\"          : \"0.0.2\","
             + "\"contexts\"         : []," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"GoodDay5\"," + "\"version\"          : \"0.0.2\","
             + "\"contexts\"         : [{\"name\" : \"NonExistantType\", \"version\" : \"0.0.1\"}],"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Howdy5\"," + "\"version\"          : \"0.0.2\","
             + "\"contexts\"         : [{\"name\" : null, \"version\" : \"0.0.1\"}],"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002799\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Task/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Task/Update", -12345)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Task/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Task/Update", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Task/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Task/Update").request().put(entity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Task/Update", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : null," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Task/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"NonExistantEvent\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Task/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Task/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Task/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Task/Get", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Task/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Get").queryParam("name", "IDontExist")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Task/Get", sessionId)
+            .queryParam("name", "IDontExist")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
-        result = target("editor/-123345/Task/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Task/Get", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/Task/Get").queryParam("name", (String) null).queryParam("version", (String) null)
-            .request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Task/Get", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Task/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Task/Get", corruptSessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
 
-        result = target("editor/" + sessionId + "/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", -12345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/12345/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", 12345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
     }
 
     @Test
-    public void testTaskExt_2() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testTaskExt_2() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
 
-        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
-        target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
+        apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
 
-        target("editor/1234545/Task/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + sessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + corruptSessionId + "/Task/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Task/Create", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(post(BASE_URL + "/Task/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(post(BASE_URL + "/Task/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
-        result = target("editor/-123345/Task/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Task/Delete", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/Task/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Task/Delete", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Delete").queryParam("name", "Hello")
-            .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Task/Delete", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", "0.0.2"));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Task/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Task/Delete", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
     @Test
-    public void testPolicy() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testPolicy() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         assertEquals(Result.SUCCESS, result.getResult());
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
-        result = target("editor/-12345/Model/Validate").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Validate", -12345));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        result = target("editor/" + sessionId + "/Model/Validate").request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Validate", sessionId));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Model/Validate").request().get(ApexApiResult.class);
-        result = target("editor/" + sessionId + "/Model/Validate").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Model/Validate", corruptSessionId));
+        result = apexRequest(get(BASE_URL + "/Model/Validate", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        result = target("editor/" + sessionId + "/Model/Validate").queryParam("name", "%%%$£")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Model/Validate", sessionId)
+            .queryParam("name", "%%%$£")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
-
-        Entity<String> modelEntity = Entity.entity("Somewhere over the rainbow", MediaType.APPLICATION_JSON);
-        result = target("editor/" + -12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        String modelString = "Somewhere over the rainbow";
+        result = apexRequest(put(BASE_URL + "/Model/Load", -12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + 12345 + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", 12345)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity("", MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = "";
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
+        result = apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Event/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Event/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
@@ -1011,24 +1145,28 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", -12345)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_EXISTS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Policy/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"GoodTaSeeYa\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
             + "\"states\"           : null," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HelloAnother\"," + "\"version\"          : \"0.0.2\","
@@ -1042,8 +1180,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello2\"," + "\"version\"          : \"0.0.2\","
@@ -1057,8 +1195,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello3\"," + "\"version\"          : \"0.0.2\","
@@ -1072,8 +1210,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello4\"," + "\"version\"          : \"0.0.2\","
@@ -1086,8 +1224,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello5\"," + "\"version\"          : \"0.0.2\","
@@ -1099,8 +1237,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"nextState\"    : null" + "   }" + "  }," + "  \"tasks\"          : null" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello6\"," + "\"version\"          : \"0.0.2\","
@@ -1114,8 +1252,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello7\"," + "\"version\"          : \"0.0.2\","
@@ -1123,8 +1261,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "\"states\"           : {" + " \"state\"           : null" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello8\"," + "\"version\"          : \"0.0.2\","
@@ -1139,8 +1277,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello9\"," + "\"version\"          : \"0.0.2\","
@@ -1154,23 +1292,23 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         System.err.println(result);
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
     }
 
     @Test
-    public void testPolicyExt() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testPolicyExt() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
         final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
 
-        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
@@ -1183,10 +1321,11 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
 
-        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + corruptSessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(post(BASE_URL + "/Policy/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"HelloAnother\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
@@ -1199,8 +1338,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"Hello10\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
@@ -1213,8 +1352,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"             : \"Hello11\"," + "\"version\"          : \"0.0.2\","
@@ -1227,8 +1366,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"task\"         : null," + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\""
             + "   }" + "  }" + " }" + "}," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello12\"," + "\"version\"              : \"0.0.2\","
@@ -1245,8 +1384,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"       : \"DIRECT\"," + "    \"outputName\"       : \"so0\"" + "   }" + "  }" + " }"
             + "}," + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello13\"," + "\"version\"              : \"0.0.2\","
@@ -1263,8 +1402,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"       : \"DIRECT\"," + "    \"outputName\"       : \"so0\"" + "   }" + "  }" + " }"
             + "}," + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello14\"," + "\"version\"              : \"0.0.2\","
@@ -1283,8 +1422,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"       : \"DIRECT\"," + "    \"outputName\"       : \"so0\"" + "   }" + "  }" + " }"
             + "}," + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello15\"," + "\"version\"              : \"0.0.2\","
@@ -1302,8 +1441,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"       : \"DIRECT\"," + "    \"outputName\"       : \"so0\"" + "   }" + "  }" + " }"
             + "}," + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello16\"," + "\"version\"              : \"0.0.2\","
@@ -1321,8 +1460,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"       : \"DIRECT\"," + "    \"outputName\"       : \"so0\"" + "   }" + "  }" + " }"
             + "}," + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello17\"," + "\"version\"              : \"0.0.2\","
@@ -1344,8 +1483,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "lots of lime\"}" + "  }" + " }" + "},"
             + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello18\"," + "\"version\"              : \"0.0.2\","
@@ -1365,8 +1504,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "  \"finalizers\"         : {" + "   \"sf0\"               : null" + "  }" + " }" + "},"
             + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"                 : \"Hello19\"," + "\"version\"              : \"0.0.2\","
@@ -1387,8 +1526,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "   \"sf0\"               : {\"logicFlavour\" : \"LemonAndLime\", \"logic\" : null}" + "  }" + " }" + "},"
             + "\"uuid\"                 : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"          : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        result = apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"HelloAnother\"," + "\"version\"          : \"0.0.2\","
@@ -1402,19 +1541,23 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A better description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/-12345/Policy/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Policy/Update", -12345)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/1234545/Policy/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Policy/Update", 1234545)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Policy/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        result = target("editor/" + sessionId + "/Policy/Update").queryParam("firstStatePeriodic", "true").request()
-            .put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Policy/Update", sessionId)
+            .queryParam("firstStatePeriodic", "true")
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Policy/Update").request().put(entity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Policy/Update", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : null," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
@@ -1427,8 +1570,8 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A better description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Policy/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
         entityString = "{" + "\"name\"             : \"IDontExist\"," + "\"version\"          : \"0.0.2\","
@@ -1442,63 +1585,75 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A better description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        result = target("editor/" + sessionId + "/Policy/Update").request().put(entity, ApexApiResult.class);
+        result = apexRequest(put(BASE_URL + "/Policy/Update", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
 
-        result = target("editor/" + sessionId + "/Policy/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Policy/Get", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Get").queryParam("name", "IDontExist")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Policy/Get", sessionId)
+            .queryParam("name", "IDontExist")
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.CONCEPT_DOES_NOT_EXIST, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Policy/Get", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/-123345/Policy/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Policy/Get", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/123345/Policy/Get").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Policy/Get", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Policy/Get").queryParam("name", "Hello")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Policy/Get", corruptSessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", (String) null));
 
-        result = target("editor/" + sessionId + "/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/-12345/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", -12345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/12345/Validate/Event").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        result = apexRequest(get(BASE_URL + "/Validate/Event", 12345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
-        target("editor/" + corruptSessionId + "/Policy/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        apexRequest(delete(BASE_URL + "/Policy/Delete", corruptSessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
 
-        result = target("editor/-123345/Policy/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Policy/Delete", -123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
 
     }
 
     @Test
-    public void testPolicyExt_2() throws IOException {
-        final int corruptSessionId = ApexEditorRestResource.createCorruptSession();
+    void testPolicyExt_2() throws Exception {
+        final int corruptSessionId = createCorruptSession();
 
-        ApexApiResult result = target("editor/-1/Session/Create").request().get(ApexApiResult.class);
+        ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
         final int sessionId = Integer.parseInt(result.getMessages().get(0));
 
-        target("editor/" + corruptSessionId + "/Model/Validate").request().get(ApexApiResult.class);
-        target("editor/" + sessionId + "/Model/Validate").queryParam("name", "%%%$£")
-            .queryParam("version", (String) null).request().get(ApexApiResult.class);
+        apexRequest(get(BASE_URL + "/Model/Validate", corruptSessionId));
+        apexRequest(get(BASE_URL + "/Model/Validate", sessionId)
+            .queryParam("name", "%%%$£")
+            .queryParam("version", (String) null));
 
         final String modelString = TextFileUtils.getTextFileAsString("src/test/resources/models/PolicyModel.json");
 
-        Entity<String> modelEntity = Entity.entity(modelString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Model/Load").request().put(modelEntity, ApexApiResult.class);
+        apexRequest(put(BASE_URL + "/Model/Load", sessionId)
+            .content(modelString).contentType(APPLICATION_JSON));
 
         String entityString = "{" + "\"name\"             : \"Hello\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
@@ -1511,26 +1666,55 @@ public class ApexEditorRestResourceTest extends JerseyTest {
             + "    \"outputType\"   : \"DIRECT\"," + "    \"outputName\"   : \"so0\"" + "   }" + "  }" + " }" + "},"
             + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        Entity<String> entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
-        target("editor/" + corruptSessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
+        apexRequest(post(BASE_URL + "/Policy/Create", corruptSessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
         entityString = "{" + "\"name\"             : \"GoodTaSeeYa\"," + "\"version\"          : \"0.0.2\","
             + "\"template\"         : \"somewhere.over.the.rainbow\"," + "\"firstState\"       : \"state\","
             + "\"states\"           : null," + "\"uuid\"             : \"1fa2e430-f2b2-11e6-bc64-92361f002671\","
             + "\"description\"      : \"A description of hello\"" + "}";
-        entity = Entity.entity(entityString, MediaType.APPLICATION_JSON);
-        target("editor/" + sessionId + "/Policy/Create").request().post(entity, ApexApiResult.class);
+        apexRequest(post(BASE_URL + "/Policy/Create", sessionId)
+            .content(entityString).contentType(APPLICATION_JSON));
 
-        result = target("editor/123345/Policy/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Policy/Delete", 123345)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.FAILED, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Delete").queryParam("name", "Hello")
-            .queryParam("version", "0.0.2").request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Policy/Delete", sessionId)
+            .queryParam("name", "Hello")
+            .queryParam("version", "0.0.2"));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
-        result = target("editor/" + sessionId + "/Policy/Delete").queryParam("name", (String) null)
-            .queryParam("version", (String) null).request().delete(ApexApiResult.class);
+        result = apexRequest(delete(BASE_URL + "/Policy/Delete", sessionId)
+            .queryParam("name", (String) null)
+            .queryParam("version", (String) null));
         assertEquals(ApexApiResult.Result.SUCCESS, result.getResult());
     }
 
+    /*
+     * Make a request using MockMvc and return the response body as a string.
+     */
+    private String requestString(MockHttpServletRequestBuilder requestBuilder) throws Exception {
+        return mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString();
+    }
+
+    /*
+     * Make a request using MockMvc and return the decoded JSON response as an ApexApiResult.
+     */
+    private ApexApiResult apexRequest(MockHttpServletRequestBuilder requestBuilder) throws Exception {
+        String json = requestString(requestBuilder);
+        return new StandardCoder().decode(json, ApexApiResult.class);
+    }
+
+    /*
+     * This method is used only for testing and is used to cause an exception on calls from unit test to test exception
+     * handling.
+     */
+    private int createCorruptSession() throws Exception {
+        final ApexApiResult result = apexRequest(get(BASE_URL + "/Session/Create", -1));
+        final int corruptSessionId = Integer.parseInt(result.getMessages().get(0));
+        sessionHandler.setCorruptSession(corruptSessionId);
+        return corruptSessionId;
+    }
 }

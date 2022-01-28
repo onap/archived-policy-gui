@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,157 +33,154 @@ test('Test policyTab_activate', () => {
         port: 'port',
         username: 'username',
         password: 'password',
-        messages: {
-            message: [
-                '{' +
-                '    "apexPolicy": {' +
-                '        "policyKey": {' +
-                '            "name": "name1",' +
-                '            "version": "version1"' +
-                '        },' +
-                '        "template": "template1",' +
-                '        "firstState": "key11",' +
-                '        "state": {' +
-                '            "entry": [' +
-                '                {' +
-                '                    "key": "key1",' +
-                '                    "value": {' +
-                '                        "trigger": {' +
-                '                            "name": "name2",' +
-                '                            "version": "version2"' +
-                '                        },' +
-                '                        "taskReferences": {' +
-                '                            "entry": [' +
-                '                                {' +
-                '                                    "key": {' +
-                '                                        "name": "name3",' +
-                '                                        "version": "version3"' +
-                '                                    },' +
-                '                                    "version": "version2",' +
-                '                                    "value": {' +
-                '                                        "outputType": "outputType1",' +
-                '                                        "output": {' +
-                '                                            "localName": "localName1"' +
-                '                                        }' +
-                '                                    }' +
-                '                                }' +
-                '                            ]' +
-                '                        },' +
-                '                        "defaultTask": {' +
-                '                            "name": "name4",' +
-                '                            "version": "version4"' +
-                '                        },' +
-                '                        "taskSelectionLogic": {' +
-                '                            "logicFlavour": "logicFlavour1"' +
-                '                        },' +
-                '                        "stateOutputs": {' +
-                '                            "entry": [' +
-                '                                {' +
-                '                                    "key": "key2",' +
-                '                                    "value": {' +
-                '                                        "nextState": {' +
-                '                                            "localName": "localName2"' +
-                '                                        },' +
-                '                                        "outgoingEvent": {' +
-                '                                            "name": "name4",' +
-                '                                            "version": "version4"' +
-                '                                        }' +
-                '                                    }' +
-                '                                }' +
-                '                            ]' +
-                '                        },' +
-                '                        "stateFinalizerLogicMap": {' +
-                '                            "entry": [' +
-                '                                {' +
-                '                                    "key": "key3",' +
-                '                                    "value": {' +
-                '                                        "logicFlavour": "logicFlavour2"' +
-                '                                    }' +
-                '                                }' +
-                '                            ]' +
-                '                        },' +
-                '                        "contextAlbumReference": [' +
-                '                            {' +
-                '                                "name": "name5",' +
-                '                                "version": "version5"' +
-                '                            }' +
-                '                        ]' +
-                '                    }' +
-                '                },' +
-                '                {' +
-                '                    "key": "key11",' +
-                '                    "value": {' +
-                '                        "trigger": {' +
-                '                            "name": "name12",' +
-                '                            "version": "version12"' +
-                '                        },' +
-                '                        "taskReferences": {' +
-                '                            "entry": [' +
-                '                                {' +
-                '                                    "key": {' +
-                '                                        "name": "name13",' +
-                '                                        "version": "version13"' +
-                '                                    },' +
-                '                                    "version": "version12",' +
-                '                                    "value": {' +
-                '                                        "outputType": "outputType11",' +
-                '                                        "output": {' +
-                '                                            "localName": "localName11"' +
-                '                                        }' +
-                '                                    }' +
-                '                                }' +
-                '                            ]' +
-                '                        },' +
-                '                        "defaultTask": {' +
-                '                            "name": "name14",' +
-                '                            "version": "version14"' +
-                '                        },' +
-                '                        "taskSelectionLogic": {' +
-                '                            "logicFlavour": "logicFlavour11"' +
-                '                        },' +
-                '                        "stateOutputs": {' +
-                '                            "entry": [' +
-                '                                {' +
-                '                                    "key": "key12",' +
-                '                                    "value": {' +
-                '                                        "nextState": {' +
-                '                                            "localName": "localName12"' +
-                '                                        },' +
-                '                                        "outgoingEvent": {' +
-                '                                            "name": "name14",' +
-                '                                            "version": "version14"' +
-                '                                        }' +
-                '                                    }' +
-                '                                }' +
-                '                            ]' +
-                '                        },' +
-                '                        "stateFinalizerLogicMap": {' +
-                '                            "entry": [' +
-                '                                {' +
-                '                                    "key": "key13",' +
-                '                                    "value": {' +
-                '                                        "logicFlavour": "logicFlavour12"' +
-                '                                    }' +
-                '                                }' +
-                '                            ]' +
-                '                        },' +
-                '                        "contextAlbumReference": [' +
-                '                            {' +
-                '                                "name": "name15",' +
-                '                                "version": "version15"' +
-                '                            }' +
-                '                        ]' +
-                '                    }' +
-                '                }' +
-                '            ]' +
-                '        }' +
-                '    }' +
-                '}'
-            ]
-        },
+        messages: [
+            '{' +
+            '    "apexPolicy": {' +
+            '        "policyKey": {' +
+            '            "name": "name1",' +
+            '            "version": "version1"' +
+            '        },' +
+            '        "template": "template1",' +
+            '        "firstState": "key11",' +
+            '        "state": {' +
+            '            "entry": [' +
+            '                {' +
+            '                    "key": "key1",' +
+            '                    "value": {' +
+            '                        "trigger": {' +
+            '                            "name": "name2",' +
+            '                            "version": "version2"' +
+            '                        },' +
+            '                        "taskReferences": {' +
+            '                            "entry": [' +
+            '                                {' +
+            '                                    "key": {' +
+            '                                        "name": "name3",' +
+            '                                        "version": "version3"' +
+            '                                    },' +
+            '                                    "version": "version2",' +
+            '                                    "value": {' +
+            '                                        "outputType": "outputType1",' +
+            '                                        "output": {' +
+            '                                            "localName": "localName1"' +
+            '                                        }' +
+            '                                    }' +
+            '                                }' +
+            '                            ]' +
+            '                        },' +
+            '                        "defaultTask": {' +
+            '                            "name": "name4",' +
+            '                            "version": "version4"' +
+            '                        },' +
+            '                        "taskSelectionLogic": {' +
+            '                            "logicFlavour": "logicFlavour1"' +
+            '                        },' +
+            '                        "stateOutputs": {' +
+            '                            "entry": [' +
+            '                                {' +
+            '                                    "key": "key2",' +
+            '                                    "value": {' +
+            '                                        "nextState": {' +
+            '                                            "localName": "localName2"' +
+            '                                        },' +
+            '                                        "outgoingEvent": {' +
+            '                                            "name": "name4",' +
+            '                                            "version": "version4"' +
+            '                                        }' +
+            '                                    }' +
+            '                                }' +
+            '                            ]' +
+            '                        },' +
+            '                        "stateFinalizerLogicMap": {' +
+            '                            "entry": [' +
+            '                                {' +
+            '                                    "key": "key3",' +
+            '                                    "value": {' +
+            '                                        "logicFlavour": "logicFlavour2"' +
+            '                                    }' +
+            '                                }' +
+            '                            ]' +
+            '                        },' +
+            '                        "contextAlbumReference": [' +
+            '                            {' +
+            '                                "name": "name5",' +
+            '                                "version": "version5"' +
+            '                            }' +
+            '                        ]' +
+            '                    }' +
+            '                },' +
+            '                {' +
+            '                    "key": "key11",' +
+            '                    "value": {' +
+            '                        "trigger": {' +
+            '                            "name": "name12",' +
+            '                            "version": "version12"' +
+            '                        },' +
+            '                        "taskReferences": {' +
+            '                            "entry": [' +
+            '                                {' +
+            '                                    "key": {' +
+            '                                        "name": "name13",' +
+            '                                        "version": "version13"' +
+            '                                    },' +
+            '                                    "version": "version12",' +
+            '                                    "value": {' +
+            '                                        "outputType": "outputType11",' +
+            '                                        "output": {' +
+            '                                            "localName": "localName11"' +
+            '                                        }' +
+            '                                    }' +
+            '                                }' +
+            '                            ]' +
+            '                        },' +
+            '                        "defaultTask": {' +
+            '                            "name": "name14",' +
+            '                            "version": "version14"' +
+            '                        },' +
+            '                        "taskSelectionLogic": {' +
+            '                            "logicFlavour": "logicFlavour11"' +
+            '                        },' +
+            '                        "stateOutputs": {' +
+            '                            "entry": [' +
+            '                                {' +
+            '                                    "key": "key12",' +
+            '                                    "value": {' +
+            '                                        "nextState": {' +
+            '                                            "localName": "localName12"' +
+            '                                        },' +
+            '                                        "outgoingEvent": {' +
+            '                                            "name": "name14",' +
+            '                                            "version": "version14"' +
+            '                                        }' +
+            '                                    }' +
+            '                                }' +
+            '                            ]' +
+            '                        },' +
+            '                        "stateFinalizerLogicMap": {' +
+            '                            "entry": [' +
+            '                                {' +
+            '                                    "key": "key13",' +
+            '                                    "value": {' +
+            '                                        "logicFlavour": "logicFlavour12"' +
+            '                                    }' +
+            '                                }' +
+            '                            ]' +
+            '                        },' +
+            '                        "contextAlbumReference": [' +
+            '                            {' +
+            '                                "name": "name15",' +
+            '                                "version": "version15"' +
+            '                            }' +
+            '                        ]' +
+            '                    }' +
+            '                }' +
+            '            ]' +
+            '        }' +
+            '    }' +
+            '}'
+        ],
         content: ['01', '02'],
-        result: 'ok',
-        ok: true
+        result: 'SUCCESS'
     };
 
     $.ajax = jest.fn().mockImplementation((args) => {

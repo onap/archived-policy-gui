@@ -25,7 +25,6 @@ package org.onap.policy.gui.editors.apex.rest.handling;
 
 import java.util.Map;
 import org.onap.policy.apex.model.basicmodel.concepts.ApexRuntimeException;
-import org.onap.policy.apex.model.basicmodel.concepts.AxArtifactKey;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
 import org.onap.policy.apex.model.modelapi.ApexModel;
@@ -34,7 +33,6 @@ import org.onap.policy.common.utils.coder.CoderException;
 import org.onap.policy.common.utils.coder.StandardCoder;
 import org.onap.policy.common.utils.coder.StandardYamlCoder;
 import org.onap.policy.common.utils.resources.ResourceUtils;
-import org.onap.policy.gui.editors.apex.rest.handling.plugin.upload.PolicyUploadHandler;
 import org.onap.policy.models.tosca.authorative.concepts.ToscaPolicy;
 import org.onap.policy.models.tosca.authorative.concepts.ToscaServiceTemplate;
 import org.onap.policy.models.tosca.simple.concepts.JpaToscaServiceTemplate;
@@ -198,29 +196,6 @@ public class RestSession {
     }
 
     /**
-     * Upload the apex model as a TOSCA service template YAML string to the configured URL.
-     *
-     * @param userId  the userId to use for upload. If blank, the commandline
-     *                parameter "upload-userid" is used.
-     * @return a result indicating if the upload was successful or not
-     */
-    public ApexApiResult uploadModel(final String userId) {
-        // Get the model in TOSCA format
-        ApexApiResult result = downloadModel();
-        if (result.isNok()) {
-            return result;
-        }
-
-        ApexModel apexModelBeingUploaded = (apexModelEdited == null ? apexModel : apexModelEdited);
-
-        AxArtifactKey policyModelKey = apexModelBeingUploaded.getPolicyModel().getKey();
-
-        var policyModelUUid = apexModelBeingUploaded.getPolicyModel().getKeyInformation().get(policyModelKey)
-            .getUuid().toString();
-        return new PolicyUploadHandler().doUpload(result.getMessage(), policyModelKey, policyModelUUid, userId);
-    }
-
-    /**
      * Finish a session by committing or discarding the changes.
      *
      * @param commitFlag if true, commit changes otherwise discard them
@@ -258,5 +233,14 @@ public class RestSession {
      */
     public ApexModel getApexModelEdited() {
         return apexModelEdited;
+    }
+
+    /**
+     * Get the edited or unedited Apex model of the session.
+     *
+     * @return the apexModel
+     */
+    public ApexModel getApexModelToDownload() {
+        return apexModelEdited == null ? apexModel : apexModelEdited;
     }
 }

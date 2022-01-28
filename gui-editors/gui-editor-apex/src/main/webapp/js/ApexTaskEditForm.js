@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +33,7 @@ function editTaskForm_createTask(formParent) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (let value of data2.messages.message) {
+        for (let value of data2.messages) {
             var contextSchema = JSON.parse(value).apexContextSchema;
             var dt = {
                 "name" : contextSchema.key.name,
@@ -47,7 +47,7 @@ function editTaskForm_createTask(formParent) {
         requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
         var contextAlbums = new Array();
         ajax_get(requestURL, function(data3) {
-            for (let value of data3.messages.message) {
+            for (let value of data3.messages) {
                 var contextAlbum = JSON.parse(value).apexContextAlbum;
                 var ca = {
                     "name" : contextAlbum.key.name,
@@ -89,7 +89,7 @@ function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
-            for (let value of data2.messages.message) {
+            for (let value of data2.messages) {
                 var contextSchema = JSON.parse(value).apexContextSchema;
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
@@ -102,7 +102,7 @@ function editTaskForm_editTask_inner(formParent, name, version, viewOrEdit) {
             requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var contextAlbums = new Array();
             ajax_get(requestURL, function(data3) {
-                for (let value of data3.messages.message) {
+                for (let value of data3.messages) {
                     var contextAlbum = JSON.parse(value).apexContextAlbum;
                     var ca = {
                         "name" : contextAlbum.key.name,

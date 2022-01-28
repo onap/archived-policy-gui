@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -221,24 +221,23 @@ function pageControl_successStatus(data) {
     $('#statusString').html(data.result);
     $("#statusMessageTable").empty();
 
-    if (data.ok) {
+    if (data.result === 'SUCCESS' || data.result === 'FINISHED') {
         $('#statusString').css("color", "green");
         $('#ebInlineMessage-iconHolder-icon').attr("class", "ebIcon ebIcon_big ebIcon_tick");
     } else {
         $('#statusString').css("color", "red");
         $('#ebInlineMessage-iconHolder-icon').attr("class", "ebIcon ebIcon_big ebIcon_error");
-        for (let value of data.messages.message) {
+        for (let value of data.messages) {
             $("#statusMessageTable").append("<tr><td>" + value + "</td></tr>");
         }
         // A session with session ID "0" does not exist
         var sessionDoesNotExistStringStart = "A session with session ID ";
         var sessionDoesNotExistStringEnd = " does not exist";
-        if (data.content.indexOf(sessionDoesNotExistStringStart) !== -1
-                && data.content.indexOf(sessionDoesNotExistStringEnd) !== -1) {
+        if (data.messages[0].indexOf(sessionDoesNotExistStringStart) !== -1
+                && data.messages[0].indexOf(sessionDoesNotExistStringEnd) !== -1) {
             clearLocalStorage();
             location.reload();
         }
-        throw "REST call returned an error\n" + data;
     }
 }
 
@@ -246,7 +245,7 @@ function pageControl_status(data) {
     $('#statusString').html(data.result);
     $("#statusMessageTable").empty();
 
-    if (data.ok) {
+    if (data.result === 'SUCCESS' || data.result === 'FINISHED') {
         $('#statusString').css("color", "green");
         $('#ebInlineMessage-iconHolder-icon').attr("class", "ebIcon ebIcon_big ebIcon_tick");
     } else {

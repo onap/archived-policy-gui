@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,10 +40,8 @@ test('Test showPlaceholder hide', () => {
 
 test('Test pageControl_status', () => {
    let data = {
-      messages: {
-         message: []
-      },
-      ok: true
+      messages: [],
+      result: 'SUCCESS'
    };
    const mock_activate = jest.fn(mod.pageControl_status);
    mock_activate(data);
@@ -52,9 +50,7 @@ test('Test pageControl_status', () => {
 
 test('Test pageControl_status when data is not present', () => {
    let data = {
-      messages: {
-         message: []
-      }
+      messages: []
    };
    const mock_activate = jest.fn(mod.pageControl_status);
    mock_activate(data);

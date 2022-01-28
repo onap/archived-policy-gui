@@ -23,64 +23,51 @@ package org.onap.policy.gui.editors.apex.rest.handling;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Random;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.onap.policy.gui.editors.apex.rest.ApexEditorMain;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class RestSessionTest {
+class RestSessionTest {
 
     private int sessionId;
     private RestSession restSession;
 
-    @BeforeClass
-    public static void beforeClass() {
-        // Initialize ApexEditor
-        final String[] args = {"--time-to-live", "10", "--port", "12321", "--listen", "127.0.0.1"};
-        final var outBaStream = new ByteArrayOutputStream();
-        final var outStream = new PrintStream(outBaStream);
-        new ApexEditorMain(args, outStream);
-    }
-
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         sessionId = new Random().nextInt();
         restSession = new RestSession(sessionId);
     }
 
     @Test
-    public void testGetSessionId() {
+    void testGetSessionId() {
         final var actual = restSession.getSessionId();
         assertThat(actual).isEqualTo(sessionId);
     }
 
     @Test
-    public void testCommitChangesNoChanges() {
+    void testCommitChangesNoChanges() {
         final var apexApiResult = restSession.commitChanges();
         assertThat(apexApiResult.isNok()).isTrue();
     }
 
     @Test
-    public void testCommitChanges() {
+    void testCommitChanges() {
         restSession.editModel();
         final var apexApiResult = restSession.commitChanges();
         assertThat(apexApiResult.isOk()).isTrue();
     }
 
     @Test
-    public void testDiscardChangesNotEdited() {
+    void testDiscardChangesNotEdited() {
         final var apexApiResult = restSession.discardChanges();
         assertThat(apexApiResult.isNok()).isTrue();
     }
 
     @Test
-    public void testDiscardChanges() {
+    void testDiscardChanges() {
         restSession.editModel();
         final var apexApiResult = restSession.discardChanges();
         assertThat(apexApiResult.isOk()).isTrue();
@@ -88,13 +75,13 @@ public class RestSessionTest {
     }
 
     @Test
-    public void testDownloadModel() {
+    void testDownloadModel() {
         final var actual = restSession.downloadModel();
         assertThat(actual.isOk()).isTrue();
     }
 
     @Test
-    public void testEditModel() {
+    void testEditModel() {
         final var original = restSession.getApexModelEdited();
         final var apexApiResult = restSession.editModel();
         final var apexModelEdited = restSession.getApexModelEdited();
@@ -106,14 +93,14 @@ public class RestSessionTest {
     }
 
     @Test
-    public void testEditModelAlreadyEdited() {
+    void testEditModelAlreadyEdited() {
         restSession.editModel();
         final var apexApiResult = restSession.editModel();
         assertThat(apexApiResult.isNok()).isTrue();
     }
 
     @Test
-    public void testLoadFromString() throws IOException {
+    void testLoadFromString() throws IOException {
         restSession.editModel();
         final var toscaPath = Path.of("src/test/resources/models/PolicyModel.yaml");
         final var toscaString = Files.readString(toscaPath);
@@ -124,23 +111,12 @@ public class RestSessionTest {
     }
 
     @Test
-    public void testLoadFromStringNoPolicies() throws IOException {
+    void testLoadFromStringNoPolicies() throws IOException {
         restSession.editModel();
         final var toscaPath = Path.of("src/test/resources/models/PolicyModelNoPolicies.yaml");
         final var toscaString = Files.readString(toscaPath);
         final var apexApiResult = restSession.loadFromString(toscaString);
         assertThat(apexApiResult.isNok()).isTrue();
         assertThat(apexApiResult.getMessage()).contains("no policies");
-    }
-
-    @Test
-    public void testUploadModel() throws IOException {
-        restSession.editModel();
-        final var toscaPath = Path.of("src/test/resources/models/PolicyModel.yaml");
-        final var toscaString = Files.readString(toscaPath);
-        restSession.loadFromString(toscaString);
-        final var apexApiResult = restSession.uploadModel("");
-        assertThat(apexApiResult.isNok()).isTrue();
-        assertThat(apexApiResult.getMessage()).contains("Model upload is disabled");
     }
 }

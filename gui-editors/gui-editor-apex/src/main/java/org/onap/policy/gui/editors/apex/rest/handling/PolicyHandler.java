@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,10 +35,12 @@ import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanStateOutput;
 import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanStateTaskRef;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.stereotype.Service;
 
 /**
  * This class handles commands on policies in Apex models.
  */
+@Service
 public class PolicyHandler implements RestCommandHandler {
     // Get a reference to the logger
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(PolicyHandler.class);

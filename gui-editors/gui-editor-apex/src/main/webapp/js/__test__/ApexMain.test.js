@@ -30,21 +30,18 @@ const keyInformationTab = require('../ApexKeyInformationTab');
 require('../../dist/js/jquery-ui-1.12.1/jquery-ui.js');
 
 const data = {
-    messages: {
-        message: [
-            '{' +
-            '    "apexArtifactKey": {' +
-            '        "key": {' +
-            '            "name": "name1",' +
-            '            "version": "version1"' +
-            '        }' +
-            '    }' +
-            '}'
-        ]
-    },
+    messages: [
+        '{' +
+        '    "apexArtifactKey": {' +
+        '        "key": {' +
+        '            "name": "name1",' +
+        '            "version": "version1"' +
+        '        }' +
+        '    }' +
+        '}'
+    ],
     content: ['01', '02'],
-    result: 'ok',
-    ok: true
+    result: 'SUCCESS'
 };
 
 const jqXHR = { status: 200, responseText: "" };
@@ -85,7 +82,7 @@ test('Test main_getRestRootURL false', () => {
     const mock_main_getRestRootURL = jest.fn(mod.main_getRestRootURL);
     mock_main_getRestRootURL();
     expect(mock_main_getRestRootURL).toBeCalled();
-    expect(document.documentElement.innerHTML).toEqual('<head></head><body><div class="ebInlineMessage-description" id="statusMessageTable"><tr><td> REST root URL set to: http://localhost/apexservices/editor/false</td></tr></div></body>');
+    expect(document.documentElement.innerHTML).toEqual('<head></head><body><div class="ebInlineMessage-description" id="statusMessageTable"><tr><td> REST root URL set to: http://localhost/policy/gui/v1/apex/editor/false</td></tr></div></body>');
 });
 
 test('Test clearLocalStorage', () => {

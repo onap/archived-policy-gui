@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,18 +21,16 @@
 const mod = require('../ApexTaskTab');
 
 let data = {
-   messages: {
-      message: [
-         '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"},' +
-         '"taskLogic":{"logicFlavour":"logicFlavour"},"inputFields":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},' +
-         '"outputFields":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},' +
-         '"taskParameters":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},'+
-         '"contextAlbumReference":[{"name":"name", "version":"version"}]},'+
-         '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
-         '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
-      ]
-   },
-   ok: true
+   messages: [
+      '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"},' +
+      '"taskLogic":{"logicFlavour":"logicFlavour"},"inputFields":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},' +
+      '"outputFields":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},' +
+      '"taskParameters":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},'+
+      '"contextAlbumReference":[{"name":"name", "version":"version"}]},'+
+      '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
+      '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+   ],
+   result: 'SUCCESS'
 };
 
 test('test dom : taskTab_activate', () => {

@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +38,7 @@ function files_fileOpen() {
                 localStorage.setItem("apex_model_loaded", true);
                 requestURL = window.restRootURL + "/Model/GetKey";
                 ajax_get(requestURL, function(data) {
-                    var modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
+                    var modelKey = JSON.parse(data.messages[0]).apexArtifactKey;
                     pageControl_modelMode(modelKey.name, modelKey.version, fileName);
                 });
             });
@@ -65,7 +65,7 @@ function files_fileUpload() {
     }
     ajax_getOKOrFail(requestURL, function(data) {
         let uploadResultString = "";
-        for (let value of data.messages.message) {
+        for (let value of data.messages) {
             uploadResultString += (value + "\n");
         }
         resultForm_activate(document.getElementById("mainArea"), "Model Upload Result", uploadResultString);
