@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,7 +66,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
-        for (let value of data2.messages.message) {
+        for (let value of data2.messages) {
             var contextSchema = JSON.parse(value).apexContextSchema;
             contextSchemas.push({
                 "name" : contextSchema.key.name,
@@ -79,7 +79,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
         requestURL = window.restRootURL + "/Task/Get?name=&version=";
         var tasks = new Array();
         ajax_get(requestURL, function(data3) {
-            for (let value of data3.messages.message) {
+            for (let value of data3.messages) {
                 var task = JSON.parse(value).apexTask;
                 tasks.push({
                     "name" : task.key.name,
@@ -92,7 +92,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
             requestURL = window.restRootURL + "/ContextAlbum/Get?name=&version=";
             var albums = new Array();
             ajax_get(requestURL, function(data4) {
-                for (let value of data4.messages.message) {
+                for (let value of data4.messages) {
                     var album = JSON.parse(value).apexContextAlbum;
                     albums.push({
                         "name" : album.key.name,
@@ -105,7 +105,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
                 requestURL = window.restRootURL + "/Event/Get?name=&version=";
                 var events = new Array();
                 ajax_get(requestURL, function(data5) {
-                    for (let value of data5.messages.message) {
+                    for (let value of data5.messages) {
                         var event = JSON.parse(value).apexEvent;
                         events.push({
                             "name" : event.key.name,
