@@ -27,22 +27,30 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
+import org.onap.policy.apex.model.basicmodel.concepts.AxArtifactKey;
 import org.onap.policy.apex.model.basicmodel.concepts.AxKey;
 import org.onap.policy.apex.model.basicmodel.concepts.AxKeyInfo;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
+import org.onap.policy.apex.model.modelapi.ApexModel;
 import org.onap.policy.apex.model.policymodel.concepts.AxPolicyModel;
 import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanModel;
+import org.onap.policy.gui.editors.apex.rest.handling.plugin.upload.PolicyUploadHandler;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * This class handles commands on Apex models.
  */
+@Service
 public class ModelHandler implements RestCommandHandler {
 
     // Get a reference to the logger
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ModelHandler.class);
+
+    private final PolicyUploadHandler policyUploadHandler;
 
     // Recurring string constants
     private static final String OK = ": OK";
@@ -54,6 +62,11 @@ public class ModelHandler implements RestCommandHandler {
     private static final String DESCRIPTION = "description";
     private static final String POLICY_KEY = "policyKey";
     private static final String APEX_KEY_INFO = "apexKeyInfo";
+
+    @Autowired
+    public ModelHandler(PolicyUploadHandler policyUploadHandler) {
+        this.policyUploadHandler = policyUploadHandler;
+    }
 
     /**
      * {@inheritDoc}.
@@ -268,24 +281,41 @@ public class ModelHandler implements RestCommandHandler {
 
         ApexApiResult result = session.downloadModel();
 
-        LOGGER.exit("Model/Download" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/Download" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
     /**
-     * Upload the model for this session to the configured URL.
+     * Upload the model for this session as a TOSCA service template YAML string to the configured URL.
      *
      * @param session the Apex model editing session
-     * @param userId  the userId to use for upload. If blank, the commandline
-     *                parameter "upload-userid" is used.
+     * @param userId  the userId to use for upload. If blank, the Spring
+     *                config parameter "apex-editor.upload-userid" is used.
      * @return a result indicating if the upload was successful or not
      */
     private ApexApiResult uploadModel(final RestSession session, String userId) {
         LOGGER.entry();
 
-        ApexApiResult result = session.uploadModel(userId);
+        // Get the model in TOSCA format
+        ApexApiResult downloadResult = downloadModel(session);
+        if (downloadResult.isNok()) {
+            LOGGER.exit("Model/Upload" + NOT_OK);
+            return downloadResult;
+        }
+        String toscaServiceTemplate = downloadResult.getMessage();
 
-        LOGGER.exit("Model/Download" + (result != null && result.isOk() ? OK : NOT_OK));
+        ApexModel apexModel = session.getApexModel();
+        ApexModel apexModelEdited = session.getApexModelEdited();
+        ApexModel apexModelBeingUploaded = (apexModelEdited == null ? apexModel : apexModelEdited);
+
+        AxArtifactKey policyModelKey = apexModelBeingUploaded.getPolicyModel().getKey();
+
+        String policyModelUUid = apexModelBeingUploaded.getPolicyModel().getKeyInformation().get(policyModelKey)
+            .getUuid().toString();
+
+        var result = policyUploadHandler.doUpload(toscaServiceTemplate, policyModelKey, policyModelUUid, userId);
+
+        LOGGER.exit("Model/Upload" + (result != null && result.isOk() ? OK : NOT_OK));
         return result;
     }
 

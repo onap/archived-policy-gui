@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,15 +28,12 @@ test("Test keyInformationTab_activate", () => {
         port: 'port',
         username: 'username',
         password: 'password',
-        messages: {
-            message: [
-                '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
-                ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
-            ]
-        },
+        messages: [
+            '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
+            ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
+        ],
         content: ['01', '02'],
-        result: 'ok',
-        ok: true
+        result: 'SUCCESS'
     };
     $.ajax = jest.fn().mockImplementation((args) => {
         args.success(data, null, null);

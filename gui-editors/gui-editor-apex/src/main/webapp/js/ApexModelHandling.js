@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ function modelHandling_analyse() {
     var requestURL = window.restRootURL + "/Model/Analyse";
 
     ajax_get(requestURL, function(data) {
-        resultForm_activate(document.getElementById("mainArea"), "Model Analysis Result", data.messages.message[0]);
+        resultForm_activate(document.getElementById("mainArea"), "Model Analysis Result", data.messages[0]);
     });
 }
 
@@ -35,8 +35,8 @@ function modelHandling_validate() {
 
     ajax_getOKOrFail(requestURL, function(data) {
         var validationResultString = "";
-        for (var i = 1; i < data.messages.message.length; i++) {
-            validationResultString += (data.messages.message[i] + "\n");
+        for (var i = 1; i < data.messages.length; i++) {
+            validationResultString += (data.messages[i] + "\n");
         }
         resultForm_activate(document.getElementById("mainArea"), "Model Validation Result", validationResultString);
     });
