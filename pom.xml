@@ -48,6 +48,7 @@
         <module>gui-common</module>
         <module>gui-editors</module>
         <module>gui-clamp</module>
+        <module>gui-server</module>
         <module>packages</module>
     </modules>
 

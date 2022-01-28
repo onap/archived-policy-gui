@@ -1,0 +1,27 @@
+server:
+  port: 2443
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: file:demo-clamp-keystore.p12
+    key-store-password: changeit
+    trust-store: file:demo-clamp-truststore.jks
+    trust-store-password: changeit
+
+clamp:
+  # URL to the clamp backend
+  url: https://localhost:8443/
+  # Disabling SSL validation is useful for local testing, but should not be disabled in production.
+  disable-ssl-validation: true
+  # Disabling SSL hostname check is needed if cert name does not match hostname.
+  disable-ssl-hostname-check: true
+
+apex-editor:
+  upload-url:
+  upload-userid:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus
