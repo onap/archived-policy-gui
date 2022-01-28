@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,7 +37,7 @@ function keyInformationTab_activate() {
     ajax_get(requestURL, function(data) {
         $("#keyInformationTableBody").find("tr:gt(0)").remove();
 
-        for (let value of data.messages.message) {
+        for (let value of data.messages) {
             var keyInfo = JSON.parse(value).apexKeyInfo;
 
             var keyInfoRow_tr = document.createElement("tr");

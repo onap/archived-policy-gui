@@ -117,7 +117,7 @@ function main_getRestRootURL() {
             + (location.port ? ':' + location.port : '')
             + (location.pathname.endsWith("/editor/") ? location.pathname.substring(0, location.pathname
                     .indexOf("editor/")) : location.pathname);
-    const restContext = "apexservices/editor/";
+    const restContext = "policy/gui/v1/apex/editor/";
     if (localStorage.getItem("apex_session")) {
         restRootURL = href + restContext + localStorage.getItem("apex_session");
         window.restRootURL = restRootURL;
@@ -125,7 +125,7 @@ function main_getRestRootURL() {
         ajax_get(requestURL, function(data) {
             $("#statusMessageTable").append("<tr><td> REST root URL set to: " + restRootURL + "</td></tr>");
             if (localStorage.getItem("apex_model_loaded")) {
-                const modelKey = JSON.parse(data.messages.message[0]).apexArtifactKey;
+                const modelKey = JSON.parse(data.messages[0]).apexArtifactKey;
                 pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
                 if (localStorage.getItem("apex_tab_index")) {
                     $("#mainTabs").tabs({
@@ -138,7 +138,7 @@ function main_getRestRootURL() {
         const createSessionURL = href + restContext + "-1/Session/Create";
 
         ajax_get(createSessionURL, function(data) {
-            localStorage.setItem("apex_session", data.messages.message[0]);
+            localStorage.setItem("apex_session", data.messages[0]);
             restRootURL = href + restContext + localStorage.getItem("apex_session");
             window.restRootURL = restRootURL;
             $("#statusMessageTable").append("<tr><td> REST root URL set to: " + restRootURL + "</td></tr>");

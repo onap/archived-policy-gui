@@ -1,7 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,25 +18,15 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.policy.gui.editors.apex.rest;
+package org.onap.policy.gui.editors.apex;
 
-import static org.junit.Assert.assertNotNull;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-import org.junit.Test;
+@SpringBootApplication
+public class ApexEditor {
 
-/**
- * Test Apex Editor Exceptions.
- * 
- * @author Liam Fallon (liam.fallon@ericsson.com)
- */
-public class ExceptionsTest {
-
-    @Test
-    public void test() {
-        assertNotNull(new ApexEditorException("Message"));
-        assertNotNull(new ApexEditorException("Message", "Object of Exception"));
-        assertNotNull(new ApexEditorException("Message", new IOException()));
-        assertNotNull(new ApexEditorException("Message", new IOException(), "Object of Exception"));
+    public static void main(String[] args) {
+        SpringApplication.run(ApexEditor.class, args);
     }
 }

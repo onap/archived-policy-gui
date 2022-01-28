@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,111 +22,67 @@
 
 package org.onap.policy.gui.editors.apex.rest;
 
-import static org.awaitility.Awaitility.await;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.TimeUnit;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.client.WebTarget;
-import javax.xml.bind.JAXBException;
-import org.eclipse.persistence.jpa.jpql.Assert;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.onap.policy.apex.model.basicmodel.concepts.ApexException;
 import org.onap.policy.apex.model.basicmodel.handling.ApexModelReader;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.policymodel.concepts.AxPolicy;
-import org.onap.policy.common.parameters.ParameterService;
+import org.onap.policy.common.utils.coder.StandardCoder;
 import org.onap.policy.common.utils.resources.ResourceUtils;
-import org.onap.policy.gui.editors.apex.rest.ApexEditorMain.EditorState;
+import org.onap.policy.gui.editors.apex.ApexEditor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 /**
  * The RestInterface Test.
  */
-public class RestInterfaceTest {
-    // CHECKSTYLE:OFF: MagicNumber
+@SpringBootTest(classes = ApexEditor.class)
+@AutoConfigureMockMvc
+class RestInterfaceTest {
+
+    @Autowired
+    private MockMvc mvc;
 
     private static final String TESTMODELFILE = "models/PolicyModel.yaml";
-    private static final String TESTPORTNUM = "18989";
-    private static final long MAX_WAIT = 15000; // 15 sec
-    private static final InputStream SYSIN = System.in;
-    private static final String[] EDITOR_MAIN_ARGS = new String[] { "-p", TESTPORTNUM };
-
-    private static ApexEditorMain editorMain;
-    private static WebTarget target;
 
     private static String localModelString = null;
 
     /**
      * Sets up the tests.
      *
-     * @throws Exception if an error happens
      */
-    @BeforeClass
-    public static void setUp() throws Exception {
-        ParameterService.clear();
-        // Start the editor
-        editorMain = new ApexEditorMain(EDITOR_MAIN_ARGS, System.out);
-        // prevent a stray stdin value from killing the editor
-        final var input = new ByteArrayInputStream("".getBytes());
-        System.setIn(input);
-        // Init the editor in a separate thread
-        final var testThread = new Runnable() {
-            @Override
-            public void run() {
-                editorMain.init();
-            }
-        };
-        new Thread(testThread).start();
-        // wait until editorMain is in state RUNNING
-        await().atMost(MAX_WAIT, TimeUnit.MILLISECONDS).until(() -> !(editorMain.getState().equals(EditorState.READY)
-            || editorMain.getState().equals(EditorState.INITIALIZING)));
-
-        if (editorMain.getState().equals(EditorState.STOPPED)) {
-            Assert.fail("Rest endpoint (" + editorMain + ") shut down before it could be used");
-        }
-
-        // create the client
-        final Client c = ClientBuilder.newClient();
-        // Create the web target
-        target = c.target(new ApexEditorParameters().getBaseUri());
-
+    @BeforeAll
+    static void setUp() {
         // load a test model locally
         localModelString = ResourceUtils.getResourceAsString(TESTMODELFILE);
-
-        // initialize a session ID
-        createNewSession();
-    }
-
-    /**
-     * Clean up streams.
-     *
-     * @throws IOException          Signals that an I/O exception has occurred.
-     * @throws InterruptedException the interrupted exception
-     */
-    @AfterClass
-    public static void cleanUpStreams() throws IOException, InterruptedException {
-        editorMain.shutdown();
-        // wait until editorMain is in state STOPPED
-        await().atMost(MAX_WAIT, TimeUnit.MILLISECONDS).until(() -> editorMain.getState().equals(EditorState.STOPPED));
-        System.setIn(SYSIN);
     }
 
     /**
      * Test to see that the message create Model with model id -1 .
      */
     @Test
-    public void createSession() {
+    void createSession() throws Exception {
         createNewSession();
+    }
+
+    /**
+     * Helper method to invoke rest call using mock mvc, and return ApexApiResult.
+     */
+    private ApexApiResult apexRest(MockHttpServletRequestBuilder requestBuilder) throws Exception {
+        var response = mvc.perform(requestBuilder).andReturn().getResponse();
+        return new StandardCoder().decode(response.getContentAsString(), ApexApiResult.class);
     }
 
     /**
@@ -134,8 +90,8 @@ public class RestInterfaceTest {
      *
      * @return the session ID
      */
-    private static int createNewSession() {
-        final ApexApiResult responseMsg = target.path("editor/-1/Session/Create").request().get(ApexApiResult.class);
+    private int createNewSession() throws Exception {
+        final ApexApiResult responseMsg = apexRest(get("/policy/gui/v1/apex/editor/-1/Session/Create"));
         assertEquals(ApexApiResult.Result.SUCCESS, responseMsg.getResult());
         assertEquals(1, responseMsg.getMessages().size());
         return Integer.parseInt(responseMsg.getMessages().get(0));
@@ -147,28 +103,27 @@ public class RestInterfaceTest {
      * @param sessionId         the session ID
      * @param modelAsJsonString the model as json string
      */
-    private void uploadPolicy(final int sessionId, final String modelAsJsonString) {
-        final Builder requestbuilder = target.path("editor/" + sessionId + "/Model/Load").request();
-        final ApexApiResult responseMsg = requestbuilder.put(Entity.json(modelAsJsonString), ApexApiResult.class);
+    private void uploadPolicy(final int sessionId, final String modelAsJsonString) throws Exception {
+        final ApexApiResult responseMsg = apexRest(put("/policy/gui/v1/apex/editor/" + sessionId + "/Model/Load")
+            .content(modelAsJsonString).contentType(APPLICATION_JSON));
         assertTrue(responseMsg.isOk());
     }
 
     /**
-     * Create a new session, Upload a test policy model, then get a policy, parse it, and compare it to the same policy
+    * Create a new session, Upload a test policy model, then get a policy, parse it, and compare it to the same policy
      * in the original model.
      *
      * @throws ApexException if there is an Apex Error
-     * @throws JAXBException if there is a JaxB Error
      **/
     @Test
-    public void testUploadThenGet() throws ApexException, JAXBException {
+    void testUploadThenGet() throws Exception {
 
         final int sessionId = createNewSession();
 
         uploadPolicy(sessionId, localModelString);
 
-        final ApexApiResult responseMsg = target.path("editor/" + sessionId + "/Policy/Get")
-            .queryParam("name", "policy").queryParam("version", "0.0.1").request().get(ApexApiResult.class);
+        final ApexApiResult responseMsg = apexRest(get("/policy/gui/v1/apex/editor/" + sessionId + "/Policy/Get")
+            .queryParam("name", "policy").queryParam("version", "0.0.1"));
         assertTrue(responseMsg.isOk());
 
         // The string in responseMsg.Messages[0] is a JSON representation of a AxPolicy

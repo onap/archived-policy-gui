@@ -15,7 +15,6 @@ To build it using Maven 3, run: mvn clean install -P docker
 Maven produces a single docker image containing the policy GUIs.
 These are exposed on the same port (2443) using different URLs:
 - Apex Policy Editor: https://localhost:2443/apex-editor
-- PDP Monitoring UI: https://localhost:2443/pdp-monitoring
 - CLAMP Designer UI: https://localhost:2443/clamp
 
 ## Building
