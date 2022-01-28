@@ -173,12 +173,12 @@ public abstract class RestUtils {
     }
 
     /**
-     * Gets the JSO nfrom concept.
+     * Gets the JSON from concept.
      *
      * @param object the object
-     * @return the JSO nfrom concept
+     * @return the JSON from concept
      */
-    public static String getJsonfromConcept(final Object object) {
+    public static String getJsonFromConcept(final Object object) {
         final var gb = new GsonBuilder();
         gb.serializeNulls().enableComplexMapKeySerialization();
         return gb.create().toJson(object);
