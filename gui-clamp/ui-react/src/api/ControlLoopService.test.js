@@ -28,9 +28,11 @@ describe("Verify GetControlLoopInstantiation", () => {
       ok: true,
     })
   );
-  response = ControlLoopService.getControlLoopInstantiation(name, template);
+  beforeEach(async () => {
+    response = await ControlLoopService.getControlLoopInstantiation(name, template);
+  });
   it("Test getControlLoopInstantiation", () => {
-    expect(response.status).toEqual(response.status);
+    expect(response.status).toEqual("Success");
   });
 });
 describe("Verify DeleteInstantiation", () => {
@@ -43,8 +45,10 @@ describe("Verify DeleteInstantiation", () => {
       ok: true,
     })
   );
-  response = ControlLoopService.deleteInstantiation(name, version);
+  beforeEach(async () => {
+    response = await ControlLoopService.deleteInstantiation(name, version);
+  });
   it("Test deleteInstantiation", () => {
-    expect(response.status).toEqual(response.status);
+    expect(response.status).toEqual("Success");
   });
 });
