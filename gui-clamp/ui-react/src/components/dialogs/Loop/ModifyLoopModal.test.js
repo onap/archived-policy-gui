@@ -2,8 +2,8 @@
  * ============LICENSE_START=======================================================
  * ONAP CLAMP
  * ================================================================================
- * Copyright (C) 2020 AT&T Intellectual Property. All rights
- *                             reserved.
+ * Copyright (C) 2020 AT&T Intellectual Property. All rights reserved.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,15 +28,18 @@ import LoopService from '../../../api/LoopService';
 import PolicyToscaService from '../../../api/PolicyToscaService';
 
 describe('Verify ModifyLoopModal', () => {
+  const toscaPolicyModels = [{
+    "policyModelType": "test",
+    "policyAcronym": "test",
+    "version": "1.0.0",
+    "updatedBy": "",
+    "updatedDate": ""
+  }];
+  const selectedPolicyModels = [];
+
   beforeEach(() => {
     PolicyToscaService.getToscaPolicyModels = jest.fn().mockImplementation(() => {
-      return Promise.resolve([{
-        "policyModelType": "test",
-        "policyAcronym": "test",
-        "version": "1.0.0",
-        "updatedBy": "",
-        "updatedDate": ""
-      }]);
+      return Promise.resolve(toscaPolicyModels);
     });
     PolicyToscaService.getToscaPolicyModelYaml = jest.fn().mockImplementation(() => {
       return Promise.resolve("OK");
@@ -62,7 +65,6 @@ describe('Verify ModifyLoopModal', () => {
     }
   });
   const historyMock = { push: jest.fn() };
-  const flushPromises = () => new Promise(setImmediate);
 
   it('Test handleClose', () => {
     const handleClose = jest.spyOn(ModifyLoopModal.prototype, 'handleClose');
@@ -105,5 +107,15 @@ describe('Verify ModifyLoopModal', () => {
     const event = { "target": { "value": "testValue" } }
     instance.handleYamlContent(event);
     expect(component.state('content')).toEqual("testValue");
+  });
+
+  it('Test initializeToscaPolicyModelsInfo', () => {
+    const component = mount(<ModifyLoopModal loopCache={ loopCache }/>)
+    component.setState({
+      toscaPolicyModelsData: toscaPolicyModels,
+      selectedPolicyModelsData: selectedPolicyModels
+    });
+    expect(component.state('toscaPolicyModelsData')).toEqual(toscaPolicyModels);
+    expect(component.state('selectedPolicyModelsData')).toEqual(selectedPolicyModels);
   });
 });

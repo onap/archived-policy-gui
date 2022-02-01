@@ -1,0 +1,23 @@
+[
+  {
+    "policyModelType": "onap.policies.controlloop.guard.common.Blacklist",
+    "version": "1.0.0",
+    "policyAcronym": "Blacklist",
+    "policyPdpGroup": {
+      "supportedPdpGroups": [
+        {
+          "controlloop": [
+            "xacml"
+          ]
+        }
+      ]
+    },
+    "createdDate": "2021-06-17T15:15:11.250177Z",
+    "updatedDate": "2021-06-17T15:15:11.450816Z",
+    "updatedBy": "Not found",
+    "createdBy": "Not found",
+    "tableData": {
+      "id": 0
+    }
+  }
+]
