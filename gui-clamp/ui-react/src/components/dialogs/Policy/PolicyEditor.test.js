@@ -56,7 +56,6 @@ describe('Verify PolicyEditor', () => {
     }
   };
 
-
   it('Test the render method', async () => {
     PolicyToscaService.getToscaPolicyModel = jest.fn().mockImplementation(() => {
       return Promise.resolve(toscaJson);

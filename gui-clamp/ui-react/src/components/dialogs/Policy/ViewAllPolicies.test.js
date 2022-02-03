@@ -24,6 +24,7 @@ import fs from "fs";
 import PolicyToscaService from "../../../api/PolicyToscaService";
 import PolicyService from "../../../api/PolicyService";
 import CreateLoopModal from "../Loop/CreateLoopModal";
+import toJson from "enzyme-to-json";
 
 describe('Verify ViewAllPolicies', () => {
     let toscaPolicyModels = fs.readFileSync('src/components/dialogs/Policy/toscaData.test.json', {
@@ -33,6 +34,11 @@ describe('Verify ViewAllPolicies', () => {
     let toscaPoliciesList = fs.readFileSync('src/components/dialogs/Policy/toscaPoliciesList.test.json', {
         encoding: 'utf8',
         flag: 'r'
+    });
+
+    it("renders correctly", () => {
+        const component = shallow(<ViewAllPolicies />);
+        expect(toJson(component)).toMatchSnapshot();
     });
 
     it('Test handleClose', () => {

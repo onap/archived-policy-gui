@@ -1,0 +1,598 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify ViewAllPolicies renders correctly 1`] = `
+<Fragment>
+  <Styled(Modal)
+    backdrop="static"
+    keyboard={false}
+    onHide={[Function]}
+    show={true}
+    size="xl"
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    />
+    <Tabs
+      id="controlled-tab-example"
+      mountOnEnter={false}
+      onSelect={[Function]}
+      unmountOnExit={false}
+      variant="tabs"
+    >
+      <Tab
+        eventKey="policies"
+        title="Policies in Policy Framework"
+      >
+        <ModalBody>
+          <div>
+            <styled.div>
+              <PoliciesTreeViewer
+                policiesData={Array []}
+                policiesFilterFunction={[Function]}
+                valueForTreeCreation="name"
+              />
+            </styled.div>
+            <styled.div>
+              <WithStyles(Component)
+                actions={
+                  Array [
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "onClick": [Function],
+                      "tooltip": "Delete Policy",
+                    },
+                  ]
+                }
+                columns={
+                  Array [
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "name",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Policy Name",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "version",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Policy Version",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "type",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Policy Type",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "type_version",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Policy Type Version",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "supportedPdpGroupsString",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Deployable in PDP Group",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "pdpGroupInfoString",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Deployed in PDP Group",
+                    },
+                  ]
+                }
+                data={Array []}
+                detailPanel={
+                  Array [
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "render": [Function],
+                      "tooltip": "Show Configuration",
+                    },
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "openIcon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "render": [Function],
+                      "tooltip": "Show Raw Data",
+                    },
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "openIcon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "render": [Function],
+                      "tooltip": "PDP Group Deployment",
+                    },
+                  ]
+                }
+                icons={
+                  Object {
+                    "Add": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Check": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Clear": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Delete": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "DetailPanel": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Edit": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Export": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Filter": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "FirstPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "LastPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "NextPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "PreviousPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "ResetSearch": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Search": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "SortArrow": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "ThirdStateCheck": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "ViewColumn": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                  }
+                }
+                onRowClick={[Function]}
+                options={
+                  Object {
+                    "actionsColumnIndex": -1,
+                    "exportButton": true,
+                    "grouping": true,
+                    "headerStyle": Object {
+                      "backgroundColor": "#ddd",
+                      "border": "1px solid black",
+                      "fontSize": "15pt",
+                      "text": "bold",
+                    },
+                  }
+                }
+                title="Policies"
+              />
+            </styled.div>
+          </div>
+        </ModalBody>
+      </Tab>
+      <Tab
+        eventKey="tosca models"
+        title="Tosca Models in Policy Framework"
+      >
+        <ModalBody>
+          <div>
+            <styled.div>
+              <PoliciesTreeViewer
+                policiesData={Array []}
+                policiesFilterFunction={[Function]}
+                valueForTreeCreation="policyModelType"
+              />
+            </styled.div>
+            <styled.div>
+              <WithStyles(Component)
+                actions={
+                  Array [
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "isFreeAction": true,
+                      "onClick": [Function],
+                      "tooltip": "Add New Tosca Model",
+                    },
+                  ]
+                }
+                columns={
+                  Array [
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "policyModelType",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Policy Model Type",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "policyAcronym",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Policy Acronym",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "version",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Version",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "field": "updatedBy",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Uploaded By",
+                    },
+                    Object {
+                      "cellStyle": Object {
+                        "backgroundColor": "#039be5",
+                        "border": "1px solid black",
+                        "color": "#FFF",
+                      },
+                      "editable": "never",
+                      "field": "updatedDate",
+                      "headerStyle": Object {
+                        "backgroundColor": "#ddd",
+                        "border": "2px solid black",
+                      },
+                      "title": "Uploaded Date",
+                    },
+                  ]
+                }
+                data={Array []}
+                detailPanel={
+                  Array [
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "render": [Function],
+                      "tooltip": "Show Tosca",
+                    },
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "openIcon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "render": [Function],
+                      "tooltip": "Show Raw Data",
+                    },
+                    Object {
+                      "icon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "openIcon": Object {
+                        "$$typeof": Symbol(react.memo),
+                        "compare": null,
+                        "type": Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "render": [Function],
+                        },
+                      },
+                      "render": [Function],
+                      "tooltip": "Create a policy from this model",
+                    },
+                  ]
+                }
+                icons={
+                  Object {
+                    "Add": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Check": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Clear": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Delete": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "DetailPanel": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Edit": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Export": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Filter": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "FirstPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "LastPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "NextPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "PreviousPage": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "ResetSearch": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "Search": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "SortArrow": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "ThirdStateCheck": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                    "ViewColumn": Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "render": [Function],
+                    },
+                  }
+                }
+                onRowClick={[Function]}
+                options={
+                  Object {
+                    "actionsColumnIndex": -1,
+                    "exportButton": true,
+                    "grouping": true,
+                    "headerStyle": Object {
+                      "backgroundColor": "#ddd",
+                      "border": "1px solid black",
+                      "fontSize": "15pt",
+                      "text": "bold",
+                    },
+                  }
+                }
+                title="Tosca Models"
+              />
+            </styled.div>
+          </div>
+        </ModalBody>
+      </Tab>
+    </Tabs>
+    <Alert
+      closeLabel="Close alert"
+      dismissible={true}
+      onClose={[Function]}
+      show={false}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "render": [Function],
+        }
+      }
+      variant="success"
+    >
+      <styled.div />
+    </Alert>
+    <Alert
+      closeLabel="Close alert"
+      dismissible={true}
+      onClose={[Function]}
+      show={false}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "render": [Function],
+        }
+      }
+      variant="danger"
+    >
+      <styled.div />
+    </Alert>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="secondary"
+      >
+        Close
+      </Button>
+    </ModalFooter>
+  </Styled(Modal)>
+  <PolicyToscaFileSelector
+    disableFunction={[Function]}
+    show={false}
+    toscaTableUpdateFunction={[Function]}
+  />
+</Fragment>
+`;

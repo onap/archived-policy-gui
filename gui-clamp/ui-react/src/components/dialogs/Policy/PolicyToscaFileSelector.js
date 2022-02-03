@@ -3,6 +3,7 @@
  * ONAP POLICY-CLAMP
  * ================================================================================
  * Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +28,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
 import Alert from 'react-bootstrap/Alert';
-import { Input, InputLabel, Button, SvgIcon } from "@material-ui/core";
+import { Button, SvgIcon } from "@material-ui/core";
 import PublishIcon from '@material-ui/icons/Publish';
-import PolicyService from '../../../api/PolicyService';
+import PolicyService from "../../../api/PolicyService";
 
 const ModalStyled = styled(Modal)`
   background-color: transparent;
@@ -66,6 +67,7 @@ export default class PolicyToscaFileSelector extends React.Component {
   }
 
   onFileChange(target) {
+    console.log('onFileChange target');
     this.setState({ alertMessages: [] });
     target.currentTarget.files.forEach(file => {
       const fileReader = new FileReader();
