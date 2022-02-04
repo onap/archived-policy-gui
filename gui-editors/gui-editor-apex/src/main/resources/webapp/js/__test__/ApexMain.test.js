@@ -18,9 +18,11 @@
  */
 
 const mod = require('../ApexMain');
-
+const $ = require('jquery');
 
 test('Test main_getRestRootURL', () => {
+    jest.spyOn(window.localStorage.__proto__, 'getItem');
+    window.localStorage.__proto__.getItem = jest.fn(() => true);
     const mock_main_getRestRootURL = jest.fn(mod.main_getRestRootURL);
     mock_main_getRestRootURL();
     expect(mock_main_getRestRootURL).toBeCalled();
@@ -30,4 +32,13 @@ test('Test clearLocalStorage', () => {
     const mock_clearLocalStorage = jest.fn(mod.clearLocalStorage);
     mock_clearLocalStorage();
     expect(mock_clearLocalStorage).toBeCalled();
+});
+
+test('test ready', () => {
+    document.documentElement.innerHTML = '<html><head></head><body><ul id="menu li"><li><div>menu</div><ul><li><div>FileNew</div></li></ul></li></ul></body></html>';
+    window.$ = $;
+    $("#menu li").click();
+    let h1 = document.querySelector('ul');
+    console.log(document.documentElement.innerHTML);
+    expect(h1.textContent).toEqual('menuFileNew');
 });
