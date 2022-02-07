@@ -82,7 +82,6 @@ describe('Verify MenuBar', () => {
 
   it('Finds StyledNavLink', () => {
     const component = shallow(<MenuBar />);
-    console.log(component.debug());
     expect(component.find('Styled(NavLink)').length).toEqual(2);
   });
 });

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify PoliciesTreeViewer renders correctly 1`] = `
+<WithStyles(ForwardRef(TreeView))
+  defaultCollapseIcon={<Memo />}
+  defaultEndIcon={<Memo />}
+  defaultExpandIcon={<Memo />}
+  defaultExpanded={
+    Array [
+      "root",
+    ]
+  }
+  multiSelect={true}
+  onNodeSelect={[Function]}
+>
+  <WithStyles(ForwardRef(TreeItem))
+    key="1"
+    label="ROOT(0)"
+    nodeId={1}
+    onNodeSelect={[Function]}
+  />
+</WithStyles(ForwardRef(TreeView))>
+`;

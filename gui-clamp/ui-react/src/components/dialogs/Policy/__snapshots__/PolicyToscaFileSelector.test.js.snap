@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify PolicyToscaFileSelector renders correctly 1`] = `
+<Styled(Modal)
+  backdrop="static"
+  keyboard={false}
+  onHide={[Function]}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Create New Policy Tosca Model
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+      controlId="formPlaintextEmail"
+    >
+      <Col
+        sm="10"
+      >
+        <input
+          accept=".yaml,.yml"
+          id="fileUploadButton"
+          multiple={true}
+          onChange={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          type="file"
+        />
+        <label
+          htmlFor="fileUploadButton"
+        >
+          <WithStyles(ForwardRef(Button))
+            color="primary"
+            component="span"
+            startIcon={
+              <WithStyles(ForwardRef(SvgIcon))
+                fontSize="small"
+              >
+                <Memo />
+              </WithStyles(ForwardRef(SvgIcon))>
+            }
+            variant="contained"
+          >
+            Upload Files
+          </WithStyles(ForwardRef(Button))>
+          <p>
+            (Only YAML files are supported)
+          </p>
+        </label>
+        <styled.div />
+      </Col>
+    </FormGroup>
+  </ModalBody>
+  <ModalFooter>
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+      variant="secondary"
+    >
+      Close
+    </WithStyles(ForwardRef(Button))>
+  </ModalFooter>
+</Styled(Modal)>
+`;
