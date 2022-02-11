@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
@@ -217,9 +217,10 @@ public class ApexEditorRestResource implements RestCommandHandler {
     /**
      * Download the model for this session as a String.
      *
-     * @return the model represented as a JSON string. See {@code AxPolicyModel}
+     * @return the model represented as a YAML string. See {@code AxPolicyModel}
      */
     @GET
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("Model/Download")
     public String downloadModel() {
         ApexApiResult result = processRestCommand(RestCommandType.MODEL, RestCommand.DOWNLOAD);
