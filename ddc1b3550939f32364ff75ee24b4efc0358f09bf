@@ -46,6 +46,30 @@
       "revId": "ddc1b3550939f32364ff75ee24b4efc0358f09bf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "306ead8d_f034bc82",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/ViewAllPolicies.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2022-02-11T16:29:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8edeb5f4_16130615",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 5
+      },
+      "revId": "ddc1b3550939f32364ff75ee24b4efc0358f09bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
