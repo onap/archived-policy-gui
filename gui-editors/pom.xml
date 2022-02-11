@@ -1,6 +1,6 @@
 <!--
   ============LICENSE_START=======================================================
-   Copyright (C) 2020 Nordix Foundation.
+   Copyright (C) 2020-2022 Nordix Foundation.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -31,11 +31,6 @@
 
     <name>${project.artifactId}</name>
     <description>Web Client editors for PDP policies</description>
-
-    <properties>
-        <sonar.sources>${project.basedir}/src/main</sonar.sources>
-        <sonar.exclusions>src/main/resources/webapp/js/edit_area/**/*,src/main/resources/webapp/js/jquery/**/*,src/main/resources/webapp/js/jquery-ui-1.12.1/**/*,src/main/resources/webapp/js/lib/**/*</sonar.exclusions>
-    </properties>
 
     <modules>
         <module>gui-editor-apex</module>
