@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public class PolicyUploadHandlerTest {
         final var name = "a" + RandomStringUtils.randomAlphabetic(5);
         final var version = "0.0.1";
         axArtifactKey = new AxArtifactKey(name, version);
-        final var path = Path.of("src/test/resources/converter/", "ToscaTemplate.json");
+        final var path = Path.of("src/test/resources/models/", "PolicyModel.json");
         toscaServiceTemplate = Files.readString(path);
     }
 
