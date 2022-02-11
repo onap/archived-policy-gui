@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea6349f1_a5ff8b60",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/Policy/ViewAllPolicies.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2022-02-11T09:51:31Z",
+      "side": 1,
+      "message": "Will this cause a SONAR issue?",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 5
+      },
+      "revId": "ddc1b3550939f32364ff75ee24b4efc0358f09bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
