@@ -203,6 +203,8 @@ export default class ViewAllPolicies extends React.Component {
   }
 
   generateAdditionalPolicyColumns(policiesData) {
+    console.log('generateAdditionalPolicyColumns called');
+
     policiesData.forEach(policy => {
       let supportedPdpGroupsString = "";
       if (typeof policy.supportedPdpGroups !== "undefined") {
