@@ -215,9 +215,10 @@ public class ApexEditorRestResource implements RestCommandHandler {
     /**
      * Download the model for this session as a String.
      *
-     * @return the model represented as a JSON string. See {@code AxPolicyModel}
+     * @return the model represented as a YAML string. See {@code AxPolicyModel}
      */
     @GET
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("Model/Download")
     public String downloadModel() {
         ApexApiResult result = processRestCommand(RestCommandType.MODEL, RestCommand.DOWNLOAD);
