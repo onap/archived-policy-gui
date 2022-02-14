@@ -66,7 +66,7 @@ public class PolicyUploadHandlerTest {
         final var name = "a" + RandomStringUtils.randomAlphabetic(5);
         final var version = "0.0.1";
         axArtifactKey = new AxArtifactKey(name, version);
-        final var path = Path.of("src/test/resources/converter/", "ToscaTemplate.json");
+        final var path = Path.of("src/test/resources/models/", "PolicyModel.json");
         toscaServiceTemplate = Files.readString(path);
     }
 
