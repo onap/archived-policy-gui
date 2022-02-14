@@ -22,6 +22,30 @@
       "revId": "46b907c37466c5a016743a30e9c41ce04b08cf52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1713cfd_114f36bf",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-14T16:19:09Z",
+      "side": 1,
+      "message": "I think application/yaml may be nicer in general since it documents the API. In this case, because this is a file download feature, it is more useful to keep it as text/plain. Setting \"application/yaml\" results in the browser not recognizing the data as a text file (likely due to application/yaml not being an official IANA media type).",
+      "parentUuid": "8c7c119b_6fa81d33",
+      "range": {
+        "startLine": 223,
+        "startChar": 14,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "revId": "46b907c37466c5a016743a30e9c41ce04b08cf52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
