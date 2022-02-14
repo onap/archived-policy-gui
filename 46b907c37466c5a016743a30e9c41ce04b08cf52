@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c7c119b_6fa81d33",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2022-02-14T15:33:29Z",
+      "side": 1,
+      "message": "I have been using \"application/yaml\" always for produces/consumes media types. Should we use MediaType.TEXT_PLAIN instead ? Or vide versa.",
+      "range": {
+        "startLine": 223,
+        "startChar": 14,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "revId": "46b907c37466c5a016743a30e9c41ce04b08cf52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
