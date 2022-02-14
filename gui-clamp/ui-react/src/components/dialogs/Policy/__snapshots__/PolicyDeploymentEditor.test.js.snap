@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify PolicyDeploymentEditor renders correctly 1`] = `
+<styled.div>
+  <Alert
+    closeLabel="Close alert"
+    dismissible={true}
+    onClose={[Function]}
+    show={false}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "render": [Function],
+      }
+    }
+    variant="success"
+  >
+    <styled.div />
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    dismissible={true}
+    onClose={[Function]}
+    show={false}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <styled.div />
+  </Alert>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    title="Update the policy to the specified PDP Groups/Subgroups"
+    variant="secondary"
+  >
+    Update PDP
+  </Button>
+  <WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(FormControlLabel))
+      control={
+        <WithStyles(ForwardRef(Checkbox))
+          checked={true}
+          name="monitoring/xacml"
+          onChange={[Function]}
+        />
+      }
+      label="monitoring/xacml"
+    />
+  </WithStyles(ForwardRef(FormGroup))>
+</styled.div>
+`;

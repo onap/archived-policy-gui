@@ -72,6 +72,7 @@ export default class PolicyDeploymentEditor extends React.Component {
   }
 
   createPdpGroupOperations(initialStates, newStates) {
+    console.log('createPdpGroupOperations called');
     let commandsArray = [];
     initialStates.forEach(initElem => {
       let newStateFound = newStates.find(newElement => newElement.name === initElem.name);
@@ -89,6 +90,7 @@ export default class PolicyDeploymentEditor extends React.Component {
   }
 
   handleUpdatePdpDeployment() {
+    console.log('handleUpdatePdpDeployment called');
     let operationsList = this.createPdpGroupOperations(this.state.checkboxesInitialState,
       this.state.checkboxesState);
     if (typeof (operationsList) !== "undefined") {

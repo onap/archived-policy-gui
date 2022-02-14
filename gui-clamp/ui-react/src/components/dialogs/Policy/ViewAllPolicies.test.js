@@ -23,7 +23,6 @@ import ViewAllPolicies from "./ViewAllPolicies";
 import fs from "fs";
 import PolicyToscaService from "../../../api/PolicyToscaService";
 import PolicyService from "../../../api/PolicyService";
-import CreateLoopModal from "../Loop/CreateLoopModal";
 import toJson from "enzyme-to-json";
 
 describe('Verify ViewAllPolicies', () => {
@@ -35,6 +34,12 @@ describe('Verify ViewAllPolicies', () => {
         encoding: 'utf8',
         flag: 'r'
     });
+
+    const toscaPolicyModelsArray = JSON.parse(toscaPolicyModels);
+
+    const toscaPoliciesListArray = JSON.parse(toscaPoliciesList);
+
+    const logSpy = jest.spyOn(console, 'log');
 
     it("renders correctly", () => {
         const component = shallow(<ViewAllPolicies />);
@@ -127,15 +132,33 @@ describe('Verify ViewAllPolicies', () => {
         });
 
         const event = { target: {value: 'event'}}
-        const component = shallow(<CreateLoopModal/>);
+        const renderPoliciesTab = jest.spyOn(ViewAllPolicies.prototype, 'renderPoliciesTab');
+
+        const component = shallow(<ViewAllPolicies />);
 
         component.setState({showSuccessAlert: true});
         component.setState({showMessage: 'Policy successfully Deleted'});
+        component.setState({policiesListDataFiltered: toscaPolicyModelsArray});
 
-        component.find('input').simulate('click', event, rowData);
         component.update();
 
+        const instance = component.instance();
+
+        instance.handleDeletePolicy(event, rowData);
+
+        expect(renderPoliciesTab).toHaveBeenCalledTimes(4);
         expect(component.state('showSuccessAlert')).toEqual(true);
         expect(component.state('showMessage')).toEqual('Policy successfully Deleted');
+    });
+
+    it('Test generateAdditionalPolicyColumns policiesData', async () => {
+        const component = shallow(<ViewAllPolicies />);
+
+        const instance = component.instance();
+        instance.generateAdditionalPolicyColumns(toscaPoliciesListArray.policies);
+
+        component.update();
+
+        expect(logSpy).toHaveBeenCalledWith('generateAdditionalPolicyColumns called');
     });
 });
