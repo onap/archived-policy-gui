@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  *  ================================================================================
@@ -49,45 +49,50 @@ public class PolicyUploadHandler {
      * @param toscaServiceTemplate the TOSCA service template
      * @param policyModelKey       the key of the policy model
      * @param policyModelUuid      the UUID of the policy model
+     * @param uploadUserId         the userId to use for upload. If blank, the commandline
+     *                             parameter "upload-userid" is used.
      * @return the result of the upload process
      */
     public ApexApiResult doUpload(final String toscaServiceTemplate, final AxArtifactKey policyModelKey,
-        final String policyModelUuid) {
+        final String policyModelUuid, String uploadUserId) {
         LOGGER.entry();
 
-        if (StringUtils.isBlank(ApexEditorMain.getParameters().getUploadUrl())) {
+        final String uploadUrl = ApexEditorMain.getParameters().getUploadUrl();
+        if (StringUtils.isBlank(uploadUrl)) {
             final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult.addMessage("Model upload is disabled, parameter upload-url is not set on server");
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;
+        }
 
+        if (StringUtils.isBlank(uploadUserId)) {
+            uploadUserId = ApexEditorMain.getParameters().getUploadUserid();
         }
 
         final var uploadPolicyRequestDto = new UploadPolicyRequestDto();
-        uploadPolicyRequestDto.setUserId(ApexEditorMain.getParameters().getUploadUserid());
+        uploadPolicyRequestDto.setUserId(uploadUserId);
         uploadPolicyRequestDto
             .setFileData(Base64.getEncoder().encodeToString(toscaServiceTemplate.getBytes(StandardCharsets.UTF_8)));
         uploadPolicyRequestDto.setFilename(
             String.format("%s.%s.%s", policyModelUuid, policyModelKey.getName(), policyModelKey.getVersion()));
 
         try {
-            final var response = ClientBuilder.newClient().target(ApexEditorMain.getParameters().getUploadUrl())
+            final var response = ClientBuilder.newClient().target(uploadUrl)
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(uploadPolicyRequestDto, MediaType.APPLICATION_JSON));
 
             if (response.getStatus() == 201) {
                 final var apexApiResult = new ApexApiResult(Result.SUCCESS);
-                String.format("uploading Policy '%s' to URL '%s' with userId '%s' was successful",
-                    policyModelKey.getId(), ApexEditorMain.getParameters().getUploadUrl(),
-                    ApexEditorMain.getParameters().getUploadUserid());
+                apexApiResult.addMessage(
+                    String.format("uploading Policy '%s' to URL '%s' with userId '%s' was successful",
+                        policyModelKey.getId(), uploadUrl, uploadUserId));
                 LOGGER.exit("Model/Upload: OK");
                 return apexApiResult;
             } else {
                 final var apexApiResult = new ApexApiResult(Result.FAILED);
                 apexApiResult.addMessage(
                     String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with status %s",
-                        policyModelKey.getId(), ApexEditorMain.getParameters().getUploadUrl(),
-                        ApexEditorMain.getParameters().getUploadUserid(), response.getStatus()));
+                        policyModelKey.getId(), uploadUrl, uploadUserId, response.getStatus()));
                 LOGGER.exit(MODEL_UPLOAD_NOT_OK);
                 return apexApiResult;
             }
@@ -95,8 +100,7 @@ public class PolicyUploadHandler {
             final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult
                 .addMessage(String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with error %s",
-                    policyModelKey.getId(), ApexEditorMain.getParameters().getUploadUrl(),
-                    ApexEditorMain.getParameters().getUploadUserid(), e.getMessage()));
+                    policyModelKey.getId(), uploadUrl, uploadUserId, e.getMessage()));
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;
         }

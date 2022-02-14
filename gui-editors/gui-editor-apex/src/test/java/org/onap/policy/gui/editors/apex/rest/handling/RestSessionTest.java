@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -139,7 +139,7 @@ public class RestSessionTest {
         final var toscaPath = Path.of("src/test/resources/models/PolicyModel.yaml");
         final var toscaString = Files.readString(toscaPath);
         restSession.loadFromString(toscaString);
-        final var apexApiResult = restSession.uploadModel();
+        final var apexApiResult = restSession.uploadModel("");
         assertThat(apexApiResult.isNok()).isTrue();
         assertThat(apexApiResult.getMessage()).contains("Model upload is disabled");
     }
