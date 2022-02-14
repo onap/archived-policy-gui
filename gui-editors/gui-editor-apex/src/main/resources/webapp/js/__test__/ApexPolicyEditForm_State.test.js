@@ -136,18 +136,92 @@ test('Test editPolicyForm_State_getStateBean', () => {
     const mock_activate = jest.fn(mod.editPolicyForm_State_getStateBean);
     mock_activate('stateName');
     expect(mock_activate).toBeCalled();
-
 });
 
 test('Test editPolicyForm_State_getStateBean StateName is Null', () => {
-    const mock_activate = jest.fn(mod.editPolicyForm_State_getStateBean);
-    mock_activate(null);
-    expect(mock_activate).toBeCalled();
+    jest.spyOn(global.console, 'error').mockImplementation(() => {});
+    mod.editPolicyForm_State_getStateBean(null);
+    expect(console.error).toHaveBeenCalledTimes(2);
+    mod.editPolicyForm_State_getStateBean('FakeState');
+    expect(console.error).toHaveBeenCalledTimes(4);
+    global.console.error.mockRestore();
+});
 
+test('Test editPolicyForm_State_getStateBean with mock', () => {
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editPolicyFormDirOutputsTable_stateName");
+    elementMock.rows = '1'
+    elementMock.key = {"name": "name1", "version": "version1"}
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getStateBean);
+    mock_activate('stateName');
+    expect(mock_activate).toBeCalled();
+});
+
+
+test('Test editPolicyForm_State_getStateBean with page', () => {
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<div id="editPolicyFormStateDiv_stateName"></div>' +
+    '<div id="editPolicyFormTrigger_stateName_dropdownList" selectedOption="1"></div>' +
+    '<table id="editPolicyFormContextsTable_stateName"context_id="a0">' +
+    '<tr class="table" context_id="a1" output_id="b1" finalizer_id="c1" task_id="d1"><td>cell 1</td><td>cell 2</td></tr>' +
+    '<tr class="table" context_id="a2" output_id="b2" finalizer_id="c2" task_id="d2"><td>cell 3</td><td>cell4</td></tr>' +
+    '<tr class="table" context_id="a3" output_id="b3" finalizer_id="c3" task_id="d3"><td>cell 5</td><td>cell6</td></tr>' +
+    '</table>' +
+    '</body></html>';
+    
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editPolicyFormDirOutputsTable_stateName");
+    elementMock.setAttribute("context_id", "a0");
+    elementMock.setAttribute("task_id", "d0");
+    elementMock.rows = document.getElementById("editPolicyFormContextsTable_stateName").rows;
+    elementMock.key = {"name": "name1", "version": "version1"};
+    elementMock.selectedOption = {"album": { "key": { "name": 'testAlbumName', "version": '0.0.1'}}, "name": "name1", "version": "version1", "event": { "key": { "name": 'testEventName', "version": '0.1.1'}}};
+    elementMock.value = "localName";
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getStateBean);
+    mock_activate('stateName');
+    expect(mock_activate).toBeCalled();
 });
 
 test('Test editPolicyForm_State_getLogicOutputMappingOptions', () => {
     const mock_activate = jest.fn(mod.editPolicyForm_State_getLogicOutputMappingOptions);
     mock_activate(null);
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test editPolicyForm_State_getLogicOutputMappingOptions with page', () => {
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<table id="editPolicyFormLogicOutputsTable_stateName"context_id="a0">' +
+    '<tr class="table" context_id="a1" output_id="b1" finalizer_id="c1" task_id="d1"><td>cell 1</td><td>cell 2</td></tr>' +
+    '<tr class="table" context_id="a2" output_id="b2" finalizer_id="c2" task_id="d2"><td>cell 3</td><td>cell4</td></tr>' +
+    '<tr class="table" context_id="a3" output_id="b3" finalizer_id="c3" task_id="d3"><td>cell 5</td><td>cell6</td></tr>' +
+    '</table>' +
+    '</body></html>';
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editPolicyFormLogicOutputsTable_stateName");
+    elementMock.value = "localName";
+    elementMock.rows = document.getElementById("editPolicyFormLogicOutputsTable_stateName").rows;
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getLogicOutputMappingOptions);
+    mock_activate('stateName');
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test editPolicyForm_State_getDirectOutputMappingOptions with page', () => {
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<table id="editPolicyFormDirOutputsTable_stateName"context_id="a0">' +
+    '<tr class="table" context_id="a1" output_id="b1" finalizer_id="c1" task_id="d1"><td>cell 1</td><td>cell 2</td></tr>' +
+    '<tr class="table" context_id="a2" output_id="b2" finalizer_id="c2" task_id="d2"><td>cell 3</td><td>cell4</td></tr>' +
+    '<tr class="table" context_id="a3" output_id="b3" finalizer_id="c3" task_id="d3"><td>cell 5</td><td>cell6</td></tr>' +
+    '</table>' +
+    '</body></html>';
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.createElement("editPolicyFormDirOutputsTable_stateName");
+    elementMock.value = "localName";
+    elementMock.rows = document.getElementById("editPolicyFormDirOutputsTable_stateName").rows;
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_State_getDirectOutputMappingOptions);
+    mock_activate('stateName');
     expect(mock_activate).toBeCalled();
 });
