@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
@@ -200,9 +200,11 @@ public class RestSession {
     /**
      * Upload the apex model as a TOSCA service template YAML string to the configured URL.
      *
+     * @param userId  the userId to use for upload. If blank, the commandline
+     *                parameter "upload-userid" is used.
      * @return a result indicating if the upload was successful or not
      */
-    public ApexApiResult uploadModel() {
+    public ApexApiResult uploadModel(final String userId) {
         // Get the model in TOSCA format
         ApexApiResult result = downloadModel();
         if (result.isNok()) {
@@ -215,7 +217,7 @@ public class RestSession {
 
         var policyModelUUid = apexModelBeingUploaded.getPolicyModel().getKeyInformation().get(policyModelKey)
             .getUuid().toString();
-        return new PolicyUploadHandler().doUpload(result.getMessage(), policyModelKey, policyModelUUid);
+        return new PolicyUploadHandler().doUpload(result.getMessage(), policyModelKey, policyModelUUid, userId);
     }
 
     /**

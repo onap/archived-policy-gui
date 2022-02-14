@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2019-2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2019-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
@@ -76,8 +76,6 @@ public class ModelHandler implements RestCommandHandler {
                 return listModel(session);
             case DOWNLOAD:
                 return downloadModel(session);
-            case UPLOAD:
-                return uploadModel(session);
             case DELETE:
                 return deleteModel(session);
             default:
@@ -102,6 +100,8 @@ public class ModelHandler implements RestCommandHandler {
                 return createModel(session, jsonString);
             case UPDATE:
                 return updateModel(session, jsonString);
+            case UPLOAD:
+                return uploadModel(session, jsonString);
             default:
                 return getUnsupportedCommandResultMessage(session, commandType, command);
         }
@@ -276,12 +276,14 @@ public class ModelHandler implements RestCommandHandler {
      * Upload the model for this session to the configured URL.
      *
      * @param session the Apex model editing session
+     * @param userId  the userId to use for upload. If blank, the commandline
+     *                parameter "upload-userid" is used.
      * @return a result indicating if the upload was successful or not
      */
-    private ApexApiResult uploadModel(final RestSession session) {
+    private ApexApiResult uploadModel(final RestSession session, String userId) {
         LOGGER.entry();
 
-        ApexApiResult result = session.uploadModel();
+        ApexApiResult result = session.uploadModel(userId);
 
         LOGGER.exit("Model/Download" + (result != null && result.isOk() ? OK : NOT_OK));
         return result;

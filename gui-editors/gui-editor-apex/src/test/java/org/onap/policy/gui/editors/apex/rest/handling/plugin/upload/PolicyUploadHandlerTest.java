@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.ResponseProcessingException;
 import javax.ws.rs.client.WebTarget;
@@ -38,6 +39,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -46,10 +48,12 @@ import org.onap.policy.gui.editors.apex.rest.ApexEditorMain;
 
 public class PolicyUploadHandlerTest {
 
+    private static final String CMDLINE_UPLOAD_USERID = "MyUser";
     private PolicyUploadHandler uploadHandler;
     private AxArtifactKey axArtifactKey;
     private String toscaServiceTemplate;
     private MockedStatic<ClientBuilder> clientBuilderMockedStatic;
+    private ArgumentCaptor<Entity<UploadPolicyRequestDto>> dtoEntityCaptor;
 
     /**
      * Prepares test environment.
@@ -78,12 +82,12 @@ public class PolicyUploadHandlerTest {
 
     @Test
     public void testDoUploadNoUrl() {
-        final String[] args = {"--upload-userid", "MyUser"};
+        final String[] args = {"--upload-userid", CMDLINE_UPLOAD_USERID};
         final var outBaStream = new ByteArrayOutputStream();
         final var outStream = new PrintStream(outBaStream);
         new ApexEditorMain(args, outStream);
 
-        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "");
+        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
         assertThat(result.isNok()).isTrue();
         assertThat(result.getMessage()).contains("Model upload is disable");
     }
@@ -96,7 +100,7 @@ public class PolicyUploadHandlerTest {
 
         prepareApexEditorMain();
 
-        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "");
+        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
 
         assertThat(result.isNok()).isTrue();
         assertThat(result.getMessage()).contains("failed with error");
@@ -111,7 +115,7 @@ public class PolicyUploadHandlerTest {
 
         prepareApexEditorMain();
 
-        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "");
+        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
 
         assertThat(result.isOk()).isTrue();
     }
@@ -125,10 +129,39 @@ public class PolicyUploadHandlerTest {
 
         prepareApexEditorMain();
 
-        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "");
+        final var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
 
         assertThat(result.isNok()).isTrue();
         assertThat(result.getMessage()).contains("failed with status 500");
+    }
+
+    @Test
+    public void testDoUploadUserId() {
+        final var response = Mockito.mock(Response.class);
+        mockRsHttpClient(response);
+
+        Mockito.doReturn(201).when(response).getStatus();
+
+        prepareApexEditorMain();
+
+        // If uploadUserId is specified, that value should be in DTO.
+        var result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "",
+            "OverrideUser");
+        assertThat(result.isOk()).isTrue();
+        var dto = dtoEntityCaptor.getValue().getEntity();
+        assertThat(dto.getUserId()).isEqualTo("OverrideUser");
+
+        // If uploadUserId is blank, the value from command line parameter 'upload-userid' is used.
+        result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", "");
+        assertThat(result.isOk()).isTrue();
+        dto = dtoEntityCaptor.getValue().getEntity();
+        assertThat(dto.getUserId()).isEqualTo(CMDLINE_UPLOAD_USERID);
+
+        // If uploadUserId is null, the value from command line parameter 'upload-userid' is used.
+        result = uploadHandler.doUpload(toscaServiceTemplate, axArtifactKey, "", null);
+        assertThat(result.isOk()).isTrue();
+        dto = dtoEntityCaptor.getValue().getEntity();
+        assertThat(dto.getUserId()).isEqualTo(CMDLINE_UPLOAD_USERID);
     }
 
     private void mockRsHttpClient(Response response) {
@@ -139,15 +172,17 @@ public class PolicyUploadHandlerTest {
 
         clientBuilderMockedStatic = Mockito.mockStatic(ClientBuilder.class);
 
+        dtoEntityCaptor = ArgumentCaptor.forClass(Entity.class);
+
         Mockito.when(ClientBuilder.newClient()).thenReturn(client);
         Mockito.when(client.target(ArgumentMatchers.anyString())).thenReturn(webTarget);
         Mockito.when(webTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
         Mockito.when(webTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
-        Mockito.when(invocationBuilder.post(ArgumentMatchers.any())).thenReturn(response);
+        Mockito.when(invocationBuilder.post(dtoEntityCaptor.capture())).thenReturn(response);
     }
 
     private void prepareApexEditorMain() {
-        final String[] args = {"--upload-userid", "MyUser", "--upload-url", "http://127.0.0.1"};
+        final String[] args = {"--upload-userid", CMDLINE_UPLOAD_USERID, "--upload-url", "http://127.0.0.1"};
         final var outBaStream = new ByteArrayOutputStream();
         final var outStream = new PrintStream(outBaStream);
         new ApexEditorMain(args, outStream);
