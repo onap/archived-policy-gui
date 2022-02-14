@@ -1,7 +1,7 @@
 <!--
   ============LICENSE_START=======================================================
    Copyright (C) 2018 Ericsson. All rights reserved.
-   Modifications Copyright (C) 2019-2021 Nordix Foundation.
+   Modifications Copyright (C) 2019-2022 Nordix Foundation.
    Modifications Copyright (C) 2020 Bell Canada.
    Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
   ================================================================================
@@ -35,6 +35,8 @@
 
     <properties>
         <policy.apex-pdp.version>2.4.0</policy.apex-pdp.version>
+        <policy.common.version>1.10.1-SNAPSHOT</policy.common.version>
+        <policy.models.version>2.6.1-SNAPSHOT</policy.models.version>
         <webapp.dir>src/main/resources/webapp</webapp.dir>
         <sonar.nodejs.executable>${project.basedir}/src/main/resources/webapp/node/node</sonar.nodejs.executable>
         <sonar.sources>${project.basedir}/src/main/java,${project.basedir}/src/main/resources/webapp/js</sonar.sources>
@@ -44,25 +46,8 @@
     <dependencies>
         <dependency>
             <groupId>org.onap.policy.common</groupId>
-            <artifactId>policy-endpoints</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.onap.aaf.authz</groupId>
-                    <artifactId>aaf-cadi-aaf</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.att.nsa</groupId>
-                    <artifactId>cambriaClient</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.onap.dmaap.messagerouter.dmaapclient</groupId>
-                    <artifactId>dmaapClient</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.onap.policy.common</groupId>
             <artifactId>utils</artifactId>
+            <version>${policy.common.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.worldturner.medeia</groupId>
@@ -104,19 +89,6 @@
             <artifactId>commons-cli</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>1.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.onap.policy.apex-pdp.client</groupId>
-            <artifactId>apex-client-common</artifactId>
-            <version>${policy.apex-pdp.version}</version>
-            <classifier>resources</classifier>
-            <type>zip</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
         </dependency>
@@ -126,11 +98,6 @@
             <version>3.10.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>

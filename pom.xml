@@ -3,7 +3,7 @@
   ONAP Policy GUI
   ================================================================================
   Copyright (C) 2020-2021 AT&T Intellectual Property. All rights reserved.
-  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+  Modifications Copyright (C) 2020-2022 Nordix Foundation.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -40,8 +40,6 @@
     <description>Code for all the Policy GUI's.</description>
 
     <properties>
-        <policy.common.version>1.10.1-SNAPSHOT</policy.common.version>
-        <policy.models.version>2.6.1-SNAPSHOT</policy.models.version>
         <jacoco.dataFile>${project.basedir}/../../target/code-coverage/jacoco-ut.exec</jacoco.dataFile>
         <sonar.javascript.lcov.reportPaths>${project.basedir}/target/code-coverage/lcov.info</sonar.javascript.lcov.reportPaths>
     </properties>
@@ -77,21 +75,6 @@
             <url>dav:${nexusproxy}${sitePath}</url>
         </site>
     </distributionManagement>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.onap.policy.common</groupId>
-                <artifactId>utils</artifactId>
-                <version>${policy.common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.onap.policy.common</groupId>
-                <artifactId>policy-endpoints</artifactId>
-                <version>${policy.common.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <profiles>
         <profile>
