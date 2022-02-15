@@ -37,10 +37,10 @@
         <policy.apex-pdp.version>2.4.0</policy.apex-pdp.version>
         <policy.common.version>1.10.1-SNAPSHOT</policy.common.version>
         <policy.models.version>2.6.1-SNAPSHOT</policy.models.version>
-        <webapp.dir>src/main/resources/webapp</webapp.dir>
-        <sonar.nodejs.executable>${project.basedir}/src/main/resources/webapp/node/node</sonar.nodejs.executable>
-        <sonar.sources>${project.basedir}/src/main/java,${project.basedir}/src/main/resources/webapp/js</sonar.sources>
-        <sonar.exclusions>src/main/resources/webapp/js/__test__/**,src/main/resources/webapp/js/jquery/**,src/main/resources/webapp/js/edit_area/**,src/main/resources/webapp/js/jquery-ui-1.12.1/**,src/main/resources/webapp/js/lib/**</sonar.exclusions>
+        <webapp.dir>${project.basedir}/src/main/webapp</webapp.dir>
+        <sonar.nodejs.executable>${webapp.dir}/node/node</sonar.nodejs.executable>
+        <sonar.sources>${project.basedir}/src/main/java,${webapp.dir}/js</sonar.sources>
+        <sonar.exclusions>${webapp.dir}/js/__test__/**</sonar.exclusions>
     </properties>
 
     <dependencies>
@@ -101,25 +101,6 @@
     </dependencies>
 
     <build>
-        <defaultGoal>install</defaultGoal>
-        <outputDirectory>${project.build.directory}/classes</outputDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>webapp/node/**</exclude>
-                    <exclude>webapp/node_modules/**</exclude>
-                    <exclude>webapp/webpack.config.js</exclude>
-                    <exclude>webapp/package.json</exclude>
-                    <exclude>webapp/package-lock.json</exclude>
-                    <exclude>webapp/dist/**</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>${webapp.dir}/dist/</directory>
-                <targetPath>webapp/</targetPath>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
@@ -127,6 +108,7 @@
                 <version>1.9.1</version>
                 <configuration>
                     <nodeVersion>v14.17.0</nodeVersion>
+                    <npmVersion>6.14.5</npmVersion>
                     <installDirectory>${webapp.dir}</installDirectory>
                     <workingDirectory>${webapp.dir}</workingDirectory>
                     <npmDownloadRoot>${repo.npm}</npmDownloadRoot>
@@ -137,9 +119,7 @@
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
-                        <configuration>
-                            <npmVersion>6.14.5</npmVersion>
-                        </configuration>
+                        <phase>generate-resources</phase>
                     </execution>
                     <execution>
                         <id>npm install</id>
@@ -149,25 +129,49 @@
                         <configuration>
                             <arguments>install</arguments>
                         </configuration>
+                        <phase>generate-resources</phase>
                     </execution>
                     <execution>
                         <id>npm test</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
-                        <phase>test</phase>
                         <configuration>
                             <arguments>test</arguments>
                         </configuration>
+                        <phase>test</phase>
                     </execution>
                     <execution>
                         <id>webpack build</id>
                         <goals>
                             <goal>webpack</goal>
                         </goals>
+                        <phase>generate-resources</phase>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy frontend resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/classes/webapp</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${webapp.dir}/dist</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -190,37 +194,12 @@
                     </filesets>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/node/**</exclude>
-                        <exclude>**/node_modules/**</exclude>
-                        <exclude>webapp/webpack.config.js</exclude>
-                        <exclude>webapp/package.json</exclude>
-                        <exclude>webapp/package-lock.json</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>make shared resources</id>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/resources.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -249,14 +228,6 @@
                                 <exclude>META-INF/*.SF</exclude>
                                 <exclude>META-INF/*.DSA</exclude>
                                 <exclude>META-INF/*.RSA</exclude>
-                                <exclude>webapp/package-lock.json</exclude>
-                                <exclude>webapp/package.json</exclude>
-                                <exclude>webapp/.babelrc</exclude>
-                                <exclude>webapp/.gitignore</exclude>
-                                <exclude>webapp/webpack.config.js</exclude>
-                                <exclude>webapp/dist/</exclude>
-                                <exclude>webapp/js/Apex*.js</exclude>
-                                <exclude>webapp/js/__test__/</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -270,6 +241,7 @@
                     </transformers>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>

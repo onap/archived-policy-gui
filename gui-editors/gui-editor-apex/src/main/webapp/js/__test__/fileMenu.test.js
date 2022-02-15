@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-const mod = require('../fileMenu');
+const mod = require('../../dist/js/fileMenu');
 
 test('test hideMenu', () => {
     document.documentElement.innerHTML = '<html><head></head><body><ul id="menu">Hello world!</ul></body></html>';
