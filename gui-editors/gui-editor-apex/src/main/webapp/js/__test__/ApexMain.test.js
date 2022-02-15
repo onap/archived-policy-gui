@@ -27,7 +27,7 @@ const apexTaskTab = require('../ApexTaskTab');
 const apexPolicyTab = require('../ApexPolicyTab');
 const keyInformationTab = require('../ApexKeyInformationTab');
 
-require('../jquery-ui-1.12.1/jquery-ui.js');
+require('../../dist/js/jquery-ui-1.12.1/jquery-ui.js');
 
 const data = {
     messages: {
