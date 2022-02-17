@@ -40,7 +40,7 @@
         <webapp.dir>${project.basedir}/src/main/webapp</webapp.dir>
         <sonar.nodejs.executable>${webapp.dir}/node/node</sonar.nodejs.executable>
         <sonar.sources>${project.basedir}/src/main/java,${webapp.dir}/js</sonar.sources>
-        <sonar.exclusions>${webapp.dir}/js/__test__/**</sonar.exclusions>
+        <sonar.exclusions>**/*.test.js</sonar.exclusions>
     </properties>
 
     <dependencies>
