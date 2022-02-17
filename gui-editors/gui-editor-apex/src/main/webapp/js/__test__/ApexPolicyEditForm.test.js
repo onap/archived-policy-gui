@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -142,6 +142,35 @@ test('Test Update Trigger Event', () => {
     expect(mock_activate).toBeCalled();
 });
 
+test('Test Update Trigger Event with firststate', () => {
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<div id="editEventFormSelectFirstState_dropdownList"></div>' +
+    '</body></html>';
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.getElementById("editEventFormSelectFirstState_dropdownList");
+    elementMock.setAttribute("createEditOrView", "CREATE")
+    elementMock.setAttribute("disabled", "false")
+    elementMock.selectedOption = {"name": "name1", "version": "version1", "displaytext": "PeriodicEvent"};
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_updateTriggerEventOptions);
+    mock_activate('events');
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test editPolicyForm_getNextStateOptions', () => {
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<div id="editEventFormStates"><div id="#editEventFormStates"><li stateName="state" value="v1">a1</li><li stateName="state" value="v2">a2</li></div></div>' +
+    '</body></html>';
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.getElementById("editEventFormStates");
+    elementMock.value = 'notNullValue';
+    elementMock.setAttribute("stateName", "state");
+    documentSpy.mockReturnValue(elementMock);
+    let options = mod.editPolicyForm_getNextStateOptions();
+    let expected = [{"name" : "NULL", "displaytext" : "None"}];
+    expect(options).toStrictEqual(expected);
+});
+
 test('Test activate CREATE', () => {
     jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
     const mock_activate = jest.fn(mod.editPolicyForm_activate);
@@ -171,4 +200,66 @@ test('Test editPolicyForm_editPolicy_inner', () => {
     const mock_editPolicyForm_editPolicy_inner = jest.fn(mod.editPolicyForm_editPolicy_inner);
     mock_editPolicyForm_editPolicy_inner('formParent', policy, 'VIEW');
     expect(mock_editPolicyForm_editPolicy_inner).toBeCalled();
-})
+});
+
+test('Test editPolicyForm_submitPressed CREATE with page', () => {
+    const jqXHR = { status: 200, responseText: "" };
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
+    jest.spyOn(apexPolicyTab, 'policyTab_reset').mockReturnValueOnce(null);
+    jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<div id="editEventFormStates"><div id="#editEventFormStates"><li stateName="state" value="v1">a1</li><li stateName="state" value="v2">a2</li></div></div>' +
+    '</body></html>';
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.getElementById("#editEventFormStates");
+    elementMock.value = 'notNullValue';
+    elementMock.setAttribute("stateName", "state");
+    elementMock.selectedOption = {"name": "name1", "version": "version1"};
+    elementMock.setAttribute("createEditOrView", "CREATE")
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_submitPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test editPolicyForm_submitPressed EDIT with page', () => {
+    const jqXHR = { status: 200, responseText: "" };
+    $.ajax = jest.fn().mockImplementation((args) => {
+        args.success(data, null, jqXHR);
+    });
+    jest.spyOn(apexPolicyTab, 'policyTab_reset').mockReturnValueOnce(null);
+    jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<div id="editEventFormStates"><div id="#editEventFormStates"><li stateName="state" value="v1">a1</li><li stateName="state" value="v2">a2</li></div></div>' +
+    '</body></html>';
+    let documentSpy = jest.spyOn(document, 'getElementById');
+    let elementMock = document.getElementById("#editEventFormStates");
+    elementMock.value = 'notNullValue';
+    elementMock.setAttribute("stateName", "state");
+    elementMock.selectedOption = {"name": "name1", "version": "version1"};
+    elementMock.setAttribute("createEditOrView", "EDIT")
+    documentSpy.mockReturnValue(elementMock);
+    const mock_activate = jest.fn(mod.editPolicyForm_submitPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test editPolicyForm_cancelPressed', () => {
+    jest.spyOn(apexPolicyTab, 'policyTab_reset').mockReturnValueOnce(null);
+    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
+    const mock_activate = jest.fn(mod.editPolicyForm_cancelPressed);
+    mock_activate();
+    expect(mock_activate).toBeCalled();
+});
+
+test('Test editPolicyForm_generateUUIDPressed', () => {
+    document.documentElement.innerHTML = '<html><head></head><body>' +
+    '<div id="editPolicyFormUuidInput">test</div>' +
+    '</body></html>';
+    mod.editPolicyForm_generateUUIDPressed();
+    expect(document.getElementById("editPolicyFormUuidInput").value).not.toBeNull();
+});
