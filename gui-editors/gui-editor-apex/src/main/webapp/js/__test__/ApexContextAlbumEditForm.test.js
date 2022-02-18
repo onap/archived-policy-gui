@@ -136,9 +136,35 @@ test('Test Generate Description Pressed', () => {
 
 test('Test editContextAlbumForm_cancelPressed', () => {
    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValue(null);
-   jest.spyOn(document, 'getElementById').mockReturnValue(null);
+   const mock = jest.spyOn(document, 'getElementById').mockReturnValue(null);
    jest.spyOn(contextAlbumTab_reset, 'contextAlbumTab_reset').mockReturnValue(null);
    const mock_activate = jest.fn(mod.editContextAlbumForm_cancelPressed);
+   mock_activate();
+   expect(mock_activate).toBeCalled();
+   mock.mockRestore();
+});
+
+test('Test Submit Pressed with page', () => {
+   global.window.restRootURL = () => 'http://localhost'
+   const jqXHR = { status: 200, responseText: "" };
+   $.ajax = jest.fn().mockImplementation((args) => {
+      args.success(data, null, jqXHR);
+   });
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValue(null);
+   jest.spyOn(contextAlbumTab_reset, 'contextAlbumTab_reset').mockReturnValueOnce(null);
+
+   document.documentElement.innerHTML = '<html><head></head><body>' +
+   '<div id="editContextAlbumFormDiv"></div>' +
+   '</body></html>';
+   let documentSpy = jest.spyOn(document, 'getElementById');
+   let elementMock = document.getElementById("editContextAlbumFormDiv");
+   elementMock.value = 'APPLICATION';
+   elementMock.selectedOption = {"name": "schemaName", "version": "schemaVers"};
+   elementMock.checked = false;
+   elementMock.setAttribute("createEditOrView", "CREATE");
+   documentSpy.mockReturnValue(elementMock);
+   const mock_activate = jest.fn(mod.editContextAlbumForm_submitPressed);
    mock_activate();
    expect(mock_activate).toBeCalled();
 });

@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@
  * ============LICENSE_END=========================================================
  */
 import {keyInformationTab_reset} from "./ApexKeyInformationTab";
-const {ajax_delete, ajax_getWithKeyInfo, ajax_get} = require("./ApexAjax");
+const {ajax_delete, ajax_getWithKeyInfo, ajax_get, ajax_post, ajax_put} = require("./ApexAjax");
 const {contextAlbumTab_reset} = require("./ApexContextAlbumTab");
 const {apexUtils_removeElement, apexUtils_emptyElement, scrollToTop, apexUtils_areYouSure} = require("./ApexUtils");
 const {dropdownList} = require("./dropdownList");
