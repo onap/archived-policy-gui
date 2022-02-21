@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0012897b_5d20d36f",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2022-02-21T10:59:22Z",
+      "side": 1,
+      "message": "I would recommend to use constructor injection for required dependencies instead of field injection.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 51
+      },
+      "revId": "4834a974923055fd6e23ab062c40f883f44779dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
