@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3910cc28_f12c92e4",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ModelHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-21T15:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5911b0b2_76fa6ad0",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58620e21_9212d5de",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
         "patchSetId": 3
@@ -45,6 +69,47 @@
       "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeb9a071_33bb3d8a",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-21T15:25:32Z",
+      "side": 1,
+      "message": "There are many ways to do this with spring boot. You may:\n- pass on command line using -Dapex-editor.upload-url\u003d\u003curl\u003e\n- set an environment variable, e.g. export APEX_EDITOR_UPLOAD_URL\u003d\u003curl\u003e\n- place `apex-editor.upload-url\u003d\u003curl\u003e` in a properties file and set -Dspring.config.location\n- place config in a default location, e.g. application.properties in current directory",
+      "parentUuid": "58620e21_9212d5de",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1da9e4d6_1a00aeea",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-21T15:25:32Z",
+      "side": 1,
+      "message": "Likewise:\n- Command line: java jar -Dapex-editor.upload-userid\u003dmyuser app.jar\n- Environment var: export APEX_EDITOR_UPLOAD_USERID\u003dmyuser\n- Properties file: apex-editor.upload-userid\u003dmyuser",
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "81604d28_7ac32291",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-21T15:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "602fd61c_a5674843",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 50
+      },
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe49a587_b285739e",
         "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResourceTest.java",
         "patchSetId": 3
@@ -91,6 +180,30 @@
       "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c1aa8b9_9bb715ae",
+        "filename": "gui-editors/gui-editor-apex/src/test/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResourceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-21T15:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe49a587_b285739e",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 57
+      },
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
