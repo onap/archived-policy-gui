@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "877f0222_963cedf6",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-22T13:39:04Z",
+      "side": 1,
+      "message": "Correct, you would use Spring config to set listen address and port:\n```\nserver.address\u003d\u003cyour_ip\u003e\nserver.port\u003d\u003cyour_port\u003e\napex-editor.upload-url\u003d\u003cupload_url\u003e\napex-editor.upload-userid\u003d\u003cupload_userid\u003e\n```\nSpring Boot uses 0.0.0.0:8080 as defaults, so you will need to supply your own properties file (or command line args or environment vars) to set these.\n\nSide note: I have deliberately *not* included a default application.properties file in the JAR. As per POLICY-3638, Apex Editor will be included alongside other GUIs in a single JAR. I wanted to avoid any issues from having multiple properties files on the classpath.",
+      "parentUuid": "5769b870_0413b75f",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1da9e4d6_1a00aeea",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
         "patchSetId": 3
