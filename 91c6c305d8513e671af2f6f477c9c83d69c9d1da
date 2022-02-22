@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8db0860a_5479e4c7",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/UploadPolicyRequestDto.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2022-02-22T08:53:51Z",
+      "side": 1,
+      "message": "We\u0027re not allowed to use any Jackson dependencies by the Linux Foundatiom due to security/licensing concerns.\n\nCan you look at doing this in a GSON way?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 2
+      },
+      "revId": "91c6c305d8513e671af2f6f477c9c83d69c9d1da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
