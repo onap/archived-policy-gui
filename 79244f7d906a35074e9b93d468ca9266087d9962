@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab489bd6_d03e5aa3",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3239
+      },
+      "writtenOn": "2022-02-22T15:02:29Z",
+      "side": 1,
+      "message": "May be we can start following the same path convention in gui repo as others, I mean something like \"/policy/gui/v1/apex/editor\" or similar. Thoughts?",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "79244f7d906a35074e9b93d468ca9266087d9962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
