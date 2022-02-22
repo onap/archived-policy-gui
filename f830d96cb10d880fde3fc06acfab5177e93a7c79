@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5769b870_0413b75f",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2022-02-22T13:15:48Z",
+      "side": 1,
+      "message": "I was mistaken, in fact we use the parameters:\n-uurl to set the new apex-editor.upload-url\n-uuid to set the new apex-editor.upload-userid\n\nWe also use \"-l\" and \"-p\" to set the host address and the port respectively. Were those changed to the Spring boot way or they remain the same? I couldn\u0027t find in the changes, so I believe nothing has changed for those parameters.",
+      "parentUuid": "aeb9a071_33bb3d8a",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "f830d96cb10d880fde3fc06acfab5177e93a7c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1da9e4d6_1a00aeea",
         "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/plugin/upload/PolicyUploadHandler.java",
         "patchSetId": 3
