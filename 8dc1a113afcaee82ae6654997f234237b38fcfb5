@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe1bed40_f5816d1e",
+        "filename": "gui-editors/gui-editor-apex/src/main/webapp/js/ApexMain.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2022-02-22T16:59:19Z",
+      "side": 1,
+      "message": "what if the host has a different port than the default or it runs the solution under a context path, will the solution work? Probably the we will have incorrect url for the calls.",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 58
+      },
+      "revId": "8dc1a113afcaee82ae6654997f234237b38fcfb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
