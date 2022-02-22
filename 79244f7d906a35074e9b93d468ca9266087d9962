@@ -22,6 +22,30 @@
       "revId": "79244f7d906a35074e9b93d468ca9266087d9962",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb798c4_f05bbd78",
+        "filename": "gui-editors/gui-editor-apex/src/main/java/org/onap/policy/gui/editors/apex/rest/handling/ApexEditorRestResource.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-22T15:17:41Z",
+      "side": 1,
+      "message": "Yes, it would be good to keep consistency, and fairly simple to change. I will push a patch for it shortly (either here or in a separate review).",
+      "parentUuid": "ab489bd6_d03e5aa3",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "79244f7d906a35074e9b93d468ca9266087d9962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
