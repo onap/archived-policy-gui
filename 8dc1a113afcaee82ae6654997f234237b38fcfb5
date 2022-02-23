@@ -22,6 +22,30 @@
       "revId": "8dc1a113afcaee82ae6654997f234237b38fcfb5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c1c9884_7d435095",
+        "filename": "gui-editors/gui-editor-apex/src/main/webapp/js/ApexMain.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-02-23T10:04:50Z",
+      "side": 1,
+      "message": "Yes, changing context path would give incorrect REST URLs. I have reverted this change and verified with server.servlet.context-path\u003d/test.",
+      "parentUuid": "fe1bed40_f5816d1e",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 58
+      },
+      "revId": "8dc1a113afcaee82ae6654997f234237b38fcfb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
