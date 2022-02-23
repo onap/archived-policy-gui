@@ -62,14 +62,22 @@ const policy = {
         version: 'testVersion',
         uuid: 'testUUID'
     },
-    uuid: 'testUUID'
+    uuid: 'testUUID',
+    state: [{ key: 'testName1', value: '1'}, { key: 'testName2',value: '2'}]
 }
 
 const state = {
     trigger: {
         name: 'testName',
         version: '0.0.1',
-    }
+    },
+    defaultTask: {
+        name: 'deftestName',
+        version: '0.0.2',
+    },
+    taskReferences: [{key: { name: 'testName1',version: '1'}, key: { name: 'testName2',version: '2'}}],
+    stateOutputs : [{key: { name: 'testName1',version: '1'}, key: { name: 'testName2',version: '2'}}], 
+    stateFinalizerLogicMap : [{key: {value: { logic: 'testName1', logicFlavour : '1'}}, key: {value: { logic: 'testName1', logicFlavour : '1'}}}]
 }
 
 const parentTBody = document.createElement('table');

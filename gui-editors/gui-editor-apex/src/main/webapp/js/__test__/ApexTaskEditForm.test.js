@@ -37,7 +37,17 @@ const task = {
       name: 'testName',
       version: 'testVersion'
    },
-   uuid: 'testUUID'
+   uuid: 'testUUID',
+   description: 'Description of task',
+   taskLogic: {
+      logicFlavour: 'testFlav'
+   },
+   inputFields : {entry: [{key: "key1", value: {fieldSchemaKey: { name : "name2",  version : "version2"}}}]},
+   outputFields : {entry: [{key: "key01", value: {fieldSchemaKey: { name : "name02",  version : "version02"}}}]},
+   taskParameters: {entry: [{key: 'testKey',value: {defaultValue: 'testValue'}}]},
+   contextAlbumReference : [{name : 'contextEntry.name',version : 'contextEntry.version', displaytext : 'contextName'},
+      {name : 'contextEntry.name2',version : 'contextEntry.version2', displaytext : 'contextName2'},
+      {name : 'contextEntry.name3',version : 'contextEntry.version3', displaytext : 'contextName3'}]
 };
 
 let data = {
@@ -100,6 +110,9 @@ test('Test Edit Task Inner', () => {
    $.ajax = jest.fn().mockImplementation((args) => {
       args.success(data, null, jqXHR);
    });
+   jest.spyOn(apexTaskTab, 'taskTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(keyInformationTab_reset, 'keyInformationTab_reset').mockReturnValueOnce(null);
+   jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
    const mock_activate = jest.fn(mod.editTaskForm_editTask_inner);
    mock_activate('test', 'name', 'version', 'Edit');
    expect(mock_activate).toBeCalled();
@@ -195,11 +208,13 @@ test('Test editTaskForm_submitPressed with page', () => {
    '</table>' +
    '</body></html>';
    let documentSpy = jest.spyOn(document, 'getElementById');
-   let elementMock = document.getElementById("editTaskFormInputFieldsTable");
+   let elementMock = document.createElement("editTaskFormInputFieldsTable");
    elementMock.value = 'notNullValue';
-   elementMock.selectedOption = {"name": "name1", "version": "version1"};
+   elementMock.selectedOption = {"name": "name1", "version": "version1", "displaytext": "t"};
    elementMock.checked = {"name": "nameOpt", "version": "versionOpt"};
    elementMock.setAttribute("createEditOrView", "EDIT")
+   elementMock.rows = document.getElementById("editTaskFormInputFieldsTable").rows;
+   console.log(elementMock.rows);
    documentSpy.mockReturnValue(elementMock);
 
    const mock_activate = jest.fn(mod.editTaskForm_submitPressed);
