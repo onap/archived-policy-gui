@@ -1,5 +1,5 @@
 {
-    "controlLoopList": [
+    "acmList": [
         {
             "name": "PMSHInstance0",
             "version": "1.0.1",

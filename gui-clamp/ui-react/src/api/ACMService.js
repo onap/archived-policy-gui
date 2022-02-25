@@ -17,12 +17,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-export default class ControlLoopService {
+export default class ACMService {
 
-  static async getControlLoopInstantiation() {
+  static async getACMInstantiation() {
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/getToscaInstantiation');
+      'restservices/clds/v2/acm/getToscaInstantiation');
 
     return response
   }
@@ -30,7 +30,7 @@ export default class ControlLoopService {
   static async createInstanceProperties(instanceName, instancePropertiesTemplate) {
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/postToscaInstanceProperties', {
+      'restservices/clds/v2/acm/postToscaInstanceProperties', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -49,7 +49,7 @@ export default class ControlLoopService {
     }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/deleteToscaInstanceProperties?' + (new URLSearchParams(params)), {
+      'restservices/clds/v2/acm/deleteToscaInstanceProperties?' + (new URLSearchParams(params)), {
       method: 'DELETE',
       credentials: 'same-origin',
     });
@@ -65,7 +65,7 @@ export default class ControlLoopService {
       version: version
     }
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/getInstantiationOrderState'+ '?' + (new URLSearchParams(params)));
+      'restservices/clds/v2/acm/getInstantiationOrderState'+ '?' + (new URLSearchParams(params)));
 
     const data = await response;
 
@@ -74,7 +74,7 @@ export default class ControlLoopService {
 
   static async changeInstanceOrderState(toscaObject) {
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/putToscaInstantiationStateChange', {
+      'restservices/clds/v2/acm/putToscaInstantiationStateChange', {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
@@ -93,7 +93,7 @@ export default class ControlLoopService {
     }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/getToscaTemplate' + '?' + (new URLSearchParams(params)));
+      'restservices/clds/v2/acm/getToscaTemplate' + '?' + (new URLSearchParams(params)));
 
     const data = await response;
 
@@ -102,7 +102,7 @@ export default class ControlLoopService {
 
   static async uploadToscaFile(toscaObject) {
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/commissionToscaTemplate', {
+      'restservices/clds/v2/acm/commissionToscaTemplate', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -122,7 +122,7 @@ export default class ControlLoopService {
     }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
+      'restservices/clds/v2/acm/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
       {
         method: 'DELETE'
       });
@@ -140,7 +140,7 @@ export default class ControlLoopService {
     }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/toscaControlLoop/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
+      'restservices/clds/v2/acm/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
 
     return response;
   }

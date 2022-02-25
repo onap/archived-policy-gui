@@ -21,7 +21,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 import Alert from "react-bootstrap/Alert";
 import * as PropTypes from "prop-types";
 import InstantiationUtils from "./utils/InstantiationUtils";
@@ -66,10 +66,10 @@ const InstancePropertiesModal = (props) => {
   const [instanceName, setInstanceName] = useState('')
 
   useEffect(async () => {
-    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(templateName, templateVersion)
+    const toscaTemplateResponse = await ACMService.getToscaTemplate(templateName, templateVersion)
         .catch(error => error.message);
 
-    const toscaInstanceProperties = await ControlLoopService.getCommonOrInstanceProperties(templateName, templateVersion, false)
+    const toscaInstanceProperties = await ACMService.getCommonOrInstanceProperties(templateName, templateVersion, false)
       .catch(error => error.message);
 
     if (!toscaInstanceProperties.ok) {
@@ -111,7 +111,7 @@ const InstancePropertiesModal = (props) => {
       setToscaFullTemplate(InstantiationUtils.updateTemplate(jsonEditor.getValue(), toscaFullTemplate));
     }
 
-    const response = await ControlLoopService.createInstanceProperties(instanceName, toscaFullTemplate)
+    const response = await ACMService.createInstanceProperties(instanceName, toscaFullTemplate)
       .catch(error => error.message);
 
     if (response.ok) {

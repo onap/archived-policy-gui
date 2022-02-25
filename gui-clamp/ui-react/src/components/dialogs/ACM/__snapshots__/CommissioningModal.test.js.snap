@@ -13,7 +13,7 @@ exports[`Verify CommissioningModal renders correctly 1`] = `
     closeLabel="Close"
   >
     <ModalTitle>
-      Change Control Loop Common Properties
+      Change ACM Common Properties
     </ModalTitle>
   </ModalHeader>
   <br />

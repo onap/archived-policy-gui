@@ -51,13 +51,13 @@ import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { Link } from 'react-router-dom';
-import ReadAndConvertYaml from "./components/dialogs/ControlLoop/ReadAndConvertYaml";
-import MonitorInstantiation from "./components/dialogs/ControlLoop/MonitorInstantiation";
-import GetLocalToscaFileForUpload from "./components/dialogs/ControlLoop/GetLocalToscaFileForUpload";
-import CommissioningModal from "./components/dialogs/ControlLoop/CommissioningModal";
-import InstancePropertiesModal from "./components/dialogs/ControlLoop/InstancePropertiesModal";
-import ChangeOrderStateModal from "./components/dialogs/ControlLoop/ChangeOrderStateModal";
-import InstantiationManagementModal from "./components/dialogs/ControlLoop/InstantiationManagementModal";
+import ReadAndConvertYaml from "./components/dialogs/ACM/ReadAndConvertYaml";
+import MonitorInstantiation from "./components/dialogs/ACM/MonitorInstantiation";
+import GetLocalToscaFileForUpload from "./components/dialogs/ACM/GetLocalToscaFileForUpload";
+import CommissioningModal from "./components/dialogs/ACM/CommissioningModal";
+import InstancePropertiesModal from "./components/dialogs/ACM/InstancePropertiesModal";
+import ChangeOrderStateModal from "./components/dialogs/ACM/ChangeOrderStateModal";
+import InstantiationManagementModal from "./components/dialogs/ACM/InstantiationManagementModal";
 
 const StyledMainDiv = styled.div`
   background-color: ${ props => props.theme.backgroundColor };
@@ -389,7 +389,7 @@ export default class LoopUI extends React.Component {
         />
         <Route path="/monitorInstantiation" render={ (routeProps) => (<MonitorInstantiation { ...routeProps } />) }/>
         <Route path="/instantiationManagement" render={ (routeProps) => (<InstantiationManagementModal { ...routeProps } />) }/>
-        <Route path="/editControlLoopInstanceProperties" render={ (routeProps) => (<InstancePropertiesModal { ...routeProps } />) }/>
+        <Route path="/editACMInstanceProperties" render={ (routeProps) => (<InstancePropertiesModal { ...routeProps } />) }/>
         <Route path="/changeOrderState" render={ (routeProps) => (<ChangeOrderStateModal { ...routeProps } />) }/>
       </React.Fragment>
     );

@@ -21,7 +21,7 @@ exports[`Verify MonitorInstantiation renders correctly 1`] = `
       show={false}
       variant="danger"
     >
-      Can't get control loop instantiation info:
+      Can't get acm instantiation info:
       <br />
       {}
     </Styled(Alert)>

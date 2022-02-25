@@ -25,8 +25,8 @@ import toJson from "enzyme-to-json";
 import InstantiationManagementModal from "./InstantiationManagementModal";
 import {act} from "react-dom/test-utils";
 import {createMemoryHistory} from "history";
-import ControlLoopService from "../../../api/ControlLoopService";
-import clLoopList from "./testFiles/controlLoopList.json";
+import ACMService from "../../../api/ACMService";
+import acmLoopList from "./testFiles/acmList.json";
 import {BrowserRouter} from "react-router-dom";
 
 const logSpy = jest.spyOn(console, 'log')
@@ -99,14 +99,14 @@ describe('Verify Instantiation Management', () => {
 
     it('Check useEffect is being called', async () => {
         jest.resetAllMocks();
-        jest.spyOn(ControlLoopService, 'getControlLoopInstantiation')
+        jest.spyOn(ACMService, 'getACMInstantiation')
             .mockImplementationOnce(async () => {
                 return Promise.resolve({
                     ok: true,
                     status: 200,
                     text: () => "OK",
                     json: () => {
-                        return Promise.resolve(clLoopList);
+                        return Promise.resolve(acmLoopList);
                     }
                 });
             });
@@ -138,7 +138,7 @@ describe('Verify Instantiation Management', () => {
                     ok: true,
                     status: 200,
                     text: () => "OK",
-                    json: () => clLoopList
+                    json: () => acmLoopList
                 })
             )
 
