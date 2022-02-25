@@ -123,7 +123,7 @@ exports[`Verify OnapClamp Test the render method 1`] = `
       render={[Function]}
     />
     <Route
-      path="/editControlLoopInstanceProperties"
+      path="/editACMInstanceProperties"
       render={[Function]}
     />
     <Route

@@ -25,7 +25,7 @@ import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 import Row from "react-bootstrap/Row";
 import InstantiationUtils from "./utils/InstantiationUtils";
 
@@ -48,16 +48,17 @@ const DivWhiteSpaceStyled = styled.div`
 const InstantiationManagementModal = (props) => {
   const [show, setShow] = useState(true);
   const [instantiationList, setInstantiationList] = useState([]);
-  const [deleteInstantiation, setDeleteInstantiation] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
 
   useEffect(async () => {
 
-    const response = await ControlLoopService.getControlLoopInstantiation();
+    const response = await ACMService.getACMInstantiation();
 
     const instantiationListJson = await response.json();
 
-    const parsedInstantiationList = InstantiationUtils.parseInstantiationList(instantiationListJson['controlLoopList']);
+    console.log(instantiationListJson);
+
+    const parsedInstantiationList = InstantiationUtils.parseInstantiationList(instantiationListJson['automationCompositionList']);
 
     setInstantiationList(parsedInstantiationList);
   }, []);
@@ -72,7 +73,6 @@ const InstantiationManagementModal = (props) => {
 
   const deleteInstantiationHandler = async (index, instantiation) => {
     console.log("deleteInstantiationHandler called");
-    setDeleteInstantiation(true);
 
     console.log(instantiation);
 
@@ -83,13 +83,12 @@ const InstantiationManagementModal = (props) => {
     const name = instantiation.name;
     const version = instantiation.version;
 
-    const response = await ControlLoopService.deleteInstantiation(name, version);
+    const response = await ACMService.deleteInstantiation(name, version);
 
     updateList(index);
 
     if (response.ok) {
       successAlert();
-      setDeleteInstantiation(false);
     } else {
       await errorAlert(response);
     }
@@ -147,7 +146,7 @@ const InstantiationManagementModal = (props) => {
       <Modal.Body>
         <Container>
           <Row>
-            <Link to={ { pathname: "/editControlLoopInstanceProperties" } }>
+            <Link to={ { pathname: "/editACMInstanceProperties" } }>
               <Button variant="primary" type="null">Create Instance</Button>
             </Link>
             <HorizontalSpace/>
@@ -176,7 +175,7 @@ const InstantiationManagementModal = (props) => {
                 <td>{ instantiation.name }</td>
                 <td style={ { textAlign: "center" } }>
                   <Link to={ {
-                    pathname: "editControlLoopInstanceProperties",
+                    pathname: "editACMInstanceProperties",
                   } } state={ instantiation.name }>
                     <Button variant="outline-success" type="null"
                             disabled={ true }

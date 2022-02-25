@@ -47,7 +47,7 @@ export default class PerformActions extends React.Component {
     const loopName = this.state.loopName;
 
     if (action === 'delete') {
-      if (window.confirm('You are about to remove Control Loop Model "' + loopName +
+      if (window.confirm('You are about to remove ACM Model "' + loopName +
         '". Select OK to continue with deletion or Cancel to keep the model.') === false) {
         return;
       }

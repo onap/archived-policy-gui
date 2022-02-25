@@ -49,7 +49,7 @@ describe('Verify PolicyEditor', () => {
           ],
           "eventName": "vLoadBalancer",
           "policyVersion": "v0.0.1",
-          "controlLoopSchemaType": "VM",
+          "acmSchemaType": "VM",
           "policyName": "DCAE.Config_tca-hi-lo"
         }
       ]

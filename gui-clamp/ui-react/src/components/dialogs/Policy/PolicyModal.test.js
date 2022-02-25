@@ -45,7 +45,7 @@ describe('Verify PolicyModal', () => {
       "name": "OPERATIONAL_h2NMX_v1_0_ResourceInstanceName1_tca",
       "configurationsJson": {
         "operational_policy": {
-          "controlLoop": {},
+          "acm": {},
           "policies": []
         }
       },
