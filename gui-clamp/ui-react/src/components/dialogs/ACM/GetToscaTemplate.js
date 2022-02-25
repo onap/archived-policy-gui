@@ -19,13 +19,13 @@
 
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 
 const GetToscaTemplate = (props) => {
 
   const getTemplateHandler = async () => {
 
-    const response = await ControlLoopService.getToscaTemplate(props.templateName, props.templateVersion)
+    const response = await ACMService.getToscaTemplate(props.templateName, props.templateVersion)
       .catch(error => error.message);
 
     if(!response.ok) {

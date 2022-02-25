@@ -1,6 +1,6 @@
 {
   "orderedState": "PASSIVE",
-  "controlLoopIdentifierList": [
+  "acmIdentifierList": [
     {
       "name": "PMSH_Instance1",
       "version": "2.3.1"

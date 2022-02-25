@@ -23,8 +23,8 @@ import toJson from "enzyme-to-json";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
 import MonitorInstantiation from "./MonitorInstantiation";
-import ControlLoopService from "../../../api/ControlLoopService";
-import clLoopList from "./testFiles/controlLoopList.json";
+import ACMService from "../../../api/ACMService";
+import clLoopList from "./testFiles/acmList.json";
 
 const logSpy = jest.spyOn(console, 'log')
 const history = createMemoryHistory();
@@ -68,7 +68,7 @@ describe('Verify MonitorInstantiation', () => {
 
   it('Check useEffect is being called', async () => {
     jest.resetAllMocks();
-    jest.spyOn(ControlLoopService, 'getControlLoopInstantiation')
+    jest.spyOn(ACMService, 'getACMInstantiation')
       .mockImplementationOnce(async () => {
         return Promise.resolve({
           ok: true,

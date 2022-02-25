@@ -22,7 +22,7 @@ import styled from "styled-components";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import InstantiationItem from "./InstantiationItem";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 import InstantiationElements from "./InstantiationElements";
 import { Alert } from "react-bootstrap";
 
@@ -35,21 +35,21 @@ const AlertStyled = styled(Alert)`
 
 const MonitorInstantiation = (props) => {
   const [show, setShow] = useState(true);
-  const [controlLoopList, setControlLoopList] = useState([]);
-  const [controlLoopInstantiationOk, setControlLoopInstantiationOk] = useState(true);
-  const [controlLoopInstantiationError, setControlLoopInstantiationError] = useState({});
+  const [acmList, setAcmList] = useState([]);
+  const [acmInstantiationOk, setAcmInstantiationOk] = useState(true);
+  const [acmInstantiationError, setACMInstantiationError] = useState({});
 
   useEffect(async () => {
-    const controlLoopInstantiation = await ControlLoopService.getControlLoopInstantiation()
+    const acmInstantiation = await ACMService.getACMInstantiation()
       .catch(error => error.message);
 
-    const controlLoopInstantiationJson = await controlLoopInstantiation.json();
+    const acmInstantiationJson = await acmInstantiation.json();
 
-    if (!controlLoopInstantiation.ok || controlLoopInstantiationJson['controlLoopList'].length === 0) {
-      setControlLoopInstantiationOk(false)
-      setControlLoopInstantiationError(controlLoopInstantiationJson)
+    if (!acmInstantiation.ok || acmInstantiationJson['automationCompositionList'].length === 0) {
+      setAcmInstantiationOk(false)
+      setACMInstantiationError(acmInstantiationJson)
     } else {
-      setControlLoopList(controlLoopInstantiationJson['controlLoopList']);
+      setAcmList(acmInstantiationJson['automationCompositionList']);
     }
   }, [])
 
@@ -66,14 +66,14 @@ const MonitorInstantiation = (props) => {
       </Modal.Header>
       <Modal.Body>
         {
-          controlLoopList.map((clList, index) => (
+          acmList.map((clList, index) => (
             <InstantiationItem title={ clList["name"] } orderedState={ clList["orderedState"] } index={ index } key={ index } >
               <InstantiationElements elements={ clList["elements"] } />
             </InstantiationItem>
           ))
         }
-        <AlertStyled show={ !controlLoopInstantiationOk }
-                     variant="danger">Can't get control loop instantiation info:<br/>{ JSON.stringify(controlLoopInstantiationError, null, 2) }</AlertStyled>
+        <AlertStyled show={ !acmInstantiationOk }
+                     variant="danger">Can't get acm instantiation info:<br/>{ JSON.stringify(acmInstantiationError, null, 2) }</AlertStyled>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" type="null" onClick={ handleClose }>Close</Button>

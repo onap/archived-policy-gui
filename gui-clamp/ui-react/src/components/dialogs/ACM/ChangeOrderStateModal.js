@@ -22,7 +22,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import InstantiationOrderStateChangeItem from "./InstantiationOrderStateChangeItem";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 import { Alert, Container, Dropdown } from "react-bootstrap";
 
 const ModalStyled = styled(Modal)`
@@ -48,7 +48,7 @@ const AlertStyled = styled(Alert)`
 
 const ChangeOrderStateModal = (props) => {
   const [show, setShow] = useState(true);
-  const [controlLoopIdentifierList, setControlLoopIdentifierList] = useState([]);
+  const [ACMIdentifierList, setACMIdentifierList] = useState([]);
   const [orderedState, setOrderedState] = useState('');
   const [toscaOrderStateObject, setToscaOrderStateObject] = useState({});
   const [instantiationOrderStateError, setInstantiationOrderStateError] = useState(false);
@@ -57,7 +57,7 @@ const ChangeOrderStateModal = (props) => {
 
   useEffect(async () => {
 
-    const instantiationOrderState = await ControlLoopService.getInstanceOrderState(
+    const instantiationOrderState = await ACMService.getInstanceOrderState(
       props.location.instantiationName,
       props.location.instantiationVersion)
       .catch(error => error.message);
@@ -66,11 +66,11 @@ const ChangeOrderStateModal = (props) => {
 
     console.log(orderStateJson);
 
-    if (!instantiationOrderState.ok || orderStateJson['controlLoopIdentifierList'].length === 0) {
+    if (!instantiationOrderState.ok || orderStateJson['automationCompositionIdentifierList'].length === 0) {
       setInstantiationOrderStateError(true);
       setInstantiationOrderStateMsgError(orderStateJson);
     } else {
-      setControlLoopIdentifierList(orderStateJson['controlLoopIdentifierList']);
+      setACMIdentifierList(orderStateJson['automationCompositionIdentifierList']);
       setOrderedState(orderStateJson['orderedState']);
     }
   }, []);
@@ -80,7 +80,7 @@ const ChangeOrderStateModal = (props) => {
 
     const stateChangeObject = {
       orderedState: event,
-      controlLoopIdentifierList: controlLoopIdentifierList
+      automationCompositionIdentifierList: ACMIdentifierList
     }
     setToscaOrderStateObject(stateChangeObject);
     setOrderedState(event);
@@ -89,7 +89,7 @@ const ChangeOrderStateModal = (props) => {
   const handleSave = async () => {
     console.log("handleSave called");
 
-    const response = await ControlLoopService.changeInstanceOrderState(toscaOrderStateObject)
+    const response = await ACMService.changeInstanceOrderState(toscaOrderStateObject)
       .catch(error => error.message);
 
     if (response.ok) {
@@ -148,7 +148,7 @@ const ChangeOrderStateModal = (props) => {
               </Dropdown.Menu>
             </Dropdown>
             {
-              controlLoopIdentifierList.map((clIdList, index) => (
+              ACMIdentifierList.map((clIdList, index) => (
                 <InstantiationOrderStateChangeItem title={ clIdList.name } orderState={ orderedState } index={ index } key={ index }/>
               ))
             }

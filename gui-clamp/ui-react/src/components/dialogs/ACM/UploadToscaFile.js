@@ -19,7 +19,7 @@
 
 import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 
 const UploadToscaFile = (props) => {
 
@@ -27,7 +27,7 @@ const UploadToscaFile = (props) => {
     event.preventDefault();
     console.log('postServiceTemplateHandler called');
 
-    const response = await ControlLoopService.uploadToscaFile(props.toscaObject)
+    const response = await ACMService.uploadToscaFile(props.toscaObject)
       .catch(error => error.message);
 
     // const responseMessage = await response.text();

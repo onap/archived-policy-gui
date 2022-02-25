@@ -16,9 +16,9 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
-import ControlLoopService from "./ControlLoopService";
+import ACMService from "./ACMService";
 
-describe("Verify GetControlLoopInstantiation", () => {
+describe("Verify GetACMInstantiation", () => {
   let response;
   let name = "name";
   let template = "template";
@@ -29,9 +29,9 @@ describe("Verify GetControlLoopInstantiation", () => {
     })
   );
   beforeEach(async () => {
-    response = await ControlLoopService.getControlLoopInstantiation(name, template);
+    response = await ACMService.getACMInstantiation(name, template);
   });
-  it("Test getControlLoopInstantiation", () => {
+  it("Test getACMInstantiation", () => {
     expect(response.status).toEqual("Success");
   });
 });
@@ -46,7 +46,7 @@ describe("Verify DeleteInstantiation", () => {
     })
   );
   beforeEach(async () => {
-    response = await ControlLoopService.deleteInstantiation(name, version);
+    response = await ACMService.deleteInstantiation(name, version);
   });
   it("Test deleteInstantiation", () => {
     expect(response.status).toEqual("Success");

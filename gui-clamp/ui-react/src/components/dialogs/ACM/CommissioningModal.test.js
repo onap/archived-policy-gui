@@ -25,7 +25,7 @@ import { createMemoryHistory } from "history";
 import CommissioningModal from "./CommissioningModal";
 import commonProps from "./testFiles/commonProps.json";
 import fullTemp from "./testFiles/fullTemplate.json";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 
 let logSpy = jest.spyOn(console, 'log')
 const commonProperties = JSON.parse(JSON.stringify(commonProps))
@@ -97,7 +97,7 @@ describe('Verify CommissioningModal', () => {
   });
 
   it('getToscaTemplate gets called in useEffect with error',  async() => {
-    const fetchMock = jest.spyOn(ControlLoopService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
+    const fetchMock = jest.spyOn(ACMService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
       ok: false,
       status: 200,
       text: () => "OK",
@@ -111,7 +111,7 @@ describe('Verify CommissioningModal', () => {
   });
 
   it('getCommonProperties gets called in useEffect with error',  async() => {
-    const fetchMock = jest.spyOn(ControlLoopService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
+    const fetchMock = jest.spyOn(ACMService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
       ok: false,
       status: 200,
       text: () => "OK",
@@ -193,7 +193,7 @@ describe('Verify CommissioningModal', () => {
   });
 
   it('test handleCommission called on click', async () => {
-    const deleteToscaTemplateSpy = jest.spyOn(ControlLoopService, 'deleteToscaTemplate').mockImplementation(() => {
+    const deleteToscaTemplateSpy = jest.spyOn(ACMService, 'deleteToscaTemplate').mockImplementation(() => {
       Promise.resolve({
         ok: true,
         status: 200,
@@ -201,7 +201,7 @@ describe('Verify CommissioningModal', () => {
         json: () => "{handleCommissioning}"
       })
     })
-    const uploadToscaTemplateSpy = jest.spyOn(ControlLoopService, 'uploadToscaFile').mockImplementation(() => {
+    const uploadToscaTemplateSpy = jest.spyOn(ACMService, 'uploadToscaFile').mockImplementation(() => {
       Promise.resolve({
         ok: true,
         status: 200,

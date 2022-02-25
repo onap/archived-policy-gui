@@ -21,7 +21,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 import { Alert } from "react-bootstrap";
 import CommissioningUtils from "./utils/CommissioningUtils";
 
@@ -60,9 +60,9 @@ const CommissioningModal = (props) => {
   const version = '1.0.0';
 
   useEffect(async () => {
-    const toscaTemplateResponse = await ControlLoopService.getToscaTemplate(name, version)
+    const toscaTemplateResponse = await ACMService.getToscaTemplate(name, version)
       .catch(error => error.message);
-    const toscaCommonProperties = await ControlLoopService.getCommonOrInstanceProperties(name, version, true)
+    const toscaCommonProperties = await ACMService.getCommonOrInstanceProperties(name, version, true)
       .catch(error => error.message);
 
     if (!toscaCommonProperties.ok) {
@@ -109,9 +109,9 @@ const CommissioningModal = (props) => {
 
     console.log("handleCommission called")
 
-    await ControlLoopService.deleteToscaTemplate('ToscaServiceTemplateSimple', "1.0.0")
+    await ACMService.deleteToscaTemplate('ToscaServiceTemplateSimple', "1.0.0")
 
-    const recommissioningResponse = await ControlLoopService.uploadToscaFile(fullToscaTemplate)
+    const recommissioningResponse = await ACMService.uploadToscaFile(fullToscaTemplate)
 
     await receiveResponseFromCommissioning(recommissioningResponse)
   }
@@ -128,7 +128,7 @@ const CommissioningModal = (props) => {
                  backdrop="static"
                  keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Change Control Loop Common Properties</Modal.Title>
+        <Modal.Title>Change ACM Common Properties</Modal.Title>
       </Modal.Header>
       <br/>
       <div style={ { padding: '5px 5px 0px 5px' } }>

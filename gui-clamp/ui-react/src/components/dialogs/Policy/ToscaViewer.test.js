@@ -31,7 +31,7 @@ describe('Verify ToscaViewer', () => {
   let toscaYaml = fs.readFileSync('src/components/dialogs/Policy/toscaData.test.yaml', { encoding: 'utf8', flag: 'r' })
 
   const toscaData = {
-    "policyModelType": "onap.policies.controlloop.Guard",
+    "policyModelType": "onap.policies.acm.Guard",
     "version": "1.0.0",
     "policyAcronym": "Guard",
     "createdDate": "2021-04-09T02:29:31.407356Z",

@@ -20,14 +20,14 @@
 
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 
 const DeleteToscaTemplate = props => {
 
   const deleteTemplateHandler = async () => {
     console.log('deleteTemplateHandler called');
 
-    const response = await ControlLoopService.deleteToscaTemplate(props.templateName, props.templateVersion)
+    const response = await ACMService.deleteToscaTemplate(props.templateName, props.templateVersion)
       .catch(error => error.message);
 
     if(!response.ok) {

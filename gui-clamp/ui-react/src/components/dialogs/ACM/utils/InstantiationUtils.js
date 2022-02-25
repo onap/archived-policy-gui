@@ -23,12 +23,13 @@ import { JSONEditor } from "@json-editor/json-editor";
 
 const InstantiationUtils = {
 
-  parseInstantiationList: (controlLoopList) => {
-    const parsedControlLoopList = [];
+  parseInstantiationList: (acmList) => {
+    console.log(acmList);
+    const parsedAcmList = [];
 
-    controlLoopList.map((instance, index) => {
+    acmList.map((instance, index) => {
 
-      const controlLoopObj = {
+      const acmObj = {
         index,
         name: instance['name'],
         version: instance['version'],
@@ -37,10 +38,10 @@ const InstantiationUtils = {
         disableDelete: instance['state'] !== 'UNINITIALISED'
       }
 
-      parsedControlLoopList.push(controlLoopObj);
+      parsedAcmList.push(acmObj);
     });
 
-    return parsedControlLoopList;
+    return parsedAcmList;
   },
 
   makeSchemaForInstanceProperties: (instanceProps) => {

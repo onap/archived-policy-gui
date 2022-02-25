@@ -113,14 +113,14 @@ export default class MenuBar extends React.Component {
           <NavDropdown.Item as={ StyledLink } to="/deploy" disabled={ this.state.disabled }>Deploy to DCAE (DEPLOY)</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/undeploy" disabled={ this.state.disabled }>UnDeploy to DCAE (UNDEPLOY)</NavDropdown.Item>
         </StyledNavDropdown>
-        <StyledNavDropdown title="TOSCA Control Loop">
+        <StyledNavDropdown title="TOSCA Automation Composition">
           <NavDropdown.Header>Instantiation</NavDropdown.Header>
           <NavDropdown.Item as={ StyledLink } to="/instantiationManagement">Instantiation Management</NavDropdown.Item>
           <NavDropdown.Divider/>
           <NavDropdown.Header>Commissioning</NavDropdown.Header>
-          <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">Manage Commissioned Tosca Template</NavDropdown.Item>
-          <NavDropdown.Item as={ StyledLink } to="/uploadToscaFile">Upload Tosca to Commissioning</NavDropdown.Item>
-          <NavDropdown.Item as={ StyledLink } to="/getJsonSchema">Edit Control Loop Common Properties</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/readToscaTemplate">Manage Commissioned Automation Composition Template</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/uploadToscaFile">Upload Automation Composition to Commissioning</NavDropdown.Item>
+          <NavDropdown.Item as={ StyledLink } to="/getJsonSchema">Edit Automation Composition Properties</NavDropdown.Item>
         </StyledNavDropdown>
         <StyledNavDropdown title="Help">
           <StyledNavLink href="https://wiki.onap.org/" target="_blank">Wiki</StyledNavLink>

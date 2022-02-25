@@ -35,7 +35,7 @@ describe('Verify LoopCache functions', () => {
         "name": "OPERATIONAL_h2NMX_v1_0_ResourceInstanceName1_tca",
         "configurationsJson": {
           "operational_policy": {
-            "controlLoop": {},
+            "acm": {},
             "policies": []
           }
         },
@@ -53,7 +53,7 @@ describe('Verify LoopCache functions', () => {
         "name": "OPERATIONAL_h2NMX_v1_0_ResourceInstanceName1_tca",
         "configurationsJson": {
           "operational_policy": {
-            "controlLoop": {},
+            "acm": {},
             "policies": []
           }
         },
@@ -192,7 +192,7 @@ describe('Verify LoopCache functions', () => {
       "name": "OPERATIONAL_h2NMX_v1_0_ResourceInstanceName1_tca",
       "configurationsJson": {
         "operational_policy": {
-          "controlLoop": {},
+          "acm": {},
           "policies": []
         }
       },
@@ -209,7 +209,7 @@ describe('Verify LoopCache functions', () => {
     it('getOperationalPolicyPropertiesForName', () => {
       const opPolicyJson = {
         "operational_policy": {
-          "controlLoop": {},
+          "acm": {},
           "policies": []
         }};
       expect(loopCache.getOperationalPolicyPropertiesForName("OPERATIONAL_h2NMX_v1_0_ResourceInstanceName1_tca")).toStrictEqual(opPolicyJson);
@@ -280,7 +280,7 @@ describe('Verify LoopCache functions', () => {
     it('updateOperationalPolicyProperties', () => {
       const newOpPolicy = {
           "operational_policy": {
-            "controlLoop": {},
+            "acm": {},
             "policies": []
           }
         };

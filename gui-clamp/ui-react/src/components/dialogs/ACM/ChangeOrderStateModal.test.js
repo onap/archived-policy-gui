@@ -23,12 +23,13 @@ import toJson from "enzyme-to-json";
 import ChangeOrderStateModal from "./ChangeOrderStateModal";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
-import clLoopList from "./testFiles/controlLoopList.json";
+import acmList from "./testFiles/acmList.json";
 import orderedStateJson from "./testFiles/orderedStateJson.json";
-import ControlLoopService from "../../../api/ControlLoopService";
+import ACMService from "../../../api/ACMService";
 
 let logSpy = jest.spyOn(console, 'log')
 const oldWindowLocation = window.location
+
 describe('Verify ChangeOrderStateModal', () => {
   const flushPromises = () => new Promise(setImmediate);
 
@@ -144,7 +145,7 @@ describe('Verify ChangeOrderStateModal', () => {
 
   it('handleSave called when save button clicked and response is ok', async () => {
     jest.resetAllMocks()
-    const getInstanceOrderStateSpy = jest.spyOn(ControlLoopService, 'getInstanceOrderState')
+    const getInstanceOrderStateSpy = jest.spyOn(ACMService, 'getInstanceOrderState')
       .mockImplementationOnce(() => {
         return Promise.resolve({
           ok: true,
@@ -157,14 +158,14 @@ describe('Verify ChangeOrderStateModal', () => {
       }
     )
 
-    const changeInstanceOrderStateSpy = jest.spyOn(ControlLoopService, 'changeInstanceOrderState')
+    const changeInstanceOrderStateSpy = jest.spyOn(ACMService, 'changeInstanceOrderState')
       .mockImplementationOnce(() => {
         return Promise.resolve({
           ok: true,
           status: 200,
           text: () => "OK",
           json: () => {
-            return Promise.resolve(clLoopList)
+            return Promise.resolve(acmList)
           }
         })
       }
@@ -172,7 +173,7 @@ describe('Verify ChangeOrderStateModal', () => {
 
     const component = mount(<ChangeOrderStateModal location={window.location}/>)
 
-    await act( async () => {
+    act( async () => {
       component.find('[variant="primary"]').simulate('click');
       await expect(getInstanceOrderStateSpy).toHaveBeenCalled()
       await expect(changeInstanceOrderStateSpy).toHaveBeenCalled()
@@ -183,7 +184,7 @@ describe('Verify ChangeOrderStateModal', () => {
 
   it('handleSave called when save button clicked and response is not ok', async () => {
     jest.resetAllMocks()
-    const getInstanceOrderStateSpy = jest.spyOn(ControlLoopService, 'getInstanceOrderState')
+    const getInstanceOrderStateSpy = jest.spyOn(ACMService, 'getInstanceOrderState')
       .mockImplementationOnce(() => {
           return Promise.resolve({
             ok: true,
@@ -196,14 +197,14 @@ describe('Verify ChangeOrderStateModal', () => {
         }
       )
 
-    const changeInstanceOrderStateSpy = jest.spyOn(ControlLoopService, 'changeInstanceOrderState')
+    const changeInstanceOrderStateSpy = jest.spyOn(ACMService, 'changeInstanceOrderState')
       .mockImplementationOnce(() => {
           return Promise.resolve({
             ok: false,
             status: 200,
             text: () => "OK",
             json: () => {
-              return Promise.resolve(clLoopList)
+              return Promise.resolve(acmList)
             }
           })
         }
@@ -222,7 +223,7 @@ describe('Verify ChangeOrderStateModal', () => {
 
   it('Check useEffect is being called', async () => {
     jest.resetAllMocks()
-    jest.spyOn(ControlLoopService, 'getInstanceOrderState')
+    jest.spyOn(ACMService, 'getInstanceOrderState')
       .mockImplementationOnce(() => {
           return Promise.resolve({
             ok: true,
@@ -235,14 +236,14 @@ describe('Verify ChangeOrderStateModal', () => {
         }
       )
 
-    jest.spyOn(ControlLoopService, 'changeInstanceOrderState')
+    jest.spyOn(ACMService, 'changeInstanceOrderState')
       .mockImplementationOnce(() => {
           return Promise.resolve({
             ok: true,
             status: 200,
             text: () => "OK",
             json: () => {
-              return Promise.resolve(clLoopList)
+              return Promise.resolve(acmList)
             }
           })
         }
@@ -251,7 +252,7 @@ describe('Verify ChangeOrderStateModal', () => {
     const component = mount(<ChangeOrderStateModal location={window.location}/>)
 
     const useEffect = jest.spyOn(React, "useEffect");
-    await act(async () => {
+    act(async () => {
       await flushPromises()
       component.update()
       await expect(useEffect).toHaveBeenCalled();

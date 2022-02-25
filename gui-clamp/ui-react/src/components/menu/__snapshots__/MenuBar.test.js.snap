@@ -1003,7 +1003,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     </DropdownItem>
   </Styled(NavDropdown)>
   <Styled(NavDropdown)
-    title="TOSCA Control Loop"
+    title="TOSCA Automation Composition"
   >
     <DropdownHeader
       role="heading"
@@ -1146,7 +1146,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
       disabled={false}
       to="/readToscaTemplate"
     >
-      Manage Commissioned Tosca Template
+      Manage Commissioned Automation Composition Template
     </DropdownItem>
     <DropdownItem
       as={
@@ -1211,7 +1211,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
       disabled={false}
       to="/uploadToscaFile"
     >
-      Upload Tosca to Commissioning
+      Upload Automation Composition to Commissioning
     </DropdownItem>
     <DropdownItem
       as={
@@ -1276,7 +1276,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
       disabled={false}
       to="/getJsonSchema"
     >
-      Edit Control Loop Common Properties
+      Edit Automation Composition Properties
     </DropdownItem>
   </Styled(NavDropdown)>
   <Styled(NavDropdown)

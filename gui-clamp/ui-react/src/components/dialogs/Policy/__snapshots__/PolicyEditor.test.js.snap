@@ -12,7 +12,7 @@ exports[`Verify PolicyEditor Test the render method 1`] = `
         "domain": "measurementsForVfScaling",
         "metricsPerEventName": Array [
           Object {
-            "controlLoopSchemaType": "VM",
+            "acmSchemaType": "VM",
             "eventName": "vLoadBalancer",
             "policyName": "DCAE.Config_tca-hi-lo",
             "policyScope": "DCAE",
