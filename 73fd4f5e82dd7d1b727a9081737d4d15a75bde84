@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e483f7bd_7c9a8b36",
+        "filename": "gui-clamp/ui-react/src/components/dialogs/ACM/InstantiationManagementModal.test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2022-02-25T15:04:16Z",
+      "side": 1,
+      "message": "acLoopList?",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 17
+      },
+      "revId": "73fd4f5e82dd7d1b727a9081737d4d15a75bde84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
