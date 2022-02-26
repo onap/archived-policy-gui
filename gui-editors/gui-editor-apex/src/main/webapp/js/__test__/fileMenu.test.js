@@ -21,11 +21,14 @@
 const mod = require('../fileMenu');
 
 test('test hideMenu', () => {
-    document.documentElement.innerHTML = '<html><head></head><body><ul id="menu">Hello world!</ul></body></html>';
+    document.documentElement.innerHTML = '<html><head></head><body><ul id="menu">Hello world<li>!</li></ul></body></html>';
     $ = require('jquery');
     window.$ = $;
     $('#menu').fileMenu();
-    $('#menu').click();
+    $('li').mouseenter();
+    $('li').click();
+    $('ul').mouseenter();
+    $('ul').click();
     let h1 = document.querySelector('ul');
     expect(h1.textContent).toEqual('Hello world!');
 });
