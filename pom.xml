@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.onap.policy.parent</groupId>
         <artifactId>integration</artifactId>
-        <version>3.4.4-SNAPSHOT</version>
+        <version>3.4.4</version>
         <relativePath />
     </parent>
 
@@ -40,8 +40,8 @@
     <description>Code for all the Policy GUI's.</description>
 
     <properties>
-        <policy.common.version>1.9.2-SNAPSHOT</policy.common.version>
-        <policy.models.version>2.5.2-SNAPSHOT</policy.models.version>
+        <policy.common.version>1.9.2</policy.common.version>
+        <policy.models.version>2.5.2</policy.models.version>
         <jacoco.dataFile>${project.basedir}/../../target/code-coverage/jacoco-ut.exec</jacoco.dataFile>
         <sonar.javascript.lcov.reportPaths>${project.basedir}/target/code-coverage/lcov.info</sonar.javascript.lcov.reportPaths>
     </properties>
