@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Code-Review+1: Pamela Dragosh <pd1248@att.com>
+Code-Review+2: Liam Fallon <liam.fallon@est.tech>
+Submitted-by: Liam Fallon <liam.fallon@est.tech>
+Submitted-at: Wed, 02 Mar 2022 14:39:44 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/policy/gui/+/127436
+Project: policy/gui
+Branch: refs/heads/master
