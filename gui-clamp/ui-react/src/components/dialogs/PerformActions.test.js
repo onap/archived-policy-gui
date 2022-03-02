@@ -4,6 +4,7 @@
  * ================================================================================
  * Copyright (C) 2019 AT&T Intellectual Property. All rights
  *                             reserved.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,4 +93,29 @@ describe('Verify PerformActions', () => {
     expect(historyMock.push.mock.calls[0]).toEqual(['/']);
   });
 
+  it('Test the delete method action', async () => {
+    const flushPromises = () => new Promise(setImmediate);
+    const historyMock = { push: jest.fn() };
+    const updateLoopFunction = jest.fn();
+    const showSucAlert = jest.fn();
+    const showFailAlert = jest.fn();
+    const setBusyLoading = jest.fn();
+    const clearBusyLoading = jest.fn();
+
+    LoopActionService.refreshStatus = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () => {
+        }
+      });
+    });
+    const component = shallow(<PerformActions loopCache={ loopCache }
+                                              loopAction="delete" history={ historyMock } updateLoopFunction={ updateLoopFunction } showSucAlert={ showSucAlert } showFailAlert={ showFailAlert }
+                                              setBusyLoading={ setBusyLoading } clearBusyLoading={ clearBusyLoading }/>)
+    await flushPromises();
+    component.update();
+
+    expect(historyMock.push.mock.calls[0]).toEqual(['/']);
+  });
 });
