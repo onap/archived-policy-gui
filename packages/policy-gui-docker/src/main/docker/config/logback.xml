@@ -31,6 +31,16 @@
     <property name="errorPattern" value="${debugPattern}" />
     <property name="networkPattern" value="[%d{yyyy-MM-dd'T'HH:mm:ss.SSS+00:00, UTC}|%t]%m%n" />
 
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{1024} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
     <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logDir}/${errorLog}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
@@ -115,5 +125,6 @@
         <appender-ref ref="asyncDebug" />
         <appender-ref ref="asyncError" />
         <appender-ref ref="asyncNetwork" />
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
