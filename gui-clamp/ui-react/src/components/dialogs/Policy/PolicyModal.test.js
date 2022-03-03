@@ -4,6 +4,7 @@
  * ================================================================================
  * Copyright (C) 2020-2021 AT&T Intellectual Property. All rights
  *                             reserved.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,10 +55,27 @@ describe('Verify PolicyModal', () => {
     }]
   };
 
+  const loopCacheStrMC = {
+    "name": "MICROSERVICE_type_tca",
+    "microServicePolicies": [{
+      "name": "MICROSERVICE_type",
+      "configurationsJson": {
+        "operational_policy": {
+          "acm": {},
+          "policies": []
+        }
+      },
+      "policyModel": { "policyPdpGroup": { "supportedPdpGroups": [{ "monitoring": ["xacml"] }] } },
+      "jsonRepresentation": { "schema": {} }
+    }]
+  };
+
   const loopCache = new LoopCache(loopCacheStr);
   const historyMock = { push: jest.fn() };
   const flushPromises = () => new Promise(setImmediate);
   const match = { params: { policyName: "OPERATIONAL_h2NMX_v1_0_ResourceInstanceName1_tca", policyInstanceType: OnapConstant.operationalPolicyType } }
+  const loopCacheMicroService = new LoopCache(loopCacheStrMC);
+  const matchMicroService = { params: { policyName: "MICROSERVICE_type", policyInstanceType: OnapConstant.microServiceType } }
 
   it('Test handleClose', () => {
     const handleClose = jest.spyOn(PolicyModal.prototype, 'handleClose');
@@ -85,6 +103,20 @@ describe('Verify PolicyModal', () => {
     expect(historyMock.push.mock.calls[0]).toEqual(['/']);
   });
 
+  it('Test handleSave MicroService', async () => {
+    const loadLoopFunctionMC = jest.fn();
+    const handleSaveMC = jest.spyOn(PolicyModal.prototype, 'handleSave');
+    const componentMC = mount(<PolicyModal history={ historyMock }
+                                         loopCache={ loopCacheMicroService } match={ matchMicroService } loadLoopFunction={ loadLoopFunctionMC }/>)
+    componentMC.find('[variant="primary"]').get(0).props.onClick();
+    await flushPromises();
+    componentMC.update();
+
+    expect(handleSaveMC).toHaveBeenCalledTimes(2); //The 1st call it's done in the previous test
+    expect(componentMC.state('show')).toEqual(false);
+    expect(historyMock.push.mock.calls[0]).toEqual(['/']);
+  });
+
   it('Test handleRefresh', async () => {
     LoopService.refreshOperationalPolicyJson = jest.fn().mockImplementation(() => {
       return Promise.resolve(loopCacheStr);
@@ -101,6 +133,24 @@ describe('Verify PolicyModal', () => {
     expect(component.state('show')).toEqual(true);
     expect(component.state('showSucAlert')).toEqual(true);
     expect(component.state('showMessage')).toEqual("Successfully refreshed");
+  });
+
+  it('Test handleRefresh MicroService Fail', async () => {
+    LoopService.refreshOperationalPolicyJson = jest.fn().mockImplementation(() => {
+      return Promise.resolve(loopCacheStrMC);
+    });
+    const updateLoopFunction = jest.fn();
+    const handleRefresh = jest.spyOn(PolicyModal.prototype, 'handleRefresh');
+    const component = mount(<PolicyModal loopCache={ loopCacheMicroService } match={ matchMicroService } updateLoopFunction={ updateLoopFunction }/>)
+
+    component.find('[variant="primary"]').get(1).props.onClick();
+    await flushPromises();
+    component.update();
+
+    expect(handleRefresh).toHaveBeenCalledTimes(2);
+    expect(component.state('show')).toEqual(true);
+    expect(component.state('showSucAlert')).toEqual(false);
+    expect(component.state('showMessage')).toEqual("Refreshing of UI failed");
   });
 
   it('Test handlePdpGroupChange', () => {
