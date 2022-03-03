@@ -51,6 +51,7 @@ public class ClampRestController {
     /**
      * Proxy rest calls to clamp backend.
      */
+    @SuppressWarnings("java:S3752") // Suppress warning about RequestMapping without HTTP method.
     @RequestMapping("/**")
     public ResponseEntity<String> mirrorRest(@RequestBody(required = false) String body,
                                              @RequestHeader HttpHeaders headers,
