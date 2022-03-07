@@ -24,6 +24,37 @@ exports[`Verify InstancePropertiesModal renders correctly 1`] = `
     }
   >
     <ModalBody>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "noGutters": false,
+            },
+            "render": [Function],
+          }
+        }
+        controlId="formPlaintextEmail"
+      >
+        <FormLabel
+          column={true}
+          sm="2"
+          srOnly={false}
+        >
+          Instance Name:
+        </FormLabel>
+        <input
+          onChange={[Function]}
+          sm="5"
+          style={
+            Object {
+              "width": "50%",
+            }
+          }
+          type="text"
+          value=""
+        />
+      </FormGroup>
       <div
         id="editor"
       />

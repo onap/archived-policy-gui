@@ -24,7 +24,6 @@ import { JSONEditor } from "@json-editor/json-editor";
 const InstantiationUtils = {
 
   parseInstantiationList: (acmList) => {
-    console.log(acmList);
     const parsedAcmList = [];
 
     acmList.map((instance, index) => {
@@ -156,7 +155,7 @@ const InstantiationUtils = {
       });
   },
 
-  updateTemplate: (jsonEditorValues, fullTemplate) => {
+  updateTemplate: (instanceName, jsonEditorValues, fullTemplate) => {
     const nodeTemplates = fullTemplate.topology_template.node_templates;
     const instanceDataProperties = Object.entries(jsonEditorValues);
 
@@ -168,6 +167,7 @@ const InstantiationUtils = {
     });
 
     fullTemplate.topology_template.node_templates = nodeTemplates;
+    fullTemplate.name = instanceName;
 
     return fullTemplate;
   }

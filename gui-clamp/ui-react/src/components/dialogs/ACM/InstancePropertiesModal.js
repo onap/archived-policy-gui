@@ -25,6 +25,8 @@ import ACMService from "../../../api/ACMService";
 import Alert from "react-bootstrap/Alert";
 import * as PropTypes from "prop-types";
 import InstantiationUtils from "./utils/InstantiationUtils";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
 
 const ModalStyled = styled(Modal)`
   @media (min-width: 800px) {
@@ -66,6 +68,8 @@ const InstancePropertiesModal = (props) => {
   const [instanceName, setInstanceName] = useState('')
 
   useEffect(async () => {
+    setJsonEditor(null);
+
     const toscaTemplateResponse = await ACMService.getToscaTemplate(templateName, templateVersion)
         .catch(error => error.message);
 
@@ -100,25 +104,42 @@ const InstancePropertiesModal = (props) => {
     props.history.push('/');
   }
 
+  const handleInstanceName = (event) => {
+    console.log('handleInstanceName called');
+
+    setInstanceName(event.target.value);
+  }
+
   const handleSave = async () => {
     console.log("handleSave called");
+    if (instanceName !== '' || instanceName.length > 0) {
 
-    setInstanceName(instanceName);
+      console.log("instanceName to be saved is: " + instanceName);
 
-    console.log("instanceName to be saved is: " + instanceName);
+      if (jsonEditor != null) {
+        setToscaFullTemplate(InstantiationUtils.updateTemplate(instanceName, jsonEditor.getValue(), toscaFullTemplate));
+      }
 
-    if (jsonEditor != null) {
-      setToscaFullTemplate(InstantiationUtils.updateTemplate(jsonEditor.getValue(), toscaFullTemplate));
-    }
+      const response = await ACMService.createInstanceProperties(toscaFullTemplate)
+          .catch(error => error.message);
 
-    const response = await ACMService.createInstanceProperties(instanceName, toscaFullTemplate)
-      .catch(error => error.message);
-
-    if (response.ok) {
-      successAlert();
+      if (response.ok) {
+        successAlert();
+      } else {
+        await errorAlert(response);
+      }
     } else {
-      await errorAlert(response);
+      await warningAlert();
     }
+  }
+
+  const warningAlert = async () => {
+    console.log("warningAlert called");
+    setAlertMessage(<Alert variant="warning">
+      <Alert.Heading>Instantiation Properties Warning</Alert.Heading>
+      <p>Instance name cannot be empty</p>
+      <hr/>
+    </Alert>);
   }
 
   const successAlert = () => {
@@ -152,6 +173,13 @@ const InstancePropertiesModal = (props) => {
       </Modal.Header>
       <div style={ { padding: '5px 5px 0 5px' } }>
         <Modal.Body>
+          <Form.Group as={ Row } controlId="formPlaintextEmail">
+            <Form.Label column sm="2">Instance Name:</Form.Label>
+            <input sm="5" type="text" style={ { width: '50%' } }
+                   value={ instanceName }
+                   onChange={ handleInstanceName }
+            />
+          </Form.Group>
           <div id="editor"/>
           <AlertStyled show={ !serviceTemplateResponseOk }
                        variant="danger">Can't get service template:<br/>{ JSON.stringify(toscaFullTemplate, null, 2) }</AlertStyled>

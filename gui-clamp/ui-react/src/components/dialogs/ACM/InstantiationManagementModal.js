@@ -56,8 +56,6 @@ const InstantiationManagementModal = (props) => {
 
     const instantiationListJson = await response.json();
 
-    console.log(instantiationListJson);
-
     const parsedInstantiationList = InstantiationUtils.parseInstantiationList(instantiationListJson['automationCompositionList']);
 
     setInstantiationList(parsedInstantiationList);
@@ -73,8 +71,6 @@ const InstantiationManagementModal = (props) => {
 
   const deleteInstantiationHandler = async (index, instantiation) => {
     console.log("deleteInstantiationHandler called");
-
-    console.log(instantiation);
 
     if (instantiation.disableDelete) {
       return;

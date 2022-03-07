@@ -27,7 +27,7 @@ export default class ACMService {
     return response
   }
 
-  static async createInstanceProperties(instanceName, instancePropertiesTemplate) {
+  static async createInstanceProperties(instancePropertiesTemplate) {
 
     const response = await fetch(window.location.pathname +
       'restservices/clds/v2/acm/postToscaInstanceProperties', {
