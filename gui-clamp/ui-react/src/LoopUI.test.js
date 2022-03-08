@@ -29,6 +29,14 @@ import LoopCache from './api/LoopCache';
 import LoopActionService from './api/LoopActionService';
 import LoopService from './api/LoopService';
 
+import { ThemeConsumer } from 'styled-components'
+import { GlobalClampStyle } from './theme/globalStyle.js';
+import { DefaultClampTheme } from './theme/globalStyle.js';
+
+export const shallowWithTheme = (children, theme = DefaultClampTheme) => {
+  ThemeConsumer._currentValue = theme
+  return shallow(children)
+}
 describe('Verify LoopUI', () => {
   beforeEach(() => {
     fetch.resetMocks();
@@ -169,5 +177,10 @@ describe('Verify LoopUI', () => {
     expect(component.state('showSucAlert')).toEqual(false);
     expect(component.state('showFailAlert')).toEqual(true);
     expect(component.state('showMessage')).toEqual("testAlert2");
+  })
+
+  test('Test renders correctly Clamp Style', () => {
+    let tree = shallowWithTheme(<GlobalClampStyle />);
+    expect(tree).toMatchSnapshot();
   })
 });
