@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Verify LoopUI Test renders correctly Clamp Style 1`] = `""`;
+
 exports[`Verify LoopUI Test the render method 1`] = `
 <styled.div
   id="main_div"
