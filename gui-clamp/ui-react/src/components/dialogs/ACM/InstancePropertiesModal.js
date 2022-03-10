@@ -65,11 +65,9 @@ const InstancePropertiesModal = (props) => {
   const [instancePropertiesGlobal, setInstancePropertiesGlobal] = useState({});
   const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
   const [instancePropertiesResponseOk, setInstancePropertiesResponseOk] = useState(true);
-  const [instanceName, setInstanceName] = useState('')
+  const [instanceName, setInstanceName] = useState('');
 
   useEffect(async () => {
-    setJsonEditor(null);
-
     const toscaTemplateResponse = await ACMService.getToscaTemplate(templateName, templateVersion)
         .catch(error => error.message);
 
@@ -111,8 +109,8 @@ const InstancePropertiesModal = (props) => {
   }
 
   const handleSave = async () => {
-    console.log("handleSave called");
-    if (instanceName !== '' || instanceName.length > 0) {
+    if (instanceName !== '' || instanceName !== undefined || instanceName.length > 0) {
+      console.log("handleSave called");
 
       console.log("instanceName to be saved is: " + instanceName);
 
