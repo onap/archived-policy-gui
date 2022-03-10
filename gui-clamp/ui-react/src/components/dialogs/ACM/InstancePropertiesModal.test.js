@@ -17,14 +17,19 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { mount, shallow } from "enzyme";
+import {shallow} from "enzyme";
 import React from "react";
 import InstancePropertiesModal from "./InstancePropertiesModal";
 import toJson from "enzyme-to-json";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
+import ACMService from "../../../api/ACMService";
+import fullTemp from "./testFiles/fullTemplate.json";
+import instanceProps from "./testFiles/instanceProps.json";
 
-let logSpy = jest.spyOn(console, 'log')
+const instanceProperties = JSON.parse(JSON.stringify(instanceProps))
+const fullTemplate = JSON.parse(JSON.stringify(fullTemp))
+let logSpy = jest.spyOn(console, 'log');
 
 describe('Verify InstancePropertiesModal', () => {
 
@@ -66,7 +71,10 @@ describe('Verify InstancePropertiesModal', () => {
   });
 
   it('handleCreateUpdateToscaInstanceProperties called when save button clicked', () => {
-    const component = mount(<InstancePropertiesModal />)
+    const component = shallow(<InstancePropertiesModal />);
+
+    const instanceNameState = jest.spyOn(React, "useState");
+    instanceNameState.mockImplementation(instanceName => [instanceName, 'Test']);
 
     act(() => {
       component.find('[variant="primary"]').simulate('click');
@@ -76,7 +84,7 @@ describe('Verify InstancePropertiesModal', () => {
 
   it('handleClose called when close button clicked', () => {
     const history = createMemoryHistory();
-    const component = mount(<InstancePropertiesModal history={ history }/>)
+    const component = shallow(<InstancePropertiesModal history={ history }/>)
 
     act(() => {
       component.find('[variant="secondary"]').simulate('click');
@@ -85,7 +93,7 @@ describe('Verify InstancePropertiesModal', () => {
   });
 
   it('handleSave called when save button clicked', () => {
-    const component = mount(<InstancePropertiesModal />)
+    const component = shallow(<InstancePropertiesModal />)
 
     act(() => {
       component.find('[variant="primary"]').simulate('click');
@@ -95,9 +103,50 @@ describe('Verify InstancePropertiesModal', () => {
 
   it('Check useEffect is being called', async () => {
     const useEffect = jest.spyOn(React, "useEffect");
-    mount(<InstancePropertiesModal />)
-    await act(async () => {
+    const component = shallow(<InstancePropertiesModal />)
+    act(async () => {
       expect(useEffect).toHaveBeenCalled();
+      component.update()
     });
   });
+
+  it('Check useEffect is being called', async () => {
+    const useEffect = jest.spyOn(React, "useEffect");
+    const component = shallow(<InstancePropertiesModal />)
+    act(async () => {
+      expect(useEffect).toHaveBeenCalled();
+      component.update();
+    });
+  });
+
+  it('getToscaTemplate gets called in useEffect with error',  async() => {
+    const fetchMock = jest.spyOn(ACMService, 'getToscaTemplate').mockImplementation(() => Promise.resolve({
+      ok: false,
+      status: 200,
+      text: () => "OK",
+      json: () => fullTemplate
+    }))
+
+    const component = shallow(<InstancePropertiesModal/>)
+    act(async () => {
+      expect(fetchMock).toHaveBeenCalled();
+      component.update();
+    });
+  });
+
+  it('getCommonOrInstanceProperties gets called in useEffect with error',  async() => {
+    const fetchMock = jest.spyOn(ACMService, 'getCommonOrInstanceProperties').mockImplementation(() => Promise.resolve({
+      ok: false,
+      status: 200,
+      text: () => "OK",
+      json: () => instanceProperties
+    }))
+
+    const component = shallow(<InstancePropertiesModal/>)
+    act(async () => {
+      expect(fetchMock).toHaveBeenCalled();
+      component.update();
+    });
+  });
+
 });
