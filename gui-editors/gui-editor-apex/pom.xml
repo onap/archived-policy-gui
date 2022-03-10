@@ -34,9 +34,6 @@
     <description>Web client for editing Apex policies</description>
 
     <properties>
-        <policy.apex-pdp.version>2.4.0</policy.apex-pdp.version>
-        <policy.common.version>1.10.1-SNAPSHOT</policy.common.version>
-        <policy.models.version>2.6.1-SNAPSHOT</policy.models.version>
         <webapp.dir>${project.basedir}/src/main/webapp</webapp.dir>
         <sonar.nodejs.executable>${webapp.dir}/node/node</sonar.nodejs.executable>
         <sonar.sources>${project.basedir}/src/main/java,${webapp.dir}/js</sonar.sources>
