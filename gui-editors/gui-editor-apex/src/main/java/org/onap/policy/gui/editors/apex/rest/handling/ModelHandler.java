@@ -246,7 +246,7 @@ public class ModelHandler implements RestCommandHandler {
 
         ApexApiResult result = session.getApexModel().getModelKey();
 
-        LOGGER.exit("Model/GetKey" + (result != null && result.isOk() ? OK : NOT_OK));
+        LOGGER.exit("Model/GetKey" + (result.isOk() ? OK : NOT_OK));
         return result;
     }
 
@@ -451,7 +451,7 @@ public class ModelHandler implements RestCommandHandler {
         String version) {
         // Look up the key information for the name and version
         var keyInfoJsonObject = lookupKeyInfo(session, name, version);
-        if (keyInfoJsonObject == null || keyInfoJsonObject.get(APEX_KEY_INFO) != null) {
+        if (keyInfoJsonObject == null || keyInfoJsonObject.get(APEX_KEY_INFO) == null) {
             return false;
         }
 

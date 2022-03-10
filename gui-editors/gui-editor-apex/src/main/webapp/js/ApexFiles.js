@@ -38,7 +38,7 @@ function files_fileOpen() {
                 localStorage.setItem("apex_model_loaded", true);
                 requestURL = window.restRootURL + "/Model/GetKey";
                 ajax_get(requestURL, function(data) {
-                    var modelKey = JSON.parse(data.messages[0]).apexArtifactKey;
+                    var modelKey = JSON.parse(data.messages[0]);
                     pageControl_modelMode(modelKey.name, modelKey.version, fileName);
                 });
             });

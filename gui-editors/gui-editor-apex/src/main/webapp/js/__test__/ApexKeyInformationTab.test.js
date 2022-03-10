@@ -23,16 +23,13 @@ const ApexKeyInformationTab = require("../ApexKeyInformationTab");
 test("Test keyInformationTab_activate", () => {
     document.body.innerHTML = '<div id ="keyInformationTab"></div>';
     const data = {
-        useHttps: 'useHttps',
-        hostname: 'hostname',
-        port: 'port',
-        username: 'username',
-        password: 'password',
         messages: [
-            '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
-            ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
+            JSON.stringify({
+                UUID: "UUID1",
+                description: "description1",
+                key: {name: "name1", version: "version1"}
+            })
         ],
-        content: ['01', '02'],
         result: 'SUCCESS'
     };
     $.ajax = jest.fn().mockImplementation((args) => {

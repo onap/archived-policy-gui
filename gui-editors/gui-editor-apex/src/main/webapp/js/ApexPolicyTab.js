@@ -39,7 +39,7 @@ function policyTab_activate() {
         $("#policyTableBody").find("tr:gt(0)").remove();
 
         for (let value of data.messages) {
-            var policy = JSON.parse(value).apexPolicy;
+            var policy = JSON.parse(value);
 
             var policyRow_tr = document.createElement("tr");
             var policyid = policy.policyKey.name + ":"  + policy.policyKey.version;

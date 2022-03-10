@@ -25,9 +25,7 @@ const formUtils_generateDescription = require('../ApexFormUtils');
 
 let data = {
    messages: [
-      '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"}},' +
-      '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"},"itemSchema":{}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
-      '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+      JSON.stringify({key: {name: "name1", version: "0.0.1"}, itemSchema: {}})
    ],
    result: 'SUCCESS'
 };

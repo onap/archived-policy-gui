@@ -86,6 +86,12 @@ function createEditArea(id, options, callback) {
     var is_editable = options.hasOwnProperty("is_editable") ? options.is_editable : true;
     var toolbar = options.toolbar ? options.toolbar : "select_font, |, highlight, reset_highlight";
 
+    var inlineScript = 'function onEditAreaChange(id) { $("#"+id).val(editAreaLoader.getValue(id)); }';
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.appendChild(document.createTextNode(inlineScript));
+    document.body.appendChild(script);
+
     setTimeout(function() {
         editAreaLoader.init({
             id : id,
@@ -99,10 +105,6 @@ function createEditArea(id, options, callback) {
         });
     }, 100);
 
-}
-
-function onEditAreaChange(id) {
-    $("#" + id).val(editAreaLoader.getValue(id));
 }
 
 function isFirefox() {

@@ -48,7 +48,7 @@ function editPolicyForm_deletePolicy(parent, name, version) {
 function editPolicyForm_viewPolicy(formParent, name, version) {
     // get the policy
     var requestURL = window.restRootURL + "/Policy/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexPolicy", function(policy) {
+    ajax_getWithKeyInfo(requestURL, function(policy) {
         editPolicyForm_editPolicy_inner(formParent, policy, "VIEW");
     }, "policyKey");
 }
@@ -56,7 +56,7 @@ function editPolicyForm_viewPolicy(formParent, name, version) {
 function editPolicyForm_editPolicy(formParent, name, version) {
     // get the policy
     var requestURL = window.restRootURL + "/Policy/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexPolicy", function(policy) {
+    ajax_getWithKeyInfo(requestURL, function(policy) {
         editPolicyForm_editPolicy_inner(formParent, policy, "EDIT");
     }, "policyKey");
 }
@@ -67,7 +67,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (let value of data2.messages) {
-            var contextSchema = JSON.parse(value).apexContextSchema;
+            var contextSchema = JSON.parse(value);
             contextSchemas.push({
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -80,7 +80,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
         var tasks = new Array();
         ajax_get(requestURL, function(data3) {
             for (let value of data3.messages) {
-                var task = JSON.parse(value).apexTask;
+                var task = JSON.parse(value);
                 tasks.push({
                     "name" : task.key.name,
                     "version" : task.key.version,
@@ -93,7 +93,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
             var albums = new Array();
             ajax_get(requestURL, function(data4) {
                 for (let value of data4.messages) {
-                    var album = JSON.parse(value).apexContextAlbum;
+                    var album = JSON.parse(value);
                     albums.push({
                         "name" : album.key.name,
                         "version" : album.key.version,
@@ -106,7 +106,7 @@ function editPolicyForm_editPolicy_inner(formParent, policy, viewOrEdit) {
                 var events = new Array();
                 ajax_get(requestURL, function(data5) {
                     for (let value of data5.messages) {
-                        var event = JSON.parse(value).apexEvent;
+                        var event = JSON.parse(value);
                         events.push({
                             "name" : event.key.name,
                             "version" : event.key.version,

@@ -49,9 +49,10 @@ public class RestSession {
     // Recurring string constants
     private static final String ENGINE_SERVICE_PARAMETERS = "engineServiceParameters";
     private static final String POLICY_TYPE_IMPL = "policy_type_impl";
+    private static final String APEX_POLICY_MODEL = "apexPolicyModel";
 
     // The ID of the session
-    private int sessionId;
+    private final int sessionId;
 
     // The TOSCA Service Template of the session
     private ToscaServiceTemplate toscaServiceTemplate;
@@ -79,14 +80,14 @@ public class RestSession {
                 e);
         }
 
-        this.apexModel = new ApexModelFactory().createApexModel(null, true);
+        this.apexModel = new ApexModelFactory().createApexModel(null);
     }
 
     /**
      * Load the policy model from a TOSCA Service Template.
      *
      * @param toscaServiceTemplateString The TOSCA service template string
-     * @return the result of the lading operation
+     * @return the result of the loading operation
      */
     public ApexApiResult loadFromString(final String toscaServiceTemplateString) {
         try {
@@ -105,19 +106,40 @@ public class RestSession {
             return new ApexApiResult(Result.FAILED, "no policies found on incoming TOSCA service template");
         }
 
-        @SuppressWarnings("unchecked")
-        var apexEngineServiceParameterMap = (Map<String, Object>) toscaServiceTemplate
-            .getToscaTopologyTemplate().getPoliciesAsMap().values().iterator().next().getProperties()
-            .get(ENGINE_SERVICE_PARAMETERS);
-
         String apexModelString;
         try {
-            apexModelString = new StandardCoder().encode(apexEngineServiceParameterMap.get(POLICY_TYPE_IMPL));
-        } catch (CoderException e) {
+            apexModelString = extractPolicyModel(toscaServiceTemplate);
+        } catch (Exception e) {
             return new ApexApiResult(Result.FAILED, "APEX model not found TOSCA Service template", e);
         }
 
         return apexModelEdited.loadFromString(apexModelString);
+    }
+
+    private String extractPolicyModel(ToscaServiceTemplate toscaServiceTemplate)
+            throws IllegalArgumentException, CoderException {
+        // Check for "engineServiceParameters"
+        @SuppressWarnings("unchecked")
+        var engineServiceParameterMap = (Map<String, Object>) toscaServiceTemplate
+            .getToscaTopologyTemplate().getPoliciesAsMap().values().iterator().next().getProperties()
+            .get(ENGINE_SERVICE_PARAMETERS);
+        if (null == engineServiceParameterMap) {
+            throw new IllegalArgumentException(ENGINE_SERVICE_PARAMETERS + " not found in toscaServiceTemplate");
+        }
+
+        // Check for "policy_type_impl"
+        @SuppressWarnings("unchecked")
+        var policyTypeImplMap = (Map<String, Object>) engineServiceParameterMap.get(POLICY_TYPE_IMPL);
+        if (null == policyTypeImplMap) {
+            throw new IllegalArgumentException(POLICY_TYPE_IMPL + " not found in toscaServiceTemplate");
+        }
+
+        // Check for "apexPolicyModel", this is sometimes used to encapsulate policy models
+        @SuppressWarnings("unchecked")
+        var policyModelMap = (Map<String, Object>) policyTypeImplMap.get(APEX_POLICY_MODEL);
+
+        // Encode "apexPolicyModel" if present, otherwise encode "policy_type_impl"
+        return new StandardCoder().encode(policyModelMap != null ? policyModelMap : policyTypeImplMap);
     }
 
     /**
@@ -130,7 +152,7 @@ public class RestSession {
             return new ApexApiResult(Result.FAILED, "model is already being edited");
         }
 
-        apexModelEdited = apexModel.clone();
+        apexModelEdited = apexModel.getCopy();
         return new ApexApiResult();
     }
 
@@ -233,14 +255,5 @@ public class RestSession {
      */
     public ApexModel getApexModelEdited() {
         return apexModelEdited;
-    }
-
-    /**
-     * Get the edited or unedited Apex model of the session.
-     *
-     * @return the apexModel
-     */
-    public ApexModel getApexModelToDownload() {
-        return apexModelEdited == null ? apexModel : apexModelEdited;
     }
 }

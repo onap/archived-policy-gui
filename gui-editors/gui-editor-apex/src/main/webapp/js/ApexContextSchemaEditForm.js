@@ -46,14 +46,14 @@ function editContextSchemaForm_deleteContextSchema(parent, name, version) {
 
 function editContextSchemaForm_viewContextSchema(parent, name, version) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexContextSchema", function(contextSchema) {
+    ajax_getWithKeyInfo(requestURL, function(contextSchema) {
         editContextSchemaForm_activate(parent, "VIEW", contextSchema);
     });
 }
 
 function editContextSchemaForm_editContextSchema(formParent, name, version) {
     var requestURL = window.restRootURL + "/ContextSchema/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexContextSchema", function(contextSchema) {
+    ajax_getWithKeyInfo(requestURL, function(contextSchema) {
         editContextSchemaForm_activate(formParent, "EDIT", contextSchema);
     });
 }

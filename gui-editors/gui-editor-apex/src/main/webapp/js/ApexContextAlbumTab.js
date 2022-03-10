@@ -39,7 +39,7 @@ function contextAlbumTab_activate() {
         $("#contextAlbumTableBody").find("tr:gt(0)").remove();
 
         for (let value of data.messages) {
-            var contextAlbum = JSON.parse(value).apexContextAlbum;
+            var contextAlbum = JSON.parse(value);
 
             var contextAlbumRow_tr = document.createElement("tr");
 

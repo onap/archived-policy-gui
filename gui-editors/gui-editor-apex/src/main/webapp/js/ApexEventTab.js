@@ -41,7 +41,7 @@ function eventTab_activate() {
 
 
         for (let value of data.messages) {
-            var event = JSON.parse(value).apexEvent;
+            var event = JSON.parse(value);
 
             var eventTableRow_tr = document.createElement("tr");
             var eventid = event.key.name + ":"  + event.key.version;

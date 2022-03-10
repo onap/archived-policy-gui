@@ -38,8 +38,6 @@ public class BeanTask extends BeanBase {
     private String uuid = null;
     private String description = null;
     private BeanLogic taskLogic = null;
-    private Map<String, BeanField> inputFields = null;
-    private Map<String, BeanField> outputFields = null;
     private Map<String, BeanTaskParameter> parameters = null;
     private BeanKeyRef[] contexts = null;
 
@@ -49,7 +47,7 @@ public class BeanTask extends BeanBase {
     @Override
     public String toString() {
         return "BeanTask [name=" + name + ", version=" + version + ", uuid=" + uuid + ", description=" + description
-            + ", taskLogic=" + taskLogic + ", inputFields=" + inputFields + ", outputFields=" + outputFields
-            + ", parameters=" + parameters + ", contexts=" + Arrays.toString(contexts) + "]";
+            + ", taskLogic=" + taskLogic + ", parameters=" + parameters + ", contexts=" + Arrays.toString(contexts)
+            + "]";
     }
 }

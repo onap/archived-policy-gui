@@ -31,16 +31,8 @@ require('../../dist/js/jquery-ui-1.12.1/jquery-ui.js');
 
 const data = {
     messages: [
-        '{' +
-        '    "apexArtifactKey": {' +
-        '        "key": {' +
-        '            "name": "name1",' +
-        '            "version": "version1"' +
-        '        }' +
-        '    }' +
-        '}'
+        JSON.stringify({ key: { name: "name1", version: "version1" }})
     ],
-    content: ['01', '02'],
     result: 'SUCCESS'
 };
 

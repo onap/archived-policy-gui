@@ -37,7 +37,7 @@ function contextSchemaTab_activate() {
         $("#contextSchemaTableBody").find("tr:gt(0)").remove();
 
         for (let value of data.messages) {
-            var contextSchema = JSON.parse(value).apexContextSchema;
+            var contextSchema = JSON.parse(value);
 
             var contextSchemaRow_tr = document.createElement("tr");
             var contextSchemaid = contextSchema.key.name + ":"  + contextSchema.key.version;

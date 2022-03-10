@@ -32,7 +32,7 @@ function editContextAlbumForm_createContextAlbum(formParent) {
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (let value of data2.messages) {
-            var contextSchema = JSON.parse(value).apexContextSchema;
+            var contextSchema = JSON.parse(value);
             contextSchemas.push({
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -58,13 +58,13 @@ function editContextAlbumForm_deleteContextAlbum(parent, name, version) {
 
 function editContextAlbumForm_viewContextAlbum(parent, name, version) {
     var requestURL = window.restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexContextAlbum", function(contextAlbum) {
+    ajax_getWithKeyInfo(requestURL, function(contextAlbum) {
         // Get all contextSchemas too for album item schema
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (let value of data2.messages) {
-                var contextSchema = JSON.parse(value).apexContextSchema;
+                var contextSchema = JSON.parse(value);
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,
@@ -79,13 +79,13 @@ function editContextAlbumForm_viewContextAlbum(parent, name, version) {
 
 function editContextAlbumForm_editContextAlbum(formParent, name, version) {
     var requestURL = window.restRootURL + "/ContextAlbum/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexContextAlbum", function(contextAlbum) {
+    ajax_getWithKeyInfo(requestURL, function(contextAlbum) {
         // Get all contextSchemas too for album item schema
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (let value of data2.messages) {
-                var contextSchema = JSON.parse(value).apexContextSchema;
+                var contextSchema = JSON.parse(value);
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,

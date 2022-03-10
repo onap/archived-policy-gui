@@ -224,7 +224,7 @@ function newModelForm_submitPressed() {
         requestURL = window.restRootURL + "/Model/GetKey";
 
         ajax_get(requestURL, function(data) {
-            var modelKey = JSON.parse(data.messages[0]).apexArtifactKey;
+            var modelKey = JSON.parse(data.messages[0]);
             var modelFileName = modelKey.name + ".json";
             pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
         });

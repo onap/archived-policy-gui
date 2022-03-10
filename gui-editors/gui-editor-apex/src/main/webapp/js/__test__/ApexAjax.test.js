@@ -60,49 +60,79 @@ test('Test ajax_get success', (done) => {
 test('Test ajax_getWithKeyInfo success', (done) => {
     const myCallback = jest.fn((actual) => {
         expect(actual).toEqual({
-            key: {
-                name: "name1",
-                version: "version1"
-            },
+            key: { name: "name1", version: "version1" },
             uuid: "UUID1",
             description: "description1"
         });
         done();
     });
-    data.messages = [
-        '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1", "version":' +
-        ' "version1"}}, "objectType": {"key": {"name": "name1", "version": "version1"}}}'
-    ];
     const jqXHR = {status: 200, responseText: ""};
 
     $.ajax = jest.fn().mockImplementation((args) => {
-        args.success(data, null, jqXHR);
+        if (args.url.endsWith("/KeyInformation/Get?name=&version=")) {
+            var results1 = {
+                messages: [
+                    JSON.stringify({
+                        UUID: "UUID1",
+                        description: "description1",
+                        key: { name: "name1", version: "version1" }
+                    })
+                ],
+                result: 'SUCCESS'
+            };
+            args.success(results1, null, jqXHR);
+        } else if (args.url === "requestUrl") {
+            var results2 = {
+                messages: [
+                    JSON.stringify({
+                        key: { name: "name1", version: "version1" }
+                    })
+                ],
+                result: 'SUCCESS'
+            };
+            args.success(results2, null, jqXHR);
+        }
     });
-    mod.ajax_getWithKeyInfo("requestUrl", "objectType", myCallback, undefined);
+    mod.ajax_getWithKeyInfo("requestUrl", myCallback, undefined);
 });
 
 test('Test ajax_getWithKeyInfo with custom key success', (done) => {
     const myCallback = jest.fn((actual) => {
         expect(actual).toEqual({
-            customKey: {
-                name: "name1",
-                version: "version1"
-            },
+            customKey: { name: "name1", version: "version1" },
             uuid: "UUID1",
             description: "description1"
         });
         done();
     });
-    data.messages = [
-        '{"apexKeyInfo": {"UUID": "UUID1", "description": "description1", "key":{"name": "name1",' +
-        ' "version": "version1"}}, "objectType": {"customKey": {"name": "name1", "version": "version1"}}}'
-    ];
     const jqXHR = {status: 200, responseText: ""};
 
     $.ajax = jest.fn().mockImplementation((args) => {
-        args.success(data, null, jqXHR);
+        if (args.url.endsWith("/KeyInformation/Get?name=&version=")) {
+            var results1 = {
+                messages: [
+                    JSON.stringify({
+                        UUID: "UUID1",
+                        description: "description1",
+                        key: { name: "name1", version: "version1" }
+                    })
+                ],
+                result: 'SUCCESS'
+            };
+            args.success(results1, null, jqXHR);
+        } else if (args.url === "requestUrl") {
+            var results2 = {
+                messages: [
+                    JSON.stringify({
+                        customKey: { name: "name1", version: "version1" }
+                    })
+                ],
+                result: 'SUCCESS'
+            };
+            args.success(results2, null, jqXHR);
+        }
     });
-    mod.ajax_getWithKeyInfo("requestUrl", "objectType", myCallback, "customKey");
+    mod.ajax_getWithKeyInfo("requestUrl", myCallback, "customKey");
 });
 
 test('Test ajax_delete error', () => {

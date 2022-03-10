@@ -40,17 +40,16 @@ function ajax_get(requestURL, callback) {
     });
 }
 
-function ajax_getWithKeyInfo(requestURL, objectType, callback, keyNam) {
+function ajax_getWithKeyInfo(requestURL, callback, keyNam) {
     let keyName = keyNam || "key";
     let keyInfoURL = window.restRootURL + "/KeyInformation/Get?name=&version=";
     ajax_get(keyInfoURL, function(dataKeyInfos) {
         ajax_get(requestURL, function(data) {
             var keyInfos = [];
             for (let value of dataKeyInfos.messages) {
-                var ki = JSON.parse(value).apexKeyInfo;
-                keyInfos.push(ki);
+                keyInfos.push(JSON.parse(value));
             }
-            var object = JSON.parse(data.messages[0])[objectType];
+            var object = JSON.parse(data.messages[0]);
             var keyInfo = keyInfos.filter(function(ki) {
                 return ki.key.name === object[keyName].name
                     && ki.key.version === object[keyName].version;

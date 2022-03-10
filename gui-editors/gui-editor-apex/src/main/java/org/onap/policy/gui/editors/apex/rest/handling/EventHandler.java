@@ -114,7 +114,7 @@ public class EventHandler implements RestCommandHandler {
 
         ApexApiResult result = session.getApexModelEdited().createEvent(jsonbean.getName(), jsonbean.getVersion(),
             jsonbean.getNameSpace(), jsonbean.getSource(), jsonbean.getTarget(), jsonbean.getUuid(),
-            jsonbean.getDescription());
+            jsonbean.getDescription(), null);
 
         if (result.isOk()) {
             result = createEventParameters(session, jsonbean);
@@ -193,7 +193,7 @@ public class EventHandler implements RestCommandHandler {
         if (result.isOk()) {
             result = session.getApexModelEdited().createEvent(jsonbean.getName(), jsonbean.getVersion(),
                 jsonbean.getNameSpace(), jsonbean.getSource(), jsonbean.getTarget(), jsonbean.getUuid(),
-                jsonbean.getDescription());
+                jsonbean.getDescription(), null);
 
             if (result.isOk() && jsonbean.getParameters() != null) {
                 result = createEventParameters(session, jsonbean);

@@ -52,7 +52,7 @@ function editEventForm_createEvent(formParent) {
     var contextSchemas = new Array();
     ajax_get(requestURL, function(data2) {
         for (let value of data2.messages) {
-            var contextSchema = JSON.parse(value).apexContextSchema;
+            var contextSchema = JSON.parse(value);
             var dt = {
                 "name" : contextSchema.key.name,
                 "version" : contextSchema.key.version,
@@ -67,13 +67,13 @@ function editEventForm_createEvent(formParent) {
 
 function editEventForm_editEvent_inner(formParent, name, version, viewOrEdit) {
     var requestURL = window.restRootURL + "/Event/Get?name=" + name + "&version=" + version;
-    ajax_getWithKeyInfo(requestURL, "apexEvent", function(event) {
+    ajax_getWithKeyInfo(requestURL, function(event) {
         // Get all contextSchemas too for event params
         requestURL = window.restRootURL + "/ContextSchema/Get?name=&version=";
         var contextSchemas = new Array();
         ajax_get(requestURL, function(data2) {
             for (let value of data2.messages) {
-                var contextSchema = JSON.parse(value).apexContextSchema;
+                var contextSchema = JSON.parse(value);
                 contextSchemas.push({
                     "name" : contextSchema.key.name,
                     "version" : contextSchema.key.version,

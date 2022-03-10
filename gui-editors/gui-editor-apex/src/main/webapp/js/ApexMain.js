@@ -125,7 +125,7 @@ function main_getRestRootURL() {
         ajax_get(requestURL, function(data) {
             $("#statusMessageTable").append("<tr><td> REST root URL set to: " + restRootURL + "</td></tr>");
             if (localStorage.getItem("apex_model_loaded")) {
-                const modelKey = JSON.parse(data.messages[0]).apexArtifactKey;
+                const modelKey = JSON.parse(data.messages[0]);
                 pageControl_modelMode(modelKey.name, modelKey.version, modelFileName);
                 if (localStorage.getItem("apex_tab_index")) {
                     $("#mainTabs").tabs({

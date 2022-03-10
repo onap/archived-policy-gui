@@ -29,18 +29,23 @@ test('Test activate', () => {
     document.body.innerHTML = '<div id="eventsTab"></div>';
 
     const data = {
-        useHttps: 'useHttps',
-        hostname: 'hostname',
-        port: 'port',
-        username: 'username',
-        password: 'password',
         messages: [
-            '{"apexEvent" : {"key": {"name": "name1", "version":"version1"}, "nameSpace":"nameSpace1",' +
-            ' "source":"source1", "target":"target1", "parameter": ' +
-            '{"entry": [{"key": "key1", "value": {"optional":"optional", "fieldSchemaKey": ' +
-            '{"name": "name2", "version":"version2"}}}]}}}'
+            JSON.stringify({
+                key: { name: "name1", version: "version1" },
+                nameSpace: "nameSpace1",
+                source: "source1",
+                target: "target1",
+                parameter: {
+                    entry: [{
+                        key: "key1",
+                        value: {
+                            optional: "optional",
+                            fieldSchemaKey: { name: "name2", version: "version2" }
+                        }
+                    }]
+                }
+            })
         ],
-        content: ['01', '02'],
         result: 'SUCCESS'
     };
 

@@ -38,7 +38,7 @@ function keyInformationTab_activate() {
         $("#keyInformationTableBody").find("tr:gt(0)").remove();
 
         for (let value of data.messages) {
-            var keyInfo = JSON.parse(value).apexKeyInfo;
+            var keyInfo = JSON.parse(value);
 
             var keyInfoRow_tr = document.createElement("tr");
             var keyInfoRow =

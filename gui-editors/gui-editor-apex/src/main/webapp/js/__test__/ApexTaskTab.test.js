@@ -22,13 +22,13 @@ const mod = require('../ApexTaskTab');
 
 let data = {
    messages: [
-      '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"},' +
-      '"taskLogic":{"logicFlavour":"logicFlavour"},"inputFields":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},' +
-      '"outputFields":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},' +
-      '"taskParameters":{"entry": [{"key":"","value":{"fieldSchemaKey":{"name":"name"}}}]},'+
-      '"contextAlbumReference":[{"name":"name", "version":"version"}]},'+
-      '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
-      '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+      JSON.stringify({
+         key: {name: "name1", version: "version1"},
+         taskLogic: {logicFlavour: "logicFlavour"},
+         taskParameters: {entry: [{key: "", value: {fieldSchemaKey: {name: "name"}}}]},
+         contextAlbumReference: [{name: "name", version: "version"}],
+         policyKey: {name: "name1", version: "version1"},
+      })
    ],
    result: 'SUCCESS'
 };

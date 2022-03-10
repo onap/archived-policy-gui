@@ -27,7 +27,6 @@ import org.onap.policy.apex.model.basicmodel.concepts.AxKeyInfo;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
 import org.onap.policy.apex.model.policymodel.concepts.AxTask;
-import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanField;
 import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanKeyRef;
 import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanLogic;
 import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanTask;
@@ -140,15 +139,7 @@ public class TaskHandler implements RestCommandHandler {
      *         can be retrieved using {@link ApexApiResult#getMessages()}
      */
     private ApexApiResult createTaskContent(final RestSession session, final BeanTask jsonbean) {
-        ApexApiResult result = createInputFields(session, jsonbean);
-
-        if (result.isOk()) {
-            result = createOutputFields(session, jsonbean);
-        }
-
-        if (result.isOk()) {
-            result = createTaskLogic(session, jsonbean);
-        }
+        ApexApiResult result = createTaskLogic(session, jsonbean);
 
         if (result.isOk()) {
             result = createTaskParameters(session, jsonbean);
@@ -157,102 +148,6 @@ public class TaskHandler implements RestCommandHandler {
         if (result.isOk()) {
             result = createContextReferences(session, jsonbean);
         }
-        return result;
-    }
-
-    /**
-     * Create the input fields for the task.
-     *
-     * @param session  the Apex model editing session
-     * @param jsonbean the ban containing the fields
-     * @return the result of the operation
-     */
-    private ApexApiResult createInputFields(final RestSession session, final BeanTask jsonbean) {
-        var result = new ApexApiResult();
-
-        if (jsonbean.getInputFields() == null || jsonbean.getInputFields().isEmpty()) {
-            return result;
-        }
-
-        for (final Entry<String, BeanField> fieldEntry : jsonbean.getInputFields().entrySet()) {
-            if (fieldEntry.getValue() == null) {
-                result.setResult(Result.FAILED);
-                result.addMessage("Null task input field information for field \"" + fieldEntry.getKey() + IN_TASK
-                    + jsonbean.getName() + ":" + jsonbean.getVersion()
-                    + ". The task was created, but there was an error adding the input fields."
-                    + TASK_PARTIALLY_DEFINED);
-                continue;
-            }
-
-            if (fieldEntry.getKey() == null || !fieldEntry.getKey().equals(fieldEntry.getValue().getLocalName())) {
-                result.setResult(Result.FAILED);
-                result.addMessage("Invalid task input field information for field \"" + fieldEntry.getKey() + IN_TASK
-                    + jsonbean.getName() + ":" + jsonbean.getVersion() + ". The localName of the field (\""
-                    + fieldEntry.getValue().getLocalName() + "\") is not the same as the field name. "
-                    + "The task was created, but there was an error adding the input fields." + TASK_PARTIALLY_DEFINED);
-            } else {
-                ApexApiResult fieldCreationResult = session.getApexModelEdited().createTaskInputField(
-                    jsonbean.getName(), jsonbean.getVersion(), fieldEntry.getKey(), fieldEntry.getValue().getName(),
-                    fieldEntry.getValue().getVersion(), fieldEntry.getValue().isOptional());
-
-                if (fieldCreationResult.isNok()) {
-                    result.setResult(fieldCreationResult.getResult());
-                    result.addMessage("Failed to add task input field information for field \"" + fieldEntry.getKey()
-                        + IN_TASK + jsonbean.getName() + ":" + jsonbean.getVersion()
-                        + ". The task was created, but there was an error adding the input fields."
-                        + TASK_PARTIALLY_DEFINED);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Create the output fields for the task.
-     *
-     * @param session  the Apex model editing session
-     * @param jsonbean the ban containing the fields
-     * @return the result of the operation
-     */
-    private ApexApiResult createOutputFields(final RestSession session, final BeanTask jsonbean) {
-        var result = new ApexApiResult();
-
-        if (jsonbean.getOutputFields() == null || jsonbean.getOutputFields().isEmpty()) {
-            return result;
-        }
-
-        for (final Entry<String, BeanField> fieldEntry : jsonbean.getOutputFields().entrySet()) {
-            if (fieldEntry.getValue() == null) {
-                result.setResult(Result.FAILED);
-                result.addMessage("Null task output field information for field \"" + fieldEntry.getKey() + IN_TASK
-                    + jsonbean.getName() + ":" + jsonbean.getVersion()
-                    + ". The task was created, but there was an error adding the output fields."
-                    + TASK_PARTIALLY_DEFINED);
-                continue;
-            }
-
-            if (fieldEntry.getKey() == null || !fieldEntry.getKey().equals(fieldEntry.getValue().getLocalName())) {
-                result.setResult(Result.FAILED);
-                result.addMessage("Invalid task output field information for field \"" + fieldEntry.getKey() + IN_TASK
-                    + jsonbean.getName() + ":" + jsonbean.getVersion() + ". The localName of the field (\""
-                    + fieldEntry.getValue().getLocalName() + "\") is not the same as the field name. "
-                    + "The task was created, but there was an error adding the output fields."
-                    + TASK_PARTIALLY_DEFINED);
-            } else {
-                ApexApiResult fieldCreationResult = session.getApexModelEdited().createTaskOutputField(
-                    jsonbean.getName(), jsonbean.getVersion(), fieldEntry.getKey(), fieldEntry.getValue().getName(),
-                    fieldEntry.getValue().getVersion(), fieldEntry.getValue().isOptional());
-                if (fieldCreationResult.isNok()) {
-                    result.setResult(fieldCreationResult.getResult());
-                    result.addMessage("Failed to add task output field information for field \"" + fieldEntry.getKey()
-                        + IN_TASK + jsonbean.getName() + ":" + jsonbean.getVersion()
-                        + ". The task was created, but there was an error adding the output fields."
-                        + TASK_PARTIALLY_DEFINED);
-                }
-            }
-        }
-
         return result;
     }
 

@@ -65,7 +65,7 @@
         </dependency>
         <dependency>
             <groupId>org.onap.policy.apex-pdp.model</groupId>
-            <artifactId>model-api</artifactId>
+            <artifactId>model</artifactId>
             <version>${policy.apex-pdp.version}</version>
         </dependency>
         <dependency>
@@ -92,6 +92,10 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-ext</artifactId>
         </dependency>
     </dependencies>
 

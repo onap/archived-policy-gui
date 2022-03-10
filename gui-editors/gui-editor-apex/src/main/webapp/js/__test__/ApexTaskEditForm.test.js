@@ -42,8 +42,6 @@ const task = {
    taskLogic: {
       logicFlavour: 'testFlav'
    },
-   inputFields : {entry: [{key: "key1", value: {fieldSchemaKey: { name : "name2",  version : "version2"}}}]},
-   outputFields : {entry: [{key: "key01", value: {fieldSchemaKey: { name : "name02",  version : "version02"}}}]},
    taskParameters: {entry: [{key: 'testKey',value: {defaultValue: 'testValue'}}]},
    contextAlbumReference : [{name : 'contextEntry.name',version : 'contextEntry.version', displaytext : 'contextName'},
       {name : 'contextEntry.name2',version : 'contextEntry.version2', displaytext : 'contextName2'},
@@ -52,9 +50,7 @@ const task = {
 
 let data = {
    messages: [
-      '{"apexContextSchema": {"key":{"name": "name1", "version": "version1"}}, "apexTask":{"key":{"name": "name1", "version": "version1"}},' +
-      '"apexContextAlbum":{"key":{"name": "name1", "version": "version1"}},"apexEvent":{"key":{"name": "name1", "version": "version1"}},' +
-      '"apexPolicy":{"policyKey":{"name": "name1", "version": "version1"}}, "apexKeyInfo":{"key":{"name": "name1", "version": "version1"}}}'
+      JSON.stringify({key: {name: "name1", version: "0.0.1"}})
    ],
    result: 'SUCCESS'
 };
@@ -113,22 +109,6 @@ test('Test Edit Task Inner', () => {
    jest.spyOn(apexUtils, 'apexUtils_removeElement').mockReturnValueOnce(null);
    const mock_activate = jest.fn(mod.editTaskForm_editTask_inner);
    mock_activate('test', 'name', 'version', 'Edit');
-   expect(mock_activate).toBeCalled();
-});
-
-test('Test editTaskForm_addTaskInputField', () => {
-   const mock_activate = jest.fn(mod.editTaskForm_addTaskInputField);
-   let contextSchemas = new Array();
-   contextSchemas.push(contextSchema);
-   mock_activate(parentTBody, true, 'name', null, contextSchema, contextSchemas);
-   expect(mock_activate).toBeCalled();
-});
-
-test('Test editTaskForm_addTaskOutputField', () => {
-   const mock_activate = jest.fn(mod.editTaskForm_addTaskOutputField);
-   let contextSchemas = new Array();
-   contextSchemas.push(contextSchema);
-   mock_activate(parentTBody, true, 'name', null, contextSchema, contextSchemas);
    expect(mock_activate).toBeCalled();
 });
 
@@ -200,9 +180,9 @@ test('Test editTaskForm_submitPressed with page', () => {
 
    document.documentElement.innerHTML = '<html><head></head><body>' +
    '<table id="editTaskFormInputFieldsTable" value="v0">' +
-   '<tr class="table" inputfield_id="a1" outputfield_id="b1" param_id="c1" context_id="d1" value="v1"><td>cell1</td><td>cell2</td></tr>' +
-   '<tr class="table" inputfield_id="a2" outputfield_id="b2" param_id="c2" context_id="d2" value="v2"><td>cell3</td><td>cell4</td></tr>' +
-   '<tr class="table" inputfield_id="a3" outputfield_id="b3" param_id="c3" context_id="d3" value="v3"><td>cell5</td><td>cell6</td></tr>' +
+   '<tr class="table" param_id="a1" context_id="b1" value="v1"><td>cell1</td><td>cell2</td></tr>' +
+   '<tr class="table" param_id="a2" context_id="b2" value="v2"><td>cell3</td><td>cell4</td></tr>' +
+   '<tr class="table" param_id="a3" context_id="b3" value="v3"><td>cell5</td><td>cell6</td></tr>' +
    '</table>' +
    '</body></html>';
    let documentSpy = jest.spyOn(document, 'getElementById');

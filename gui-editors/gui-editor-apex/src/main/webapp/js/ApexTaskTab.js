@@ -39,7 +39,7 @@ function taskTab_activate() {
         $("#taskTableBody").find("tr:gt(0)").remove();
 
         for (let value of data.messages) {
-            const task = JSON.parse(value).apexTask;
+            const task = JSON.parse(value);
 
             const taskRow_tr = document.createElement("tr");
 
@@ -50,36 +50,6 @@ function taskTab_activate() {
                 "<td>"                                  +
                 task.taskLogic.logicFlavour             +
                 "</td>";
-
-            taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
-            for (let fieldEntry of task.inputFields.entry) {
-
-                taskTableRow +=
-                    "<tr><td>"                        +
-                    fieldEntry.key                    +
-                    "</td>"                           +
-                    "<td>"                            +
-                    fieldEntry.value.fieldSchemaKey.name + ":"  + fieldEntry.value.fieldSchemaKey.version +
-                    "<td>"                            +
-                    fieldEntry.value.optional           +
-                    "</td></tr>";
-            }
-            taskTableRow += "</tbody></table></td>";
-
-            taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
-            for (let fieldEntry of task.outputFields.entry) {
-
-                taskTableRow +=
-                    "<tr><td>"                        +
-                    fieldEntry.key                    +
-                    "</td>"                           +
-                    "<td>"                            +
-                    fieldEntry.value.fieldSchemaKey.name + ":"  + fieldEntry.value.fieldSchemaKey.version +
-                    "<td>"                            +
-                    fieldEntry.value.optional           +
-                    "</td></tr>";
-            }
-            taskTableRow += "</tbody></table></td>";
 
             taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Parameter Name</th><th>Default Value</th></tr></thead><tbody>";
             for (let parameterEntry of task.taskParameters.entry) {
@@ -155,16 +125,6 @@ function taskTab_create() {
     taskTableHeaderRow.appendChild(taskTableLogicFlavourHeader);
     taskTableLogicFlavourHeader.setAttribute("id", "taskTableLogicFlavourHeader");
     taskTableLogicFlavourHeader.appendChild(document.createTextNode("Logic Flavour"));
-
-    var taskTableInputFieldHeader = document.createElement("th");
-    taskTableHeaderRow.appendChild(taskTableInputFieldHeader);
-    taskTableInputFieldHeader.setAttribute("id", "taskTableInputFieldHeader");
-    taskTableInputFieldHeader.appendChild(document.createTextNode("Input Fields"));
-
-    var taskTableOutputFieldHeader = document.createElement("th");
-    taskTableHeaderRow.appendChild(taskTableOutputFieldHeader);
-    taskTableOutputFieldHeader.setAttribute("id", "taskTableOutputFieldHeader");
-    taskTableOutputFieldHeader.appendChild(document.createTextNode("Output Fields"));
 
     var taskTableParameterHeader = document.createElement("th");
     taskTableHeaderRow.appendChild(taskTableParameterHeader);

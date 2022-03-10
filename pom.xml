@@ -40,8 +40,8 @@
     <description>Code for all the Policy GUI's.</description>
 
     <properties>
-        <policy.apex-pdp.version>2.4.0</policy.apex-pdp.version>
-        <policy.common.version>1.10.1-SNAPSHOT</policy.common.version>
+        <policy.apex-pdp.version>2.7.1-SNAPSHOT</policy.apex-pdp.version>
+        <policy.common.version>1.10.2-SNAPSHOT</policy.common.version>
         <policy.models.version>2.6.1-SNAPSHOT</policy.models.version>
         <jacoco.dataFile>${project.basedir}/../../target/code-coverage/jacoco-ut.exec</jacoco.dataFile>
         <sonar.javascript.lcov.reportPaths>${project.basedir}/target/code-coverage/lcov.info</sonar.javascript.lcov.reportPaths>
