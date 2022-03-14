@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "b902ee08_60525c16",
+        "filename": "gui-clamp/ui-react/src/components/menu/__snapshots__/MenuBar.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2022-03-14T15:10:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f04b669_896dc86f",
+      "revId": "d00347958b941d5e74fa2ecf5542e5ea44c5d72f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed77c00a_3045009b",
         "filename": "gui-clamp/ui-react/src/components/menu/__snapshots__/MenuBar.test.js.snap",
         "patchSetId": 1
@@ -59,6 +77,30 @@
     },
     {
       "key": {
+        "uuid": "b69a9455_3afd287f",
+        "filename": "gui-clamp/ui-react/src/components/menu/__snapshots__/MenuBar.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2022-03-14T15:10:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed77c00a_3045009b",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "d00347958b941d5e74fa2ecf5542e5ea44c5d72f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "296222f8_2b04e920",
         "filename": "gui-clamp/ui-react/src/components/menu/__snapshots__/MenuBar.test.js.snap",
         "patchSetId": 1
@@ -79,6 +121,30 @@
       "revId": "d00347958b941d5e74fa2ecf5542e5ea44c5d72f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "998d0944_a204ea73",
+        "filename": "gui-clamp/ui-react/src/components/menu/__snapshots__/MenuBar.test.js.snap",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7660
+      },
+      "writtenOn": "2022-03-14T15:10:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "296222f8_2b04e920",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 4
+      },
+      "revId": "d00347958b941d5e74fa2ecf5542e5ea44c5d72f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
