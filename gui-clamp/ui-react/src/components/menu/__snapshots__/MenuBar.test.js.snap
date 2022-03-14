@@ -31,7 +31,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -40,8 +39,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -100,7 +98,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -109,8 +106,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -168,7 +164,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -177,8 +172,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -237,7 +231,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -246,8 +239,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -302,7 +294,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -311,8 +302,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -367,7 +357,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -376,8 +365,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -432,7 +420,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -441,8 +428,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -500,7 +486,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -509,8 +494,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -565,7 +549,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -574,8 +557,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -634,7 +616,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -643,8 +624,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -699,7 +679,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -708,8 +687,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -764,7 +742,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -773,8 +750,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -829,7 +805,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -838,8 +813,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -897,7 +871,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -906,8 +879,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -962,7 +934,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -971,8 +942,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -1036,7 +1006,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -1045,8 +1014,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -1109,7 +1077,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -1118,8 +1085,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -1174,7 +1140,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -1183,8 +1148,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -1239,7 +1203,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -1248,8 +1211,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
@@ -1319,7 +1281,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -1328,8 +1289,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     color: ",
               [Function],
               ";
-  }
-",
+  }",
             ],
             "staticRulesId": "",
           },
