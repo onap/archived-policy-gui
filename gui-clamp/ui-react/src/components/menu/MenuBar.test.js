@@ -72,7 +72,7 @@ describe('Verify MenuBar', () => {
 
   it('Finds POLICY Framework Menu', () => {
     const component = shallow(<MenuBar />).childAt(4).dive();
-    expect(component.find({ tile: 'TOSCA Control Loop' }));
+    expect(component.find({ tile: 'TOSCA Automation Composition' }));
   });
 
   it('Finds POLICY Framework Menu', () => {
@@ -83,5 +83,10 @@ describe('Verify MenuBar', () => {
   it('Finds StyledNavLink', () => {
     const component = shallow(<MenuBar />);
     expect(component.find('Styled(NavLink)').length).toEqual(2);
+  });
+
+  it('Finds StyledNavDropdown', () => {
+    const component = shallow(<MenuBar />);
+    expect(component.find('Styled(NavDropdown)').length).toEqual(6);
   });
 });

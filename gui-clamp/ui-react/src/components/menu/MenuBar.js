@@ -40,6 +40,7 @@ const StyledLink = styled(Link)`
 
   :hover {
     text-decoration: none;
+    
     background-color: ${ props => props.theme.menuHighlightedBackgroundColor };
     color: ${ props => props.theme.menuHighlightedFontColor };
   }

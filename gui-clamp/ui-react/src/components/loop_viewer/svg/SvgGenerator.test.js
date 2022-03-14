@@ -21,11 +21,43 @@ import {shallow} from "enzyme";
 import toJson from "enzyme-to-json";
 import React from "react";
 import SvgGenerator from "./SvgGenerator";
+import {Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
+import LoopCache from "../../../api/LoopCache";
+import {act} from "react-dom/test-utils";
+
+const logSpy = jest.spyOn(console, 'log')
+const history = createMemoryHistory();
 
 describe('Verify SvgGenerator', () => {
 
     it("renders correctly", () => {
-        const component = shallow(<SvgGenerator />);
+        const component = shallow(<SvgGenerator/>);
         expect(toJson(component)).toMatchSnapshot();
+    });
+
+    it("Test renderSvg called", () => {
+        shallow(
+            <Router history={history}>
+                <SvgGenerator loopCache={new LoopCache({})} clickable={ true } generatedFrom='INSTANCE' isBusyLoading={false}/>
+            </Router>
+        );
+
+        act(async () => {
+            expect(logSpy).toHaveBeenCalledWith('renderSvg called');
+        });
+    });
+
+    it("Test svg click event received", () => {
+        const component = shallow(
+            <Router history={history}>
+                <SvgGenerator loopCache={new LoopCache({})} clickable={ true } generatedFrom='INSTANCE' isBusyLoading={false}/>
+            </Router>
+        );
+
+        act(async () => {
+            component.find('withRouter(SvgGenerator)').simulate('click');
+            expect(logSpy).toHaveBeenCalledWith('svg click event received');
+        });
     });
 });
