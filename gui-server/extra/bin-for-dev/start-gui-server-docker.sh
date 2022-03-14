@@ -29,7 +29,6 @@ docker run \
   --add-host policy-clamp-be:host-gateway \
   --env "CLAMP_URL=https://policy-clamp-be:8443" \
   --env "CLAMP_DISABLE_SSL_VALIDATION=true" \
-  --env "SERVER_SSL_CLIENT_AUTH=want" \
   --env "KEYSTORE_PASSWD=changeit" \
   --env "TRUSTSTORE_PASSWD=changeit" \
   --volume "$KEYSTORE_PATH:/opt/app/policy/gui/etc/mounted/policy-keystore" \
