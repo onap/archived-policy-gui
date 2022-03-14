@@ -1,5 +1,4 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
-
 exports[`Verify MenuBar Test the render method 1`] = `
 <NavbarCollapse>
   <Styled(NavDropdown)
@@ -31,7 +30,6 @@ exports[`Verify MenuBar Test the render method 1`] = `
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ",
@@ -1359,5 +1357,4 @@ exports[`Verify MenuBar Test the render method 1`] = `
       User Info
     </DropdownItem>
   </Styled(NavDropdown)>
-</NavbarCollapse>
-`;
+</NavbarCollapse>`;
