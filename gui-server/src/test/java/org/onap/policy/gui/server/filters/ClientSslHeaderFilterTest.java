@@ -27,12 +27,14 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.onap.policy.gui.server.filters.ClientSslHeaderFilter.SSL_CERT_HEADER_NAME;
 import static org.onap.policy.gui.server.filters.ClientSslHeaderFilter.X509_ATTRIBUTE_NAME;
 import static org.onap.policy.gui.server.util.X509CertificateEncoder.urlDecodeCert;
 
 import java.io.IOException;
+import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -107,6 +109,29 @@ class ClientSslHeaderFilterTest {
         // Create a request with an expired client SSL cert.
         MockHttpServletRequest inRequest = new MockHttpServletRequest();
         inRequest.setAttribute(X509_ATTRIBUTE_NAME, new X509Certificate[] { expiredCert });
+
+        // Apply the filter.
+        HttpServletRequest outRequest = applyRequestFilter(inRequest);
+
+        // The modified request should not contain a cert header.
+        assertFalse(containsCertHeader(outRequest.getHeaderNames()));
+        assertNull(outRequest.getHeader(SSL_CERT_HEADER_NAME));
+        assertEquals(Collections.emptyEnumeration(), outRequest.getHeaders(SSL_CERT_HEADER_NAME));
+    }
+
+    /*
+     * If there is a CertificateEncodingException, the filter should not set
+     * the X-SSL-Cert header.
+     */
+    @Test
+    void testInvalidClientCert_noHeader() throws Exception {
+        // Create an invalid cert.
+        X509Certificate invalidCert = mock(X509Certificate.class);
+        doThrow(CertificateEncodingException.class).when(invalidCert).getEncoded();
+
+        // Create a request with an invalid client SSL cert.
+        MockHttpServletRequest inRequest = new MockHttpServletRequest();
+        inRequest.setAttribute(X509_ATTRIBUTE_NAME, new X509Certificate[] { invalidCert });
 
         // Apply the filter.
         HttpServletRequest outRequest = applyRequestFilter(inRequest);
