@@ -22,6 +22,30 @@
       "revId": "93b5533e44728faa87c291fbf44120ea013fab51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3541315a_96b5c575",
+        "filename": "gui-editors/gui-editor-apex/src/main/webapp/js/ApexUtils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2022-03-15T10:21:59Z",
+      "side": 1,
+      "message": "There was a bug where editing the Task Logic field could silently drop changes. It was caused by the `editAreaLoader.init` call below not finding the function \"onEditAreaChanged\". Edit Area uses an iframe and looks for the callback using \"window.parent.onEditAreaChanged\". Injecting it to the document makes it accessible.",
+      "parentUuid": "54e989b0_92b6df50",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 38
+      },
+      "revId": "93b5533e44728faa87c291fbf44120ea013fab51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
