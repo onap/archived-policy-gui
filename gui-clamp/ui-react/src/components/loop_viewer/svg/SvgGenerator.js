@@ -73,7 +73,6 @@ class SvgGenerator extends React.Component {
   }
 
   handleSvgClick(event) {
-    console.debug("svg click event received");
     if (this.state.clickable) {
       var elementName = event.target.parentNode.getAttribute('policyId');
       console.info("SVG element clicked", elementName);
@@ -148,7 +147,6 @@ class SvgGenerator extends React.Component {
     xPos += (this.boxWidth + this.boxSpace);
 
     allElements.push(this.createOneArrow(xPos - this.boxSpace));
-    //createOneBox(xPos, policyId, loopElementModelId , name, title, policyType)
     for (var loopElement of this.state.loopCache.getAllLoopElementModels()) {
 
       allElements.push(this.createOneBox(xPos,
@@ -218,6 +216,7 @@ class SvgGenerator extends React.Component {
   }
 
   renderSvg() {
+    console.log('renderSvg called');
     if (this.state.loopCache.getLoopName() === undefined) {
       return [emptySvg];
     }

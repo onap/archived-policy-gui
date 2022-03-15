@@ -37,24 +37,20 @@ const StyledLink = styled(Link)`
   text-align: inherit;
   white-space: nowrap;
   border: 0;
-
   :hover {
     text-decoration: none;
     background-color: ${ props => props.theme.menuHighlightedBackgroundColor };
     color: ${ props => props.theme.menuHighlightedFontColor };
-  }
-`;
+  }`;
 const StyledNavLink = styled(Nav.Link)`
   color: ${ props => props.theme.menuFontColor };
   background-color: ${ props => props.theme.menuBackgroundColor };
   font-weight: normal;
   padding: .25rem 1.5rem;
-
   :hover {
     background-color: ${ props => props.theme.menuHighlightedBackgroundColor };
     color: ${ props => props.theme.menuHighlightedFontColor };
-  }
-`;
+  }`;
 
 const StyledNavDropdown = styled(NavDropdown)`
   color: ${ props => props.theme.menuFontColor };
@@ -67,8 +63,7 @@ const StyledNavDropdown = styled(NavDropdown)`
     :hover {
       font-weight: bold;
     }
-  }
-`;
+  }`;
 
 export default class MenuBar extends React.Component {
   state = {
