@@ -46,6 +46,30 @@
       "revId": "93b5533e44728faa87c291fbf44120ea013fab51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9fbc0ed_1b3e489c",
+        "filename": "gui-editors/gui-editor-apex/src/main/webapp/js/ApexUtils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5565
+      },
+      "writtenOn": "2022-03-15T10:38:05Z",
+      "side": 1,
+      "message": "Ok, thanks for the explanation",
+      "parentUuid": "3541315a_96b5c575",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 38
+      },
+      "revId": "93b5533e44728faa87c291fbf44120ea013fab51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
