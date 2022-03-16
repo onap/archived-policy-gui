@@ -71,7 +71,8 @@
         "collectCoverage": true,
         "coverageDirectory": "${project.build.directory}/code-coverage",
         "collectCoverageFrom": [
-            "**/*.{js,jsx}"
+            "**/*.{js,jsx}",
+            "!./src/setupTests.js"
         ],
         "testResultsProcessor": "jest-sonar-reporter",
         "rootDir": "${project.build.directory}/${ui.react.src}",
