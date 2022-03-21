@@ -35,7 +35,7 @@
         <npm.publish.url>https://nexus3.onap.org/repository/npm.snapshot/</npm.publish.url>
         <sonar.nodejs.executable>${project.build.directory}/ui-react/node/node</sonar.nodejs.executable>
         <sonar.sources>${project.basedir}/ui-react/src</sonar.sources>
-        <sonar.exclusions>**/*.test.js</sonar.exclusions>
+        <sonar.exclusions>**/*.test.js, **/*/*Loop*.js, **/loop_viewer/**/*</sonar.exclusions>
     </properties>
     <build>
         <plugins>
