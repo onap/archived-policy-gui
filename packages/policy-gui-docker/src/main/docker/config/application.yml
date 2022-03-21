@@ -2,6 +2,7 @@ server:
   port: 2443
   ssl:
     enabled: true
+    enabled-protocols: TLSv1.2
     client-auth: want
     key-store: file:${KEYSTORE}
     key-store-password: ${KEYSTORE_PASSWD}
