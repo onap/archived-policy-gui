@@ -102,17 +102,17 @@
         <appender-ref ref="asyncNetwork" />
     </logger>
 
-    <logger name="org.apache" level="INFO">
+    <logger name="org.apache" level="INFO" additivity="false">
         <appender-ref ref="DEBUG" />
     </logger>
 
     <!-- Spring related loggers -->
-    <logger name="org.springframework" level="INFO">
+    <logger name="org.springframework" level="INFO" additivity="false">
         <appender-ref ref="DEBUG" />
     </logger>
 
     <!-- GUI related loggers -->
-    <logger name="org.onap.policy.gui" level="DEBUG">
+    <logger name="org.onap.policy.gui" level="DEBUG" additivity="false">
         <appender-ref ref="ERROR" />
         <appender-ref ref="DEBUG" />
     </logger>
