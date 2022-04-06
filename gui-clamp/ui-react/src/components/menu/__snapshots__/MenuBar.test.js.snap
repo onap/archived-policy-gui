@@ -3,6 +3,7 @@
 exports[`Verify MenuBar Test the render method 1`] = `
 <NavbarCollapse>
   <Styled(NavDropdown)
+    disabled={true}
     title="POLICY Framework"
   >
     <DropdownItem
@@ -70,6 +71,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     </DropdownItem>
   </Styled(NavDropdown)>
   <Styled(NavDropdown)
+    disabled={true}
     title="CLAMP Options"
   >
     <DropdownItem
@@ -203,6 +205,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     </DropdownItem>
   </Styled(NavDropdown)>
   <Styled(NavDropdown)
+    disabled={true}
     title="LOOP Instance"
   >
     <DropdownItem
@@ -588,6 +591,7 @@ exports[`Verify MenuBar Test the render method 1`] = `
     </DropdownItem>
   </Styled(NavDropdown)>
   <Styled(NavDropdown)
+    disabled={true}
     title="LOOP Operations"
   >
     <DropdownItem

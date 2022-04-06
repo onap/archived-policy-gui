@@ -55,6 +55,10 @@ const StyledNavLink = styled(Nav.Link)`
 const StyledNavDropdown = styled(NavDropdown)`
   color: ${ props => props.theme.menuFontColor };
 
+  & .nav-link.disabled {
+    color: rgba(136, 136, 136, 0.5)
+  }
+
   & .dropdown-toggle {
     color: ${ props => props.theme.menuFontColor };
     background-color: ${ props => props.theme.backgroundColor };
@@ -82,15 +86,15 @@ export default class MenuBar extends React.Component {
   render() {
     return (
       <Navbar.Collapse>
-        <StyledNavDropdown title="POLICY Framework">
+        <StyledNavDropdown title="POLICY Framework" disabled>
           <NavDropdown.Item as={ StyledLink } to="/viewAllPolicies">View All Policies</NavDropdown.Item>
         </StyledNavDropdown>
-        <StyledNavDropdown title="CLAMP Options">
+        <StyledNavDropdown title="CLAMP Options" disabled>
           <NavDropdown.Item as={ StyledLink } to="/manageDictionaries">Tosca Metadata Dictionaries</NavDropdown.Item>
           <NavDropdown.Divider/>
           <NavDropdown.Item as={ StyledLink } to="/viewLoopTemplatesModal">View All Loop Templates</NavDropdown.Item>
         </StyledNavDropdown>
-        <StyledNavDropdown title="LOOP Instance">
+        <StyledNavDropdown title="LOOP Instance" disabled>
           <NavDropdown.Item as={ StyledLink } to="/createLoop">Create</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/openLoop">Open</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/closeLoop" disabled={ this.state.disabled }>Close</NavDropdown.Item>
@@ -99,7 +103,7 @@ export default class MenuBar extends React.Component {
           <NavDropdown.Item as={ StyledLink } to="/loopProperties" disabled={ this.state.disabled }>Properties</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/refreshStatus" disabled={ this.state.disabled }>Refresh Status</NavDropdown.Item>
         </StyledNavDropdown>
-        <StyledNavDropdown title="LOOP Operations">
+        <StyledNavDropdown title="LOOP Operations" disabled>
           <NavDropdown.Item as={ StyledLink } to="/submit" disabled={ this.state.disabled }>Create and deploy to Policy Framework (SUBMIT)</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/stop" disabled={ this.state.disabled }>Undeploy from Policy Framework (STOP)</NavDropdown.Item>
           <NavDropdown.Item as={ StyledLink } to="/restart" disabled={ this.state.disabled }>ReDeploy to Policy Framework (RESTART)</NavDropdown.Item>
