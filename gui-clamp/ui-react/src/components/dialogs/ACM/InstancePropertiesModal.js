@@ -56,23 +56,48 @@ function Fragment(props) {
   return null;
 }
 
-Fragment.propTypes = { children: PropTypes.node };
+const specialCharacter = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+Fragment.propTypes = {children: PropTypes.node};
 const InstancePropertiesModal = (props) => {
   const [show, setShow] = useState(true);
   const [toscaFullTemplate, setToscaFullTemplate] = useState({});
   const [jsonEditor, setJsonEditor] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
+  const [clearButton, setClearButton] = useState(null);
   const [instancePropertiesGlobal, setInstancePropertiesGlobal] = useState({});
   const [serviceTemplateResponseOk, setServiceTemplateResponseOk] = useState(true);
   const [instancePropertiesResponseOk, setInstancePropertiesResponseOk] = useState(true);
   const [instanceName, setInstanceName] = useState('');
+  const [instanceVersion, setInstanceVersion] = useState('');
+  const [oldInstanceName, setOldInstanceName] = useState('');
+  const [tempInstanceName, setTempInstanceName] = useState('');
+  const [validated, setValidated] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(async () => {
-    const toscaTemplateResponse = await ACMService.getToscaTemplate(templateName, templateVersion)
+    let isEditMode = false;
+
+    if (props.location.instantiationName !== undefined) {
+      isEditMode = true;
+      setEditMode(true);
+      setInstanceName(props.location.instantiationName);
+      setInstanceVersion(props.location.instantiationVersion);
+    }
+
+    const instantiationName = isEditMode ? props.location.instantiationName : null;
+    console.log(instantiationName);
+
+    const toscaTemplateResponse = await ACMService.getToscaTemplate(templateName, templateVersion, instantiationName)
         .catch(error => error.message);
 
-    const toscaInstanceProperties = await ACMService.getCommonOrInstanceProperties(templateName, templateVersion, false)
+    const toscaInstanceProperties = await ACMService.getCommonOrInstanceProperties(templateName, templateVersion, instantiationName, false)
       .catch(error => error.message);
+
+    if (toscaInstanceProperties == null || toscaTemplateResponse == null) {
+      await warningAlert('Tosca service template is empty')
+      return;
+    }
 
     if (!toscaInstanceProperties.ok) {
       const errorResponse = await toscaInstanceProperties.json();
@@ -96,6 +121,30 @@ const InstancePropertiesModal = (props) => {
 
   }, []);
 
+  useEffect(async () => {
+
+    await validateInstanceName();
+
+  }, [instanceName])
+
+  const validateInstanceName = async () => {
+    console.log('validateInstanceName called');
+
+    if (specialCharacter.test(instanceName)) {
+      await warningAlert('Instance name cannot contain special characters');
+    } else if (alertMessage) {
+      clearWarning();
+    }
+
+    if (instanceName.length > 2 && !specialCharacter.test(instanceName)) {
+      console.log('validated');
+      setOldInstanceName(tempInstanceName);
+      setValidated(true);
+    } else {
+      setValidated(false);
+    }
+  }
+
   const handleClose = () => {
     console.log('handleClose called');
     setShow(false);
@@ -105,7 +154,11 @@ const InstancePropertiesModal = (props) => {
   const handleInstanceName = (event) => {
     console.log('handleInstanceName called');
 
+    setTempInstanceName(instanceName);
     setInstanceName(event.target.value);
+
+    validateInstanceName().then(() => {
+    });
   }
 
   const handleSave = async () => {
@@ -118,8 +171,15 @@ const InstancePropertiesModal = (props) => {
         setToscaFullTemplate(InstantiationUtils.updateTemplate(instanceName, jsonEditor.getValue(), toscaFullTemplate));
       }
 
-      const response = await ACMService.createInstanceProperties(toscaFullTemplate)
-          .catch(error => error.message);
+      let response = null;
+
+      if (editMode) {
+        response = await ACMService.updateInstanceProperties(oldInstanceName, instanceVersion, toscaFullTemplate)
+            .catch(error => error.message);
+      } else {
+        response = await ACMService.createInstanceProperties(toscaFullTemplate)
+            .catch(error => error.message);
+      }
 
       if (response.ok) {
         successAlert();
@@ -127,15 +187,16 @@ const InstancePropertiesModal = (props) => {
         await errorAlert(response);
       }
     } else {
-      await warningAlert();
+      await warningAlert('Instance name cannot be empty');
     }
   }
 
-  const warningAlert = async () => {
+  const warningAlert = async (message) => {
     console.log("warningAlert called");
+
     setAlertMessage(<Alert variant="warning">
       <Alert.Heading>Instantiation Properties Warning</Alert.Heading>
-      <p>Instance name cannot be empty</p>
+      <p>{message}</p>
       <hr/>
     </Alert>);
   }
@@ -160,6 +221,17 @@ const InstancePropertiesModal = (props) => {
     </Alert>);
   }
 
+  const clearWarning = () => {
+    console.log("clearWarning called");
+
+    if (specialCharacter.test(instanceName)) {
+      return;
+    }
+
+    setClearButton(null);
+    setAlertMessage(null);
+  }
+
   return (
     <ModalStyled size="xl"
                  show={ show }
@@ -167,7 +239,7 @@ const InstancePropertiesModal = (props) => {
                  backdrop="static"
                  keyboard={ false }>
       <Modal.Header closeButton>
-        <Modal.Title>Create Tosca Instance Properties</Modal.Title>
+        <Modal.Title>{ editMode ? 'Edit' : 'Create' } Tosca Instance Properties</Modal.Title>
       </Modal.Header>
       <div style={ { padding: '5px 5px 0 5px' } }>
         <Modal.Body>
@@ -189,7 +261,8 @@ const InstancePropertiesModal = (props) => {
         </DivWhiteSpaceStyled>
       </div>
       <Modal.Footer>
-        <Button variant="primary" onClick={ handleSave }>Save</Button>
+        { clearButton }
+        <Button variant="primary" disabled={ !validated } onClick={ handleSave } style={validated ? {} : { cursor: "not-allowed" }}>Save</Button>
         <Button variant="secondary" onClick={ handleClose }>Close</Button>
       </Modal.Footer>
     </ModalStyled>

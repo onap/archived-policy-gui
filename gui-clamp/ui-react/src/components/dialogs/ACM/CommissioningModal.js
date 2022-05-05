@@ -48,9 +48,7 @@ const AlertStyled = styled(Alert)`
 
 const CommissioningModal = (props) => {
   const [fullToscaTemplate, setFullToscaTemplate] = useState({});
-  const [toscaInitialValues, setToscaInitialValues] = useState({});
   const [commonProperties, setCommonProperties] = useState({})
-  const [toscaJsonSchema, setToscaJsonSchema] = useState({});
   const [jsonEditor, setJsonEditor] = useState(null);
   const [show, setShow] = useState(true);
   const [alertMessages, setAlertMessages] = useState();
@@ -60,14 +58,13 @@ const CommissioningModal = (props) => {
   const version = '1.0.0';
 
   useEffect(async () => {
-    const toscaTemplateResponse = await ACMService.getToscaTemplate(name, version)
+    const toscaTemplateResponse = await ACMService.getToscaTemplate(name, version, null)
       .catch(error => error.message);
-    const toscaCommonProperties = await ACMService.getCommonOrInstanceProperties(name, version, true)
+    const toscaCommonProperties = await ACMService.getCommonOrInstanceProperties(name, version, null, true)
       .catch(error => error.message);
 
     if (!toscaCommonProperties.ok) {
       const errorResponse = await toscaCommonProperties.json()
-      console.log(errorResponse)
       setCommonProperties(errorResponse)
       setCommonPropertiesResponseOk(false);
     }
@@ -82,9 +79,7 @@ const CommissioningModal = (props) => {
     if (toscaTemplateResponse.ok && toscaCommonProperties.ok) {
       const renderedEditorObjects = CommissioningUtils.renderJsonEditor(toscaTemplateResponse, toscaCommonProperties)
       setFullToscaTemplate((await renderedEditorObjects).fullTemplate)
-      setToscaJsonSchema((await renderedEditorObjects).propertySchema)
       setJsonEditor((await renderedEditorObjects).editorTemp)
-      setToscaInitialValues((await renderedEditorObjects).toscaInitialValues)
 
     }
 

@@ -172,10 +172,12 @@ const InstantiationManagementModal = (props) => {
                 <td style={ { textAlign: "center" } }>
                   <Link to={ {
                     pathname: "editACMInstanceProperties",
-                  } } state={ instantiation.name }>
-                    <Button variant="outline-success" type="null"
-                            disabled={ true }
-                            style={ { cursor: "not-allowed" } }>Edit</Button>
+                    instantiationName: instantiation.name,
+                    instantiationVersion: instantiation.version
+                  } }>
+                    <Button variant={ instantiation.disabled ? "outline-success" : "success" } type="null"
+                            disabled={ instantiation.disableEdit }
+                            style={ instantiation.disableEdit ? { cursor: "not-allowed" } : {} }>Edit</Button>
                   </Link>
                 </td>
                 <td style={ { textAlign: "center" } }>
