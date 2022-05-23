@@ -42,6 +42,25 @@ export default class ACMService {
     return response
   }
 
+  static async updateInstanceProperties(instanceName, version, instancePropertiesTemplate) {
+    const params = {
+      name: instanceName,
+      version: version
+    }
+
+    const response = await fetch(window.location.pathname +
+        'restservices/clds/v2/acm/putToscaInstanceProperties?' + (new URLSearchParams(params)), {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(instancePropertiesTemplate),
+    });
+
+    return response
+  }
+
   static async deleteInstantiation(name, version) {
     const params = {
       name: name,
@@ -86,11 +105,17 @@ export default class ACMService {
     return response
   }
 
-  static async getToscaTemplate(name, version) {
-    const params = {
-      name: name,
-      version: version
-    }
+  static async getToscaTemplate(name, version, instanceName) {
+    const params = instanceName != null ?
+      {
+        name: name,
+        version: version,
+        instanceName: instanceName
+      } :
+      {
+        name: name,
+        version: version
+      }
 
     const response = await fetch(window.location.pathname +
       'restservices/clds/v2/acm/getToscaTemplate' + '?' + (new URLSearchParams(params)));
@@ -132,12 +157,19 @@ export default class ACMService {
     return data;
   }
 
-  static async getCommonOrInstanceProperties(name, version, isCommon) {
-    const params = {
-      name: name,
-      version: version,
-      common: isCommon
-    }
+  static async getCommonOrInstanceProperties(name, version, instanceName, isCommon) {
+    const params = instanceName != null ?
+      {
+        name: name,
+        version: version,
+        instanceName: instanceName,
+        common: isCommon
+      } :
+      {
+        name: name,
+        version: version,
+        common: isCommon
+      }
 
     const response = await fetch(window.location.pathname +
       'restservices/clds/v2/acm/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));

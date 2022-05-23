@@ -13,7 +13,8 @@ exports[`Verify InstancePropertiesModal renders correctly 1`] = `
     closeLabel="Close"
   >
     <ModalTitle>
-      Create Tosca Instance Properties
+      Create
+       Tosca Instance Properties
     </ModalTitle>
   </ModalHeader>
   <div
@@ -80,8 +81,13 @@ exports[`Verify InstancePropertiesModal renders correctly 1`] = `
   <ModalFooter>
     <Button
       active={false}
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
+      style={
+        Object {
+          "cursor": "not-allowed",
+        }
+      }
       variant="primary"
     >
       Save

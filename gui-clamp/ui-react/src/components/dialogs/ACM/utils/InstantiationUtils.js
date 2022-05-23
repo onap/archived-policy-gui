@@ -34,7 +34,8 @@ const InstantiationUtils = {
         version: instance['version'],
         orderedState: instance['orderedState'],
         currentState: instance['state'],
-        disableDelete: instance['state'] !== 'UNINITIALISED'
+        disableDelete: instance['state'] !== 'UNINITIALISED',
+        disableEdit: instance['state'] !== 'UNINITIALISED'
       }
 
       parsedAcmList.push(acmObj);
@@ -90,7 +91,7 @@ const InstantiationUtils = {
         const propValues = {};
         filteredTemplateObj[key] = propertiesObj;
 
-        const jsonNodeSchemaKey = fullTemplate.topology_template.node_templates[key]
+        const jsonNodeSchemaKey = fullTemplate.topology_template.node_templates[key];
 
         Object.entries(propertiesObj.properties).forEach(([pKey, pValue]) => {
           propValues[pKey] = jsonNodeSchemaKey.properties[pKey];
