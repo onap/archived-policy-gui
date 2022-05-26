@@ -44,6 +44,17 @@
             </modules>
             <properties>
                 <docker.skip.push>false</docker.skip.push>
+                <dockerFile>Dockerfile</dockerFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>dockersuse</id>
+            <modules>
+                <module>policy-gui-docker</module>
+            </modules>
+            <properties>
+                <docker.skip.push>false</docker.skip.push>
+                <dockerFile>suse.Dockerfile</dockerFile>
             </properties>
         </profile>
     </profiles>
