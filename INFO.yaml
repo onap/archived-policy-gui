@@ -56,6 +56,11 @@ committers:
       company: 'ATT'
       id: 'sebdet'
       timezone: 'Europe/Brussels'
+    - name: 'Ramesh Murugan Iyer'
+      email: 'ramesh.murugan.iyer@est.tech'
+      company: 'Ericsson'
+      id: 'rameshiyer27'
+      timezone: 'Europe/Ireland'
 tsc:
     approval: 'https://lists.onap.org/pipermail/onap-tsc'
     changes:
@@ -80,3 +85,6 @@ tsc:
           name: 'Jim Hahn'
           # Retired
           link: https://lists.onap.org/g/onap-tsc/message/8056
+        - type: 'Addition'
+          name: 'Ramesh Murugan Iyer'
+          link: https://lists.onap.org/g/onap-tsc/message/8689
