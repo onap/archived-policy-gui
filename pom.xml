@@ -42,7 +42,7 @@
     <properties>
         <policy.apex-pdp.version>2.7.4-SNAPSHOT</policy.apex-pdp.version>
         <policy.common.version>1.10.4-SNAPSHOT</policy.common.version>
-        <policy.models.version>2.6.4-SNAPSHOT</policy.models.version>
+        <policy.models.version>2.6.5-SNAPSHOT</policy.models.version>
         <jacoco.dataFile>${project.basedir}/../../target/code-coverage/jacoco-ut.exec</jacoco.dataFile>
         <sonar.javascript.lcov.reportPaths>${project.basedir}/target/code-coverage/lcov.info</sonar.javascript.lcov.reportPaths>
     </properties>
