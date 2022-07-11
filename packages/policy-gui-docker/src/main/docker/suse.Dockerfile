@@ -18,7 +18,7 @@
 # ============LICENSE_END=========================================================
 #-------------------------------------------------------------------------------
 
-FROM opensuse/leap:15.3
+FROM opensuse/leap:15.4
 
 LABEL maintainer="Policy Team"
 LABEL org.opencontainers.image.title="Policy GUI"
