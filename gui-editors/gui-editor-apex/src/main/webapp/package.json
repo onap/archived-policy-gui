@@ -17,14 +17,16 @@
     "babel-loader": "^8.1.0",
     "jest": "^26.4.2",
     "jest-sonar-reporter": "^2.0.0",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0"
   },
   "dependencies": {
     "chokidar": "^3.4.3",
-    "d3": "^3.5.17",
+    "jsdom": "^20.0.0",
+    "d3": "^7.6.1",
     "jquery": "^3.4.1",
+    "node-fetch": "^3.2.10",
     "resolve-url": "^0.2.1",
     "urix": "^0.1.0"
   },
