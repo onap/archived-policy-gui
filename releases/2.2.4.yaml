@@ -2,4 +2,4 @@ distribution_type: 'maven'
 version: '2.2.4'
 project: 'policy-gui'
 tag_release: false
-log_dir: 'policy-gui-maven-stage-jakarta/121/'
+log_dir: 'policy-gui-maven-stage-jakarta/129/'
