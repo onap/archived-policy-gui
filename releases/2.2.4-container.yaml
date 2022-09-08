@@ -1,0 +1,8 @@
+distribution_type: 'container'
+container_release_tag: '2.2.4'
+project: 'policy-gui'
+log_dir: 'policy-gui-maven-docker-stage-jakarta/127'
+ref: c7c12555942896ec252f5e30693cf0a5ba11b91c
+containers:
+    - name: 'policy-gui'
+      version: '2.2.4-20220908T0601'
