@@ -18,7 +18,7 @@
 # ============LICENSE_END=========================================================
 #-------------------------------------------------------------------------------
 
-FROM onap/policy-jre-alpine:2.5.0
+FROM onap/policy-jre-alpine:2.5.1-SNAPSHOT
 
 LABEL maintainer="Policy Team"
 LABEL org.opencontainers.image.title="Policy GUI"
