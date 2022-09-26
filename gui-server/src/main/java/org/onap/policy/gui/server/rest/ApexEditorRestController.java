@@ -33,7 +33,6 @@ public class ApexEditorRestController {
     /**
      * Strip /apex-editor prefix from Apex Editor rest calls.
      */
-    @SuppressWarnings("java:S3752") // Suppress warning about RequestMapping without HTTP method.
     @RequestMapping("/**")
     public ModelAndView forwardApexEditorRest(ModelMap model, HttpServletRequest request) {
         String targetUrl = request.getRequestURI().replaceFirst("^/apex-editor", "");
