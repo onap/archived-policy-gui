@@ -81,6 +81,8 @@ public class KeyStoreHelper {
      * Exception class for KeyStoreHelper methods.
      */
     public static class CouldNotLoadCertificateException extends java.lang.Exception {
+        private static final long serialVersionUID = 4858081258043045085L;
+
         protected CouldNotLoadCertificateException(String errorMessage) {
             super(errorMessage);
         }
