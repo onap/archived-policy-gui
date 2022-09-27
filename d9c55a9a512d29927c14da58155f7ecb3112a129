@@ -22,6 +22,29 @@
       "revId": "d9c55a9a512d29927c14da58155f7ecb3112a129",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d776ef5_17f99095",
+        "filename": "gui-server/src/test/resources/application_http.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6070
+      },
+      "writtenOn": "2022-09-27T07:47:08Z",
+      "side": 1,
+      "message": "Do we still require this?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "d9c55a9a512d29927c14da58155f7ecb3112a129",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
