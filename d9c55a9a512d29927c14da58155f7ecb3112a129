@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab378860_50f35a92",
+        "filename": "gui-clamp/ui-react/package.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6070
+      },
+      "writtenOn": "2022-09-27T07:21:23Z",
+      "side": 1,
+      "message": "Thanks for the work Liam. One clarification. I believe this port is for docker container of runtime-acm deployed from CSIT. If we are running clamp and gui as standalone applications on localhost, should this be mapped to runtime-acm port 6969 ? \n\nAnd we can update 30258 port on the gui config in CSIT.",
+      "range": {
+        "startLine": 12,
+        "startChar": 31,
+        "endLine": 12,
+        "endChar": 36
+      },
+      "revId": "d9c55a9a512d29927c14da58155f7ecb3112a129",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
