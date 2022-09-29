@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ export default class ACMService {
   static async getACMInstantiation() {
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/getToscaInstantiation');
+      'onap/policy/clamp/acm/v2/instantiation');
 
     return response
   }
@@ -30,7 +30,7 @@ export default class ACMService {
   static async createInstanceProperties(instancePropertiesTemplate) {
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/postToscaInstanceProperties', {
+      'onap/policy/clamp/acm/v2/instanceProperties', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -49,7 +49,7 @@ export default class ACMService {
     }
 
     const response = await fetch(window.location.pathname +
-        'restservices/clds/v2/acm/putToscaInstanceProperties?' + (new URLSearchParams(params)), {
+        'onap/policy/clamp/acm/v2/instanceProperties?' + (new URLSearchParams(params)), {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
@@ -68,7 +68,7 @@ export default class ACMService {
     }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/deleteToscaInstanceProperties?' + (new URLSearchParams(params)), {
+      'onap/policy/clamp/acm/v2/instanceProperties?' + (new URLSearchParams(params)), {
       method: 'DELETE',
       credentials: 'same-origin',
     });
@@ -84,7 +84,7 @@ export default class ACMService {
       version: version
     }
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/getInstantiationOrderState'+ '?' + (new URLSearchParams(params)));
+      'onap/policy/clamp/acm/v2/instantiationState'+ '?' + (new URLSearchParams(params)));
 
     const data = await response;
 
@@ -93,7 +93,7 @@ export default class ACMService {
 
   static async changeInstanceOrderState(toscaObject) {
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/putToscaInstantiationStateChange', {
+      'onap/policy/clamp/acm/v2/instantiation/command', {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
@@ -118,7 +118,7 @@ export default class ACMService {
       }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/getToscaTemplate' + '?' + (new URLSearchParams(params)));
+      'onap/policy/clamp/acm/v2/commission/toscaservicetemplate' + '?' + (new URLSearchParams(params)));
 
     const data = await response;
 
@@ -127,7 +127,7 @@ export default class ACMService {
 
   static async uploadToscaFile(toscaObject) {
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/commissionToscaTemplate', {
+      'onap/policy/clamp/acm/v2/commission', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -147,7 +147,7 @@ export default class ACMService {
     }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/decommissionToscaTemplate' + '?' + (new URLSearchParams(params)),
+      'onap/policy/clamp/acm/v2/commission' + '?' + (new URLSearchParams(params)),
       {
         method: 'DELETE'
       });
@@ -172,7 +172,7 @@ export default class ACMService {
       }
 
     const response = await fetch(window.location.pathname +
-      'restservices/clds/v2/acm/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
+      'onap/policy/clamp/acm/v2/commission/getCommonOrInstanceProperties' + '?' + (new URLSearchParams(params)));
 
     return response;
   }
