@@ -22,44 +22,37 @@ package org.onap.policy.gui.server.rest;
 
 import java.net.URI;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Setter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@RestController
-@RequestMapping("/clamp/restservices")
-public class ClampRestController {
+public class BaseRestController {
+    @Setter
+    private String mappingPath;
 
-    @Value("${clamp.url}")
-    private URI clampUrl;
+    @Setter
+    private URI url;
 
-    @Autowired
-    @Qualifier("clampRestTemplate")
+    @Setter
     private RestTemplate restTemplate;
 
     /**
-     * Proxy rest calls to clamp backend.
+     * Proxy rest calls to a runtime.
      */
-    @SuppressWarnings("java:S3752") // Suppress warning about RequestMapping without HTTP method.
-    @RequestMapping("/**")
     public ResponseEntity<String> mirrorRest(@RequestBody(required = false) String body,
                                              @RequestHeader HttpHeaders headers,
                                              HttpMethod method,
                                              HttpServletRequest request) {
-        // Strip /clamp/ prefix from request URI.
-        String requestUri = request.getRequestURI().replaceFirst("^/clamp/", "");
-        URI uri = UriComponentsBuilder.fromUri(clampUrl)
+        // Strip ACM runtime prefix from request URI.
+        String requestUri = request.getRequestURI().replaceFirst(mappingPath, "");
+        URI uri = UriComponentsBuilder.fromUri(url)
             .path(requestUri)
             .query(request.getQueryString())
             .build(true).toUri();
@@ -69,7 +62,7 @@ public class ClampRestController {
             return restTemplate.exchange(uri, method, httpEntity, String.class);
 
         } catch (HttpStatusCodeException e) {
-            // On error, return the backend error code instead of 500.
+            // On error, return the ACM runtime error code instead of 500.
             return ResponseEntity.status(e.getRawStatusCode())
                 .headers(e.getResponseHeaders())
                 .body(e.getResponseBodyAsString());

@@ -33,29 +33,27 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest(
     properties = {
-        "clamp.url=https://clamp-backend:8443/",
-        "clamp.disable-ssl-validation=true"
+        "runtime-ui.policy.disable-ssl-validation=true",
+        "runtime-ui.policy.mapping-path=policy-api",
+        "runtime-ui.policy.url=http://policyapi:9876/",
+        "runtime-ui.acm.disable-ssl-validation=true",
+        "runtime-ui.acm.mapping-path=acm-runtime",
+        "runtime-ui.acm.url=http://acmruntime:9876/"
     })
 @AutoConfigureMockMvc
-class ApexEditorRestControllerTest {
+class DesigntimeRestControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
     void testStaticContentUrls() throws Exception {
-        mvc.perform(get("/apex-editor/"))
+        mvc.perform(get("/designtime-ui/"))
             .andExpect(status().isOk())
-            .andExpect(forwardedUrl("/apex-editor/index.html"));
+            .andExpect(forwardedUrl("/designtime-ui/index.html"));
 
-        mvc.perform(get("/apex-editor"))
+        mvc.perform(get("/designtime-ui"))
             .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/apex-editor/"));
-    }
-
-    @Test
-    void testApexEditorRestForwarding() throws Exception {
-        mvc.perform(get("/apex-editor/policy/gui/v1/apex/editor/-1/Session/Create"))
-            .andExpect(forwardedUrl("/policy/gui/v1/apex/editor/-1/Session/Create"));
+            .andExpect(redirectedUrl("/designtime-ui/"));
     }
 }
