@@ -32,28 +32,35 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * In this test, SSL validation is disabled.
- * The test request should succeed. A trust store has not been supplied in this case.
+ * In this test, SSL validation is disabled but hostname check is explicitly
+ * enabled. The expected behaviour is to disable the hostname check if SSL
+ * validation is disabled. We expect the request to succeed even though the
+ * SSL cert name does not match 'localhost', as SSL hostname verification is
+ * implicitly disabled.
  */
 @SpringBootTest(
-    classes = { HelloWorldApplication.class, ClampRestTemplateConfig.class },
+    classes = { HelloWorldApplication.class, AcmRuntimeRestTemplateConfig.class },
     properties = {
+        "server.ssl.enabled=true",
         "server.ssl.key-store=file:src/test/resources/helloworld-keystore.jks",
         "server.ssl.key-store-password=changeit",
-        "clamp.disable-ssl-validation=true"
+        "server.ssl.trust-store=file:src/test/resources/helloworld-truststore.jks",
+        "server.ssl.trust-store-password=changeit",
+        "runtime-ui.acm.disable-ssl-validation=true",
+        "runtime-ui.acm.disable-ssl-hostname-check=false"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ClampRestTemplateConfig2Test {
+class AcmRuntimeRestTemplateConfig4Test {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    @Qualifier("clampRestTemplate")
+    @Qualifier("acmRuntimeRestTemplate")
     private RestTemplate restTemplate;
 
     @Test
-    void testRequestSucceedsWhenSslValidationIsDisabled() {
+    void testHostnameCheckIsDisabledWhenSslValidationIsDisabled() {
         var helloUrl = "https://localhost:" + port + "/";
         String response = restTemplate.getForObject(helloUrl, String.class);
         assertEquals(HELLO_WORLD_STRING, response);

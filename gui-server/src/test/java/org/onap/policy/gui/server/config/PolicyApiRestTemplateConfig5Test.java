@@ -34,33 +34,34 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * In this test, SSL validation and hostname check are enabled.
+ * In this test, we verify that SSL validation and hostname check are enabled
+ * by default. Thus we explicitly set the Spring properties
+ * runtime-ui.policy.disable-ssl-validation and runtime-ui.policy.disable-ssl-hostname-check as false.
  * Since our keystore cert has a hostname 'helloworld' and our test request is
  * to localhost, the request will fail with an SSLPeerUnverifiedException, as
  * the SSL cert name does not match the server name 'localhost'.
  */
 @SpringBootTest(
-    classes = { HelloWorldApplication.class, ClampRestTemplateConfig.class },
+    classes = { HelloWorldApplication.class, PolicyApiRestTemplateConfig.class },
     properties = {
+        "server.ssl.enabled=true",
         "server.ssl.key-store=file:src/test/resources/helloworld-keystore.jks",
         "server.ssl.key-store-password=changeit",
         "server.ssl.trust-store=file:src/test/resources/helloworld-truststore.jks",
-        "server.ssl.trust-store-password=changeit",
-        "clamp.disable-ssl-validation=false",
-        "clamp.disable-ssl-hostname-check=false"
+        "server.ssl.trust-store-password=changeit"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ClampRestTemplateConfig1Test {
+class PolicyApiRestTemplateConfig5Test {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    @Qualifier("clampRestTemplate")
+    @Qualifier("policyApiRestTemplate")
     private RestTemplate restTemplate;
 
     @Test
-    void testRequestFailsWhenSslHostnameCheckIsEnabled() {
+    void testSslValidationIsEnabledByDefault() {
         var helloUrl = "https://localhost:" + port + "/";
         Exception e = assertThrows(RestClientException.class,
             () -> restTemplate.getForEntity(helloUrl, String.class));

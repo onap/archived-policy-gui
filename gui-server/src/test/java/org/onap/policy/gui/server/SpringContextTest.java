@@ -25,9 +25,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(
     properties = {
-        "clamp.url=https://clamp-backend:8443/",
-        "clamp.disable-ssl-validation=true"
+        "runtime-ui.policy.disable-ssl-validation=true",
+        "runtime-ui.policy.mapping-path=policy-api",
+        "runtime-ui.policy.url=http://policyapi:9876/",
+        "runtime-ui.acm.disable-ssl-validation=true",
+        "runtime-ui.acm.mapping-path=acm-runtime",
+        "runtime-ui.acm.url=http://acmruntime:9876/"
     })
+
 class SpringContextTest {
 
     @Test
