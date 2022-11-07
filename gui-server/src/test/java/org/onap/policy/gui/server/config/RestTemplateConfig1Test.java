@@ -26,12 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import org.junit.jupiter.api.Test;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * In this test, SSL validation and hostname check are enabled.
@@ -40,30 +36,31 @@ import org.springframework.web.client.RestTemplate;
  * the SSL cert name does not match the server name 'localhost'.
  */
 @SpringBootTest(
-    classes = { HelloWorldApplication.class, ClampRestTemplateConfig.class },
+    classes = {
+        HelloWorldApplication.class,
+        AcmRuntimeRestTemplateConfig.class,
+        PolicyApiRestTemplateConfig.class
+    },
     properties = {
+        "server.ssl.enabled=true",
         "server.ssl.key-store=file:src/test/resources/helloworld-keystore.jks",
         "server.ssl.key-store-password=changeit",
         "server.ssl.trust-store=file:src/test/resources/helloworld-truststore.jks",
         "server.ssl.trust-store-password=changeit",
-        "clamp.disable-ssl-validation=false",
-        "clamp.disable-ssl-hostname-check=false"
+        "runtime-ui.acm.disable-ssl-validation=false",
+        "runtime-ui.acm.disable-ssl-hostname-check=false",
+        "runtime-ui.policy.disable-ssl-validation=false",
+        "runtime-ui.policy.disable-ssl-hostname-check=false"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ClampRestTemplateConfig1Test {
-
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    @Qualifier("clampRestTemplate")
-    private RestTemplate restTemplate;
-
+class RestTemplateConfig1Test extends BaseRestTemplateConfigTest {
     @Test
     void testRequestFailsWhenSslHostnameCheckIsEnabled() {
-        var helloUrl = "https://localhost:" + port + "/";
-        Exception e = assertThrows(RestClientException.class,
-            () -> restTemplate.getForEntity(helloUrl, String.class));
-        assertTrue(e.getCause() instanceof SSLPeerUnverifiedException);
+        super.getRestTemplateList().forEach(restTemplate -> {
+            var helloUrl = "https://localhost:" + super.getPort() + "/";
+            Exception e = assertThrows(RestClientException.class,
+                () -> restTemplate.getForEntity(helloUrl, String.class));
+            assertTrue(e.getCause() instanceof SSLPeerUnverifiedException);
+        });
     }
 }

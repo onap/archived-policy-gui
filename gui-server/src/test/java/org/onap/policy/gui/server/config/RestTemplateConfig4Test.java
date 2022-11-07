@@ -20,50 +20,57 @@
 
 package org.onap.policy.gui.server.config;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.onap.policy.gui.server.test.util.hello.HelloWorldRestController.HELLO_WORLD_STRING;
 
-import javax.net.ssl.SSLPeerUnverifiedException;
 import org.junit.jupiter.api.Test;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * In this test, we verify that SSL validation and hostname check are enabled
- * by default. Thus we do not explicitly set the Spring properties
- * clamp.disable-ssl-validation and clamp.disable-ssl-hostname-check.
- * Since our keystore cert has a hostname 'helloworld' and our test request is
- * to localhost, the request will fail with an SSLPeerUnverifiedException, as
- * the SSL cert name does not match the server name 'localhost'.
+ * In this test, SSL validation is disabled but hostname check is explicitly
+ * enabled. The expected behaviour is to disable the hostname check if SSL
+ * validation is disabled. We expect the request to succeed even though the
+ * SSL cert name does not match 'localhost', as SSL hostname verification is
+ * implicitly disabled.
  */
 @SpringBootTest(
-    classes = { HelloWorldApplication.class, ClampRestTemplateConfig.class },
+    classes = {
+        HelloWorldApplication.class,
+        AcmRuntimeRestTemplateConfig.class,
+        PolicyApiRestTemplateConfig.class
+    },
     properties = {
+        "server.ssl.enabled=true",
         "server.ssl.key-store=file:src/test/resources/helloworld-keystore.jks",
         "server.ssl.key-store-password=changeit",
         "server.ssl.trust-store=file:src/test/resources/helloworld-truststore.jks",
         "server.ssl.trust-store-password=changeit",
+        "runtime-ui.acm.disable-ssl-validation=true",
+        "runtime-ui.acm.disable-ssl-hostname-check=false",
+        "runtime-ui.policy.disable-ssl-validation=true",
+        "runtime-ui.policy.disable-ssl-hostname-check=false"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ClampRestTemplateConfig5Test {
+class RestTemplateConfig4Test extends BaseRestTemplateConfigTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    @Qualifier("clampRestTemplate")
+    @Qualifier("acmRuntimeRestTemplate")
     private RestTemplate restTemplate;
 
     @Test
-    void testSslValidationIsEnabledByDefault() {
-        var helloUrl = "https://localhost:" + port + "/";
-        Exception e = assertThrows(RestClientException.class,
-            () -> restTemplate.getForEntity(helloUrl, String.class));
-        assertTrue(e.getCause() instanceof SSLPeerUnverifiedException);
+    void testHostnameCheckIsDisabledWhenSslValidationIsDisabled() {
+        super.getRestTemplateList().forEach(restTemplate -> {
+            var helloUrl = "https://localhost:" + port + "/";
+            String response = restTemplate.getForObject(helloUrl, String.class);
+            assertEquals(HELLO_WORLD_STRING, response);
+        });
     }
 }
