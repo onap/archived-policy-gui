@@ -22,6 +22,7 @@ package org.onap.policy.gui.server.config;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
 import org.springframework.beans.factory.BeanCreationException;
@@ -35,23 +36,30 @@ import org.springframework.test.util.ReflectionTestUtils;
  * An BeanCreationException should be thrown on application startup.
  */
 @SpringBootTest(
-    classes = { HelloWorldApplication.class }
+    classes = {
+        HelloWorldApplication.class
+    }
 )
-class ClampRestTemplateConfig6Test {
+class RestTemplateTrustStoreUnsetTest {
+    BaseRestTemplateConfig[] restTemplateConfigArray = {
+        new AcmRuntimeRestTemplateConfig(),
+        new PolicyApiRestTemplateConfig()
+    };
 
     @Test
     void expectExceptionWithNoTrustStore(ApplicationContext context) {
-        // Manually autowire the bean so we can test PostConstruct logic.
-        ClampRestTemplateConfig restTemplateConfig = new ClampRestTemplateConfig();
-        AutowireCapableBeanFactory factory = context.getAutowireCapableBeanFactory();
-        factory.autowireBean(restTemplateConfig);
+        Arrays.asList(restTemplateConfigArray).forEach(restTemplateConfig -> {
+            // Manually autowire the bean so we can test PostConstruct logic.
+            AutowireCapableBeanFactory factory = context.getAutowireCapableBeanFactory();
+            factory.autowireBean(restTemplateConfig);
 
-        // Enable SSL validation, but provide no trust store.
-        ReflectionTestUtils.setField(restTemplateConfig, "disableSslValidation", false);
+            // Enable SSL validation, but provide no trust store.
+            ReflectionTestUtils.setField(restTemplateConfig, "disableSslValidation", false);
 
-        // Expect exception when creating bean.
-        assertThatExceptionOfType(BeanCreationException.class)
-            .isThrownBy(() -> factory.initializeBean(restTemplateConfig, "clampRestTemplate"))
-            .withMessageContaining("server.ssl.trust-store must be set");
+            // Expect exception when creating bean.
+            assertThatExceptionOfType(BeanCreationException.class)
+                .isThrownBy(() -> factory.initializeBean(restTemplateConfig, "dummyRestTemplate"))
+                .withMessageContaining("server.ssl.trust-store must be set");
+        });
     }
 }

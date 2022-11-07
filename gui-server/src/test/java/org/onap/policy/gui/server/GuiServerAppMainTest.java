@@ -32,9 +32,14 @@ class GuiServerAppMainTest {
     @Test
     void whenMainIsCalled_thenNoExceptions() {
         String[] args = {
-            "--server.port=0", // use random available port
-            "--clamp.url=https://clamp-backend:8443/",
-            "--clamp.disable-ssl-validation=true"
+            "--server.port=0",
+            "--server.ssl.enabled=false",
+            "--runtime-ui.policy.disable-ssl-validation=true",
+            "--runtime-ui.policy.mapping-path=/policy-api",
+            "--runtime-ui.policy.url=http://policyapi:9876/",
+            "--runtime-ui.acm.disable-ssl-validation=true",
+            "--runtime-ui.acm.mapping-path=/acm-runtime",
+            "--runtime-ui.acm.url=http://acmruntime:9876/"
         };
         assertDoesNotThrow(() -> GuiServerApplication.main(args));
     }

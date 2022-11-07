@@ -43,9 +43,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * Filter which encodes a client SSL certificate into X-SSL-Cert HTTP header.
- * CLAMP has a corresponding filter called ClampCadiFilter which decodes the
- * header. This is needed as CLAMP runtime uses AAF for auth, and AAF uses
- * client cert authentication. Since REST requests from CLAMP GUI to CLAMP
+ * A target runtime may have a corresponding filter that decodes the
+ * header. This is needed as a target runtime may use a mechanism for
+ * client cert authentication. Since REST requests from the GUI to the
  * runtime are proxied in gui-server, the proxy needs to attach a copy of the
  * client SSL cert, as the proxy could not know the client's private key.
  */
@@ -56,7 +56,7 @@ public class ClientSslHeaderFilter extends OncePerRequestFilter {
     // Name of attribute containing request SSL cert.
     public static final String X509_ATTRIBUTE_NAME = "javax.servlet.request.X509Certificate";
 
-    // Name of header containing encoded SSL cert - also used in clamp's ClampCadiFilter.
+    // Name of header containing encoded SSL cert - also used in the runtime filter.
     public static final String SSL_CERT_HEADER_NAME = "X-SSL-Cert";
 
     @Override

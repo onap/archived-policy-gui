@@ -51,17 +51,21 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest(
     properties = {
-        "clamp.url=https://clamp-backend:8443/",
-        "clamp.disable-ssl-validation=true"
+        "runtime-ui.policy.mapping-path=/runtime-ui/policy/restservices/",
+        "runtime-ui.policy.url=http://policy-api:9876/",
+        "runtime-ui.policy.disable-ssl-validation=true",
+        "runtime-ui.acm.mapping-path=/runtime-ui/acm/restservices/",
+        "runtime-ui.acm.url=https://runtime-acm:8443/",
+        "runtime-ui.acm.disable-ssl-validation=true"
     })
 @AutoConfigureMockMvc
-class ClampRestControllerTest {
+class AcmRuntimeRestControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Autowired
-    @Qualifier("clampRestTemplate")
+    @Qualifier("acmRuntimeRestTemplate")
     private RestTemplate restTemplate;
 
     private MockRestServiceServer mockServer;
@@ -73,32 +77,32 @@ class ClampRestControllerTest {
 
     @Test
     void testStaticContentUrls() throws Exception {
-        mvc.perform(get("/clamp/"))
+        mvc.perform(get("/runtime-ui/"))
             .andExpect(status().isOk())
-            .andExpect(forwardedUrl("/clamp/index.html"));
+            .andExpect(forwardedUrl("/runtime-ui/index.html"));
 
-        mvc.perform(get("/clamp"))
+        mvc.perform(get("/runtime-ui"))
             .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/clamp/"));
+            .andExpect(redirectedUrl("/runtime-ui/"));
     }
 
     /*
-     * This is a happy path test to verify that calls to /clamp/restservices/**
-     * are relayed to the clamp backend, and that the backend receives the
+     * This is a happy path test to verify that calls to <mapping-path>/**
+     * are relayed to the server, and that the server receives the
      * client certificate encoded in a header. More extensive tests of the
      * certificate cert filter are in ClientSslHeaderFilterTest.
      */
     @Test
-    void testClampProxyWithClientCert() throws Exception {
+    void testServerProxyWithClientCert() throws Exception {
         X509Certificate cert = KeyStoreHelper.loadValidCert();
 
         mockServer.expect(
-            requestTo("https://clamp-backend:8443/restservices/junit/test"))
+            requestTo("https://runtime-acm:8443/junit/test"))
             .andExpect(header(SSL_CERT_HEADER_NAME, urlEncodeCert(cert)))
             .andRespond(withStatus(HttpStatus.OK).body("admin"));
 
         mvc.perform(
-            get("/clamp/restservices/junit/test")
+            get("/runtime-ui/acm/restservices/junit/test")
                 .with(x509(cert)))
             .andExpect(status().isOk())
             .andExpect(content().string("admin"));
@@ -108,20 +112,20 @@ class ClampRestControllerTest {
 
     /*
      * This test verifies that HTTP headers are preserved for requests to the
-     * clamp backend (including multi-value headers).
+     * server (including multi-value headers).
      */
     @Test
-    void verifyClampProxyPassesHeaders() throws Exception {
+    void verifyServerProxyPassesHeaders() throws Exception {
         // Single value header
         final String userAgent = "User-Agent";
         final String userAgentValue = "JUnit";
-        // Multi value header
+        // Multi-value header
         final String acceptLanguage = "Accept-Language";
         final String enUs = "en-US";
         final String enIe = "en-IE";
 
         mockServer.expect(
-            requestTo("https://clamp-backend:8443/restservices/junit/test"))
+            requestTo("https://runtime-acm:8443/junit/test"))
             .andExpect(method(HttpMethod.GET))
             .andExpect(header(userAgent, userAgentValue))
             .andExpect(header(acceptLanguage, enUs, enIe))
@@ -132,7 +136,7 @@ class ClampRestControllerTest {
         requestHeaders.add(acceptLanguage, enUs);
         requestHeaders.add(acceptLanguage, enIe);
         mvc.perform(
-            get("/clamp/restservices/junit/test")
+            get("/runtime-ui/acm/restservices/junit/test")
                 .headers(requestHeaders))
             .andExpect(status().isOk());
 
@@ -140,19 +144,19 @@ class ClampRestControllerTest {
     }
 
     /*
-     * This test verifies that error messages from the clamp backend are
+     * This test verifies that error messages from the server are
      * delivered to the client (as opposed to 500 "Internal Server Error").
      */
     @Test
-    void verifyClampProxyReturnsBackendErrorCode() throws Exception {
+    void verifyServerProxyReturnsBackendErrorCode() throws Exception {
         final String errorMessage = "This appliance cannot brew coffee";
 
         mockServer.expect(
-            requestTo("https://clamp-backend:8443/restservices/coffee"))
+            requestTo("https://runtime-acm:8443/coffee"))
             .andRespond(withStatus(HttpStatus.I_AM_A_TEAPOT).body(errorMessage));
 
         mvc.perform(
-            post("/clamp/restservices/coffee"))
+            post("/runtime-ui/acm/restservices/coffee").secure(true))
             .andExpect(status().is(HttpStatus.I_AM_A_TEAPOT.value()))
             .andExpect(content().string(errorMessage));
 
