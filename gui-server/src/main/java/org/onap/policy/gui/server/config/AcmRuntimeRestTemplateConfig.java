@@ -20,33 +20,35 @@
 
 package org.onap.policy.gui.server.config;
 
-import org.apache.commons.lang3.StringUtils;
-import org.onap.policy.gui.server.filters.ClientSslHeaderFilter;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class FilterRegistrationConfig {
-    @Value("${runtime-ui.policy.mapping-path}")
-    private String policyApiMappingPath;
-
-    @Value("${runtime-ui.acm.mapping-path}")
-    private String acmRuntimeMappingPath;
+public class AcmRuntimeRestTemplateConfig extends BaseRestTemplateConfig {
 
     /**
-     * Registers ClientSslToHeaderFilter for the mapped URLs.
+     * Set the SSL validation flags on the template.
+     *
+     * @param disableSslValidation Turn off SSL altogether on this REST interface
+     * @param disableSslHostnameCheck Turn off SSL host name checking
      */
-    @Bean
-    public FilterRegistrationBean<ClientSslHeaderFilter> clientSslHeaderFilter() {
-        FilterRegistrationBean<ClientSslHeaderFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new ClientSslHeaderFilter());
-        registrationBean.addUrlPatterns(
-            StringUtils.stripEnd(policyApiMappingPath, "/")  + "/*",
-            StringUtils.stripEnd(acmRuntimeMappingPath, "/")  + "/*"
-        );
-        return registrationBean;
+    @Value("{runtime-ui.acm}")
+    public void setSslFlags(
+        @Value("${runtime-ui.acm.disable-ssl-validation:false}") boolean disableSslValidation,
+        @Value("${runtime-ui.acm.disable-ssl-hostname-check:false}") boolean disableSslHostnameCheck) {
+        super.setDisableSslValidation(disableSslValidation);
+        super.setDisableSslHostnameCheck(disableSslHostnameCheck);
     }
 
+    /**
+     * Returns a RestTemplate, optionally disabling SSL host name check or disabling SSL validation entirely.
+     */
+    @Bean
+    public RestTemplate acmRuntimeRestTemplate() throws GeneralSecurityException, IOException {
+        return super.getRestTemplate();
+    }
 }

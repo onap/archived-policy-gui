@@ -29,10 +29,10 @@ public class StaticContentConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/clamp").setViewName("redirect:/clamp/");
-        registry.addViewController("/clamp/").setViewName("forward:/clamp/index.html");
-        registry.addViewController("/apex-editor").setViewName("redirect:/apex-editor/");
-        registry.addViewController("/apex-editor/").setViewName("forward:/apex-editor/index.html");
+        registry.addViewController("/runtime-ui").setViewName("redirect:/runtime-ui/");
+        registry.addViewController("/runtime-ui/").setViewName("forward:/runtime-ui/index.html");
+        registry.addViewController("/designtime-ui").setViewName("redirect:/designtime-ui/");
+        registry.addViewController("/designtime-ui/").setViewName("forward:/designtime-ui/index.html");
     }
 
 }

@@ -112,7 +112,7 @@
                             <classifier>clamp-build</classifier>
                             <type>tar.gz</type>
                             <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/static/runtime-ui</outputDirectory>
                         </artifactItem>
                         <!-- copy static resources from apex editor jar into static/apex-editor/ -->
                         <artifactItem>
@@ -121,7 +121,7 @@
                             <version>${project.version}</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/classes/static/apex-editor</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/static/designtime-ui/apex-editor</outputDirectory>
                             <includes>static/**</includes>
                             <fileMappers>
                                 <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
