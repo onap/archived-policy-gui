@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -33,47 +32,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/clamp/restservices")
-public class ClampRestController {
-
-    @Value("${clamp.url}")
-    private URI clampUrl;
-
-    @Autowired
-    @Qualifier("clampRestTemplate")
-    private RestTemplate restTemplate;
+@RequestMapping("${runtime-ui.policy.mapping-path}")
+public class PolicyApiRestController extends BaseRestController {
+    /**
+     * Set the mapping parameters for the REST controller.
+     *
+     * @param mappingPath The mapping path to map from
+     * @param url The URL path to map to
+     */
+    @Value("{runtime-ui.policy}")
+    public void setSslFlags(
+        @Value("${runtime-ui.policy.mapping-path}") String mappingPath,
+        @Value("${runtime-ui.policy.url}") URI url) {
+        super.setMappingPath(mappingPath);
+        super.setUrl(url);
+    }
 
     /**
-     * Proxy rest calls to clamp backend.
+     * Set the REST template for the REST controller.
+     *
+     * @param restTemplate The REST template
      */
-    @SuppressWarnings("java:S3752") // Suppress warning about RequestMapping without HTTP method.
+    @Autowired
+    public void setControllerRestTemplate(
+        @Qualifier("policyApiRestTemplate") RestTemplate restTemplate) {
+        super.setRestTemplate(restTemplate);
+    }
+
+    /**
+     * Proxy rest calls to ACM runtime.
+     */
+    @Override
     @RequestMapping("/**")
     public ResponseEntity<String> mirrorRest(@RequestBody(required = false) String body,
                                              @RequestHeader HttpHeaders headers,
                                              HttpMethod method,
                                              HttpServletRequest request) {
-        // Strip /clamp/ prefix from request URI.
-        String requestUri = request.getRequestURI().replaceFirst("^/clamp/", "");
-        URI uri = UriComponentsBuilder.fromUri(clampUrl)
-            .path(requestUri)
-            .query(request.getQueryString())
-            .build(true).toUri();
-
-        HttpEntity<String> httpEntity = new HttpEntity<>(body, headers);
-        try {
-            return restTemplate.exchange(uri, method, httpEntity, String.class);
-
-        } catch (HttpStatusCodeException e) {
-            // On error, return the backend error code instead of 500.
-            return ResponseEntity.status(e.getRawStatusCode())
-                .headers(e.getResponseHeaders())
-                .body(e.getResponseBodyAsString());
-        }
+        return super.mirrorRest(body, headers, method, request);
     }
-
 }

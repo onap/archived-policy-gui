@@ -25,37 +25,43 @@ import static org.onap.policy.gui.server.test.util.hello.HelloWorldRestControlle
 
 import org.junit.jupiter.api.Test;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.web.client.RestTemplate;
 
 /**
- * In this test, SSL validation is disabled.
- * The test request should succeed. A trust store has not been supplied in this case.
+ * In this test, SSL validation is enabled but hostname check is disabled.
+ * Even though our keystore cert has a hostname 'helloworld' and our test
+ * request is to localhost, the request will succeed as the SSL hostname check
+ * is disabled.
  */
 @SpringBootTest(
-    classes = { HelloWorldApplication.class, ClampRestTemplateConfig.class },
+    classes = {
+        HelloWorldApplication.class,
+        AcmRuntimeRestTemplateConfig.class,
+        PolicyApiRestTemplateConfig.class
+    },
     properties = {
+        "server.ssl.enabled=true",
         "server.ssl.key-store=file:src/test/resources/helloworld-keystore.jks",
         "server.ssl.key-store-password=changeit",
-        "clamp.disable-ssl-validation=true"
+        "server.ssl.trust-store=file:src/test/resources/helloworld-truststore.jks",
+        "server.ssl.trust-store-password=changeit",
+        "runtime-ui.acm.disable-ssl-validation=false",
+        "runtime-ui.acm.disable-ssl-hostname-check=true",
+        "runtime-ui.policy.disable-ssl-validation=false",
+        "runtime-ui.policy.disable-ssl-hostname-check=true"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ClampRestTemplateConfig2Test {
-
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    @Qualifier("clampRestTemplate")
-    private RestTemplate restTemplate;
-
+class RestTemplateConfig3Test extends BaseRestTemplateConfigTest {
+    /*
+     * In this test, the request will succeed even though the SSL cert name
+     * does not match 'localhost', as SSL hostname verification is disabled.
+     */
     @Test
-    void testRequestSucceedsWhenSslValidationIsDisabled() {
-        var helloUrl = "https://localhost:" + port + "/";
-        String response = restTemplate.getForObject(helloUrl, String.class);
-        assertEquals(HELLO_WORLD_STRING, response);
+    void testRequestSucceedsWhenSslHostnameCheckIsDisabled() {
+        super.getRestTemplateList().forEach(restTemplate -> {
+            var helloUrl = "https://localhost:" + super.getPort() + "/";
+            String response = restTemplate.getForObject(helloUrl, String.class);
+            assertEquals(HELLO_WORLD_STRING, response);
+        });
     }
 }

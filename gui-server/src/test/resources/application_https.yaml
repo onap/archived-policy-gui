@@ -1,7 +1,13 @@
 server:
   port: 2443
   ssl:
-    enabled: false
+    enabled: true
+    enabled-protocols: TLSv1.2
+    client-auth: want
+    key-store: file:./src/test/resources/helloworld-keystore.jks
+    key-store-password: changeit
+    trust-store: file:./src/test/resources/helloworld-truststore.jks
+    trust-store-password: changeit
 
 runtime-ui:
   policy:
