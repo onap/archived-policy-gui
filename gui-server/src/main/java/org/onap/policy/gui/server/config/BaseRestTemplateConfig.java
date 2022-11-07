@@ -25,6 +25,7 @@ import java.security.GeneralSecurityException;
 import javax.annotation.PostConstruct;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
+import lombok.Setter;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustAllStrategy;
@@ -33,27 +34,24 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
-public class ClampRestTemplateConfig {
-    private static final Logger LOG = LoggerFactory.getLogger(ClampRestTemplateConfig.class);
+public class BaseRestTemplateConfig {
+    private static final Logger LOG = LoggerFactory.getLogger(BaseRestTemplateConfig.class);
 
-    @Value("${clamp.disable-ssl-validation:false}")
+    @Setter
     private boolean disableSslValidation;
 
-    @Value("${clamp.disable-ssl-hostname-check:false}")
+    @Setter
     private boolean disableSslHostnameCheck;
 
     @Value("${server.ssl.trust-store:#{null}}")
-    private Resource trustStore;
+    protected Resource trustStore;
 
     @Value("${server.ssl.trust-store-password:#{null}}")
-    private char[] trustStorePassword;
+    protected char[] trustStorePassword;
 
     @PostConstruct
     private void validateProperties() {
@@ -69,8 +67,7 @@ public class ClampRestTemplateConfig {
     /**
      * Returns a RestTemplate, optionally disabling SSL hostname check or disabling SSL validation entirely.
      */
-    @Bean
-    public RestTemplate clampRestTemplate() throws GeneralSecurityException, IOException {
+    protected RestTemplate getRestTemplate() throws GeneralSecurityException, IOException {
         SSLContext sslContext;
         if (disableSslValidation) {
             sslContext = new SSLContextBuilder().loadTrustMaterial(new TrustAllStrategy()).build();

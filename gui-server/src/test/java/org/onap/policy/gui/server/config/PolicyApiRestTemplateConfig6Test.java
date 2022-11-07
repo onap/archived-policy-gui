@@ -37,12 +37,12 @@ import org.springframework.test.util.ReflectionTestUtils;
 @SpringBootTest(
     classes = { HelloWorldApplication.class }
 )
-class ClampRestTemplateConfig6Test {
+class PolicyApiRestTemplateConfig6Test {
 
     @Test
     void expectExceptionWithNoTrustStore(ApplicationContext context) {
         // Manually autowire the bean so we can test PostConstruct logic.
-        ClampRestTemplateConfig restTemplateConfig = new ClampRestTemplateConfig();
+        PolicyApiRestTemplateConfig restTemplateConfig = new PolicyApiRestTemplateConfig();
         AutowireCapableBeanFactory factory = context.getAutowireCapableBeanFactory();
         factory.autowireBean(restTemplateConfig);
 
@@ -51,7 +51,7 @@ class ClampRestTemplateConfig6Test {
 
         // Expect exception when creating bean.
         assertThatExceptionOfType(BeanCreationException.class)
-            .isThrownBy(() -> factory.initializeBean(restTemplateConfig, "clampRestTemplate"))
+            .isThrownBy(() -> factory.initializeBean(restTemplateConfig, "policyApiRestTemplate"))
             .withMessageContaining("server.ssl.trust-store must be set");
     }
 }
