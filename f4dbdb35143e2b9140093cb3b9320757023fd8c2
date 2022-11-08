@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ee08322_a44506d8",
+        "filename": "gui-server/src/main/java/org/onap/policy/gui/server/config/AcmRuntimeRestTemplateConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2022-11-08T09:11:52Z",
+      "side": 1,
+      "message": "probably cursor moving accidentaly added this.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 32
+      },
+      "revId": "f4dbdb35143e2b9140093cb3b9320757023fd8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32d79df2_21db730a",
+        "filename": "gui-server/src/test/java/org/onap/policy/gui/server/rest/DesigntimeRestControllerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2022-11-08T09:11:52Z",
+      "side": 1,
+      "message": "not required, but a application-test.yaml can be used for all these repeated properties, then just one annotation @Profile to assign the properties file correspondent.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "f4dbdb35143e2b9140093cb3b9320757023fd8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
