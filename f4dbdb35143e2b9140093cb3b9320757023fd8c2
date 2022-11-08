@@ -93,6 +93,30 @@
       "revId": "f4dbdb35143e2b9140093cb3b9320757023fd8c2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da206ec_ccad4285",
+        "filename": "gui-server/src/test/java/org/onap/policy/gui/server/rest/DesigntimeRestControllerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2022-11-08T13:29:56Z",
+      "side": 1,
+      "message": "in this case using files would look more confusing, so that\u0027s fine.",
+      "parentUuid": "f1efe413_d6f6a84e",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "f4dbdb35143e2b9140093cb3b9320757023fd8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
