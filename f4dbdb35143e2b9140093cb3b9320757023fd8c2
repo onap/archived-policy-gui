@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3cc57288_26822120",
+        "filename": "gui-server/src/main/java/org/onap/policy/gui/server/config/AcmRuntimeRestTemplateConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2022-11-08T13:05:04Z",
+      "side": 1,
+      "message": "Oops!",
+      "parentUuid": "9ee08322_a44506d8",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 32
+      },
+      "revId": "f4dbdb35143e2b9140093cb3b9320757023fd8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32d79df2_21db730a",
         "filename": "gui-server/src/test/java/org/onap/policy/gui/server/rest/DesigntimeRestControllerTest.java",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2022-11-08T09:11:52Z",
       "side": 1,
       "message": "not required, but a application-test.yaml can be used for all these repeated properties, then just one annotation @Profile to assign the properties file correspondent.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "f4dbdb35143e2b9140093cb3b9320757023fd8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1efe413_d6f6a84e",
+        "filename": "gui-server/src/test/java/org/onap/policy/gui/server/rest/DesigntimeRestControllerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2787
+      },
+      "writtenOn": "2022-11-08T13:05:04Z",
+      "side": 1,
+      "message": "The tests in this directory are to test various valid and invalid configuration combinations.\n\nThe normal way to have different configurations in Spring is to use application-xxxx.yaml files and then each one becomes a profile that can be used. In production code, this is the correct way of doing things. If this approach was taken in the production code, it in effect overrides the Spring way of doing things and should not be allowed.\n\nHowever, in this directory, we are testing various legal and illegal combinations of configurations. We could have a separate application-xxxx.yaml file for each test but then the developer would have to go to a separate file to get the full picture of what the test is doing. I think that in this particular case, this approach is OK.\n\nWhat do you think?",
+      "parentUuid": "32d79df2_21db730a",
       "range": {
         "startLine": 35,
         "startChar": 4,
