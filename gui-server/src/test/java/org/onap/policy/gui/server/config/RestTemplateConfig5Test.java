@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.net.ssl.SSLPeerUnverifiedException;
 import org.junit.jupiter.api.Test;
-import org.onap.policy.gui.server.test.util.RestTemplateConfig;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestClientException;
@@ -42,7 +41,8 @@ import org.springframework.web.client.RestClientException;
     classes = {
         HelloWorldApplication.class,
         AcmRuntimeRestTemplateConfig.class,
-        PolicyApiRestTemplateConfig.class
+        PolicyApiRestTemplateConfig.class,
+        PolicyPapRestTemplateConfig.class
     },
     properties = {
         "server.ssl.enabled=true",

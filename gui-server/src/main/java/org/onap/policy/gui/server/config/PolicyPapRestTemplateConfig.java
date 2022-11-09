@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class PolicyApiRestTemplateConfig extends BaseRestTemplateConfig {
+public class PolicyPapRestTemplateConfig extends BaseRestTemplateConfig {
 
     /**
      * Set the SSL validation flags on the template.
@@ -36,10 +36,10 @@ public class PolicyApiRestTemplateConfig extends BaseRestTemplateConfig {
      * @param disableSslValidation Turn off SSL altogether on this REST interface
      * @param disableSslHostnameCheck Turn off SSL host name checking
      */
-    @Value("{runtime-ui.policy-api}")
+    @Value("{runtime-ui.policy-pap}")
     public void setSslFlags(
-        @Value("${runtime-ui.policy-api.disable-ssl-validation:false}") boolean disableSslValidation,
-        @Value("${runtime-ui.policy-api.disable-ssl-hostname-check:false}") boolean disableSslHostnameCheck) {
+        @Value("${runtime-ui.policy-pap.disable-ssl-validation:false}") boolean disableSslValidation,
+        @Value("${runtime-ui.policy-pap.disable-ssl-hostname-check:false}") boolean disableSslHostnameCheck) {
         super.setDisableSslValidation(disableSslValidation);
         super.setDisableSslHostnameCheck(disableSslHostnameCheck);
     }
@@ -48,7 +48,7 @@ public class PolicyApiRestTemplateConfig extends BaseRestTemplateConfig {
      * Returns a RestTemplate, optionally disabling SSL host name check or disabling SSL validation entirely.
      */
     @Bean
-    public RestTemplate policyApiRestTemplate() throws GeneralSecurityException, IOException {
+    public RestTemplate policyPapRestTemplate() throws GeneralSecurityException, IOException {
         return super.getRestTemplate();
     }
 }

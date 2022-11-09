@@ -29,8 +29,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FilterRegistrationConfig {
-    @Value("${runtime-ui.policy.mapping-path}")
+    @Value("${runtime-ui.policy-api.mapping-path}")
     private String policyApiMappingPath;
+
+    @Value("${runtime-ui.policy-pap.mapping-path}")
+    private String policyPapMappingPath;
 
     @Value("${runtime-ui.acm.mapping-path}")
     private String acmRuntimeMappingPath;
@@ -44,6 +47,7 @@ public class FilterRegistrationConfig {
         registrationBean.setFilter(new ClientSslHeaderFilter());
         registrationBean.addUrlPatterns(
             StringUtils.stripEnd(policyApiMappingPath, "/")  + "/*",
+            StringUtils.stripEnd(policyPapMappingPath, "/")  + "/*",
             StringUtils.stripEnd(acmRuntimeMappingPath, "/")  + "/*"
         );
         return registrationBean;

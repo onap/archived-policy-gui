@@ -31,9 +31,12 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest(
     properties = {
-        "runtime-ui.policy.mapping-path=/runtime-ui/policy/restservices/",
-        "runtime-ui.policy.url=http://policy-api:9876/",
-        "runtime-ui.policy.disable-ssl-validation=true",
+        "runtime-ui.policy-api.mapping-path=/runtime-ui/policy-api/restservices/",
+        "runtime-ui.policy-api.url=http://policy-api:9876/",
+        "runtime-ui.policy-api.disable-ssl-validation=true",
+        "runtime-ui.policy-pap.mapping-path=/runtime-ui/policy-pap/restservices/",
+        "runtime-ui.policy-pap.url=http://policy-pap:9876/",
+        "runtime-ui.policy-pap.disable-ssl-validation=true",
         "runtime-ui.acm.mapping-path=/runtime-ui/acm/restservices/",
         "runtime-ui.acm.url=https://runtime-acm:8443/",
         "runtime-ui.acm.disable-ssl-validation=true"

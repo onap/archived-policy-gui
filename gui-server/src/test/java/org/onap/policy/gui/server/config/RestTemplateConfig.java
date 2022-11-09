@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.policy.gui.server.test.util;
+package org.onap.policy.gui.server.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +45,10 @@ public class RestTemplateConfig {
     @Qualifier("policyApiRestTemplate")
     private RestTemplate policyApiRestTemplate;
 
+    @Autowired
+    @Qualifier("policyPapRestTemplate")
+    private RestTemplate policyPapRestTemplate;
+
     @Getter
     List<RestTemplate> restTemplateList = new ArrayList<>();
 
@@ -52,5 +56,6 @@ public class RestTemplateConfig {
     public void setupRestTemplateList() {
         restTemplateList.add(acmRuntimeRestTemplate);
         restTemplateList.add(policyApiRestTemplate);
+        restTemplateList.add(policyPapRestTemplate);
     }
 }

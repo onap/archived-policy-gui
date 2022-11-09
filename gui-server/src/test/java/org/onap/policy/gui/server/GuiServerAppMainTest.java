@@ -34,9 +34,12 @@ class GuiServerAppMainTest {
         String[] args = {
             "--server.port=0",
             "--server.ssl.enabled=false",
-            "--runtime-ui.policy.disable-ssl-validation=true",
-            "--runtime-ui.policy.mapping-path=/policy-api",
-            "--runtime-ui.policy.url=http://policyapi:9876/",
+            "--runtime-ui.policy-api.disable-ssl-validation=true",
+            "--runtime-ui.policy-api.mapping-path=/policy-api",
+            "--runtime-ui.policy-api.url=http://policyapi:9876/",
+            "--runtime-ui.policy-pap.disable-ssl-validation=true",
+            "--runtime-ui.policy-pap.mapping-path=/policy-pap",
+            "--runtime-ui.policy-pap.url=http://policypap:9876/",
             "--runtime-ui.acm.disable-ssl-validation=true",
             "--runtime-ui.acm.mapping-path=/acm-runtime",
             "--runtime-ui.acm.url=http://acmruntime:9876/"
