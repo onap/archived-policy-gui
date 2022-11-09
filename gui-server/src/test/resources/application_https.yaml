@@ -10,14 +10,20 @@ server:
     trust-store-password: changeit
 
 runtime-ui:
-  policy:
-    mapping-path: "/runtime-ui/policy/restservices"
+  policy-api:
+    mapping-path: "/runtime-ui/policy-api/restservices/"
     url: http://localhost:30440
     disable-ssl-validation: true
     disable-ssl-hostname-check: true
 
+  policy-pap:
+    mapping-path: "/runtime-ui/policy-pap/restservices/"
+    url: http://localhost:30442
+    disable-ssl-validation: true
+    disable-ssl-hostname-check: true
+
   acm:
-    mapping-path: "/runtime-ui/acm/restservices"
+    mapping-path: "/runtime-ui/acm/restservices/"
     url: http://localhost:30258
     disable-ssl-validation: true
     disable-ssl-hostname-check: true

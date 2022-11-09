@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.onap.policy.gui.server.test.util.hello.HelloWorldRestController.HELLO_WORLD_STRING;
 
 import org.junit.jupiter.api.Test;
-import org.onap.policy.gui.server.test.util.RestTemplateConfig;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -39,7 +38,8 @@ import org.springframework.boot.test.context.SpringBootTest;
     classes = {
         HelloWorldApplication.class,
         AcmRuntimeRestTemplateConfig.class,
-        PolicyApiRestTemplateConfig.class
+        PolicyApiRestTemplateConfig.class,
+        PolicyPapRestTemplateConfig.class
     },
     properties = {
         "server.ssl.enabled=true",
@@ -49,8 +49,10 @@ import org.springframework.boot.test.context.SpringBootTest;
         "server.ssl.trust-store-password=changeit",
         "runtime-ui.acm.disable-ssl-validation=true",
         "runtime-ui.acm.disable-ssl-hostname-check=false",
-        "runtime-ui.policy.disable-ssl-validation=true",
-        "runtime-ui.policy.disable-ssl-hostname-check=false"
+        "runtime-ui.policy-api.disable-ssl-validation=true",
+        "runtime-ui.policy-api.disable-ssl-hostname-check=false",
+        "runtime-ui.policy-pap.disable-ssl-validation=true",
+        "runtime-ui.policy-pap.disable-ssl-hostname-check=false"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RestTemplateConfig4Test {

@@ -42,16 +42,16 @@ import org.springframework.web.client.RestTemplate;
         "runtime-ui.acm.disable-ssl-validation=true"
     })
 @AutoConfigureMockMvc
-class PolicyApiRestControllerTest extends BaseRestControllerTest {
+class PolicyPapRestControllerTest extends BaseRestControllerTest {
     @Autowired
-    public void setBaseMockServer(@Qualifier("policyApiRestTemplate") RestTemplate restTemplate) {
+    public void setBaseMockServer(@Qualifier("policyPapRestTemplate") RestTemplate restTemplate) {
         super.setMockServer(MockRestServiceServer.createServer(restTemplate));
     }
 
     @Autowired
     public void setBaseMapping(
-        @Value("${runtime-ui.policy-api.mapping-path}") String mappingPath,
-        @Value("${runtime-ui.policy-api.url}") URI url) {
+        @Value("${runtime-ui.policy-pap.mapping-path}") String mappingPath,
+        @Value("${runtime-ui.policy-pap.url}") URI url) {
         super.setMappingPath(mappingPath);
         super.setUrl(url);
     }

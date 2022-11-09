@@ -43,7 +43,8 @@ import org.springframework.test.util.ReflectionTestUtils;
 class RestTemplateTrustStoreUnsetTest {
     BaseRestTemplateConfig[] restTemplateConfigArray = {
         new AcmRuntimeRestTemplateConfig(),
-        new PolicyApiRestTemplateConfig()
+        new PolicyApiRestTemplateConfig(),
+        new PolicyPapRestTemplateConfig()
     };
 
     @Test

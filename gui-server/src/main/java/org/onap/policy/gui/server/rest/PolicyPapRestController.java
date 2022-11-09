@@ -35,18 +35,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("${runtime-ui.policy-api.mapping-path}")
-public class PolicyApiRestController extends BaseRestController {
+@RequestMapping("${runtime-ui.policy-pap.mapping-path}")
+public class PolicyPapRestController extends BaseRestController {
     /**
      * Set the mapping parameters for the REST controller.
      *
      * @param mappingPath The mapping path to map from
      * @param url The URL path to map to
      */
-    @Value("{runtime-ui.policy-api}")
+    @Value("{runtime-ui.policy-pap}")
     public void setSslFlags(
-        @Value("${runtime-ui.policy-api.mapping-path}") String mappingPath,
-        @Value("${runtime-ui.policy-api.url}") URI url) {
+        @Value("${runtime-ui.policy-pap.mapping-path}") String mappingPath,
+        @Value("${runtime-ui.policy-pap.url}") URI url) {
         super.setMappingPath(mappingPath);
         super.setUrl(url);
     }
@@ -58,7 +58,7 @@ public class PolicyApiRestController extends BaseRestController {
      */
     @Autowired
     public void setControllerRestTemplate(
-        @Qualifier("policyApiRestTemplate") RestTemplate restTemplate) {
+        @Qualifier("policyPapRestTemplate") RestTemplate restTemplate) {
         super.setRestTemplate(restTemplate);
     }
 

@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.onap.policy.gui.server.test.util.hello.HelloWorldRestController.HELLO_WORLD_STRING;
 
 import org.junit.jupiter.api.Test;
-import org.onap.policy.gui.server.test.util.RestTemplateConfig;
 import org.onap.policy.gui.server.test.util.hello.HelloWorldApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -37,13 +36,15 @@ import org.springframework.boot.test.context.SpringBootTest;
         HelloWorldApplication.class,
         AcmRuntimeRestTemplateConfig.class,
         PolicyApiRestTemplateConfig.class,
+        PolicyPapRestTemplateConfig.class
     },
     properties = {
         "server.ssl.enabled=true",
         "server.ssl.key-store=file:src/test/resources/helloworld-keystore.jks",
         "server.ssl.key-store-password=changeit",
         "runtime-ui.acm.disable-ssl-validation=true",
-        "runtime-ui.policy.disable-ssl-validation=true"
+        "runtime-ui.policy-api.disable-ssl-validation=true",
+        "runtime-ui.policy-pap.disable-ssl-validation=true"
     },
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RestTemplateConfig2Test {
