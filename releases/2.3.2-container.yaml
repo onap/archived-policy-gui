@@ -1,0 +1,8 @@
+distribution_type: 'container'
+container_release_tag: '2.3.2'
+project: 'policy-gui'
+log_dir: 'policy-gui-maven-docker-stage-kohn/31'
+ref: af894be698049581b67a5afee2f68ffce7c8b3d2
+containers:
+    - name: 'policy-gui'
+      version: '2.3.2-20221123T1817'
