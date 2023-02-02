@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020 Nordix Foundation.
+ *  Modifications Copyright (C) 2020,2023 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
@@ -38,7 +38,6 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
-import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.onap.policy.apex.model.basicmodel.concepts.AxConcept;
 import org.onap.policy.gui.editors.apex.rest.handling.bean.BeanBase;
 
@@ -160,10 +159,9 @@ public abstract class RestUtils {
         final var jaxbContext = JAXBContext.newInstance(clz);
         unmarshaller = jaxbContext.createUnmarshaller();
         if (jsonString.matches(JSON_INPUT_TYPE_REGEXP)) {
-            unmarshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
-            unmarshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
+            unmarshaller.setProperty("media-type", MediaType.APPLICATION_JSON);
         } else if (jsonString.matches(XML_INPUT_TYPE_REGEXP)) {
-            unmarshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_XML);
+            unmarshaller.setProperty("media-type", MediaType.APPLICATION_XML);
         } else {
             return null;
         }
