@@ -22,6 +22,30 @@
       "revId": "d9018b20493e409d91328a8189310658b7b7abe2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ddfcd04_154e15f9",
+        "filename": "gui-server/src/main/resources/static/runtime-ui/index.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7629
+      },
+      "writtenOn": "2023-04-20T10:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36bab49d_918a48be",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "d9018b20493e409d91328a8189310658b7b7abe2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
