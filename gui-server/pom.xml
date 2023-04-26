@@ -64,12 +64,6 @@
             <version>4.4</version>
         </dependency>
         <dependency>
-            <groupId>org.onap.policy.gui</groupId>
-            <artifactId>gui-clamp</artifactId>
-            <version>${project.version}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
             <groupId>org.onap.policy.gui.editors</groupId>
             <artifactId>gui-editor-apex</artifactId>
             <version>${project.version}</version>
@@ -114,16 +108,6 @@
                 </executions>
                 <configuration>
                     <artifactItems>
-                        <!-- copy static resources from clamp tar.gz into static/clamp/ -->
-                        <artifactItem>
-                            <groupId>org.onap.policy.gui</groupId>
-                            <artifactId>gui-clamp</artifactId>
-                            <version>${project.version}</version>
-                            <classifier>clamp-build</classifier>
-                            <type>tar.gz</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/classes/static/runtime-ui</outputDirectory>
-                        </artifactItem>
                         <!-- copy static resources from apex editor jar into static/apex-editor/ -->
                         <artifactItem>
                             <groupId>org.onap.policy.gui.editors</groupId>
