@@ -24,7 +24,7 @@
     <parent>
         <artifactId>policy-gui</artifactId>
         <groupId>org.onap.policy.gui</groupId>
-        <version>2.4.3-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>gui-server</artifactId>
     <name>${project.artifactId}</name>
