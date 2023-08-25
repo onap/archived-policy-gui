@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.onap.policy.gui.editors</groupId>
         <artifactId>editors</artifactId>
-        <version>3.0.0-SNAPSHOT</version>
+        <version>3.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>gui-editor-apex</artifactId>
