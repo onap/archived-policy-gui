@@ -20,8 +20,8 @@
 
 package org.onap.policy.gui.server.rest;
 
+import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
-import javax.servlet.http.HttpServletRequest;
 import lombok.Setter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

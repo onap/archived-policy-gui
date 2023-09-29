@@ -20,17 +20,19 @@
 
 package org.onap.policy.gui.server.config;
 
+import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import javax.annotation.PostConstruct;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import lombok.Setter;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
+import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactoryBuilder;
+import org.apache.hc.client5.http.ssl.TrustAllStrategy;
+import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustAllStrategy;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.SSLContextBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -82,8 +84,10 @@ public class BaseRestTemplateConfig {
             hostnameVerifier = SSLConnectionSocketFactory.getDefaultHostnameVerifier();
         }
 
-        var csf = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-        var httpClient = HttpClients.custom().setSSLSocketFactory(csf).build();
+        var csf = SSLConnectionSocketFactoryBuilder.create()
+                .setSslContext(sslContext).setHostnameVerifier(hostnameVerifier).build();
+        var httpClientBuilder = PoolingHttpClientConnectionManagerBuilder.create().setSSLSocketFactory(csf).build();
+        var httpClient = HttpClients.custom().setConnectionManager(httpClientBuilder).build();
         var requestFactory = new HttpComponentsClientHttpRequestFactory();
         requestFactory.setHttpClient(httpClient);
         return new RestTemplate(requestFactory);
