@@ -22,7 +22,8 @@
 
 package org.onap.policy.gui.editors.apex.rest.handling.bean;
 
-import javax.xml.bind.annotation.XmlType;
+
+import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.ToString;
 

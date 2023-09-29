@@ -60,7 +60,7 @@ class RestTemplateTrustStoreUnsetTest {
             // Expect exception when creating bean.
             assertThatExceptionOfType(BeanCreationException.class)
                 .isThrownBy(() -> factory.initializeBean(restTemplateConfig, "dummyRestTemplate"))
-                .withMessageContaining("server.ssl.trust-store must be set");
+                    .withFailMessage("server.ssl.trust-store must be set if SSL validation is enabled");
         });
     }
 }
