@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ac29200_e6df6c7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2023-10-03T08:58:46Z",
+      "side": 1,
+      "message": "gui-version 3.0.1-SNAPSHOT **",
+      "parentUuid": "ea2bf349_2deb3036",
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea870109_5b0c437c",
