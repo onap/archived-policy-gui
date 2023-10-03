@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2bf349_2deb3036",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2023-10-03T08:55:04Z",
+      "side": 1,
+      "message": "main pom.xml is missing from changes, which would contain the new parent version to 4.0.1-SNAPSHOT and policy-gui version to 3.0.0-SNAPSHOT, also the updated dependencies on  common, apex-pdp and models to the x.y.1-SNAPSHOT versions of each.\nmissing updated license in all files.",
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea870109_5b0c437c",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2023-10-03T08:55:04Z",
+      "side": 1,
+      "message": "update license",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae966184_a81c54b0",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2023-10-03T08:55:04Z",
+      "side": 1,
+      "message": "this is in parent, so no version needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 34
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a126bc06_5481ec46",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2023-10-03T08:55:04Z",
+      "side": 1,
+      "message": "this is in parent as well",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71980464_37aa5a8e",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7625
+      },
+      "writtenOn": "2023-10-03T08:55:04Z",
+      "side": 1,
+      "message": "this is in parent as well",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
