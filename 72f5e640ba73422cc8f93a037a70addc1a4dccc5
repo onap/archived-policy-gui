@@ -76,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0ff5ffe_b3dd3482",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2023-10-03T10:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea870109_5b0c437c",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae966184_a81c54b0",
@@ -89,6 +113,30 @@
       "writtenOn": "2023-10-03T08:55:04Z",
       "side": 1,
       "message": "this is in parent, so no version needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 34
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4dc76a4_ea153e81",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2023-10-03T10:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae966184_a81c54b0",
       "range": {
         "startLine": 59,
         "startChar": 12,
@@ -122,6 +170,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05bbcb29_cd910c43",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2023-10-03T10:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a126bc06_5481ec46",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71980464_37aa5a8e",
@@ -135,6 +207,30 @@
       "writtenOn": "2023-10-03T08:55:04Z",
       "side": 1,
       "message": "this is in parent as well",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "72f5e640ba73422cc8f93a037a70addc1a4dccc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6144f349_8f0eb1aa",
+        "filename": "gui-server/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6722
+      },
+      "writtenOn": "2023-10-03T10:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71980464_37aa5a8e",
       "range": {
         "startLine": 94,
         "startChar": 12,
