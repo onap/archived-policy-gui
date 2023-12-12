@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e138c7a2_bcaf7ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-12-12T23:06:58Z",
+      "side": 1,
+      "message": "Please ignore the failure messages. It is a controlled test we are doing to enable sigstore signing. It is not affecting your release.",
+      "revId": "075f2fe8acf874877af438d21cd2fd60335729fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
