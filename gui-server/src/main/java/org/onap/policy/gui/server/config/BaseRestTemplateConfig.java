@@ -1,7 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
- *  Modifications Copyright (C) 2023 Nordix Foundation.
+ *  Copyright (C) 2022-2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +29,10 @@ import lombok.Setter;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
 import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
+import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactoryBuilder;
 import org.apache.hc.client5.http.ssl.TrustAllStrategy;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -78,15 +77,16 @@ public class BaseRestTemplateConfig {
             sslContext = new SSLContextBuilder().loadTrustMaterial(trustStore.getURL(), trustStorePassword).build();
         }
 
-        HostnameVerifier hostnameVerifier;
+        SSLConnectionSocketFactory csf;
         if (disableSslHostnameCheck) {
-            hostnameVerifier = new NoopHostnameVerifier();
+            HostnameVerifier hostnameVerifier = new NoopHostnameVerifier();
+            csf = SSLConnectionSocketFactoryBuilder.create()
+                .setSslContext(sslContext).setHostnameVerifier(hostnameVerifier).build();
         } else {
-            hostnameVerifier = SSLConnectionSocketFactory.getDefaultHostnameVerifier();
+            csf = SSLConnectionSocketFactoryBuilder.create()
+                .setSslContext(sslContext).build();
         }
 
-        var csf = SSLConnectionSocketFactoryBuilder.create()
-                .setSslContext(sslContext).setHostnameVerifier(hostnameVerifier).build();
         var httpClientBuilder = PoolingHttpClientConnectionManagerBuilder.create().setSSLSocketFactory(csf).build();
         var httpClient = HttpClients.custom().setConnectionManager(httpClientBuilder).build();
         var requestFactory = new HttpComponentsClientHttpRequestFactory();

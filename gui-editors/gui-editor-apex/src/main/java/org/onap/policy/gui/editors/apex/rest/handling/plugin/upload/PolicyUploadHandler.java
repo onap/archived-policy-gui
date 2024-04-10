@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2022, 2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  *  ================================================================================
@@ -111,7 +111,7 @@ public class PolicyUploadHandler {
             final var apexApiResult = new ApexApiResult(Result.FAILED);
             apexApiResult.addMessage(
                 String.format("uploading Policy '%s' to URL '%s' with userId '%s' failed with status %d",
-                    policyModelKey.getId(), uploadUrl, uploadUserId, e.getRawStatusCode()));
+                    policyModelKey.getId(), uploadUrl, uploadUserId, e.getStatusCode().value()));
             LOGGER.exit(MODEL_UPLOAD_NOT_OK);
             return apexApiResult;
 

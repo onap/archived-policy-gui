@@ -1,7 +1,7 @@
 <!--
   ============LICENSE_START=======================================================
    Copyright (C) 2018 Ericsson. All rights reserved.
-   Modifications Copyright (C) 2019-2023 Nordix Foundation.
+   Modifications Copyright (C) 2019-2024 Nordix Foundation.
    Modifications Copyright (C) 2020 Bell Canada.
    Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
   ================================================================================
@@ -56,17 +56,25 @@
             <groupId>org.onap.policy.models</groupId>
             <artifactId>policy-models-tosca</artifactId>
             <version>${policy.models.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.json</groupId>
-                    <artifactId>json</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.onap.policy.apex-pdp.model</groupId>
             <artifactId>model</artifactId>
             <version>${policy.apex-pdp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.onap.policy.models</groupId>
+            <artifactId>policy-models-examples</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,12 +94,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -156,6 +158,7 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
@@ -216,7 +219,7 @@
                         <configuration>
                             <!-- By default, the repackage goal replaces the original artifact with the repackaged one.
                                  By specifying a classifier here, we can retain both the original and repackaged jars.
-                                 Thus two jars are produced: a regular jar that we can include in other modules, and an
+                                 Thus, two jars are produced: a regular jar that we can include in other modules, and an
                                  executable Spring Boot jar with the suffix 'exec'. -->
                             <classifier>exec</classifier>
                         </configuration>
