@@ -16,6 +16,23 @@
       "message": "push-upsteam",
       "revId": "d444fcf13e7b796676120a92650e95064f288fad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6ed7ca_70619dbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7603
+      },
+      "writtenOn": "2024-04-26T08:58:51Z",
+      "side": 1,
+      "message": "stage-release",
+      "revId": "d444fcf13e7b796676120a92650e95064f288fad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
