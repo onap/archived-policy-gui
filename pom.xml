@@ -32,7 +32,7 @@
 
     <groupId>org.onap.policy.gui</groupId>
     <artifactId>policy-gui</artifactId>
-    <version>3.1.2-SNAPSHOT</version>
+    <version>3.1.2</version>
 
     <packaging>pom</packaging>
 
