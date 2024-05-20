@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.onap.policy.gui.editors</groupId>
         <artifactId>editors</artifactId>
-        <version>3.1.4-SNAPSHOT</version>
+        <version>4.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>gui-editor-apex</artifactId>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.onap.policy.models</groupId>
             <artifactId>policy-models-examples</artifactId>
-            <version>${project.version}</version>
+            <version>${policy.models.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
