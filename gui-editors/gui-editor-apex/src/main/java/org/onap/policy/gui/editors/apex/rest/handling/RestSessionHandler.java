@@ -39,7 +39,7 @@ public class RestSessionHandler {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(RestSessionHandler.class);
 
     // The next session will have this number, stating at 0
-    private AtomicInteger nextSessionId = new AtomicInteger();
+    private final AtomicInteger nextSessionId = new AtomicInteger();
 
     // All REST editor sessions being handled by this handler
     private final Map<Integer, RestSession> sessionMap = new TreeMap<>();
@@ -48,9 +48,8 @@ public class RestSessionHandler {
      * Create a new session.
      *
      * @param result the result of session creation
-     * @return the new session object
      */
-    public RestSession createSession(ApexApiResult result) {
+    public void createSession(ApexApiResult result) {
         LOGGER.entry("creating session");
 
         // Create the session with the next session ID
@@ -60,7 +59,6 @@ public class RestSessionHandler {
         result.addMessage(Integer.toString(newSessionId));
 
         LOGGER.exit("created session with ID: " + newSessionId);
-        return sessionMap.get(newSessionId);
     }
 
     /**

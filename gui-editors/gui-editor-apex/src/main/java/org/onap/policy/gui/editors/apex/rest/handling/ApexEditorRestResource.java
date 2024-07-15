@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2016-2018 Ericsson. All rights reserved.
- *  Modifications Copyright (C) 2020-2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2020-2022, 2024 Nordix Foundation.
  *  Modifications Copyright (C) 2021 AT&T Intellectual Property. All rights reserved.
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
@@ -24,12 +24,12 @@
 package org.onap.policy.gui.editors.apex.rest.handling;
 
 import java.io.IOException;
+import lombok.AllArgsConstructor;
 import org.onap.policy.apex.model.modelapi.ApexApiResult;
 import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
 import org.onap.policy.common.utils.resources.TextFileUtils;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,12 +48,13 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * <b>Note:</b> An allocated {@code Session} identifier must be included in (almost) all requests. Models for different
  * {@code Session} identifiers are completely isolated from one another.
- *
+ * </p>
  * <b>Note:</b> To create a new {@code Session}, and have a new session ID allocated use a GET request to
  * {@code <baseURL>/policy/gui/v1/apex/editor/-1/Session/Create}
  */
 @RestController
 @RequestMapping("/policy/gui/v1/apex/editor")
+@AllArgsConstructor
 public class ApexEditorRestResource implements RestCommandHandler {
 
     // Get a reference to the logger
@@ -82,28 +83,6 @@ public class ApexEditorRestResource implements RestCommandHandler {
     private final PolicyHandler policyHandler;
 
     /**
-     * Autowired constructor.
-     */
-    @Autowired
-    public ApexEditorRestResource(RestSessionHandler sessionHandler,
-                                  ModelHandler modelHandler,
-                                  KeyInfoHandler keyInfoHandler,
-                                  ContextSchemaHandler contextSchemaHandler,
-                                  ContextAlbumHandler contextAlbumHandler,
-                                  EventHandler eventHandler,
-                                  TaskHandler taskHandler,
-                                  PolicyHandler policyHandler) {
-        this.sessionHandler = sessionHandler;
-        this.modelHandler = modelHandler;
-        this.keyInfoHandler = keyInfoHandler;
-        this.contextSchemaHandler = contextSchemaHandler;
-        this.contextAlbumHandler = contextAlbumHandler;
-        this.eventHandler = eventHandler;
-        this.taskHandler = taskHandler;
-        this.policyHandler = policyHandler;
-    }
-
-    /**
      * Creates a new session. Always call this method with sessionID -1, whereby a new sessionID will be allocated. If
      * successful the new sessionID will be available in the first message in the result.
      *
@@ -113,7 +92,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         for this session.
      */
     @GetMapping("/{sessionId}/Session/Create")
-    public ApexApiResult createSession(@PathVariable final int sessionId) {
+    public ApexApiResult createSession(@PathVariable("sessionId") final int sessionId) {
         if (sessionId != -1) {
             return new ApexApiResult(Result.FAILED, "Session ID must be set to -1 to create sessions: " + sessionId);
         }
@@ -133,7 +112,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/Model/Load")
-    public ApexApiResult loadFromString(@PathVariable final int sessionId,
+    public ApexApiResult loadFromString(@PathVariable("sessionId") final int sessionId,
                                         @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.LOAD, jsonString);
     }
@@ -147,8 +126,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Model/Analyse")
-    public ApexApiResult analyse(@PathVariable final int sessionId) {
-        return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.ANALYSE);
+    public ApexApiResult analyse(@PathVariable("sessionId") final int sessionId) {
+        return processRestCommand(sessionId, RestCommand.ANALYSE);
     }
 
     /**
@@ -160,12 +139,12 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Model/Validate")
-    public ApexApiResult validate(@PathVariable final int sessionId) {
-        return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.VALIDATE);
+    public ApexApiResult validate(@PathVariable("sessionId") final int sessionId) {
+        return processRestCommand(sessionId, RestCommand.VALIDATE);
     }
 
     /**
-     * Creates the new model model for this session.
+     * Creates the new model for this session.
      *
      * @param sessionId  the ID of this session. This gets injected from the URL.
      * @param jsonString the JSON string to be parsed containing the new model. See {@code BeanModel}
@@ -173,21 +152,21 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PostMapping("/{sessionId}/Model/Create")
-    public ApexApiResult createModel(@PathVariable final int sessionId,
+    public ApexApiResult createModel(@PathVariable("sessionId") final int sessionId,
                                      @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.CREATE, jsonString);
     }
 
     /**
      * Update the model for this session.
-     *processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.CREATE, jsonString);
+     * processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.CREATE, jsonString);
      * @param sessionId  the ID of this session. This gets injected from the URL.
      * @param jsonString the JSON string to be parsed containing the updated model. See {@code BeanModel}
      * @return an ApexAPIResult object. If successful then {@link ApexApiResult#isOk()} will return true. Any
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/Model/Update")
-    public ApexApiResult updateModel(@PathVariable final int sessionId,
+    public ApexApiResult updateModel(@PathVariable("sessionId") final int sessionId,
                                      @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.UPDATE, jsonString);
     }
@@ -201,8 +180,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Model/GetKey")
-    public ApexApiResult getModelKey(@PathVariable final int sessionId) {
-        return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.GET_KEY);
+    public ApexApiResult getModelKey(@PathVariable("sessionId") final int sessionId) {
+        return processRestCommand(sessionId, RestCommand.GET_KEY);
     }
 
     /**
@@ -215,8 +194,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Model/Get")
-    public ApexApiResult listModel(@PathVariable final int sessionId) {
-        return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.LIST);
+    public ApexApiResult listModel(@PathVariable("sessionId") final int sessionId) {
+        return processRestCommand(sessionId, RestCommand.LIST);
     }
 
     /**
@@ -226,8 +205,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      * @return the model represented as a YAML string. See {@code AxPolicyModel}
      */
     @GetMapping(value = "/{sessionId}/Model/Download", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String downloadModel(@PathVariable final int sessionId) {
-        ApexApiResult result = processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.DOWNLOAD);
+    public String downloadModel(@PathVariable("sessionId") final int sessionId) {
+        ApexApiResult result = processRestCommand(sessionId, RestCommand.DOWNLOAD);
         if (result != null && result.isOk()) {
             return result.getMessage();
         } else {
@@ -244,8 +223,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      * @return an ApexAPIResult that contains the operation status and success/error messages
      */
     @GetMapping("/{sessionId}/Model/Upload")
-    public ApexApiResult uploadModel(@PathVariable final int sessionId,
-                                     @RequestParam(required = false) final String userId) {
+    public ApexApiResult uploadModel(@PathVariable("sessionId") final int sessionId,
+                                     @RequestParam(value = "userId", required = false) final String userId) {
         return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.UPLOAD, userId);
     }
 
@@ -257,8 +236,8 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @DeleteMapping("/{sessionId}/Model/Delete")
-    public ApexApiResult deleteModel(@PathVariable final int sessionId) {
-        return processRestCommand(sessionId, RestCommandType.MODEL, RestCommand.DELETE);
+    public ApexApiResult deleteModel(@PathVariable("sessionId") final int sessionId) {
+        return processRestCommand(sessionId, RestCommand.DELETE);
     }
 
     /**
@@ -272,9 +251,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/KeyInformation/Get")
-    public ApexApiResult listKeyInformation(@PathVariable final int sessionId,
-                                            @RequestParam(required = false) final String name,
-        @RequestParam(required = false) final String version) {
+    public ApexApiResult listKeyInformation(@PathVariable("sessionId") final int sessionId,
+                                            @RequestParam(value = "name", required = false) final String name,
+                                            @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.KEY_INFO, RestCommand.LIST, name, version);
     }
 
@@ -287,7 +266,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PostMapping("/{sessionId}/ContextSchema/Create")
-    public ApexApiResult createContextSchema(@PathVariable final int sessionId,
+    public ApexApiResult createContextSchema(@PathVariable("sessionId") final int sessionId,
                                              @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_SCHEMA, RestCommand.CREATE, jsonString);
     }
@@ -301,7 +280,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/ContextSchema/Update")
-    public ApexApiResult updateContextSchema(@PathVariable final int sessionId,
+    public ApexApiResult updateContextSchema(@PathVariable("sessionId") final int sessionId,
                                              @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_SCHEMA, RestCommand.UPDATE, jsonString);
     }
@@ -318,9 +297,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/ContextSchema/Get")
-    public ApexApiResult listContextSchemas(@PathVariable final int sessionId,
-                                            @RequestParam(required = false) final String name,
-                                            @RequestParam(required = false) final String version) {
+    public ApexApiResult listContextSchemas(@PathVariable("sessionId") final int sessionId,
+                                            @RequestParam(value = "name", required = false) final String name,
+                                            @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_SCHEMA, RestCommand.LIST, name, version);
     }
 
@@ -334,9 +313,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @DeleteMapping("/{sessionId}/ContextSchema/Delete")
-    public ApexApiResult deleteContextSchema(@PathVariable final int sessionId,
-                                             @RequestParam(required = false) final String name,
-                                             @RequestParam(required = false) final String version) {
+    public ApexApiResult deleteContextSchema(@PathVariable("sessionId") final int sessionId,
+                                             @RequestParam(value = "name", required = false) final String name,
+                                             @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_SCHEMA, RestCommand.DELETE, name, version);
     }
 
@@ -351,9 +330,10 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Validate/ContextSchema")
-    public ApexApiResult validateContextSchemas(@PathVariable final int sessionId,
-                                                @RequestParam(required = false) final String name,
-                                                @RequestParam(required = false) final String version) {
+    public ApexApiResult validateContextSchemas(@PathVariable("sessionId") final int sessionId,
+                                                @RequestParam(value = "name", required = false) final String name,
+                                                @RequestParam(value = "version", required = false)
+                                                    final String version) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_SCHEMA, RestCommand.VALIDATE, name, version);
     }
 
@@ -366,7 +346,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PostMapping("/{sessionId}/ContextAlbum/Create")
-    public ApexApiResult createContextAlbum(@PathVariable final int sessionId,
+    public ApexApiResult createContextAlbum(@PathVariable("sessionId") final int sessionId,
                                             @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_ALBUM, RestCommand.CREATE, jsonString);
     }
@@ -380,7 +360,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/ContextAlbum/Update")
-    public ApexApiResult updateContextAlbum(@PathVariable final int sessionId,
+    public ApexApiResult updateContextAlbum(@PathVariable("sessionId") final int sessionId,
                                             @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_ALBUM, RestCommand.UPDATE, jsonString);
     }
@@ -397,9 +377,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/ContextAlbum/Get")
-    public ApexApiResult listContextAlbums(@PathVariable final int sessionId,
-                                           @RequestParam(required = false) final String name,
-                                           @RequestParam(required = false) final String version) {
+    public ApexApiResult listContextAlbums(@PathVariable("sessionId") final int sessionId,
+                                           @RequestParam(value = "name", required = false) final String name,
+                                           @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_ALBUM, RestCommand.LIST, name, version);
     }
 
@@ -413,9 +393,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @DeleteMapping("/{sessionId}/ContextAlbum/Delete")
-    public ApexApiResult deleteContextAlbum(@PathVariable final int sessionId,
-                                            @RequestParam(required = false) final String name,
-                                            @RequestParam(required = false) final String version) {
+    public ApexApiResult deleteContextAlbum(@PathVariable("sessionId") final int sessionId,
+                                            @RequestParam(value = "name", required = false) final String name,
+                                            @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_ALBUM, RestCommand.DELETE, name, version);
     }
 
@@ -430,9 +410,10 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Validate/ContextAlbum")
-    public ApexApiResult validateContextAlbums(@PathVariable final int sessionId,
-                                               @RequestParam(required = false) final String name,
-                                               @RequestParam(required = false) final String version) {
+    public ApexApiResult validateContextAlbums(@PathVariable("sessionId") final int sessionId,
+                                               @RequestParam(value = "name", required = false) final String name,
+                                               @RequestParam(value = "version", required = false)
+                                                   final String version) {
         return processRestCommand(sessionId, RestCommandType.CONTEXT_ALBUM, RestCommand.VALIDATE, name, version);
     }
 
@@ -445,7 +426,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PostMapping("/{sessionId}/Event/Create")
-    public ApexApiResult createEvent(@PathVariable final int sessionId,
+    public ApexApiResult createEvent(@PathVariable("sessionId") final int sessionId,
                                      @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.EVENT, RestCommand.CREATE, jsonString);
     }
@@ -459,7 +440,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/Event/Update")
-    public ApexApiResult updateEvent(@PathVariable final int sessionId,
+    public ApexApiResult updateEvent(@PathVariable("sessionId") final int sessionId,
                                      @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.EVENT, RestCommand.UPDATE, jsonString);
     }
@@ -476,9 +457,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Event/Get")
-    public ApexApiResult listEvent(@PathVariable final int sessionId,
-                                   @RequestParam(required = false) final String name,
-                                   @RequestParam(required = false) final String version) {
+    public ApexApiResult listEvent(@PathVariable("sessionId") final int sessionId,
+                                   @RequestParam(value = "name", required = false) final String name,
+                                   @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.EVENT, RestCommand.LIST, name, version);
     }
 
@@ -492,9 +473,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @DeleteMapping("/{sessionId}/Event/Delete")
-    public ApexApiResult deleteEvent(@PathVariable final int sessionId,
-                                     @RequestParam(required = false) final String name,
-                                     @RequestParam(required = false) final String version) {
+    public ApexApiResult deleteEvent(@PathVariable("sessionId") final int sessionId,
+                                     @RequestParam(value = "name", required = false) final String name,
+                                     @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.EVENT, RestCommand.DELETE, name, version);
     }
 
@@ -508,9 +489,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Validate/Event")
-    public ApexApiResult validateEvent(@PathVariable final int sessionId,
-                                       @RequestParam(required = false) final String name,
-                                       @RequestParam(required = false) final String version) {
+    public ApexApiResult validateEvent(@PathVariable("sessionId") final int sessionId,
+                                       @RequestParam(value = "name", required = false) final String name,
+                                       @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.EVENT, RestCommand.VALIDATE, name, version);
     }
 
@@ -523,7 +504,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PostMapping("/{sessionId}/Task/Create")
-    public ApexApiResult createTask(@PathVariable final int sessionId,
+    public ApexApiResult createTask(@PathVariable("sessionId") final int sessionId,
                                     @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.TASK, RestCommand.CREATE, jsonString);
     }
@@ -537,7 +518,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/Task/Update")
-    public ApexApiResult updateTask(@PathVariable final int sessionId,
+    public ApexApiResult updateTask(@PathVariable("sessionId") final int sessionId,
                                     @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.TASK, RestCommand.UPDATE, jsonString);
     }
@@ -554,9 +535,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Task/Get")
-    public ApexApiResult listTask(@PathVariable final int sessionId,
-                                  @RequestParam(required = false) final String name,
-                                  @RequestParam(required = false) final String version) {
+    public ApexApiResult listTask(@PathVariable("sessionId") final int sessionId,
+                                  @RequestParam(value = "name", required = false) final String name,
+                                  @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.TASK, RestCommand.LIST, name, version);
     }
 
@@ -570,9 +551,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @DeleteMapping("/{sessionId}/Task/Delete")
-    public ApexApiResult deleteTask(@PathVariable final int sessionId,
-                                    @RequestParam(required = false) final String name,
-                                    @RequestParam(required = false) final String version) {
+    public ApexApiResult deleteTask(@PathVariable("sessionId") final int sessionId,
+                                    @RequestParam(value = "name", required = false) final String name,
+                                    @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.TASK, RestCommand.DELETE, name, version);
     }
 
@@ -586,9 +567,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Validate/Task")
-    public ApexApiResult validateTask(@PathVariable final int sessionId,
-                                      @RequestParam(required = false) final String name,
-                                      @RequestParam(required = false) final String version) {
+    public ApexApiResult validateTask(@PathVariable("sessionId") final int sessionId,
+                                      @RequestParam(value = "name", required = false) final String name,
+                                      @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.TASK, RestCommand.VALIDATE, name, version);
     }
 
@@ -601,7 +582,7 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PostMapping("/{sessionId}/Policy/Create")
-    public ApexApiResult createPolicy(@PathVariable final int sessionId,
+    public ApexApiResult createPolicy(@PathVariable("sessionId") final int sessionId,
                                       @RequestBody(required = false) final String jsonString) {
         return processRestCommand(sessionId, RestCommandType.POLICY, RestCommand.CREATE, jsonString);
     }
@@ -616,8 +597,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @PutMapping("/{sessionId}/Policy/Update")
-    public ApexApiResult updatePolicy(@PathVariable final int sessionId,
-                                      @RequestParam(required = false) final boolean firstStatePeriodic,
+    public ApexApiResult updatePolicy(@PathVariable("sessionId") final int sessionId,
+                                      @RequestParam(value = "firstStatePeriodic", required = false)
+                                      final boolean firstStatePeriodic,
                                       @RequestBody(required = false) final String jsonString) {
         ApexApiResult result = processRestCommand(sessionId, RestCommandType.POLICY, RestCommand.UPDATE, jsonString);
         if (result != null && result.isOk() && firstStatePeriodic) {
@@ -638,9 +620,9 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @GetMapping("/{sessionId}/Policy/Get")
-    public ApexApiResult listPolicy(@PathVariable final int sessionId,
-                                    @RequestParam(required = false) final String name,
-                                    @RequestParam(required = false) final String version) {
+    public ApexApiResult listPolicy(@PathVariable("sessionId") final int sessionId,
+                                    @RequestParam(value = "name", required = false) final String name,
+                                    @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.POLICY, RestCommand.LIST, name, version);
     }
 
@@ -654,30 +636,28 @@ public class ApexEditorRestResource implements RestCommandHandler {
      *         messages/errors can be retrieved using {@link ApexApiResult#getMessages()}
      */
     @DeleteMapping("/{sessionId}/Policy/Delete")
-    public ApexApiResult deletePolicy(@PathVariable final int sessionId,
-                                      @RequestParam(required = false) final String name,
-                                      @RequestParam(required = false) final String version) {
+    public ApexApiResult deletePolicy(@PathVariable("sessionId") final int sessionId,
+                                      @RequestParam(value = "name", required = false) final String name,
+                                      @RequestParam(value = "version", required = false) final String version) {
         return processRestCommand(sessionId, RestCommandType.POLICY, RestCommand.DELETE, name, version);
     }
 
     /**
      * This method routes REST commands that take no parameters to their caller.
      *
-     * @param sessionId   the Apex editor session ID
-     * @param commandType the type of REST command to process
-     * @param command     the REST command to process
+     * @param sessionId the Apex editor session ID
+     * @param command   the REST command to process
      * @return the result of the REST command
      */
-    private ApexApiResult processRestCommand(final int sessionId, final RestCommandType commandType,
-                                             final RestCommand command) {
-        LOGGER.entry(commandType);
+    private ApexApiResult processRestCommand(final int sessionId, final RestCommand command) {
+        LOGGER.entry(RestCommandType.MODEL);
         try {
             var result = new ApexApiResult();
             RestSession session = sessionHandler.getSession(sessionId, result);
             if (session == null) {
                 return result;
             }
-            result = executeRestCommand(session, commandType, command);
+            result = executeRestCommand(session, RestCommandType.MODEL, command);
             LOGGER.exit(SESSION_CREATE + (result != null && result.isOk() ? OK : NOT_OK));
             return result;
         } catch (final Exception e) {
@@ -755,24 +735,16 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
                                             final RestCommand command) {
-        switch (commandType) {
-            case MODEL:
-                return modelHandler.executeRestCommand(session, commandType, command);
-            case KEY_INFO:
-                return keyInfoHandler.executeRestCommand(session, commandType, command);
-            case CONTEXT_SCHEMA:
-                return contextSchemaHandler.executeRestCommand(session, commandType, command);
-            case CONTEXT_ALBUM:
-                return contextAlbumHandler.executeRestCommand(session, commandType, command);
-            case EVENT:
-                return eventHandler.executeRestCommand(session, commandType, command);
-            case TASK:
-                return taskHandler.executeRestCommand(session, commandType, command);
-            case POLICY:
-                return policyHandler.executeRestCommand(session, commandType, command);
-            default:
-                return new ApexApiResult(Result.FAILED, REST_COMMAND_NOT_RECOGNISED);
-        }
+        return switch (commandType) {
+            case MODEL -> modelHandler.executeRestCommand(session, commandType, command);
+            case KEY_INFO -> keyInfoHandler.executeRestCommand(session, commandType, command);
+            case CONTEXT_SCHEMA -> contextSchemaHandler.executeRestCommand(session, commandType, command);
+            case CONTEXT_ALBUM -> contextAlbumHandler.executeRestCommand(session, commandType, command);
+            case EVENT -> eventHandler.executeRestCommand(session, commandType, command);
+            case TASK -> taskHandler.executeRestCommand(session, commandType, command);
+            case POLICY -> policyHandler.executeRestCommand(session, commandType, command);
+            default -> new ApexApiResult(Result.FAILED, REST_COMMAND_NOT_RECOGNISED);
+        };
     }
 
     /**
@@ -787,24 +759,16 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
                                             final RestCommand command, final String jsonString) {
-        switch (commandType) {
-            case MODEL:
-                return modelHandler.executeRestCommand(session, commandType, command, jsonString);
-            case KEY_INFO:
-                return keyInfoHandler.executeRestCommand(session, commandType, command, jsonString);
-            case CONTEXT_SCHEMA:
-                return contextSchemaHandler.executeRestCommand(session, commandType, command, jsonString);
-            case CONTEXT_ALBUM:
-                return contextAlbumHandler.executeRestCommand(session, commandType, command, jsonString);
-            case EVENT:
-                return eventHandler.executeRestCommand(session, commandType, command, jsonString);
-            case TASK:
-                return taskHandler.executeRestCommand(session, commandType, command, jsonString);
-            case POLICY:
-                return policyHandler.executeRestCommand(session, commandType, command, jsonString);
-            default:
-                return new ApexApiResult(Result.FAILED, REST_COMMAND_NOT_RECOGNISED);
-        }
+        return switch (commandType) {
+            case MODEL -> modelHandler.executeRestCommand(session, commandType, command, jsonString);
+            case KEY_INFO -> keyInfoHandler.executeRestCommand(session, commandType, command, jsonString);
+            case CONTEXT_SCHEMA -> contextSchemaHandler.executeRestCommand(session, commandType, command, jsonString);
+            case CONTEXT_ALBUM -> contextAlbumHandler.executeRestCommand(session, commandType, command, jsonString);
+            case EVENT -> eventHandler.executeRestCommand(session, commandType, command, jsonString);
+            case TASK -> taskHandler.executeRestCommand(session, commandType, command, jsonString);
+            case POLICY -> policyHandler.executeRestCommand(session, commandType, command, jsonString);
+            default -> new ApexApiResult(Result.FAILED, REST_COMMAND_NOT_RECOGNISED);
+        };
     }
 
     /**
@@ -820,24 +784,17 @@ public class ApexEditorRestResource implements RestCommandHandler {
     @Override
     public ApexApiResult executeRestCommand(final RestSession session, final RestCommandType commandType,
                                             final RestCommand command, final String name, final String version) {
-        switch (commandType) {
-            case MODEL:
-                return modelHandler.executeRestCommand(session, commandType, command, name, version);
-            case KEY_INFO:
-                return keyInfoHandler.executeRestCommand(session, commandType, command, name, version);
-            case CONTEXT_SCHEMA:
-                return contextSchemaHandler.executeRestCommand(session, commandType, command, name, version);
-            case CONTEXT_ALBUM:
-                return contextAlbumHandler.executeRestCommand(session, commandType, command, name, version);
-            case EVENT:
-                return eventHandler.executeRestCommand(session, commandType, command, name, version);
-            case TASK:
-                return taskHandler.executeRestCommand(session, commandType, command, name, version);
-            case POLICY:
-                return policyHandler.executeRestCommand(session, commandType, command, name, version);
-            default:
-                return new ApexApiResult(Result.FAILED, REST_COMMAND_NOT_RECOGNISED);
-        }
+        return switch (commandType) {
+            case MODEL -> modelHandler.executeRestCommand(session, commandType, command, name, version);
+            case KEY_INFO -> keyInfoHandler.executeRestCommand(session, commandType, command, name, version);
+            case CONTEXT_SCHEMA ->
+                contextSchemaHandler.executeRestCommand(session, commandType, command, name, version);
+            case CONTEXT_ALBUM -> contextAlbumHandler.executeRestCommand(session, commandType, command, name, version);
+            case EVENT -> eventHandler.executeRestCommand(session, commandType, command, name, version);
+            case TASK -> taskHandler.executeRestCommand(session, commandType, command, name, version);
+            case POLICY -> policyHandler.executeRestCommand(session, commandType, command, name, version);
+            default -> new ApexApiResult(Result.FAILED, REST_COMMAND_NOT_RECOGNISED);
+        };
     }
 
     /**

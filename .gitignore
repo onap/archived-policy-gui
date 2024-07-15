@@ -14,3 +14,4 @@ package-lock.json
 node
 node_modules
 **/*.iml
+**/*.log

@@ -126,7 +126,7 @@ class RestInterfaceTest {
         assertTrue(responseMsg.isOk());
 
         // The string in responseMsg.Messages[0] is a JSON representation of a AxPolicy
-        // object. Lets parse it
+        // object. Let's parse it
         final String returnedPolicyAsString = responseMsg.getMessages().get(0);
         ApexModelReader<AxPolicy> apexPolicyReader = new ApexModelReader<>(AxPolicy.class, false);
         final AxPolicy returnedPolicy = apexPolicyReader.read(returnedPolicyAsString);

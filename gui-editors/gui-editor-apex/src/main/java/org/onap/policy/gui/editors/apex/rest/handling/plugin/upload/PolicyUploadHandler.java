@@ -30,6 +30,7 @@ import org.onap.policy.apex.model.modelapi.ApexApiResult.Result;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -58,7 +59,7 @@ public class PolicyUploadHandler {
     private static final String MODEL_UPLOAD_NOT_OK = "Model/Upload: NOT OK";
 
     @Autowired
-    public PolicyUploadHandler(RestTemplate policyUploadRestTemplate) {
+    public PolicyUploadHandler(@Qualifier("policyUploadRestTemplate") RestTemplate policyUploadRestTemplate) {
         this.policyUploadRestTemplate = policyUploadRestTemplate;
     }
 
